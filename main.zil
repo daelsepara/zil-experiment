@@ -20,12 +20,12 @@ By SD Separa (2020)">
 	<MAIN-LOOP>>
 
 <ROUTINE INIT ()
-  <CRLF> <CRLF>
-  <TELL "One night, you dream that you are transported to a video game." CR CR>
-  <V-VERSION> <CRLF>
-  <SETG HERE ,MAIN-ROOM>
-  <MOVE ,PLAYER ,HERE>
-  <V-LOOK>>
+	<CRLF><CRLF>
+	<TELL "One night, you dream that you are transported to a video game." CR CR>
+	<V-VERSION> <CRLF>
+	<SETG HERE ,MAIN-ROOM>
+	<MOVE ,PLAYER ,HERE>
+	<V-LOOK>>
   
 <GLOBAL DOOR-UNLOCKED <>>
  
@@ -71,26 +71,26 @@ By SD Separa (2020)">
 	(FLAGS RLANDBIT LIGHTBIT)>
 
 <OBJECT KEY
-  (IN STORAGE-ROOM)
-  (DESC "small silver key")
-  (SYNONYM KEY)
-  (ADJECTIVE SMALL SILVER)
-  (ACTION KEY-F)
-  (FLAGS TAKEBIT TOOLBIT)>
+	(IN STORAGE-ROOM)
+	(DESC "small silver key")
+	(SYNONYM KEY)
+	(ADJECTIVE SMALL SILVER)
+	(ACTION KEY-F)
+	(FLAGS TAKEBIT TOOLBIT)>
 
 <OBJECT LAMP
-  (IN LIVING-ROOM)
-  (DESC "small brass lamp")
-  (SYNONYM LAMP LIGHT)
-  (ADJECTIVE SMALL BRASS)
-  (FLAGS TAKEBIT LIGHTBIT ONBIT)>
+	(IN LIVING-ROOM)
+	(DESC "small brass lamp")
+	(SYNONYM LAMP LIGHT)
+	(ADJECTIVE SMALL BRASS)
+	(FLAGS TAKEBIT LIGHTBIT ONBIT)>
 
 <OBJECT DOOR
-  (IN PORTAL-ROOM)
-  (DESC "large steel door")
-  (SYNONYM DOOR)
-  (ADJECTIVE LARGE STEEL)
-  (FLAGS DOORBIT LOCKEDBIT OPENBIT)>
+	(IN PORTAL-ROOM)
+	(DESC "large steel door")
+	(SYNONYM DOOR)
+	(ADJECTIVE LARGE STEEL)
+	(FLAGS DOORBIT LOCKEDBIT OPENBIT)>
 
 <ROUTINE KEY-F ()
 	<COND (<EQUAL? ,HERE ,PORTAL-ROOM>
@@ -99,16 +99,15 @@ By SD Separa (2020)">
 			<SETG DOOR-UNLOCKED T>
 			<FCLEAR ,DOOR ,LOCKEDBIT>
 		)>
-	)>  
->  
+	)>>  
 
 <ROUTINE ARMORY-ROOM-F (RARG)
-  <COND (<==? .RARG ,M-ENTER>
-	<COND (<FSET? ,LAMP ,ONBIT>
-		<FSET ,ARMORY-ROOM ,ONBIT>)
+	<COND (<==? .RARG ,M-ENTER>
+		<COND (<FSET? ,LAMP ,ONBIT>
+			<FSET ,ARMORY-ROOM ,ONBIT>)
 	(ELSE <FCLEAR ,ARMORY-ROOM ,ONBIT>)>)>>
 
 <ROUTINE EXIT-ROOM-F (RARG)
-  <COND (<==? .RARG ,M-ENTER><V-LOOK>)>
-  <TELL CRLF>
-  <JIGS-UP "You wake up from the dream.">>
+	<COND (<==? .RARG ,M-ENTER><V-LOOK>)>
+	<TELL CRLF>
+	<JIGS-UP "You wake up from the dream.">>
