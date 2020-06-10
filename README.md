@@ -7,13 +7,12 @@ You need a ZIL compiler or assembler, or something like [ZILF](https://bitbucket
 
 Once installed, you can compile and convert it to a z-machine file using *zilf* and *zapf*:
 
-´´´
+```
 ./zilf main.zil
 ./zapf main.zap
-´´´
-
+```
 To play the game, run it with a Z-machine interpreter like Frotz:
 
-´´´
+```
 frotz main.z3
-´´´
+```
