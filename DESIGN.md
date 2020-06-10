@@ -208,4 +208,4 @@ Finally, upon starting the game, we initialize the player's conditions
 <GLOBAL DOOR-UNLOCKED <>> 
 ```
 
-That is, the player starts in the living room, and the door is locked. The game loop is itself a routine called *GO*. The *MAIN-LOOP* routine is built-in. In a nutshell, it runs the parser and waits for input and does the processing. During processing, it calls built-in or coded routines that you have defined in the code.
+That is, the player starts in the living room, and the door is locked. The game loop is itself a routine called *GO*. The *MAIN-LOOP* routine is built-in. In a nutshell, it runs the parser and waits for input and does the processing. During processing, it calls built-in or routines that you have defined in the code.
