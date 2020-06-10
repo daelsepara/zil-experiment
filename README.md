@@ -36,4 +36,4 @@ There are exits to the north, south, east, and west.
 
 ## Further information
 
-This is inspired by [zil-retro](https://github.com/jeffnyman/zil-retro). Head over to that repo for a tutorial on ZIL as well as PDF documents explaining ZIL in more detail. Meanwhile, checkout the [main.zil](main.zil) code for an overview.
+This is inspired by [zil-retro](https://github.com/jeffnyman/zil-retro). Head over to that repo for a tutorial on ZIL as well as PDF documents explaining ZIL in more detail. Meanwhile, checkout the [main.zil](main.zil) code for an overview. [DESIGN.md](DESIGN.md) contains some information about the game design.
