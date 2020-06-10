@@ -33,8 +33,6 @@ By SD Separa (2020)">
 	<MOVE ,PLAYER ,HERE>
 	<V-LOOK>>
   
-<GLOBAL DOOR-UNLOCKED <>>
- 
 <ROOM MAIN-ROOM
 	(LOC ROOMS)
 	(DESC "Main Hallway")
@@ -65,7 +63,7 @@ By SD Separa (2020)">
 	(DESC "Portal Room")
 	(LDESC "The exit to the west leads you back to the main hallway. You feel that there is something beyond the door to the east.")
 	(WEST TO MAIN-ROOM)
-	(EAST TO EXIT-ROOM IF DOOR-UNLOCKED ELSE "The exit portal is locked.")
+	(EAST TO EXIT-ROOM IF DOOR IS OPEN ELSE "The exit portal is locked.")
 	(FLAGS RLANDBIT LIGHTBIT)>
 
 <ROOM LIVING-ROOM
@@ -101,18 +99,16 @@ By SD Separa (2020)">
 	(DESC "large steel door")
 	(SYNONYM DOOR)
 	(ADJECTIVE LARGE STEEL)
-	(FLAGS DOORBIT LOCKEDBIT OPENBIT)>
+	(FLAGS DOORBIT)>
 
 <ROUTINE KEY-F ()
 	<COND (<AND <EQUAL? ,HERE ,PORTAL-ROOM> <EQUAL? ,PRSO ,DOOR> <EQUAL? ,PRSI ,KEY>>
 		<COND (<VERB? OPEN>
 			<TELL "The large steel door unlocks with a loud screeching sound.">
-			<SETG DOOR-UNLOCKED T>
-			<FCLEAR ,DOOR ,LOCKEDBIT>)
+			<FSET ,DOOR ,OPENBIT>)
 		(ELSE <VERB? LOCK>
 			<TELL "The large steel door closes!">
-			<SETG DOOR-UNLOCKED <>>
-			<FSET ,DOOR ,LOCKEDBIT>)>
+			<FCLEAR ,DOOR ,OPENBIT>)>
 	)>>  
 
 <ROUTINE ARMORY-ROOM-F (RARG)

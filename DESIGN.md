@@ -38,10 +38,10 @@ In the code, they are defined thus
 	(DESC "large steel door")
 	(SYNONYM DOOR)
 	(ADJECTIVE LARGE STEEL)
-	(FLAGS DOORBIT LOCKEDBIT OPENBIT)>
+	(FLAGS DOORBIT OPENBIT)>
 ```
 
-To specify whether the object can be carried, we add the **TAKEBIT**. Notice that the *DOOR* object cannot be carried and does not have the *TAKEBIT* flag defined. The *DOORBIT* flag indicates that the object is a door. *LOCKEDBIT* AND *OPENBIT* flags further add properties (locked or unlocked, open or closed) to the door. Objects should have at least one synonym (even if the same word is indicated as the synonym). The *ADJECTIVE* property allows the parser to indicate the correct object especially if several objects are present in the current location (or container). The *LOC* property sets the initial location of the objects.
+To specify whether the object can be carried, we add the *TAKEBIT* flag. Notice that the *DOOR* object cannot be carried and does not have the *TAKEBIT* flag defined. The *DOORBIT* flag indicates that the object is a door. *OPENBIT* flag indicates whether the object (in this case, the *DOOR*) is open or close. Objects should have at least one synonym (even if the same word is indicated as the synonym). The *ADJECTIVE* property allows the parser to indicate the correct object especially if several objects are present in the current location (or container). The *LOC* property sets the initial location of the objects.
 
 *LIGHTBIT* and *ONBIT* are used to indicate that the object can provide light and that the object is turned on or switched on.
 
@@ -52,16 +52,14 @@ If we want the game to respond to various actions that can be performed with the
 	<COND (<AND <EQUAL? ,HERE ,PORTAL-ROOM> <EQUAL? ,PRSO ,DOOR> <EQUAL? ,PRSI ,KEY>>
 		<COND (<VERB? OPEN>
 			<TELL "The large steel door unlocks with a loud screeching sound.">
-			<SETG DOOR-UNLOCKED T>
-			<FCLEAR ,DOOR ,LOCKEDBIT>)
+			<FSET ,DOOR ,OPENBIT>)
 		(ELSE <VERB? LOCK>
 			<TELL "The large steel door closes!">
-			<SETG DOOR-UNLOCKED <>>
-			<FSET ,DOOR ,LOCKEDBIT>)>
+			<FCLEAR ,DOOR ,OPENBIT>)>
 	)>>  
 ```
 
-In this case, the silver key, can be used to unlock the steel door. Note that in the above code, the player must be in the Portal room and that the door must be unlocked or locked with the key. We set *LOCKEDBIT* property of the door depending on the action taken by the player (*OPEN*, *CLOSE*, *LOCK*, or *UNLOCK*). Also, we used a global variable *DOOR-UNLOCKED* that is set depending on whether or not the door is locked or unlocked with the key (see section on **ROOMS**).
+In this case, the silver key, can be used to unlock the steel door. Note that in the above code, the player must be in the Portal room and that the door must be unlocked or locked with the key. We set *OPENBIT* property of the door depending on the action taken by the player (*OPEN*, *CLOSE*, *LOCK*, or *UNLOCK*). See section on **Rooms**).
 
 # Rooms
 
@@ -108,7 +106,7 @@ They are defined in the game as
 	(DESC "Portal Room")
 	(LDESC "The exit to the west leads you back to the main hallway. You feel that there is something beyond the door to the east.")
 	(WEST TO MAIN-ROOM)
-	(EAST TO EXIT-ROOM IF DOOR-UNLOCKED ELSE "The exit portal is locked.")
+	(EAST TO EXIT-ROOM IF DOOR IS OPEN ELSE "The exit portal is locked.")
 	(FLAGS RLANDBIT LIGHTBIT)>
 
 <ROOM LIVING-ROOM
@@ -128,10 +126,10 @@ They are defined in the game as
 Unlike objects, rooms are contained in a virtual object called *ROOMS*. In each room we can specify the exits towards the directions *NORTH*, *SOUTH*, *EAST*, *WEST*, *UP*, *DOWN*, *NE*, *NW*, *SE*, *SW*. In the Portal Room, we specify a conditional exit
 
 ```
-(EAST TO EXIT-ROOM IF DOOR-UNLOCKED ELSE "The exit portal is locked.")
+(EAST TO EXIT-ROOM IF DOOR IS OPEN ELSE "The exit portal is locked.")
 ```
 
-Exit to the east is only possible if *DOOR-UNLOCKED* is true (see previous section on **Objects**).
+Exit to the east is only possible if *DOOR* is open, i.e. *OPENBIT* is true (see previous section on **Objects**).
 
 Like objects, if we want to handle specific actions or events in the room, we specify an *ACTION* routine
 
@@ -204,8 +202,6 @@ Finally, upon starting the game, we initialize the player's conditions
 	<SETG HERE ,MAIN-ROOM>
 	<MOVE ,PLAYER ,HERE>
 	<V-LOOK>>
-  
-<GLOBAL DOOR-UNLOCKED <>> 
 ```
 
 That is, the player starts in the living room, and the door is locked. The game loop is itself a routine called *GO*. The *MAIN-LOOP* routine is built-in. In a nutshell, it runs the parser and waits for input and does the processing. During processing, it calls built-in or routines that you have defined in the code.
