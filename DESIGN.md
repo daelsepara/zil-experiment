@@ -38,10 +38,14 @@ In the code, they are defined thus
 	(DESC "large steel door")
 	(SYNONYM DOOR)
 	(ADJECTIVE LARGE STEEL)
-	(FLAGS DOORBIT OPENBIT)>
+	(FLAGS DOORBIT)>
 ```
 
-To specify whether the object can be carried, we add the *TAKEBIT* flag. Notice that the *DOOR* object cannot be carried and does not have the *TAKEBIT* flag defined. The *DOORBIT* flag indicates that the object is a door. *OPENBIT* flag indicates whether the object (in this case, the *DOOR*) is open or close. Objects should have at least one synonym (even if the same word is indicated as the synonym). The *ADJECTIVE* property allows the parser to indicate the correct object especially if several objects are present in the current location (or container). The *LOC* property sets the initial location of the objects.
+To specify whether the object can be carried, we add the *TAKEBIT* flag. Notice that the *DOOR* object cannot be carried and does not have the *TAKEBIT* flag defined. The *DOORBIT* flag indicates that the object is a door.
+
+Door type objects can use the *OPENBIT* flag to indicate whether the object (in this case, the *DOOR*) is open. In the above example, the door is closed and locked, so *OPENBIT* is not defined. More on this later.
+
+Objects should have at least one synonym (even if the same word is indicated as the synonym). The *ADJECTIVE* property allows the parser to indicate the correct object especially if several objects are present in the current location (or container). The *LOC* property sets the initial location of the objects.
 
 *LIGHTBIT* and *ONBIT* are used to indicate that the object can provide light and that the object is turned on or switched on.
 
@@ -59,7 +63,7 @@ If we want the game to respond to various actions that can be performed with the
 	)>>  
 ```
 
-In this case, the silver key, can be used to unlock the steel door. Note that in the above code, the player must be in the Portal room and that the door must be unlocked or locked with the key. We set *OPENBIT* property of the door depending on the action taken by the player (*OPEN*, *CLOSE*, *LOCK*, or *UNLOCK*). See section on **Rooms**).
+In this case, the silver key, can be used to unlock the steel door. Note that in the above code, the player must be in the Portal room and that the door must be unlocked or locked with the key. We set *OPENBIT* property of the door depending on the action taken by the player (*OPEN*, *CLOSE*, *LOCK*, or *UNLOCK*). See section on **Rooms**.
 
 # Rooms
 
