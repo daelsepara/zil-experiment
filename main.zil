@@ -38,6 +38,7 @@ By SD Separa (2020)">
 <ROOM MAIN-ROOM
 	(LOC ROOMS)
 	(DESC "Main Hallway")
+	(LDESC "There are exits to the north, south, east, and west.")
 	(EAST TO PORTAL-ROOM)
 	(WEST TO STORAGE-ROOM)
 	(SOUTH TO LIVING-ROOM)
@@ -47,12 +48,14 @@ By SD Separa (2020)">
 <ROOM STORAGE-ROOM
 	(LOC ROOMS)
 	(DESC "Storage Room")
+	(LDESC "The exit to the east leads you back to the main hallway.")
 	(EAST TO MAIN-ROOM)
 	(FLAGS RLANDBIT LIGHTBIT)>
 
 <ROOM ARMORY-ROOM
 	(LOC ROOMS)
 	(DESC "Armory")
+	(LDESC "The exit to the south leads you back to the main hallway.")
 	(SOUTH TO MAIN-ROOM)
 	(ACTION ARMORY-ROOM-F)
 	(FLAGS RLANDBIT)>
@@ -60,6 +63,7 @@ By SD Separa (2020)">
 <ROOM PORTAL-ROOM
 	(LOC ROOMS)
 	(DESC "Portal Room")
+	(LDESC "The exit to the west leads you back to the main hallway. You feel that there is something beyond the door to the east.")
 	(WEST TO MAIN-ROOM)
 	(EAST TO EXIT-ROOM IF DOOR-UNLOCKED ELSE "The exit portal is locked.")
 	(FLAGS RLANDBIT LIGHTBIT)>
@@ -67,6 +71,7 @@ By SD Separa (2020)">
 <ROOM LIVING-ROOM
 	(LOC ROOMS)
 	(DESC "Living Room")
+	(LDESC "The exit to the north leads you back to the main hallway.")
 	(NORTH TO MAIN-ROOM)
 	(FLAGS RLANDBIT LIGHTBIT)>
 
