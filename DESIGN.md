@@ -148,7 +148,7 @@ Like objects, if we want to handle specific actions or events in the room, we sp
 	<JIGS-UP "You wake up from the dream.">>
 ```
 
-Here, we set the *ONBIT* property of the Armory room if he is carrying the lamp or leaves the lamp in the room. On the other hand, if the player manages to enter the exit room beyond the steel door, the game ends.
+Here, we set the *ONBIT* property of the Armory room if the player is carrying the lamp or leaves the lamp in the room. On the other hand, if the player manages to enter the exit room beyond the steel door, the game ends.
 
 *JIGS-UP* is a special predicate that immediately ends the game with a message.
 
