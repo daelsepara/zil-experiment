@@ -16,3 +16,19 @@ To play the game, run it with a Z-machine interpreter like Frotz:
 ```
 frotz main.z3
 ```
+
+Where you are greeted by the following screen:
+
+```
+One night, you dream that you are transported to a video game.
+
+ZIL Experiment
+Experiments with ZIL
+By SD Separa (2020)
+Release 0 / Serial number 200610 / ZILF 0.9 lib J5
+
+Main Hallway
+
+> 
+```
+
