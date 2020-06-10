@@ -61,7 +61,7 @@ If we want the game to respond to various actions that can be performed with the
 	)>>  
 ```
 
-In this case, the silver key, can be used to unlock the steel door. Note that in the above code, the player must be in the Portal room and that the door must be unlocked or locked with the key. We set *LOCKEDBIT* property of the door depending on the action taken by the player (*OPEN*, *CLOSE*, *LOCK*, or *UNLOCK*). Also, we used a global variable *DOOR-UNLOCKED* (see section on **ROOMS**).
+In this case, the silver key, can be used to unlock the steel door. Note that in the above code, the player must be in the Portal room and that the door must be unlocked or locked with the key. We set *LOCKEDBIT* property of the door depending on the action taken by the player (*OPEN*, *CLOSE*, *LOCK*, or *UNLOCK*). Also, we used a global variable *DOOR-UNLOCKED* that is set depending on whether or not the door is locked or unlocked with the key (see section on **ROOMS**).
 
 # Rooms
 
