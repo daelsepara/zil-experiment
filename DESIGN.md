@@ -189,3 +189,23 @@ unlock the door using the key
 close the door using the key
 lock the door using the key
 ```
+
+Finally, upon starting the game, we initialize the player's conditions
+
+```
+<ROUTINE GO ()
+	<INIT>
+	<MAIN-LOOP>>
+
+<ROUTINE INIT ()
+	<CRLF><CRLF>
+	<TELL "One night, you dream that you are transported to a video game." CR CR>
+	<V-VERSION> <CRLF>
+	<SETG HERE ,MAIN-ROOM>
+	<MOVE ,PLAYER ,HERE>
+	<V-LOOK>>
+  
+<GLOBAL DOOR-UNLOCKED <>> 
+```
+
+That is, the player starts in the living room, and the door is locked. The game loop is itself a routine called *GO*. The *MAIN-LOOP* routine is built-in. In a nutshell, it runs the parser and waits for input and does the processing. During processing, it calls built-in or coded routines that you have defined in the code.
