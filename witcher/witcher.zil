@@ -10,6 +10,8 @@ Inspired by the Witcher Games by CD Projekt Red|">
 <INSERT-FILE "parser">
 
 <INSERT-FILE "witchergear">
+<INSERT-FILE "continent">
+<INSERT-FILE "objects">
 
 <ROUTINE GO ()
 	<INIT>
@@ -22,17 +24,3 @@ Inspired by the Witcher Games by CD Projekt Red|">
 	<SETG HERE ,CAMP-SITE>
 	<MOVE ,PLAYER ,HERE>
 	<V-LOOK>>
-
-<ROOM CAMP-SITE
-	(LOC ROOMS)
-	(DESC "Campsite")
-	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the the rhythmic crackling sound. The fire keeps the wolves and other would-be predators at bay.")
-	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
-
-
-<OBJECT EST-EST
-	(IN PLAYER)
-	(DESC "bottle of Est est wine")
-	(SYNONYM BOTTLE WINE)
-	(ADJECTIVE EXPENSIVE)
-	(FLAGS TAKEBIT)>
