@@ -20,15 +20,13 @@
 	<TELL "------------------------------------------------------" CR>>
 
 <ROUTINE NOTHING-HAPPENS ()
-	<TELL "Nothing happens." CR>
-	<RTRUE>>
+	<TELL "Nothing happens." CR>>
 
 <ROUTINE CANNOT-GO ()
 	<TELL "Even with Roach, you can't go that way." CR>>
 	
 <ROUTINE DESCRIBE-LOCATION (LOC)
-	<TELL <GETP .LOC ,P?LDESC> CR>
-	<RTRUE>>
+	<TELL <GETP .LOC ,P?LDESC> CR>>
 	
 <ROUTINE DESCRIBE-LOCATION-WHILE-RIDING (LOC)
 	<TELL "... at the " D .LOC CR>
@@ -36,6 +34,7 @@
 	<TELL <GETP .LOC ,P?LDESC> CR>>
 	
 <ROUTINE INIT ()
+	<INIT-STATUS-LINE>
 	<V-VERSION>
 	<CRLF>
 	<DRAW-LINE>

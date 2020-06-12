@@ -25,5 +25,4 @@
 			<TELL "an amulet that can detect the presence of magic." CR>
 			<RTRUE>)>
 
-	<TELL "nothing special." CR>
-	<RTRUE>>
+	<TELL "nothing special." CR>>
