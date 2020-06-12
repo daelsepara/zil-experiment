@@ -1,6 +1,6 @@
 # Design Goals
 
-With our increasing understanding of ZIL, it is time to create a more sophisticated game. Here, we try to create and interactive fiction game set in the Witcher games by CD Projekt Red.
+With our increasing understanding of ZIL, it is time to create a more sophisticated game. Here, we try to create an interactive fiction game set in the Witcher game universe by CD Projekt Red.
 
 Our goals are to implement these features
 
