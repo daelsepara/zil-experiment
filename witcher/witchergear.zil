@@ -8,9 +8,6 @@
 <ROUTINE APPLY-OIL (ARGOIL ARGSWORD)
 	<TELL "You pour the " D .ARGOIL " onto the " D .ARGSWORD CR>>
 
-<ROUTINE NOTHING-HAPPENS ()
-	<TELL "Nothing happens." CR>>
-
 <ROUTINE CANNOT-APPLY-OIL (ARGOIL ARGSWORD)
 	<TELL "You cannot apply the " D .ARGOIL " to the " D .ARGSWORD ", or if you can, it will not be effective." CR>>
 

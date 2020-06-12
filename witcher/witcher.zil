@@ -15,6 +15,12 @@
 <ROUTINE DRAW-LINE ()
 	<TELL "------------------------------------------------------" CR>>
 
+<ROUTINE NOTHING-HAPPENS ()
+	<TELL "Nothing happens." CR>>
+
+<ROUTINE DESCRIBE-LOCATION ()
+	<TELL <GETP ,HERE ,P?LDESC> CR>>
+
 <ROUTINE INIT ()
 	<V-VERSION>
 	<CRLF>
