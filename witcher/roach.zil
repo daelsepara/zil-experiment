@@ -17,7 +17,7 @@
 		)>
 	)(ELSE
 		<COND(<EQUAL? .RARG ,M-ENTER>
-			<TELL "You galloped towards " D <LOC ,ROACH> CR CR>
+			<TELL "You galloped towards the ..." CR CR>
 			<SETG ,HERE <LOC ,ROACH>>
 		)>
 	)>>
