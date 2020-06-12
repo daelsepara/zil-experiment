@@ -26,17 +26,15 @@
 <SYNONYM RIDE MOUNT>
 
 <ROUTINE V-RIDE ()
-	<COND (<VERB? RIDE>
-		<COND (<IN? ,PLAYER ,ROACH>
+	<COND (<FSET? ,PRSO ,VEHBIT>
+		<COND (<IN? ,PLAYER ,PRSO>
 			<TELL "You are already riding the " D ,PRSO "." CR>
 		)(ELSE
-			<COND (<FSET? ,PRSO ,VEHBIT>
-				<TELL "You ride the " D, PRSO "." CR>
-				<MOVE ,PLAYER ,PRSO>
-			)(ELSE
-				<TELL "You can't ride the " D, PRSO "." CR>
-			)>
+			<TELL "You ride the " D, PRSO "." CR>
+			<MOVE ,PLAYER ,PRSO>
 		)>
+	)(ELSE
+		<TELL "You can't ride the " D, PRSO "." CR>
 	)>>
 
 <SYNTAX UNMOUNT = V-UNMOUNT>
