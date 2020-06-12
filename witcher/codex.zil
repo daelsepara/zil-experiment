@@ -4,9 +4,10 @@
 	
 	<TELL "You looked at the " D ,PRSO " closely and see that it is ">
 	
-	<COND (<EQUAL? ,PRSO ,ROACH>
-		<TELL "a loyal and dependable horse that sometimes ends up in odd places." CR>
-		<RTRUE>)
+	<COND 
+		(<EQUAL? ,PRSO ,ROACH>
+			<TELL "a loyal and dependable horse that sometimes ends up in odd places." CR>
+			<RTRUE>)
 		
 		(<EQUAL? ,PRSO ,SILVER-SWORD>
 			<TELL "a weapon for killing creatures of magic." CR>
