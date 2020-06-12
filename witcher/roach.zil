@@ -57,7 +57,7 @@
 		<TELL "Roach is already here." CR>
 	)(ELSE
 		<MOVE ,ROACH <LOC ,PLAYER>>
-		<TELL "Whether a short time or long time passed, nobody knows. But Roach arrives." CR>
+		<TELL "Whether a short time or long time passed, nobody knows; but by and by, Roach arrives." CR>
 	)>>
 
 <ROUTINE MOVE-ROACH (LOC)
@@ -69,18 +69,14 @@
 		<RETURN ,ROACH>
 	)>>
 	
-<ROUTINE ROACH-NORTH("AUX" LOC)
-	<SET LOC <GETP <LOC ,ROACH> P?NORTH>>
-	<MOVE-ROACH .LOC>>
+<ROUTINE ROACH-NORTH ()
+	<MOVE-ROACH <GETP <LOC ,ROACH> P?NORTH>>
 
-<ROUTINE ROACH-SOUTH("AUX" LOC)
-	<SET LOC <GETP <LOC ,ROACH> P?SOUTH>>
-	<MOVE-ROACH .LOC>>
+<ROUTINE ROACH-SOUTH ()
+	<MOVE-ROACH <GETP <LOC ,ROACH> P?SOUTH>>
 
-<ROUTINE ROACH-EAST("AUX" LOC)
-	<SET LOC <GETP <LOC ,ROACH> P?EAST>>
-	<MOVE-ROACH .LOC>>
+<ROUTINE ROACH-EAST ()
+	<MOVE-ROACH <GETP <LOC ,ROACH> P?EAST>>
 
-<ROUTINE ROACH-WEST("AUX" LOC)
-	<SET LOC <GETP <LOC ,ROACH> P?WEST>>
-	<MOVE-ROACH .LOC>>
+<ROUTINE ROACH-WEST ()
+	<MOVE-ROACH <GETP <LOC ,ROACH> P?WEST>>
