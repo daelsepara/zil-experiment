@@ -7,6 +7,7 @@
 <INSERT-FILE "witchergear">
 <INSERT-FILE "continent">
 <INSERT-FILE "objects">
+<INSERT-FILE "roach">
 <INSERT-FILE "codex">
 
 <ROUTINE GO ()
@@ -17,15 +18,20 @@
 	<TELL "------------------------------------------------------" CR>>
 
 <ROUTINE NOTHING-HAPPENS ()
-	<TELL "Nothing happens." CR>>
+	<TELL "Nothing happens." CR>
+	<RTRUE>>
 
+<ROUTINE CANNOT-GO ()
+	<TELL "Even with Roach, you can't go that way." CR>>
+	
 <ROUTINE DESCRIBE-LOCATION (LOC)
-	<TELL <GETP .LOC ,P?LDESC> CR>>
+	<TELL <GETP .LOC ,P?LDESC> CR>
+	<RTRUE>>
 	
 <ROUTINE DESCRIBE-LOCATION-WHILE-RIDING (LOC)
 	<TELL "... at the " D .LOC CR>
 	<CRLF>
-	<DESCRIBE-LOCATION .LOC>>
+	<TELL <GETP .LOC ,P?LDESC> CR>>
 	
 <ROUTINE INIT ()
 	<V-VERSION>
