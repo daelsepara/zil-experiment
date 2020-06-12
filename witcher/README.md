@@ -5,8 +5,8 @@ With our increasing understanding of ZIL, it is time to create a more sophistica
 Our goals are to implement these features
 
 - combat!
-- silver and steel swords that can be enhanced by the application of certain oils. These should also confer bonuses when combatting specific monsters
-- witcher medallion that can detect invisible objects
+- silver and steel swords that can be enhanced by the application of certain oils (11 June 2020). These should also confer bonuses when combatting specific monsters
+- witcher medallion that can detect invisible objects (12 June 2020)
 - travelling with or without Roach
 - Eating
 - monster bounties
