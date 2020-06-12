@@ -8,7 +8,7 @@ Our goals are to implement these features
 - silver and steel swords that can be enhanced by the application of certain oils (11 June 2020). These should also confer bonuses when combatting specific monsters
 - witcher medallion that can detect invisible objects (12 June 2020)
 - travelling with or without Roach
-- Eating
+- eating
 - monster bounties
 
 (work in progress)
