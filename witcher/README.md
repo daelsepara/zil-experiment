@@ -28,7 +28,7 @@ Once installed, you can compile and convert it to a z-machine file using *zilf* 
 To play the game, run it with a Z-machine interpreter like *Frotz*
 
 ```
-frotz witcher.z3
+frotz witcher.z8
 ```
 
 Where you are greeted by the following screen:

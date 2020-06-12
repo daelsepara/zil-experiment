@@ -2,6 +2,8 @@
 
 <CONSTANT GAME-BANNER "ZIL Witcher|Experiments with ZIL|By SD Separa (2020)||Inspired by the Witcher Games by CD Projekt Red|">
 
+<VERSION 8>
+
 <INSERT-FILE "parser">
 
 <INSERT-FILE "witchergear">
