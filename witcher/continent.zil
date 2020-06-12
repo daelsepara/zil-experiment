@@ -25,7 +25,7 @@
 	(LOC ROOMS)
 	(DESC "Campsite")
 	(WEST TO BATTLE-FIELD)
-	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sound of burning wood. The fire keeps the wolves and other would-be predators at bay.")
+	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 

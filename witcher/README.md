@@ -14,4 +14,49 @@ Our goals are to implement these features
 - [ ] eating/drinking food and/or potions and decoctions
 - [ ] monster bounties
 
+## Compiling and running
+
+You need a ZIL compiler or assembler, or something like [ZILF](https://bitbucket.org/jmcgrew/zilf/wiki/Home) installed to convert the .zil file into a format usable by a z-machine interpreter such as [Frotz](https://davidgriffith.gitlab.io/frotz/).
+
+Once installed, you can compile and convert it to a z-machine file using *zilf* and *zapf*
+
+```
+./zilf witcher.zil
+./zapf witcher.zap
+```
+
+To play the game, run it with a Z-machine interpreter like *Frotz*
+
+```
+frotz witcher.z3
+```
+
+Where you are greeted by the following screen:
+
+```
+ZIL Witcher
+Experiments with ZIL
+By SD Separa (2020)
+
+Inspired by the Witcher Games by CD Projekt Red
+
+Release 0 / Serial number 200612 / ZILF 0.9 lib J5
+
+------------------------------------------------------
+Once you were many. Now you are few. Hunters. Killers of the world's filth. Witchers. The ultimate killing machines. Among you, a legend, the one they call Geralt of
+Rivia, the White Wolf.
+
+That legend is you.
+
+------------------------------------------------------
+
+Campsite
+A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at
+bay.
+
+Roach is here.
+
+>
+```
+
 (work in progress)
