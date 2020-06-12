@@ -7,6 +7,7 @@
 <INSERT-FILE "witchergear">
 <INSERT-FILE "continent">
 <INSERT-FILE "objects">
+<INSERT-FILE "codex">
 
 <ROUTINE GO ()
 	<INIT>
