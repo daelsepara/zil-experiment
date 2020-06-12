@@ -6,7 +6,14 @@
 				<RETURN>
 			)(ELSE 
 				<COND (<FSET? .CURRENTOBJ ,NDESCBIT>
-					<TELL CR "Your medallion senses the presence of a " D .CURRENTOBJ " here." CR>
+					<COLOR 1 2>
+					<TELL CR "Your medallion senses the presence of a ">
+					<COLOR 9 6>
+					<HLIGHT ,H-BOLD>
+					<TELL D .CURRENTOBJ>
+					<HLIGHT 0>
+					<COLOR 1 2>
+					<TELL " here." CR>
 				)>
 			)>
 			<SET CURRENTOBJ <NEXT? .CURRENTOBJ>>
