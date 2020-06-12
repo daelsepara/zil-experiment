@@ -6,13 +6,10 @@
 				<RETURN>
 			)(ELSE 
 				<COND (<FSET? .CURRENTOBJ ,NDESCBIT>
-					<COLOR 1 2>
 					<TELL CR "Your medallion senses the presence of a ">
-					<COLOR 9 6>
 					<HLIGHT ,H-BOLD>
 					<TELL D .CURRENTOBJ>
 					<HLIGHT 0>
-					<COLOR 1 2>
 					<TELL " here." CR>
 				)>
 			)>
@@ -44,6 +41,6 @@
 	(LOC ROOMS)
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
-	(LDESC "Numerous Nilfgaard and Temerian corpses are scattered everywhere. While some look like they have been cleaved, hacked, or bludgeoned, others seem to have been buried under the ground by magic.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. While some look like they have been cleaved, hacked, or bludgeoned, others seem to have been buried under the ground by magic.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>

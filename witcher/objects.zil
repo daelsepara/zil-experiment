@@ -7,7 +7,7 @@
 
 <OBJECT CROW-FIGURINE
 	(IN BATTLE-FIELD)
-	(DESC "small glass figurine in the shape of a crow")
+	(DESC "crow-shaped glass figurine")
 	(SYNONYM CROW GLASS FIGURINE FIGURE)
 	(ADJECTIVE SMALL GLASS)
 	(FLAGS TAKEBIT NDESCBIT)>

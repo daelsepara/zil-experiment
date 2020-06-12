@@ -58,7 +58,7 @@
 		<TELL "Roach is already here." CR>
 	)(ELSE
 		<MOVE ,ROACH <LOC ,PLAYER>>
-		<TELL "Whether a short time or long time passed, nobody knows; but by and by, Roach arrives." CR>
+		<TELL "Roach arrives. Whether a short time or long time passed, nobody knows." CR>
 	)>>
 
 <ROUTINE MOVE-ROACH (LOC)
