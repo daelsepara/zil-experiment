@@ -1,11 +1,6 @@
 "ZIL Witcher"
 
-<CONSTANT GAME-BANNER
-"ZIL Witcher|
-Experiments with ZIL|
-By SD Separa (2020)|
-|
-Inspired by the Witcher Games by CD Projekt Red|">
+<CONSTANT GAME-BANNER "ZIL Witcher|Experiments with ZIL|By SD Separa (2020)||Inspired by the Witcher Games by CD Projekt Red|">
 
 <INSERT-FILE "parser">
 
@@ -18,8 +13,8 @@ Inspired by the Witcher Games by CD Projekt Red|">
 	<MAIN-LOOP>>
 
 <ROUTINE DRAW-LINE ()
-	<TELL "------------------------------------------------------" CR>
->
+	<TELL "------------------------------------------------------" CR>>
+
 <ROUTINE INIT ()
 	<V-VERSION>
 	<CRLF>

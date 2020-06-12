@@ -8,14 +8,15 @@
 			<SET CURRENTOBJ <FIRST? ,HERE>>
 			<REPEAT ()
 				<COND (<NOT .CURRENTOBJ>
-					<RETURN>)
-				(ELSE 
+					<RETURN>
+				)(ELSE 
 					<COND (<FSET? .CURRENTOBJ ,NDESCBIT>
-						<TELL CR "Your medallion senses a " D .CURRENTOBJ " here." CR>)>
+						<TELL CR "Your medallion senses a " D .CURRENTOBJ " here." CR>
+					)>
 				)>
 				<SET CURRENTOBJ <NEXT? .CURRENTOBJ>>
-			>)
-		(ELSE
+			>
+		)(ELSE
 			<DESCRIBE-LOCATION>
 		)>
 	)>>
