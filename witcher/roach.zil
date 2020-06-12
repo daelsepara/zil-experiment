@@ -13,10 +13,12 @@
 	<COND (<EQUAL? .RARG ,M-LOOK>
 		<COND (<IN? ,PLAYER ,ROACH>
 			<DESCRIBE-LOCATION-WHILE-RIDING <LOC ,ROACH>>
+			<SEARCH-LOCATION <LOC ,ROACH>>
 		)>
 	)(ELSE
 		<COND(<EQUAL? .RARG ,M-ENTER>
 			<TELL "You galloped towards " D <LOC ,ROACH> CR CR>
+			<SETG ,HERE <LOC ,ROACH>>
 		)>
 	)>>
 
