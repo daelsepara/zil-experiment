@@ -23,5 +23,6 @@
 		(<EQUAL? ,PRSO ,WOLF-MEDALLION>
 			<TELL "an amulet that can detect the presence of magic." CR>
 			<RTRUE>)>
+
 	<TELL "nothing special." CR>
 	<RTRUE>>
