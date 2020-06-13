@@ -19,7 +19,7 @@
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
-	<TELL "... you found " N .AMT " pieces of food to your supplies." CR CR>
+	<TELL "... you found " N .AMT " pieces of food for your supply." CR CR>
 	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>
 >
 
