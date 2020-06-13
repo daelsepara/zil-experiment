@@ -26,6 +26,7 @@
 	)(<EQUAL? .RARG ,M-ENTER>
 		<COND (<NOT <IN? ,PLAYER ,ROACH>>
 			<TELL "A long time passed before you arrived." CR CR>
+			<WITCHER-HEALTH-DAMAGE 100>
 		)>
 	)>>
 

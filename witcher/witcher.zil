@@ -11,6 +11,7 @@
 <INSERT-FILE "objects">
 <INSERT-FILE "roach">
 <INSERT-FILE "codex">
+<INSERT-FILE "witcherevents">
 
 <ROUTINE GO ()
 	<INIT>
@@ -48,4 +49,5 @@
 	<SETG HERE ,CAMP-SITE>
 	<MOVE ,PLAYER ,HERE>
 	<MOVE ,ROACH ,HERE>
-	<V-LOOK>>
+	<V-LOOK>
+	<QUEUE I-WITCHER-EAT ,WITCHER-EAT-TURNS>>
