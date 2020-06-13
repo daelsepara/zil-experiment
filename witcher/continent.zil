@@ -28,12 +28,17 @@
 			<TELL "A long time passed before you arrived." CR CR>
 			<WITCHER-HEALTH-DAMAGE 100>
 		)>
+		<COND (<AND <GETP ,HERE ,P?THINGS> <NOT <FSET? ,HERE ,TOUCHBIT>>>
+			<TELL "... you probably can get some food here." CR CR>
+			<SETG ,HAS-FOOD T>
+		)>
 	)>>
 
 <ROOM CAMP-SITE
 	(LOC ROOMS)
 	(DESC "Campsite")
 	(WEST TO BATTLE-FIELD)
+	(EAST TO FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -45,3 +50,22 @@
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. While some look like they have been cleaved, hacked, or bludgeoned, others seem to have been buried under the ground by magic.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<ROOM FOREST
+	(LOC ROOMS)
+	(DESC "Forest")
+	(WEST TO CAMP-SITE)
+	(LDESC "Dense thicket. The path west leads back to the camp site")
+	(ACTION DETECT-OBJECTS)
+	(THINGS (SOME) (FOOD MEAT RABBIT WOLVES WOLF) FOOD-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<GLOBAL HAS-FOOD <>>
+
+<ROUTINE FOOD-F ()
+	<COND (<AND ,HAS-FOOD <VERB? TAKE>>
+		<WITCHER-GATHER-FOOD <RANDOM 5>>
+		<SETG ,HAS-FOOD <>>
+		<RTRUE>
+	)>
+>
