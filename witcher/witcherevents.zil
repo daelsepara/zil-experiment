@@ -69,4 +69,12 @@
 			<TELL "with no oils applied">
 		)>
 		<CRLF>
-	)>>
+	)>
+	<COND (<IN? ,PLAYER ,ROACH>
+		<TELL "You are currently riding Roach" CR>
+	)(ELSE
+		<COND (<IN? ,ROACH ,HERE>
+			<TELL "Roach is here." CR>
+		)>
+	)>
+	<CRLF>>
