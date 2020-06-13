@@ -21,9 +21,6 @@
 		<COND(<EQUAL? .RARG ,M-ENTER>
 			<TELL "You galloped towards the ..." CR CR>
 			<SETG ,HERE <LOC ,ROACH>>
-			<COND (<AND <GETP ,HERE ,P?THINGS> <NOT <FSET? ,HERE ,TOUCHBIT>>>
-				<SETG ,HAS-FOOD T>
-			)>
 		)>
 	)>>
 

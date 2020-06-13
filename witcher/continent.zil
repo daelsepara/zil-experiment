@@ -18,7 +18,7 @@
 	)>>
 
 <ROUTINE CHECK-FOOD-AVAILABILITY ()
-	<COND (<AND <OR <GETP <LOC ,ROACH> ,P?THINGS> <GETP ,HERE ,P?THINGS>> <EQUAL? ,HAS-FOOD T>>
+	<COND (<AND <OR <GETP <LOC ,ROACH> ,P?THINGS> <GETP ,HERE ,P?THINGS>> <OR <FSET? <LOC ,ROACH> ,HASFOOD> <FSET? ,HERE ,HASFOOD>>>
 		<TELL "... you probably can get some food here." CR CR>
 	)>>
 		
@@ -32,9 +32,6 @@
 			<TELL "A long time passed before you arrived." CR CR>
 			<WITCHER-HEALTH-DAMAGE ,WITCHER-FATIGUE-RATE>
 		)>
-		<COND (<AND <GETP ,HERE ,P?THINGS> <NOT <FSET? ,HERE ,TOUCHBIT>>>
-			<SETG ,HAS-FOOD T>
-		)>
 	)>>
 
 <ROOM CAMP-SITE
@@ -42,7 +39,7 @@
 	(DESC "Campsite")
 	(WEST TO BATTLE-FIELD)
 	(EAST TO FOREST)
-	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.")
+	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay. To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -50,7 +47,7 @@
 	(LOC ROOMS)
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. While some look like they have been cleaved, hacked, or bludgeoned, others seem to have been buried under the ground by magic.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. While some look like they have been cleaved, hacked, or bludgeoned, others seem to have been buried under the ground by magic. Your camp site is lies east.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -61,12 +58,12 @@
 	(LDESC "Dense thicket. The path west leads back to the camp site")
 	(ACTION DETECT-OBJECTS)
 	(THINGS (SOME) (FOOD MEAT RABBIT WOLVES WOLF) FOOD-F)
-	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <ROUTINE FOOD-F ()
-	<COND (<AND ,HAS-FOOD <VERB? TAKE>>
+	<COND (<AND <FSET? ,HERE ,HASFOOD> <VERB? TAKE>>
 		<WITCHER-GATHER-FOOD <RANDOM ,FOOD-ABUNDANCE>>
-		<SETG ,HAS-FOOD <>>
+		<FCLEAR ,HERE ,HASFOOD>
 		<RTRUE>
 	)>
 >

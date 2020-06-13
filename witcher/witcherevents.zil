@@ -31,7 +31,7 @@
 	)>>
 
 <ROUTINE WITCHER-HEALTH-DAMAGE (AMT)
-	<TELL "... your fatigue costs you " N .AMT " points of damage." CR CR>
+	<TELL "... your fatigue hits you for " N .AMT " points of damage." CR CR>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
 		<DEATH-FATIGUE>

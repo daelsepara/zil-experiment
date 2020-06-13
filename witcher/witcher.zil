@@ -14,7 +14,6 @@
 <INSERT-FILE "codex">
 <INSERT-FILE "witcherevents">
 
-<GLOBAL HAS-FOOD <>>
 <GLOBAL FOOD-ABUNDANCE 5>
 
 <ROUTINE GO ()
