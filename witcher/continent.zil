@@ -38,7 +38,7 @@
 	(LOC ROOMS)
 	(DESC "Campsite")
 	(WEST TO BATTLE-FIELD)
-	(EAST TO FOREST)
+	(EAST TO EDGE-OF-FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay. To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -51,14 +51,25 @@
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
-<ROOM FOREST
+<ROOM EDGE-OF-FOREST
 	(LOC ROOMS)
 	(DESC "Forest")
 	(WEST TO CAMP-SITE)
-	(LDESC "A dense and thicket forms at the edge of the clearing. The path west leads back to the camp site")
+	(EAST TO DEEP-FOREST)
+	(LDESC "A dense and thicket forms at the edge of the clearing. The path west leads back to the camp site. To the east lies the deep forest.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS <> (FOOD MEAT) FOOD-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
+
+<ROOM DEEP-FOREST
+	(LOC ROOMS)
+	(DESC "Deep inside the forest")
+	(WEST TO EDGE-OF-FOREST)
+	(LDESC "Inside the forest, the thick foliage almost covers the entire area in shadows.")
+	(ACTION DETECT-OBJECTS)
+	(THINGS <> (FOOD MEAT) FOOD-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
+
 
 <ROUTINE FOOD-F ()
 	<COND (<AND <FSET? ,HERE ,HASFOOD> <VERB? TAKE>>
