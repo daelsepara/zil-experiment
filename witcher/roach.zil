@@ -20,6 +20,7 @@
 	)(ELSE
 		<COND(<EQUAL? .RARG ,M-ENTER>
 			<TELL "You galloped towards the ..." CR CR>
+			<SPAWN-MONSTER <LOC ,ROACH>>
 			<SETG ,HERE <LOC ,ROACH>>
 		)>
 	)>>
