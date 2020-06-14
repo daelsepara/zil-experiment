@@ -31,8 +31,7 @@
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
 	<TELL "... you found " N .AMT " pieces of food for your supply." CR CR>
-	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>
->
+	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>>
 
 <ROUTINE WITCHER-COMBAT-DAMAGE (AMT)
 	<TELL "... you took " N .AMT " points of damage." CR CR>
