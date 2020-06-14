@@ -47,7 +47,7 @@
 	(LOC ROOMS)
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. While some look like they have been cleaved, hacked, or bludgeoned, others seem to have been buried under the ground by magic. Your camp site is lies east.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -56,7 +56,7 @@
 	(DESC "Forest")
 	(WEST TO CAMP-SITE)
 	(EAST TO DEEP-FOREST)
-	(LDESC "A dense and thicket forms at the edge of the clearing. The path west leads back to the camp site. To the east lies the deep forest.")
+	(LDESC "A dense thicket forms at the edge of the clearing. The path west leads back to the camp. To the east lies the deep forest.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS <> (FOOD MEAT) FOOD-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
@@ -65,11 +65,10 @@
 	(LOC ROOMS)
 	(DESC "Deep inside the forest")
 	(WEST TO EDGE-OF-FOREST)
-	(LDESC "Inside the forest, the thick foliage almost covers the entire area in shadows.")
+	(LDESC "The thick foliage almost covers the entire area in shadows.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS <> (FOOD MEAT) FOOD-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
-
 
 <ROUTINE FOOD-F ()
 	<COND (<AND <FSET? ,HERE ,HASFOOD> <VERB? TAKE>>
