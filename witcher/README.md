@@ -8,7 +8,7 @@ Our goals are to implement these features
 
 - [X] combat!
 - [X] silver and steel swords that can be enhanced by the application of certain oils (11 June 2020)
-- [ ] swords with oil should also confer bonuses when combatting specific monsters
+- [X] swords with oil should also confer bonuses when combatting specific monsters
 - [X] witcher medallion that can detect invisible objects (12 June 2020)
 - [X] travelling with or without Roach (12 June 2020)
 - [X] eating/drinking food and/or potions and decoctions (13 June 2020, eating)
