@@ -55,7 +55,7 @@
 	(LOC ROOMS)
 	(DESC "Forest")
 	(WEST TO CAMP-SITE)
-	(LDESC "Dense thicket. The path west leads back to the camp site")
+	(LDESC "A dense and thicket forms at the edge of the clearing. The path west leads back to the camp site")
 	(ACTION DETECT-OBJECTS)
 	(THINGS <> (FOOD MEAT) FOOD-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>

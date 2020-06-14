@@ -13,6 +13,7 @@
 <INSERT-FILE "roach">
 <INSERT-FILE "codex">
 <INSERT-FILE "witcherevents">
+<INSERT-FILE "monsters">
 
 <GLOBAL FOOD-ABUNDANCE 5>
 
