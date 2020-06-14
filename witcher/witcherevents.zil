@@ -59,26 +59,24 @@
 <SYNTAX STATUS = V-WITCHER-STATUS>
 <SYNONYM STATUS INFO>
 
+<ROUTINE CHECK-SWORD-OIL (ARGSWORD)
+	<COND (<FIRST? .ARGSWORD>
+		<TELL "with applied " D <FIRST? .ARGSWORD>>
+	)(ELSE
+		<TELL "with no oils applied">
+	)>
+	<CRLF>>
+
 <ROUTINE V-WITCHER-STATUS ()
 	<TELL "Health: " N ,WITCHER-HEALTH CR>
-	<TELL "Food: " N ,WITCHER-FOOD CR>
+	<TELL "Food supplies: " N ,WITCHER-FOOD CR>
 	<COND (<IN? ,SILVER-SWORD ,PLAYER>
 		<TELL "Silver sword: ">
-		<COND (<FIRST? ,SILVER-SWORD>
-			<TELL "with applied " D <FIRST? ,SILVER-SWORD>>
-		)(ELSE
-			<TELL "with no oils applied">
-		)>
-		<CRLF>
+		<CHECK-SWORD-OIL ,SILVER-SWORD>
 	)>
 	<COND (<IN? ,STEEL-SWORD ,PLAYER>
 		<TELL "Steel sword: ">
-		<COND (<FIRST? ,STEEL-SWORD>
-			<TELL "with applied " D <FIRST? ,STEEL-SWORD>>
-		)(ELSE
-			<TELL "with no oils applied">
-		)>
-		<CRLF>
+		<CHECK-SWORD-OIL ,STEEL-SWORD>
 	)>
 	<COND (<IN? ,PLAYER ,ROACH>
 		<TELL "You are currently riding Roach" CR>
