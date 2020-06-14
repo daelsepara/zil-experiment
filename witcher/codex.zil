@@ -14,7 +14,7 @@
 			<RTRUE>)
 			
 		(<EQUAL? ,PRSO ,STEEL-SWORD>
-			<TELL "a weapon for killing non-magic creatures." CR>
+			<TELL "a weapon for killing humans or humanoid creatures and beasts." CR>
 			<RTRUE>)
 		
 		(<EQUAL? ,PRSO ,VAMPIRE-OIL ,SPECTER-OIL ,OGROID-OIL ,NECROPHAGE-OIL ,ELEMENTA-OIL ,HYBRID-OIL ,RELICT-OIL ,DRACONID-OIL ,CURSED-OIL ,HANGEDMANS-VENOM ,INSECTOID-OIL ,BEAST-OIL>
