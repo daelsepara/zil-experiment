@@ -18,6 +18,17 @@
 		<WITCHER-COMBAT-DAMAGE ,WITCHER-FATIGUE-RATE>
 	)>>
 
+<SYNTAX EAT = V-WITCHER-EAT>
+
+<ROUTINE V-WITCHER-EAT ()
+	<COND (<G? ,WITCHER-FOOD 0>
+		<WITCHER-EAT>
+		<DEQUEUE I-WITCHER-EAT>
+		<QUEUE I-WITCHER-EAT ,WITCHER-EAT-TURNS>
+	)(ELSE
+		<TELL "... feeling hungry, you decide to eat but you find that you do not have any food from your supplies." CR CR>
+	)>>
+
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
 	<TELL "... you found " N .AMT " pieces of food for your supply." CR CR>
 	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>
