@@ -19,7 +19,7 @@
 
 <ROUTINE CHECK-FOOD-AVAILABILITY ()
 	<COND (<OR <FSET? <LOC ,ROACH> ,HASFOOD> <FSET? ,HERE ,HASFOOD>>
-		<TELL "... you probably can get some food here." CR CR>
+		<TELL "... you can probably get some food here." CR CR>
 	)>>
 		
 <ROUTINE DETECT-OBJECTS (RARG)
@@ -65,5 +65,4 @@
 		<WITCHER-GATHER-FOOD <RANDOM ,FOOD-ABUNDANCE>>
 		<FCLEAR ,HERE ,HASFOOD>
 		<RTRUE>
-	)>
->
+	)>>
