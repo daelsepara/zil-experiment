@@ -51,7 +51,7 @@
 	)>>
 
 <ROUTINE DUMMY-THINGS-F ()
-	<COND (<OR <VERB? LOOK> <VERB? CODEX>>
+	<COND (<EQUAL? ,PRSA ,V-LOOK ,V-CODEX>
 		<TELL "You see nothing special about " D ,PRSO "." CR>
 		<RTRUE>
 	)(ELSE
