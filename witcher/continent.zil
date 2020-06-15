@@ -50,14 +50,11 @@
 		)>
 	)>>
 
-<CONSTANT THING-DESCRIPTIONS <LTABLE "nothing special" "nothing extraordinary" "something terribly mundane" "nothing noteworthy">>
-
-<ROUTINE SHUFFLE-DESCRIPTIONS (TAB)
-	<RETURN <GET .TAB <RANDOM <GET .TAB 0>>>>>
+<CONSTANT THING-DESCRIPTIONS <LTABLE 2 "nothing special" "nothing extraordinary" "something terribly mundane" "nothing noteworthy">>
 
 <ROUTINE THINGS-F ()
 	<COND (<OR <VERB? CODEX> <VERB? EXAMINE>>
-		<TELL "You see " <SHUFFLE-DESCRIPTIONS THING-DESCRIPTIONS> " about " D ,PRSO "." CR>
+		<TELL "You see " <PICK-ONE THING-DESCRIPTIONS> " about " D ,PRSO "." CR>
 		<RTRUE>
 	)>
 	<RFALSE>>
