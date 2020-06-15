@@ -52,11 +52,11 @@
 
 <ROUTINE DUMMY-THINGS-F ()
 	<COND (<OR <VERB? LOOK> <VERB? CODEX>>
-        <TELL "You see nothing special about " D ,PRSO "." CR>
+		<TELL "You see nothing special about " D ,PRSO "." CR>
 		<RTRUE>
-    )(ELSE
-		<RFALSE>    
-	)>>
+	)(ELSE
+		<RFALSE>
+	>>
 
 <ROOM CAMP-SITE
 	(LOC ROOMS)
