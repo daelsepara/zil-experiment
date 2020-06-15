@@ -1,3 +1,10 @@
+<CONSTANT DAY-LENGTH 30>
+<GLOBAL DAYTIME T>
+
+<ROUTINE I-DAYNIGHT-CYCLE ()
+	<SETG DAYTIME <NOT ,DAYTIME>>
+	<QUEUE I-DAYNIGHT-CYCLE DAY-LENGTH>>
+
 <ROUTINE DEATH-FATIGUE ()
 	<JIGS-UP "In all your years killing monsters, you never expected that you could die from poor health." >>
 
@@ -84,6 +91,11 @@
 		<COND (<IN? ,ROACH ,HERE>
 			<TELL "Roach is here." CR>
 		)>
+	)>
+	<COND (<EQUAL? ,DAYTIME T>
+		<TELL "It is daytime." CR>
+	)(ELSE
+		<TELL "It is night." CR>
 	)>
 	<CRLF>>
 
