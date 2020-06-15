@@ -56,7 +56,7 @@
 		<RTRUE>
 	)(ELSE
 		<RFALSE>
-	>>
+	)>>
 
 <ROOM CAMP-SITE
 	(LOC ROOMS)
