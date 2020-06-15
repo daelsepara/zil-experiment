@@ -65,7 +65,8 @@
 	(EAST TO EDGE-OF-FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay. To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS <> (CAMPFIRE FIRE TREE WOOD WOLVES WOLF PREDATOR PREDATORS) THINGS-F)
+	(THINGS
+		<> (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM BATTLE-FIELD
@@ -74,7 +75,8 @@
 	(EAST TO CAMP-SITE)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES) THINGS-F)
+	(THINGS
+		(DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM EDGE-OF-FOREST
@@ -84,17 +86,21 @@
 	(EAST TO DEEP-FOREST)
 	(LDESC "A dense thicket forms at the edge of the clearing. The path west leads back to the camp. To the east lies the deep forest.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS <> (FOOD MEAT) FOOD-F)
+	(THINGS
+		<> (FOOD MEAT) FOOD-F
+		<> (THICKET CLEARING EDGE PATH FOREST) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <ROOM DEEP-FOREST
 	(LOC ROOMS)
 	(DESC "Deep inside the forest")
 	(WEST TO EDGE-OF-FOREST)
-	(LDESC "The thick foliage almost covers the entire area in shadows.")
+	(LDESC "The thick foliage almost covers the entire area in shadows. The path west takes you out of the forest.")
 	(ACTION DETECT-OBJECTS)
 	(MONSTER NEKKER)
-	(THINGS <> (FOOD MEAT) FOOD-F)
+	(THINGS
+		<> (FOOD MEAT) FOOD-F
+		<> (FOLIAGE TREE TREES AREA SHADOW SHADOWS FOREST) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <ROUTINE FOOD-F ()
