@@ -115,9 +115,17 @@
 		<REMOVE .ARGMONSTER>
 	)>>
 
-<ROUTINE WEAPON-INEFFECTIVE (ARGMONSTER ARGSWORD)
-	<TELL "The " D .ARGSWORD " hits the " D .ARGMONSTER " with a dull sound." CR>   
-	<TELL "Your " D .ARGSWORD " is not effective against the " D .ARGMONSTER "." CR>>
+<ROUTINE WEAPON-INEFFECTIVE (ARGMONSTER ARGSWORD "AUX" DMG)
+	<SET DMG <GETP .ARGSWORD P?LOW-DAMAGE>>
+	<TELL "The " D .ARGSWORD " hits the " D .ARGMONSTER " with a dull sound." CR>
+	<TELL "... the " D .ARGMONSTER " suffers " N .DMG " points of damage." CR CR>
+	<PUTP .ARGMONSTER P?HIT-POINTS <- <GETP .ARGMONSTER P?HIT-POINTS> .DMG>>
+	<COND (<L? <GETP .ARGMONSTER P?HIT-POINTS> 1>
+		<TELL "... but the blow was fatal. The " D .ARGMONSTER " dies." CR CR>
+		<REMOVE .ARGMONSTER>
+		<RETURN>
+	)>
+	<TELL "Your " D .ARGSWORD " is not effective against the " D .ARGMONSTER "." CR CR>>
 
 <ROUTINE NO-COMBAT-PLAN (ARGMONSTER ARGWEAPON)
 	<TELL "That is your plan? Attacking the " D .ARGMONSTER " with the " D .ARGWEAPON "?" CR>>
