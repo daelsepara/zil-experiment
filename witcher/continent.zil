@@ -50,8 +50,8 @@
 		)>
 	)>>
 
-<ROUTINE DUMMY-THINGS-F ()
-	<COND (<OR <VERB? LOOK> <VERB? CODEX>>
+<ROUTINE THINGS-F ()
+	<COND (<EQUAL? ,PRSA ,V?LOOK ,V?CODEX>
 		<TELL "You see nothing special about " D ,PRSO "." CR>
 		<RTRUE>
 	)(ELSE
@@ -65,9 +65,8 @@
 	(EAST TO EDGE-OF-FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay. To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS <> (CAMPFIRE FIRE TREE WOOD WOLVES WOLF PREDATOR PREDATORS) DUMMY-THINGS-F)
+	(THINGS <> (CAMPFIRE FIRE TREE WOOD WOLVES WOLF PREDATOR PREDATORS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
-
 
 <ROOM BATTLE-FIELD
 	(LOC ROOMS)
@@ -75,7 +74,7 @@
 	(EAST TO CAMP-SITE)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES) DUMMY-THINGS-F)
+	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM EDGE-OF-FOREST
@@ -109,4 +108,4 @@
 			<RTRUE>
 		)>
 	)>
-	<DUMMY-THINGS-F>>
+	<THINGS-F>>
