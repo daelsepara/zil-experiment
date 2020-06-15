@@ -50,13 +50,17 @@
 		)>
 	)>>
 
+<CONSTANT THING-DESCRIPTIONS <LTABLE "nothing special" "nothing extraordinary" "something terribly mundane" "nothing noteworthy">>
+
+<ROUTINE SHUFFLE-DESCRIPTIONS (TAB)
+	<RETURN <GET .TAB <RANDOM <GET .TAB 0>>>>>
+
 <ROUTINE THINGS-F ()
-	<COND (<EQUAL? ,PRSA ,V?LOOK ,V?CODEX>
-		<TELL "You see nothing special about " D ,PRSO "." CR>
+	<COND (<OR <VERB? CODEX> <VERB? EXAMINE>>
+		<TELL "You see " <SHUFFLE-DESCRIPTIONS THING-DESCRIPTIONS> " about " D ,PRSO "." CR>
 		<RTRUE>
-	)(ELSE
-		<RFALSE>
-	)>>
+	)>
+	<RFALSE>>
 
 <ROOM CAMP-SITE
 	(LOC ROOMS)
