@@ -5,7 +5,7 @@
 			<COND (<NOT .CURRENTOBJ>
 				<RETURN>
 			)(ELSE 
-				<COND (<FSET? .CURRENTOBJ ,NDESCBIT>
+				<COND (<FSET? .CURRENTOBJ ,MAGICBIT>
 					<TELL CR "Your medallion senses the presence of a ">
 					<HLIGHT ,H-INVERSE>
 					<TELL D .CURRENTOBJ>
@@ -51,7 +51,12 @@
 	)>>
 
 <ROUTINE DUMMY-THINGS-F ()
-	<RFALSE>>
+	<COND (<OR <VERB? LOOK> <VERB? CODEX>>
+        <TELL "You see nothing special about " D ,PRSO "." CR>
+		<RTRUE>
+    )(ELSE
+		<RFALSE>    
+	)>>
 
 <ROOM CAMP-SITE
 	(LOC ROOMS)
@@ -70,7 +75,7 @@
 	(EAST TO CAMP-SITE)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS (DEAD PETRIFIED) (CORPSE CORPSES) DUMMY-THINGS-F)
+	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES) DUMMY-THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM EDGE-OF-FOREST
