@@ -7,7 +7,7 @@
 			)(ELSE 
 				<COND (<FSET? .CURRENTOBJ ,NDESCBIT>
 					<TELL CR "Your medallion senses the presence of a ">
-					<HLIGHT ,H-BOLD>
+					<HLIGHT ,H-INVERSE>
 					<TELL D .CURRENTOBJ>
 					<HLIGHT 0>
 					<TELL " here." CR>
