@@ -108,7 +108,13 @@
 	<TELL "You " <PICK-ONE ATTACK-DESCRIPTIONS> " " T .ARGMONSTER " with your " D .ARGSWORD " for " N .DMG " points of damage." CR>
 	<PUTP .ARGMONSTER P?HIT-POINTS <- <GETP .ARGMONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .ARGMONSTER P?HIT-POINTS> 1>
-		<TELL "... you deal a fatal blow. " CT .ARGMONSTER " dies." CR>
+		<TELL "... you deal a fatal blow. " CT .ARGMONSTER>
+		<COND (<FSET? .ARGMONSTER ,PLURALBIT>
+			<TELL " die.">
+		)(ELSE
+			<TELL " dies.">
+		)>
+		<CRLF>
 		<REMOVE .ARGMONSTER>
 		<RETURN>
 	)>
@@ -120,7 +126,13 @@
 	<TELL "... " CT .ARGMONSTER " suffers " N .DMG " points of damage." CR>
 	<PUTP .ARGMONSTER P?HIT-POINTS <- <GETP .ARGMONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .ARGMONSTER P?HIT-POINTS> 1>
-		<TELL "... but the blow was fatal. " CT .ARGMONSTER " dies." CR>
+		<TELL "... but the blow was fatal. " CT .ARGMONSTER>
+		<COND (<FSET? .ARGMONSTER ,PLURALBIT>
+			<TELL " die.">
+		)(ELSE
+			<TELL " dies.">
+		)>
+		<CRLF>
 		<REMOVE .ARGMONSTER>
 		<RETURN>
 	)>
