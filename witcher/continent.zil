@@ -6,9 +6,9 @@
 				<RETURN>
 			)(ELSE 
 				<COND (<FSET? .CURRENTOBJ ,MAGICBIT>
-					<TELL CR "Your medallion senses the presence of a ">
+					<TELL CR "Your medallion senses the presence of ">
 					<HLIGHT ,H-INVERSE>
-					<TELL D .CURRENTOBJ>
+					<TELL T .CURRENTOBJ>
 					<HLIGHT 0>
 					<TELL " here." CR>
 				)>
