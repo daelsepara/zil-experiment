@@ -16,8 +16,6 @@
 <INSERT-FILE "monsters">
 <INSERT-FILE "bounties">
 
-<GLOBAL FOOD-ABUNDANCE 5>
-
 <ROUTINE GO ()
 	<INIT>
 	<MAIN-LOOP>>
@@ -25,24 +23,6 @@
 <ROUTINE DRAW-LINE ()
 	<TELL "------------------------------------------------------" CR>>
 
-<ROUTINE NOTHING-HAPPENS ()
-	<TELL "Nothing happens." CR>>
-
-<ROUTINE CANNOT-GO ()
-	<TELL "Even with Roach, you can't go that way." CR>>
-	
-<ROUTINE DESCRIBE-LOCATION (LOC)
-	<TELL <GETP .LOC ,P?LDESC> CR>>
-	
-<ROUTINE DESCRIBE-LOCATION-WHILE-RIDING (LOC)
-	<TELL "... at the ">
-	<HLIGHT ,H-BOLD>
-	<TELL D .LOC>
-	<HLIGHT 0>
-	<CRLF>
-	<CRLF>
-	<DESCRIBE-LOCATION .LOC>>
-	
 <ROUTINE INIT ()
 	<INIT-STATUS-LINE>
 	<V-VERSION>
