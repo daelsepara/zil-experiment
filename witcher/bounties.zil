@@ -9,7 +9,8 @@
     (BOUNTY-ACCEPTED <>)
     (BOUNTY-INVESTIGATED <>)
     (BOUNTY-COMPLETED <>)
-    (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT)>
+    (BOUNTY-LOC <>)
+    (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT BOUNTYBIT)>
 
 <OBJECT BOUNTY-BANDITS
     (IN PLAYER)
@@ -22,22 +23,33 @@
     (BOUNTY-ACCEPTED <>)
     (BOUNTY-INVESTIGATED <>)
     (BOUNTY-COMPLETED <>)
-    (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT)>
+    (BOUNTY-LOC <>)
+    (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT BOUNTYBIT)>
 
-<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY ARGAREA ARGPERSON)
-    <COND (.ARGBOUNTY
+<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY "AUX" LOC)
+    <COND (<AND .ARGBOUNTY <FSET? .ARGBOUNTY ,BOUNTYBIT>>
+        <SET LOC <GETP .ARGBOUNTY P?BOUNTY-LOC>>
         <COND (<GETP .ARGBOUNTY P?BOUNTY-ACCEPTED>
             <COND (<GETP .ARGBOUNTY P?BOUNTY-COMPLETED>
-                <TELL D .ARGPERSON ": \"How goes the hunt (" T .ARGBOUNTY ")?">
+                <TELL CR "\"You have already completed the bounty (" T .ARGBOUNTY ")!\"" CR>
+            )(ELSE
+                <TELL CR "\"How goes the hunt (" T .ARGBOUNTY ")? ">
                 <TELL "Please come back after completing the bounty for your reward!\"" CR>
             )>
         )(ELSE
             <TELL "Accept this bounty (" T .ARGBOUNTY ")? ">
             <COND (<YES?>
                 <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
-                <TELL "Splendind!. You should investigate " T .ARGAREA " area for clues" CR>
+                <COND (.LOC
+                    <TELL CR "\"Splendind!. You should investigate " T .LOC " area for clues.\"" CR>
+                )(ELSE
+                    <TELL CR "\"Splendind!. You should look for clues around the area.\"" CR>
+                )>
             )(ELSE
-                <TELL "That is unfortunate. Let me know if you change your mined." CR>
+                <TELL CR "\"That is unfortunate. Let me know if you change your mind.\"" CR>
             )>
         )>
+    )(ELSE
+        <TELL "The what now?" CR>
+        <RFALSE>   
     )>>
