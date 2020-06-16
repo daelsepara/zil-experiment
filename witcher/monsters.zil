@@ -25,7 +25,7 @@
         )(ELSE
             <COMBAT-STEEL .ARGMONSTER .ARGWEAPON .ARGOIL>
         )>
-    )(<AND <OR <VERB? CODEX> <VERB? EXAMINE> <EQUAL? ,PRSO .ARGMONSTER>>>
+    )(<AND <OR <VERB? CODEX> <VERB? EXAMINE>> <EQUAL? ,PRSO .ARGMONSTER>>
         <COND(<L? <GETP .ARGMONSTER P?HIT-POINTS> .ARGMONSTERHP>
             <TELL "... " T .ARGMONSTER " appears wounded." CR>
         )>
