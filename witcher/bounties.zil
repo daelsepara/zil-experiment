@@ -21,3 +21,14 @@
     (BOUNTY-ACCEPTED <>)
     (BOUNTY-INVESTIGATED <>)
     (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT)>
+
+<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY ARGAREA)
+    <COND (.ARGBOUNTY
+        <TELL "Accept this bounty (" T .ARGBOUNTY ")? ">
+        <COND (<YES?>
+            <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
+            <TELL "Splendind!. You should investigate " T .ARGAREA " area for clues" CR>
+        )(ELSE
+            <TELL "That is unfortunate. Let me know if you change your mined." CR>
+        )>
+    )>>

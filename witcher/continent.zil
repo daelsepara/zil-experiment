@@ -1,4 +1,4 @@
-<GLOBAL FOOD-ABUNDANCE 5>
+<CONSTANT FOOD-ABUNDANCE 5>
 
 <ROUTINE NOTHING-HAPPENS ()
 	<TELL "Nothing happens." CR>>
@@ -67,7 +67,7 @@
 		<COND (<NOT <IN? ,PLAYER ,ROACH>>
 			<SPAWN-MONSTER ,HERE>
 			<TELL "A long time passed before you arrived." CR CR>
-			<WITCHER-HEALTH-DAMAGE ,WITCHER-FATIGUE-RATE "fatigue">
+			<WITCHER-HEALTH-DAMAGE WITCHER-FATIGUE-RATE "fatigue">
 			<RTRUE>
 		)>
 	)>>
@@ -75,7 +75,7 @@
 <CONSTANT THING-DESCRIPTIONS <LTABLE 2 "nothing special" "nothing extraordinary" "something terribly mundane" "nothing noteworthy">>
 
 <ROUTINE THINGS-F ()
-	<COND (<OR <VERB? CODEX> <VERB? EXAMINE>>
+	<COND (<OR <VERB? CODEX EXAMINE>>
 		<TELL "You see " <PICK-ONE THING-DESCRIPTIONS> " about " D ,PRSO "." CR>
 		<RTRUE>
 	)>
@@ -131,7 +131,7 @@
 <ROUTINE FOOD-F ()
 	<COND (<VERB? TAKE>
 		<COND (<FSET? ,HERE ,HASFOOD>
-			<WITCHER-GATHER-FOOD <RANDOM ,FOOD-ABUNDANCE>>
+			<WITCHER-GATHER-FOOD <RANDOM FOOD-ABUNDANCE>>
 			<FCLEAR ,HERE ,HASFOOD>
 			<RTRUE>
 		)(ELSE
