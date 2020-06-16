@@ -8,6 +8,7 @@
     (BOUNTY-REWARD 1500)
     (BOUNTY-ACCEPTED <>)
     (BOUNTY-INVESTIGATED <>)
+    (BOUNTY-COMPLETED <>)
     (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT)>
 
 <OBJECT BOUNTY-BANDITS
@@ -20,15 +21,23 @@
     (BOUNTY-REWARD 500)
     (BOUNTY-ACCEPTED <>)
     (BOUNTY-INVESTIGATED <>)
+    (BOUNTY-COMPLETED <>)
     (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT)>
 
-<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY ARGAREA)
+<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY ARGAREA ARGPERSON)
     <COND (.ARGBOUNTY
-        <TELL "Accept this bounty (" T .ARGBOUNTY ")? ">
-        <COND (<YES?>
-            <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
-            <TELL "Splendind!. You should investigate " T .ARGAREA " area for clues" CR>
+        <COND (<GETP .ARGBOUNTY P?BOUNTY-ACCEPTED>
+            <COND (<GETP .ARGBOUNTY P?BOUNTY-COMPLETED>
+                <TELL D .ARGPERSON ": \"How goes the hunt (" T .ARGBOUNTY ")?">
+                <TELL "Please come back after completing the bounty for your reward!\"" CR>
+            )>
         )(ELSE
-            <TELL "That is unfortunate. Let me know if you change your mined." CR>
+            <TELL "Accept this bounty (" T .ARGBOUNTY ")? ">
+            <COND (<YES?>
+                <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
+                <TELL "Splendind!. You should investigate " T .ARGAREA " area for clues" CR>
+            )(ELSE
+                <TELL "That is unfortunate. Let me know if you change your mined." CR>
+            )>
         )>
     )>>
