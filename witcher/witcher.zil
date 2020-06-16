@@ -14,6 +14,7 @@
 <INSERT-FILE "codex">
 <INSERT-FILE "witcherevents">
 <INSERT-FILE "monsters">
+<INSERT-FILE "bounties">
 
 <GLOBAL FOOD-ABUNDANCE 5>
 
