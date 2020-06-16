@@ -2,7 +2,7 @@
 
 <ROUTINE V-CODEX ()
 	
-	<TELL "You looked at the " D ,PRSO " closely and see that it is ">
+	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
 	<COND 
 		(<EQUAL? ,PRSO ,ROACH>

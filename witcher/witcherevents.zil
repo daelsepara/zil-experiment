@@ -98,43 +98,47 @@
 <SYNTAX HIT OBJECT (IN-ROOM) (FIND MONSTERBIT) WITH OBJECT (HAVE HELD CARRIED) (FIND WEAPONBIT) = V-ATTACK>
 <SYNTAX FIGHT OBJECT (IN-ROOM) (FIND MONSTERBIT) WITH OBJECT (HAVE HELD CARRIED) (FIND WEAPONBIT) = V-ATTACK>
 
+<CONSTANT ATTACK-DESCRIPTIONS <LTABLE 2 "attack" "swing at" "hack at" "swing at" "hit" >>
+
 <ROUTINE WITCHER-ATTACK (ARGMONSTER ARGSWORD "OPT" ARGOIL "AUX" DMG)
 	<SET DMG <GETP .ARGSWORD P?HIT-DAMAGE>>
 	<COND (<AND .ARGOIL <IN? .ARGOIL .ARGSWORD>>
 		<SET DMG <+ .DMG <GETP .ARGOIL P?BONUS-DAMAGE>>>
 	)>
-	<TELL "You attack the " D .ARGMONSTER " with your " D .ARGSWORD " for " N .DMG " points of damage." CR>
+	<TELL "You " <PICK-ONE ATTACK-DESCRIPTIONS> " " T .ARGMONSTER " with your " D .ARGSWORD " for " N .DMG " points of damage." CR>
 	<PUTP .ARGMONSTER P?HIT-POINTS <- <GETP .ARGMONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .ARGMONSTER P?HIT-POINTS> 1>
-		<TELL "... you deal a fatal blow. The " D .ARGMONSTER " dies." CR>
-		<REMOVE .ARGMONSTER>
-	)>>
-
-<ROUTINE WEAPON-INEFFECTIVE (ARGMONSTER ARGSWORD "AUX" DMG)
-	<SET DMG <GETP .ARGSWORD P?LOW-DAMAGE>>
-	<TELL "Your " D .ARGSWORD " hits the " D .ARGMONSTER " with a dull sound." CR>
-	<TELL "... the " D .ARGMONSTER " suffers " N .DMG " points of damage." CR>
-	<PUTP .ARGMONSTER P?HIT-POINTS <- <GETP .ARGMONSTER P?HIT-POINTS> .DMG>>
-	<COND (<L? <GETP .ARGMONSTER P?HIT-POINTS> 1>
-		<TELL "... but the blow was fatal. The " D .ARGMONSTER " dies." CR>
+		<TELL "... you deal a fatal blow. " CT .ARGMONSTER " dies." CR>
 		<REMOVE .ARGMONSTER>
 		<RETURN>
 	)>
-	<TELL "Your " D .ARGSWORD " is not effective against the " D .ARGMONSTER "." CR>>
+	<CRLF>>
+
+<ROUTINE WEAPON-INEFFECTIVE (ARGMONSTER ARGSWORD "AUX" DMG)
+	<SET DMG <GETP .ARGSWORD P?LOW-DAMAGE>>
+	<TELL "Your " D .ARGSWORD " hits " T .ARGMONSTER " with a dull sound." CR>
+	<TELL "... " CT .ARGMONSTER " suffers " N .DMG " points of damage." CR>
+	<PUTP .ARGMONSTER P?HIT-POINTS <- <GETP .ARGMONSTER P?HIT-POINTS> .DMG>>
+	<COND (<L? <GETP .ARGMONSTER P?HIT-POINTS> 1>
+		<TELL "... but the blow was fatal. " CT .ARGMONSTER " dies." CR>
+		<REMOVE .ARGMONSTER>
+		<RETURN>
+	)>
+	<TELL "... Your " D .ARGSWORD " is not effective against " T .ARGMONSTER "." CR CR>>
 
 <ROUTINE NO-COMBAT-PLAN (ARGMONSTER ARGWEAPON)
-	<TELL "That is your plan? Attacking the " D .ARGMONSTER " with the " D .ARGWEAPON "?" CR>>
+	<TELL "That is your plan? Attacking " T .ARGMONSTER " with " T .ARGWEAPON "?" CR>>
 
 <ROUTINE MONSTER-RESPONSE (ARGMONSTER)
-	<TELL "This " D .ARGMONSTER " does not respond to anything else." CR>>
+	<TELL CT .ARGMONSTER " does not respond to anything else." CR>>
 
 <ROUTINE MONSTER-ATTACKS (ARGMONSTER "AUX" DMG)
 	<COND (<OR <LOC .ARGMONSTER> <G? .ARGMONSTER 0>>
 		<COND (<G? <GETP .ARGMONSTER P?HIT-POINTS> 0>
-			<TELL "The " D .ARGMONSTER " attacks!" CR>
+			<TELL CT .ARGMONSTER " attacks!" CR>
 			<SET DMG <GETP .ARGMONSTER P?HIT-DAMAGE>>
 			<COND (<NOT ,DAYTIME>
-				<TELL "... the night makes the " D .ARGMONSTER " more powerful!" CR>
+				<TELL "... the night makes " T .ARGMONSTER " more powerful!" CR>
 				<SET DMG <* .DMG 2>>
 			)>
 			<WITCHER-COMBAT-DAMAGE .DMG>

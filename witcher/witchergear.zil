@@ -9,10 +9,10 @@
 <SYNTAX REMOVE OBJECT (HELD CARRIED HAVE) FROM OBJECT (FIND SURFACEBIT) (HELD CARRIED HAVE) = V-REMOVE-OIL>
 
 <ROUTINE APPLY-OIL (ARGOIL ARGSWORD)
-	<TELL "You apply the " D .ARGOIL " onto the " D .ARGSWORD CR>>
+	<TELL "You apply " T .ARGOIL " onto " T .ARGSWORD CR>>
 
 <ROUTINE CANNOT-APPLY-OIL (ARGOIL ARGSWORD)
-	<TELL "You cannot apply the " D .ARGOIL " to the " D .ARGSWORD ", or if you can, it will not be effective." CR>>
+	<TELL "You cannot apply " T .ARGOIL " to " T .ARGSWORD ", or if you can, it will not be effective." CR>>
 
 <ROUTINE REMOVE-AND-APPLY (ARGOIL ARGSWORD)
 	<COND (<FIRST? .ARGSWORD>
@@ -43,10 +43,10 @@
 <ROUTINE V-CLEAN-SWORD ()
 	<COND (<EQUAL? ,PRSO ,SILVER-SWORD ,STEEL-SWORD>
 		<COND (<FIRST? ,PRSO>
-			<TELL "You remove the " D <FIRST? ,PRSO> " from the " D ,PRSO CR>
+			<TELL "You remove " T <FIRST? ,PRSO> " from the " T ,PRSO CR>
 			<MOVE <FIRST? ,PRSO> ,PLAYER>
 		)(ELSE
-			<TELL "The " D ,PRSO " is quite clean." CR>
+			<TELL CT ,PRSO " is quite clean." CR>
 		)>
 	)(ELSE
 		<NOTHING-HAPPENS>
@@ -56,13 +56,13 @@
 	<COND (<EQUAL? ,PRSI ,SILVER-SWORD ,STEEL-SWORD>
 		<COND (<FIRST? ,PRSI>
 			<COND (<EQUAL? ,PRSO <FIRST? ,PRSI>>
-				<TELL "You remove the " D <FIRST? ,PRSI> " from the " D ,PRSI CR>
+				<TELL "You remove " T <FIRST? ,PRSI> " from " T ,PRSI CR>
 				<MOVE <FIRST? ,PRSI> ,PLAYER>
 			)(ELSE
-				<TELL D ,PRSO " has not been applied to the " D ,PRSI CR>
+				<TELL CT ,PRSO " has not been applied to " T ,PRSI CR>
 			)>
 		)(ELSE
-			<TELL "The " D ,PRSI " is quite clean." CR>
+			<TELL CT ,PRSI " is quite clean." CR>
 		)>
 	)(ELSE
 		<NOTHING-HAPPENS>
