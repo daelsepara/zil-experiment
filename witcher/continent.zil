@@ -42,11 +42,13 @@
 		<DESCRIBE-LOCATION ,HERE>
 		<CHECK-FOOD-AVAILABILITY>
 		<SEARCH-LOCATION ,HERE>
+		<RTRUE>
 	)(<EQUAL? .RARG ,M-ENTER>
 		<COND (<NOT <IN? ,PLAYER ,ROACH>>
 			<SPAWN-MONSTER ,HERE>
 			<TELL "A long time passed before you arrived." CR CR>
 			<WITCHER-HEALTH-DAMAGE ,WITCHER-FATIGUE-RATE "fatigue">
+			<RTRUE>
 		)>
 	)>>
 

@@ -31,13 +31,13 @@
 <ROUTINE V-RIDE ()
 	<COND (<FSET? ,PRSO ,VEHBIT>
 		<COND (<IN? ,PLAYER ,PRSO>
-			<TELL "You are already riding the " D ,PRSO "." CR>
+			<TELL "You are already riding " T ,PRSO "." CR>
 		)(ELSE
-			<TELL "You ride the " D, PRSO "." CR>
+			<TELL "You ride " T ,PRSO "." CR>
 			<MOVE ,PLAYER ,PRSO>
 		)>
 	)(ELSE
-		<TELL "You can't ride the " D, PRSO "." CR>
+		<TELL "You can't ride " T ,PRSO "." CR>
 	)>>
 
 <SYNTAX UNMOUNT = V-UNMOUNT>
