@@ -183,3 +183,39 @@
 
 <ROUTINE COMBAT-STEEL (ARGMONSTER ARGWEAPON "OPT" ARGOIL)
 	<COMBAT-SWORD .ARGMONSTER .ARGWEAPON ,STEEL-SWORD .ARGOIL>>
+
+<SYNTAX COMBAT = COMBAT-MODE>
+
+<ROUTINE COMBAT-MODE ("AUX" MONSTER (WEAPON <>) KEY)
+	<SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
+	<COND (.MONSTER
+		<DEQUEUE I-WITCHER-EAT>
+		<TELL "Choose weapon to fight the " T .MONSTER " with:" CR>
+		<COND (<IN? ,SILVER-SWORD ,PLAYER> <TELL "1 - " T ,SILVER-SWORD CR>)>
+		<COND (<IN? ,STEEL-SWORD ,PLAYER> <TELL "2 - " T ,STEEL-SWORD CR>)>
+		<TELL "3 - None. My witcher powers are enough." CR>
+		<SET .KEY <INPUT 1>>
+		<COND (<AND <EQUAL? .KEY !\1> <IN? ,SILVER-SWORD ,PLAYER>> <SET WEAPON ,SILVER-SWORD>)>
+		<COND (<AND <EQUAL? .KEY !\2> <IN? ,STEEL-SWORD ,PLAYER>> <SET WEAPON ,STEEL-SWORD>)>
+		<COND (<EQUAL? .KEY !\3> <SET WEAPON <>>)>
+		<REPEAT ()
+			<CRLF>
+			<TELL "What do you want to do next?" CR>
+			<TELL "1 - Attack monster!" CR>
+			<TELL "2 - Eat food" CR>
+			<TELL "3 - Check my status" CR>
+			<TELL "4 - Retreat!" CR>
+			<SET .KEY <INPUT 1>>
+			<CRLF>
+			<COND (<EQUAL? .KEY !\1>
+				<PERFORM ,V?ATTACK .MONSTER .WEAPON>
+				<INPUT 1>
+				<COND (<NOT <IN? .MONSTER ,HERE>> <QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS> <RETURN>)>
+			)>
+			<COND (<EQUAL? .KEY !\2> <V-WITCHER-EAT> <INPUT 1>)>
+			<COND (<EQUAL? .KEY !\3> <V-WITCHER-STATUS> <INPUT 1>)>
+			<COND (<EQUAL? .KEY !\4> <TELL "You withdraw from combat!" CR> <QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS> <RETURN>)>
+		>
+	)(ELSE
+		<TELL "There are no monsters here!" CR>
+	)>>
