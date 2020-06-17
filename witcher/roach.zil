@@ -35,7 +35,7 @@
 		)(ELSE
 			<TELL "You ride " T ,PRSO "." CR>
 			<MOVE ,PLAYER ,PRSO>
-			<MOVE ,DUMMY-MONSTER ,GLOBAL-OBJECTS>
+			<FCLEAR ,DUMMY-MONSTER ,INVISIBLE>
 		)>
 	)(ELSE
 		<TELL "You can't ride " T ,PRSO "." CR>
@@ -50,7 +50,7 @@
 			<MOVE ,PLAYER <LOC ,ROACH>>
 			<TELL "You dismount from Roach." CR>
 			<COND (<FIND-IN <LOC ,ROACH> ,MONSTERBIT>
-				<REMOVE ,DUMMY-MONSTER>
+				<FSET ,DUMMY-MONSTER ,INVISIBLE>
 			)>
 		)(ELSE
 			<TELL "You are not riding Roach." CR>
