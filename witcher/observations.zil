@@ -5,7 +5,7 @@
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
 	<COND 
-		(<EQUAL? ,PRSO ,ROACH>
+		(<EQUAL? ,PRSO ,ROACH ,ROACH-META>
 			<TELL "a loyal and dependable horse that sometimes ends up in odd places." CR>
 			<RTRUE>)
 		
