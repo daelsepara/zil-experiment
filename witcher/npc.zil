@@ -21,15 +21,22 @@
     (ACTION WHITE-ORCHARD-ALDERMAN-F)
 	(FLAGS PERSONBIT NARTICLEBIT)>
 
+<ROUTINE CHECK-BOUNTY (ARGBOUNTY THISBOUNTY ARGGIVER)
+    <COND (<AND ,PRSI <FSET? .THISBOUNTY ,BOUNTYBIT>>
+        <COND (<NOT <EQUAL? .THISBOUNTY .ARGBOUNTY>>
+            <TELL D .ARGGIVER " does not know anything about the " T .THISBOUNTY CR>
+            <RFALSE>
+        )>
+        <RTRUE>
+    )>
+    <RTRUE>>
+
 <ROUTINE WHITE-ORCHARD-ALDERMAN-F ("AUX" KEY)
     <COND (<VERB? TALK>
         <COND (<IN? ,BOUNTY-WHITE-ORCHARD ,PLAYER>
             <COND (<GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-ACCEPTED>
-                <COND (<AND ,PRSI <FSET? ,PRSI ,BOUNTYBIT>>
-                    <COND (<NOT <EQUAL? ,PRSI ,BOUNTY-WHITE-ORCHARD>>
-                        <TELL D ,WHITE-ORCHARD-ALDERMAN " does not know anything about the " T ,PRSI CR>
-                        <RTRUE>
-                    )>
+                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,WHITE-ORCHARD-ALDERMAN>>
+                    <RETURN>
                 )>
                 <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-INVESTIGATED>>
                     <TELL "You should probably continue investigating the " T <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-LOC> " area." CR>
@@ -41,11 +48,8 @@
                     )>
                 )>
             )(ELSE
-                <COND (<AND ,PRSI <FSET? ,PRSI ,BOUNTYBIT>>
-                    <COND (<NOT <EQUAL? ,PRSI ,BOUNTY-WHITE-ORCHARD>>
-                        <TELL D ,WHITE-ORCHARD-ALDERMAN " does not know anything about the " T ,PRSI CR>
-                        <RTRUE>
-                    )>
+                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,WHITE-ORCHARD-ALDERMAN>>
+                    <RETURN>
                 )>
                 <REPEAT ()
                     <CRLF>
