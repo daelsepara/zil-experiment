@@ -15,6 +15,7 @@
 <INSERT-FILE "witcherevents">
 <INSERT-FILE "monsters">
 <INSERT-FILE "bounties">
+<INSERT-FILE "npc">
 
 <ROUTINE GO ()
 	<INIT>
