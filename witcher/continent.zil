@@ -96,10 +96,28 @@
 	(LOC ROOMS)
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
+	(WEST TO CROSSROADS)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS
 		(DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD) THINGS-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<ROOM CROSSROADS
+	(LOC ROOMS)
+	(DESC "Cross Roads")
+	(EAST TO BATTLE-FIELD)
+	(WEST TO WHITE-ORCHARD-TOWN)
+	(LDESC "A major highway. The dirt road to the west leads to the town of White Orchard.")
+	(ACTION DETECT-OBJECTS)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<ROOM WHITE-ORCHARD-TOWN
+	(LOC ROOMS)
+	(DESC "White Orchard")
+	(EAST TO CROSSROADS)
+	(LDESC "A small town brimming with activity.")
+	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM EDGE-OF-FOREST
