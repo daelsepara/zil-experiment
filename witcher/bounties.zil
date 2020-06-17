@@ -19,7 +19,7 @@
     (DESC "Bounty: Raid Bandit Camp")
     (ADJECTIVE BANDIT BANDITS)
     (SYNONYM BOUNTY)
-    (TEXT "Groups of bandits are robbing, pillaging and looting around White Orchard. Townsfolk are advised to travel in large groups for their own safety. Talk to the magistrate.")
+    (TEXT "Groups of bandits are robbing, pillaging and looting around White Orchard. Townsfolk are advised to travel in large groups for their own safety. Talk to the magistrate at the Nilfgaardian outpost.")
     (SIZE 0)
     (BOUNTY-REWARD 500)
     (BOUNTY-ACCEPTED <>)
@@ -42,12 +42,11 @@
                 )(ELSE
                     <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendind! You should look for clues around the area.">
                 )>
-                <CRLF>
             )(ELSE
                 <CRLF>
                 <TALK-HIGHLIGHT-PERSON .ARGPERSON "That is unfortunate. Let me know if you change your mind.">
-                <CRLF>
             )>
+            <CRLF>
         )>
     )(ELSE
         <TELL "The what now?" CR>
