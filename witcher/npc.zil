@@ -1,9 +1,19 @@
-<SYNTAX TALK TO OBJECT (FIND PERSONBIT) (IN-ROOM) = V-TALK>
-<SYNTAX TALK TO OBJECT (FIND PERSONBIT) (IN-ROOM) ABOUT OBJECT (FIND BOUNTYBIT) (HAVE HELD CARRIED) = V-TALK>
+<SYNTAX TALK TO OBJECT (IN-ROOM) (FIND PERSONBIT) = V-TALK>
+<SYNTAX TALK TO OBJECT (IN-ROOM) (FIND PERSONBIT) ABOUT OBJECT (ON-GROUND IN-ROOM) (FIND BOUNTYBIT) = V-TALK>
+
+<CONSTANT ROACH-RESPONSES <LTABLE 2 "clueless" "amused" "fascinated" "bored" "interested" "enthusiastic">>
 
 <ROUTINE V-TALK ()
     <COND(<FSET? ,PRSO ,PERSONBIT>
-        <TELL "You talk to " T ,PRSO CR>
+        <TELL "You talk to " T ,PRSO>
+        <COND (,PRSI
+            <TELL " about " T ,PRSI>
+        )>
+        <CRLF>
+        <COND (<EQUAL? ,PRSO ,ROACH>
+            <TALK-HIGHLIGHT-PERSON ,ROACH "(She is just as ">
+            <TELL <PICK-ONE ROACH-RESPONSES> " as you.)" CR>
+        )>
     )(ELSE
         <TELL "Talking to " T, PRSO " is an amusing but pointless exercise." CR>
     )>>
@@ -29,12 +39,17 @@
 	(FLAGS PERSONBIT NARTICLEBIT)>
 
 <ROUTINE CHECK-BOUNTY (ARGBOUNTY THISBOUNTY ARGGIVER)
-    <COND (<AND ,PRSI <FSET? .THISBOUNTY ,BOUNTYBIT>>
-        <COND (<NOT <EQUAL? .THISBOUNTY .ARGBOUNTY>>
-            <TELL D .ARGGIVER " does not know anything about the " T .THISBOUNTY CR>
-            <RFALSE>
+    <COND (.THISBOUNTY
+        <COND (<FSET? .THISBOUNTY ,BOUNTYBIT>
+            <COND (<NOT <EQUAL? .THISBOUNTY .ARGBOUNTY>>
+                <TELL D .ARGGIVER " does not know anything about the " T .THISBOUNTY CR>
+                <RFALSE>
+            )>
+            <RTRUE>
         )>
-        <RTRUE>
+        <TALK-HIGHLIGHT-PERSON .ARGGIVER "The what now?">
+        <CRLF>
+        <RFALSE>
     )>
     <RTRUE>>
 
@@ -46,7 +61,7 @@
                     <RETURN>
                 )>
                 <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-INVESTIGATED>>
-                    <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You should probably continue investigating the ">
+                    <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You should probably continue investigating ">
                     <TELL T <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-LOC> " area." CR>
                 )(ELSE
                     <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-COMPLETED>>
@@ -76,7 +91,7 @@
                         <RETURN>
                     )(<EQUAL? .KEY !\3>
                         <CRLF>
-                        <TALK-HIGHLIGHT-PERSON ,PRSO "Bye!">
+                        <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "Bye!">
                         <CRLF>
                         <RETURN>
                     )>
