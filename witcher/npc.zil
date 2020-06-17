@@ -29,6 +29,7 @@
         <CRLF>
         <TALK-HIGHLIGHT-PERSON .ARGPERSON .RESPONSE>
         <CRLF>
+        <INPUT 1>
     )>>
 
 <OBJECT WHITE-ORCHARD-ALDERMAN
@@ -55,6 +56,7 @@
 
 <ROUTINE WHITE-ORCHARD-ALDERMAN-F ("AUX" KEY)
     <COND (<VERB? TALK>
+        <CRLF>
         <COND (<IN? ,BOUNTY-WHITE-ORCHARD ,PLAYER>
             <COND (<GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-ACCEPTED>
                 <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
@@ -77,14 +79,15 @@
                     <RETURN>
                 )>
                 <REPEAT ()
-                    <CRLF>
                     <TALK-HIGHLIGHT-PERSON ,PRSO "">
                     <CRLF>
                     <TELL "Are you here about the bounty (" T ,BOUNTY-WHITE-ORCHARD ")?" CR>
                     <TELL "1 - I'm here about the bounty." CR> 
                     <TELL "2 - I accept the bounty." CR>
                     <TELL "3 - Goodbye for now." CR>
+                    <TELL "Your response: ">
                     <SET KEY <INPUT 1>>
+                    <CRLF>
                     <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims." ,PRSO>
                     <COND (<EQUAL? .KEY !\2>
                         <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSO>
@@ -95,6 +98,7 @@
                         <CRLF>
                         <RETURN>
                     )>
+                    <CRLF>
                 >
             )>
         )(ELSE
