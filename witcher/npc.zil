@@ -55,7 +55,7 @@
                     <CRLF>
                     <TELL D ,PRSO ":" CR>
                     <TELL "Are you here about the bounty (" T ,BOUNTY-WHITE-ORCHARD ")?" CR>
-                    <TELL "1 - Yes. I'm here about the bounty." CR> 
+                    <TELL "1 - I'm here about the bounty." CR> 
                     <TELL "2 - I accept the bounty." CR>
                     <TELL "3 - Goodbye for now." CR>
                     <SET KEY <INPUT 1>>
