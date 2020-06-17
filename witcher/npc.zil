@@ -24,4 +24,6 @@
         )(ELSE
             <TELL "Greetings!" CR>
         )>
+    )(<VERB? EXAMINE CODEX>
+        <TELL "In most cultures it is rude to stare." CR>
     )>>
