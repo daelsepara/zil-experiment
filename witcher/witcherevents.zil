@@ -158,12 +158,16 @@
 	<COND (<OR <LOC .ARGMONSTER> <G? .ARGMONSTER 0>>
 		<COND (<G? <GETP .ARGMONSTER P?HIT-POINTS> 0>
 			<TELL CT .ARGMONSTER " attacks!" CR>
-			<SET DMG <GETP .ARGMONSTER P?HIT-DAMAGE>>
-			<COND (<NOT ,DAYTIME>
-				<TELL "... the night makes " T .ARGMONSTER " more powerful!" CR>
-				<SET DMG <* .DMG 2>>
+			<COND (<L? <RANDOM 100> ,WITCHER-DODGE-PROBABILITY>
+				<TELL "... you manage to dodge its attack!" CR>
+			)(ELSE
+				<SET DMG <GETP .ARGMONSTER P?HIT-DAMAGE>>
+				<COND (<NOT ,DAYTIME>
+					<TELL "... the night makes " T .ARGMONSTER " more powerful!" CR>
+					<SET DMG <* .DMG 2>>
+				)>
+				<WITCHER-COMBAT-DAMAGE .DMG>
 			)>
-			<WITCHER-COMBAT-DAMAGE .DMG>
 		)>
 	)>>
 
