@@ -16,6 +16,7 @@
 <INSERT-FILE "monsters">
 <INSERT-FILE "bounties">
 <INSERT-FILE "npc">
+<INSERT-FILE "bestiary">
 
 <ROUTINE GO ()
 	<INIT>
