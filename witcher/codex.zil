@@ -1,4 +1,4 @@
-"Data from: https://thewitcher3.wiki.fextralife.com"
+"Data from: https://witcher.fandom.com/wiki/Witcher_Wiki"
 
 <OBJECT CODEX
     (DESC "Wicher Codex")
@@ -10,15 +10,20 @@
 
 <OBJECT TOPIC-NEKKER
     (DESC "Nekkers")
-    (LDESC "A lone nekker is harmless. Five are dangerous. Ten can kill even a veteran monster slayer. Particularly troublesome are the larger, stronger individuals known as warriors, as well as the rare breed of nekkers known as phoocas.")>
+    (LDESC "Nekkers and phoocas live in the dark woods that grow in damp, mist-filled valleys, in colonies of one to several dozen individuals. They dig deep burrows for lairs and connect them with a network of narrow tunnels. Using these passageways they are able to move at great speed within and around their colonies.")>
 
 <OBJECT TOPIC-ROACH
     (DESC "Roach")
-    (LDESC "Roach is the name that Geralt of Rivia has given to every horse that he keeps as a companion It is not known why he calls them by this name, as seemingly he followed this tradition before meeting Vernon Roche meaning the two names are likely unrelated (as Roche should in fact be pronounced \"Rosh\" (not \"Roach\") like in polish, the original version). For an unknown reason Geralt prefers to ride female horses, perhaps it is a simple matter of preference or it is related to an unspoken part of his past. Within The Witcher 3, Geralt may ride horses and it is likely that whether he has many or just one, the horse will be called Roach. There have been at least three different horses named Roach that Geralt has kept.")>
+    (LDESC "Geralt named his every mount Roach, though no one really knows why or what Geralt had in mind with this name. When asked, Geralt would dodge the question or give an evasive answer. Perhaps this had just been the first word that came to his head? Roach, for her part, seemed to accept the name with no reservations.")>
+
+<OBJECT TOPIC-WITCHERS
+    (SYNONYM WITCHER WITCHERS)
+    (DESC "Witchers")
+    (LDESC "\"Indeed, there is nothing more repulsive than these monsters that defy nature and are known by the name of witcher, as they are the offspring of foul sorcery and witchcraft. They are unscrupulous scoundrels without conscience and virtue, veritable creatures from hell capable only of taking lives...\"")>
 
 <ROUTINE PRINT-TOPIC (TOPIC)
     <CRLF>
-    <HLIGHT ,H-BOLD>
+    <HLIGHT ,H-INVERSE>
     <TELL "Topic: " D .TOPIC CR CR>
     <HLIGHT 0>
     <TELL <GETP .TOPIC P?LDESC> CR>>
@@ -26,12 +31,16 @@
 <ROUTINE READ-CODEX-F ("AUX" W)
     <REPEAT ()
         <CRLF>
+        <HLIGHT ,H-BOLD>
         <TELL "What are you looking for in the codex?" CR>
+        <HLIGHT 0>
         <READLINE>
         <SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
         <COND
             (<EQUAL? .W ,W?NEKKER ,W?NEKKERS> <PRINT-TOPIC ,TOPIC-NEKKER>)
-            (<EQUAL? .W ,W?ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
+            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED W?RIDE, W?MOUNT> <PRINT-TOPIC ,TOPIC-ROACH>)
+            (<EQUAL? .W ,W?WITCHER ,W?WITCHERS> <PRINT-TOPIC ,TOPIC-WITCHERS>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
+            (T <TELL CR "The codex is silent about such things." CR>)
         >
     >>
