@@ -57,41 +57,41 @@
     <COND (<VERB? TALK>
         <COND (<IN? ,BOUNTY-WHITE-ORCHARD ,PLAYER>
             <COND (<GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-ACCEPTED>
-                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,WHITE-ORCHARD-ALDERMAN>>
+                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
                     <RETURN>
                 )>
                 <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-INVESTIGATED>>
-                    <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You should probably continue investigating ">
+                    <TALK-HIGHLIGHT-PERSON ,PRSO "You should probably continue investigating ">
                     <TELL T <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-LOC> " area." CR>
                 )(ELSE
                     <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-COMPLETED>>
-                        <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You have enough clues as the monster you are dealing with! Now is the time to deal with it!">
+                        <TALK-HIGHLIGHT-PERSON ,PRSO "You have enough clues as the monster you are dealing with! Now is the time to deal with it!">
                         <CRLF>
                     )(ELSE
-                        <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "Thanks, witcher! Our town is safe again! Here is your reward.">
+                        <TALK-HIGHLIGHT-PERSON ,PRSO "Thanks, witcher! Our town is safe again! Here is your reward.">
                         <CRLF>
                     )>
                 )>
             )(ELSE
-                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,WHITE-ORCHARD-ALDERMAN>>
+                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
                     <RETURN>
                 )>
                 <REPEAT ()
                     <CRLF>
-                    <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "">
+                    <TALK-HIGHLIGHT-PERSON ,PRSO "">
                     <CRLF>
                     <TELL "Are you here about the bounty (" T ,BOUNTY-WHITE-ORCHARD ")?" CR>
                     <TELL "1 - I'm here about the bounty." CR> 
                     <TELL "2 - I accept the bounty." CR>
                     <TELL "3 - Goodbye for now." CR>
                     <SET KEY <INPUT 1>>
-                    <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims." ,WHITE-ORCHARD-ALDERMAN>
+                    <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims." ,PRSO>
                     <COND (<EQUAL? .KEY !\2>
-                        <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD ,WHITE-ORCHARD-ALDERMAN>
+                        <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSO>
                         <RETURN>
                     )(<EQUAL? .KEY !\3>
                         <CRLF>
-                        <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "Bye!">
+                        <TALK-HIGHLIGHT-PERSON ,PRSO "Bye!">
                         <CRLF>
                         <RETURN>
                     )>

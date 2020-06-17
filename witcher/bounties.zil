@@ -37,10 +37,10 @@
                 <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
                 <CRLF>
                 <COND (.LOC
-                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendid!. You should investigate ">
+                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendid! You should investigate ">
                     <TELL T .LOC " area for clues.">
                 )(ELSE
-                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendind!. You should look for clues around the area.">
+                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendind! You should look for clues around the area.">
                 )>
                 <CRLF>
             )(ELSE
