@@ -11,12 +11,12 @@
 <INSERT-FILE "continent">
 <INSERT-FILE "objects">
 <INSERT-FILE "roach">
-<INSERT-FILE "codex">
+<INSERT-FILE "observations">
 <INSERT-FILE "witcherevents">
 <INSERT-FILE "monsters">
 <INSERT-FILE "bounties">
 <INSERT-FILE "npc">
-<INSERT-FILE "bestiary">
+<INSERT-FILE "codex">
 
 <ROUTINE GO ()
 	<INIT>

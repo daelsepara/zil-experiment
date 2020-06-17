@@ -118,6 +118,6 @@
         )(ELSE
             <TELL "Greetings!" CR>
         )>
-    )(<VERB? EXAMINE CODEX>
+    )(<VERB? EXAMINE LOOK-CLOSELY>
         <TELL "In most cultures it is rude to stare." CR>
     )>>
