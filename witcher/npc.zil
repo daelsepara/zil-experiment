@@ -86,6 +86,7 @@
                 <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
                     <RETURN>
                 )>
+                <STOP-EATING-CYCLE>
                 <REPEAT ()
                     <TALK-HIGHLIGHT-PERSON ,PRSO "">
                     <CRLF>
@@ -99,14 +100,18 @@
                     <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims." ,PRSO>
                     <COND (<EQUAL? .KEY !\2>
                         <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSO>
+                        <START-EATING-CYCLE>
                         <RETURN>
                     )(<EQUAL? .KEY !\3>
                         <CRLF>
                         <TALK-HIGHLIGHT-PERSON ,PRSO "Bye!">
                         <CRLF>
+                        <START-EATING-CYCLE>
                         <RETURN>
                     )>
                     <CRLF>
+                    <CLOCKER>
+                    <UPDATE-STATUS-LINE>
                 >
             )>
         )(ELSE
