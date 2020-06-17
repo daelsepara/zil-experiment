@@ -8,10 +8,17 @@
         <TELL "Talking to " T, PRSO " is an amusing but pointless exercise." CR>
     )>>
 
-<ROUTINE TALK-RESPONSE (KEY CHOICE RESPONSE)
+<ROUTINE TALK-HIGHLIGHT-PERSON (ARGPERSON ARGTEXT)
+    <HLIGHT ,H-BOLD>
+	<TELL D .ARGPERSON>
+	<HLIGHT 0>
+    <TELL ": " .ARGTEXT>>
+
+<ROUTINE TALK-RESPONSE (KEY CHOICE RESPONSE ARGPERSON)
     <COND (<EQUAL? .KEY .CHOICE>
         <CRLF>
-        <TELL .RESPONSE CR>
+        <TALK-HIGHLIGHT-PERSON .ARGPERSON .RESPONSE>
+        <CRLF>
     )>>
 
 <OBJECT WHITE-ORCHARD-ALDERMAN
@@ -39,12 +46,15 @@
                     <RETURN>
                 )>
                 <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-INVESTIGATED>>
-                    <TELL "You should probably continue investigating the " T <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-LOC> " area." CR>
+                    <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You should probably continue investigating the ">
+                    <TELL T <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-LOC> " area." CR>
                 )(ELSE
                     <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-COMPLETED>>
-                        <TELL "You have enough clues as the monster you are dealing with! Now is the time to deal with it!" CR>
+                        <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You have enough clues as the monster you are dealing with! Now is the time to deal with it!">
+                        <CRLF>
                     )(ELSE
-                        <TELL "Thanks, witcher! Our town is safe again! Here is your reward." CR>
+                        <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "Thanks, witcher! Our town is safe again! Here is your reward.">
+                        <CRLF>
                     )>
                 )>
             )(ELSE
@@ -53,19 +63,21 @@
                 )>
                 <REPEAT ()
                     <CRLF>
-                    <TELL D ,PRSO ":" CR>
+                    <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "">
+                    <CRLF>
                     <TELL "Are you here about the bounty (" T ,BOUNTY-WHITE-ORCHARD ")?" CR>
                     <TELL "1 - I'm here about the bounty." CR> 
                     <TELL "2 - I accept the bounty." CR>
                     <TELL "3 - Goodbye for now." CR>
                     <SET KEY <INPUT 1>>
-                    <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims.">
+                    <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims." ,WHITE-ORCHARD-ALDERMAN>
                     <COND (<EQUAL? .KEY !\2>
-                        <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD>
+                        <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD ,WHITE-ORCHARD-ALDERMAN>
                         <RETURN>
-                    )>
-                    <COND (<EQUAL? .KEY !\3>
-                        <TELL CR D, PRSO ": Bye!" CR>
+                    )(<EQUAL? .KEY !\3>
+                        <CRLF>
+                        <TALK-HIGHLIGHT-PERSON ,PRSO "Bye!">
+                        <CRLF>
                         <RETURN>
                     )>
                 >

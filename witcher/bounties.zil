@@ -1,9 +1,11 @@
+<SYNTAX READ ABOUT OBJECT (FIND READBIT) (HAVE HELD CARRIED ON-GROUND IN-ROOM) = V-READ PRE-REQUIRES-LIGHT>
+
 <OBJECT BOUNTY-WHITE-ORCHARD
     (IN PLAYER)
     (DESC "Bounty: Beast of White Orchard")
     (ADJECTIVE BEAST WHITE ORCHARD WHITE-ORCHARD)
     (SYNONYM BOUNTY)
-    (TEXT "A vicious beast is terrorizing the White Orchard area. Travelling in and out of town is forbidden. Merchants should comply. Look for the alderman at the inn for further information")
+    (TEXT "A vicious beast is terrorizing the White Orchard area. Travelling in and out of town is forbidden. Merchants should comply. Look for the alderman at White Orchard for further information.")
     (SIZE 0)
     (BOUNTY-REWARD 1500)
     (BOUNTY-ACCEPTED <>)
@@ -13,7 +15,6 @@
     (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT BOUNTYBIT)>
 
 <OBJECT BOUNTY-BANDITS
-    (IN PLAYER)
     (DESC "Bounty: Raid Bandit Camp")
     (ADJECTIVE BANDIT BANDITS)
     (SYNONYM BOUNTY)
@@ -26,27 +27,25 @@
     (BOUNTY-LOC <>)
     (FLAGS TAKEBIT RLANDBIT READBIT NARTICLEBIT BOUNTYBIT)>
 
-<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY "AUX" LOC)
-    <COND (<AND .ARGBOUNTY <FSET? .ARGBOUNTY ,BOUNTYBIT>>
+<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY ARGPERSON "AUX" LOC)
+    <COND (<FSET? .ARGBOUNTY ,BOUNTYBIT>
         <SET LOC <GETP .ARGBOUNTY P?BOUNTY-LOC>>
-        <COND (<GETP .ARGBOUNTY P?BOUNTY-ACCEPTED>
-            <COND (<GETP .ARGBOUNTY P?BOUNTY-COMPLETED>
-                <TELL CR "\"You have already completed the bounty (" T .ARGBOUNTY ")!\"" CR>
-            )(ELSE
-                <TELL CR "\"How goes the hunt (" T .ARGBOUNTY ")? ">
-                <TELL "Please come back after completing the bounty for your reward!\"" CR>
-            )>
-        )(ELSE
+        <COND (<NOT <GETP .ARGBOUNTY P?BOUNTY-ACCEPTED>>
             <TELL "Accept this bounty (" T .ARGBOUNTY ")? ">
             <COND (<YES?>
                 <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
+                <CRLF>
                 <COND (.LOC
-                    <TELL CR "\"Splendind!. You should investigate " T .LOC " area for clues.\"" CR>
+                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendid!. You should investigate ">
+                    <TELL T .LOC " area for clues.">
                 )(ELSE
-                    <TELL CR "\"Splendind!. You should look for clues around the area.\"" CR>
+                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendind!. You should look for clues around the area.">
                 )>
+                <CRLF>
             )(ELSE
-                <TELL CR "\"That is unfortunate. Let me know if you change your mind.\"" CR>
+                <CRLF>
+                <TALK-HIGHLIGHT-PERSON .ARGPERSON "That is unfortunate. Let me know if you change your mind.">
+                <CRLF>
             )>
         )>
     )(ELSE
