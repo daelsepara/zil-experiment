@@ -1,6 +1,31 @@
 <CONSTANT HP-NEKKER 100>
 <CONSTANT HP-BANDITS 300>
 
+<OBJECT DUMMY-MONSTER
+    (DESC "Monster")
+    (SYNONYM MONSTER NEKKER )
+    (LOC GLOBAL-OBJECTS)
+    (ACTION DUMMY-MONSTER-F)
+    (FLAGS MONSTERBIT)>
+
+<ROUTINE DUMMY-MONSTER-F ("AUX" MONSTER)
+    <COND (<IN? ,PLAYER ,ROACH>
+        <SET MONSTER <FIND-IN <LOC ,ROACH> ,MONSTERBIT>>
+    )(ELSE
+        <SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
+    )>
+    <COND (.MONSTER
+        <COND (<IN? ,PLAYER ,ROACH>
+            <COND (<VERB? ATTACK>
+                <TELL "You need to dismount first!" CR>
+            )(ELSE
+                <PERFORM ,PRSA .MONSTER>
+            )>
+        )>
+    )(ELSE
+        <TELL "There are no monsters here!" CR>
+    )>>
+
 <OBJECT NEKKER
     (DESC "Nekker")
     (SYNONYM NEKKER OGRE OGROID MONSTER)
