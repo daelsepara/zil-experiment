@@ -16,12 +16,13 @@
 	<QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS>>
 	
 <ROUTINE WITCHER-EAT ()
+	<CRLF>
 	<COND (<G? ,WITCHER-FOOD 0>
-		<TELL "Feeling hungry, you decide to eat some food from your supplies." CR>
+		<TELL "... Feeling hungry, you decide to eat some food from your supplies." CR>
 		<SETG WITCHER-FOOD <- ,WITCHER-FOOD WITCHER-CONSUMPTION>>
 		<WITCHER-HEAL WITCHER-HEALING-RATE>
 	)(ELSE
-		<TELL "Feeling hungry, you decide to eat but you find that you do not have any food from your supplies." CR>
+		<TELL "--- Feeling hungry, you decide to eat but you find that you do not have any food from your supplies." CR>
 		<WITCHER-HEALTH-DAMAGE WITCHER-FATIGUE-RATE "hunger">
 	)>>
 
