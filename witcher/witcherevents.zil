@@ -9,9 +9,11 @@
 	<START-DAY-NIGHT-CYCLE>>
 
 <ROUTINE DEATH-FATIGUE ()
+	<CRLF>
 	<JIGS-UP "In all your years killing monsters, you never expected that you could die from poor health." >>
 
 <ROUTINE DEATH-COMBAT ()
+	<CRLF>
 	<JIGS-UP "In all your years killing monsters, you have not found something you could not overcome until today.">>
 
 <ROUTINE I-WITCHER-EAT ()
@@ -111,6 +113,7 @@
 		<SET BOUNTY-MONSTER <GETP .BOUNTY ,P?BOUNTY-MONSTER>>
 		<COND (<EQUAL? .MONSTER .BOUNTY-MONSTER>
 			<PUTP .BOUNTY ,P?BOUNTY-COMPLETED T>
+			<SETG SCORE <+ ,SCORE <GETP .BOUNTY ,P?VALUE>>>
 		)>
 	)>>
 
