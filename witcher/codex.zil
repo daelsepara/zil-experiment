@@ -33,6 +33,13 @@
     (LDESC "Geralt named his every mount Roach, though no one really knows why or what Geralt had in mind with this name. When asked, Geralt would dodge the question or give an evasive answer. Perhaps this had just been the first word that came to his head? Roach, for her part, seemed to accept the name with no reservations.")
     (FLAGS TOPICBIT)>
 
+<OBJECT TOPIC-GRIFFINS
+    (SYNONYM GRIFFIN GRIFFINS)
+    (DESC "Griffins")
+    (LDESC "The griffin resembles a crossbreed of a huge cat and a predatory bird. It mainly inhabits wild, mountainous regions, building its nests on inaccessible peaks. Large, hoofed mammals are its usual prey, but, being highly territorial, a griffin will also passionately defend the area surrounding its nest. Wit the expansion of the human settlements and trade routes, griffins have become more and more of a threat to humans, attacking travelers and merchant caravans, as well as settlers and, particularly shephers and their flocks.")
+    (IN GLOBAL-OBJECTS)
+    (FLAGS TOPICBIT)>
+
 <OBJECT TOPIC-WITCHERS
     (SYNONYM WITCHER WITCHERS)
     (DESC "Witchers")
@@ -93,6 +100,7 @@
             (<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
             (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
             (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,W?ME ,W?MYSELF ,W?GERALT ,WITCHER ,PLAYER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
+            (<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
             (<TELL CR "The codex is silent about such things." CR>)           
         >
