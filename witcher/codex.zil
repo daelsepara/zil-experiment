@@ -9,7 +9,7 @@
     (SYNONYM CODEX TOME)
     (IN GLOBAL-OBJECTS)
     (FLAGS READBIT CODEXBIT)
-    (ACTION READ-CODEX-F)>
+    (ACTION V-READ-CODEX)>
 
 <OBJECT TOPIC-NEKKER
     (DESC "Nekkers")
@@ -73,52 +73,3 @@
     <TELL "Topic: " D .TOPIC CR CR>
     <HLIGHT 0>
     <TELL <GETP .TOPIC P?LDESC> CR>>
-
-<ROUTINE V-LOOK-TOPIC ()
-    <COND (<NOT <FSET? ,PRSO TOPICBIT>>
-        <PERFORM ,V?EXAMINE ,PRSO>
-        <RTRUE>
-    )>
-    <TELL "You don't see that here." CR>>
-
-<ROUTINE V-EXAMINE-TOPIC ()
-    <COND (<NOT <FSET? ,PRSO TOPICBIT>>
-        <PERFORM ,V?LOOK-CLOSELY ,PRSO>
-        <RTRUE>
-    )>
-    <TELL "You don't see that here." CR>>
-
-<ROUTINE READ-CODEX-F ("AUX" W (STOP <>))
-    <COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
-        <TELL "You cannot read " T ,PRSO>
-        <COND (,PRSI
-            <TELL " about " T ,PRSI>
-        )>
-        <CRLF>
-        <RTRUE>
-    )>
-    <REPEAT ()
-        <COND (,PRSI
-            <SET W ,PRSI>
-            <SET .STOP T>
-        )(ELSE
-            <CRLF>
-            <HLIGHT ,H-BOLD><TELL "What are you looking for in the codex?">
-            <HLIGHT 0><TELL " (Type "><HLIGHT ,H-BOLD><TELL "CLOSE"><HLIGHT 0><TELL " to exit codex)" CR>
-            <READLINE>
-            <SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
-        )>
-        <COND
-            (<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
-            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
-            (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,WITCHER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
-            (<EQUAL? .W ,W?GERALT ,W?WHITE-WOLF ,W?GWYNBLEIDD ,W?ME, W?MYSELF ,GERALT ,PLAYER> <PRINT-TOPIC ,TOPIC-GERALT>)
-            (<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
-            (<EQUAL? .W ,W?SILVER-SWORD ,W?SILVER-SWORDS ,SILVER-SWORD> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
-            (<EQUAL? .W ,W?STEEL-SWORD ,W?STEEL-SWORDS ,STEEL-SWORD> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
-            (<EQUAL? .W ,W?MEDALLION ,W?WOLF-MEDALLION ,WOLF-MEDALLION> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
-            (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
-            (<TELL CR "The codex is silent about such things." CR>)           
-        >
-        <COND (<EQUAL? .STOP T> <RTRUE>)>
-    >>

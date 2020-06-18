@@ -8,12 +8,12 @@
 
 <INSERT-FILE "witcherglobals">
 <INSERT-FILE "witchersyntax">
+<INSERT-FILE "witcherverbs">
 <INSERT-FILE "geralt.zil">
 <INSERT-FILE "witchergear">
 <INSERT-FILE "continent">
 <INSERT-FILE "objects">
 <INSERT-FILE "roach">
-<INSERT-FILE "observations">
 <INSERT-FILE "witcherevents">
 <INSERT-FILE "monsters">
 <INSERT-FILE "bounties">

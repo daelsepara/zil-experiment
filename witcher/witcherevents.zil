@@ -34,11 +34,6 @@
 <ROUTINE START-EATING-CYCLE ()
 	<QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS>>
 
-<ROUTINE V-WITCHER-EAT ()
-	<WITCHER-EAT>
-	<STOP-EATING-CYCLE>
-	<START-EATING-CYCLE>>
-
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
 	<TELL "... you found " N .AMT " pieces of food for your supply." CR>
 	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>>
@@ -73,31 +68,6 @@
 		<TELL "with no oils applied">
 	)>
 	<CRLF>>
-
-<ROUTINE V-WITCHER-STATUS ()
-	<TELL "Health: " N ,WITCHER-HEALTH CR>
-	<TELL "Food supplies: " N ,WITCHER-FOOD CR>
-	<TELL "Orens: " N ,WITCHER-ORENS CR>
-	<COND (<IN? ,SILVER-SWORD ,PLAYER>
-		<TELL "Silver sword: ">
-		<CHECK-SWORD-OIL ,SILVER-SWORD>
-	)>
-	<COND (<IN? ,STEEL-SWORD ,PLAYER>
-		<TELL "Steel sword: ">
-		<CHECK-SWORD-OIL ,STEEL-SWORD>
-	)>
-	<COND (<AND ,RIDING-VEHICLE ,CURRENT-VEHICLE>
-		<TELL "You are currently riding " T ,CURRENT-VEHICLE CR>
-	)(ELSE
-		<COND (<IN? ,ROACH ,HERE>
-			<TELL "Roach is here." CR>
-		)>
-	)>
-	<COND (<EQUAL? ,DAYTIME T>
-		<TELL "It is daytime." CR>
-	)(ELSE
-		<TELL "It is night." CR>
-	)>>
 
 <ROUTINE COMPLETE-IF-BOUNTY (MONSTER LOC "AUX" BOUNTY BOUNTY-MONSTER)
 	<SET BOUNTY <GETP .LOC ,P?BOUNTY>>
@@ -213,38 +183,3 @@
 		<COND (<AND <EQUAL? .KEY !\2> <IN? ,STEEL-SWORD ,PLAYER>> <RETURN ,STEEL-SWORD>)>
 		<COND (<EQUAL? .KEY !\3> <RETURN <>>)>
 	>>
-
-<ROUTINE COMBAT-MODE ("AUX" MONSTER (WEAPON <>) KEY)
-	<SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
-	<COND (.MONSTER
-		<COND (,RIDING-VEHICLE
-			<NEED-TO-DISMOUNT>
-			<RTRUE>
-		)>
-		<STOP-EATING-CYCLE>
-		<SET WEAPON <CHOOSE-WEAPON .MONSTER>>
-		<REPEAT ()
-			<CRLF>
-			<TELL "What do you want to do next?" CR>
-			<TELL "1 - Attack monster!" CR>
-			<TELL "2 - Eat food" CR>
-			<TELL "3 - Change my weapon" CR>
-			<TELL "4 - Check my status" CR>
-			<TELL "5 - Retreat!" CR>
-			<SET .KEY <INPUT 1>>
-			<COND (<EQUAL? .KEY !\1>
-				<CRLF>
-				<PERFORM ,V?ATTACK .MONSTER .WEAPON>
-				<INPUT 1>
-				<COND (<NOT <IN? .MONSTER ,HERE>> <START-EATING-CYCLE> <RESET-CODEX-MONSTER ,HERE> <RETURN>)>
-			)>
-			<COND (<EQUAL? .KEY !\2> <V-WITCHER-EAT> <INPUT 1>)>
-			<COND (<EQUAL? .KEY !\3> <SET WEAPON <CHOOSE-WEAPON .MONSTER>>)>
-			<COND (<EQUAL? .KEY !\4> <CRLF> <V-WITCHER-STATUS> <INPUT 1>)>
-			<COND (<EQUAL? .KEY !\5> <CRLF> <TELL "You withdraw from combat!" CR> <START-EATING-CYCLE> <RETURN>)>
-			<CLOCKER>
-			<UPDATE-STATUS-LINE>
-		>
-	)(ELSE
-		<TELL "There are no monsters here!" CR>
-	)>>

@@ -11,47 +11,6 @@
 		<RTRUE>
 	)>>
 
-<ROUTINE V-RIDE ()
-	<COND (<FSET? ,PRSO ,VEHBIT>
-		<COND (,RIDING-VEHICLE
-			<TELL "You are already riding " T ,CURRENT-VEHICLE "." CR>
-		)(ELSE
-			<TELL "You ride " T ,PRSO "." CR>
-			<SETG RIDING-VEHICLE T>
-			<SETG CURRENT-VEHICLE ,PRSO>
-		)>
-	)(ELSE
-		<COND (<FSET? ,PRSO ,TOPICBIT>
-			<TELL "You can't see that here." CR>
-		)(ELSE
-			<TELL "You can't ride " T ,PRSO "." CR>
-		)>
-	)>>
-
-<ROUTINE V-UNMOUNT ()
-	<COND (<VERB? UNMOUNT>
-		<COND (,RIDING-VEHICLE
-			
-			<TELL "You dismount from " T, CURRENT-VEHICLE CR>
-
-			<SETG RIDING-VEHICLE <>>
-			<SETG CURRENT-VEHICLE <>>
-
-			<REMOVE ,TOPIC-ROACH>
-
-		)(ELSE
-			<TELL "You are not riding Roach." CR>
-		)>
-	)>>
 
 <ROUTINE NEED-TO-DISMOUNT ()
 	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>>
-
-<ROUTINE V-SUMMON ()
-	<COND (<EQUAL? <LOC ,PLAYER> <LOC ,ROACH>>
-		<TELL "Roach is already here." CR>
-	)(ELSE
-		<MOVE ,ROACH <LOC ,PLAYER>>
-		<MOVE ,TOPIC-ROACH <>>
-		<TELL "Roach arrives. Whether a short time or long time passed, nobody knows." CR>
-	)>>
