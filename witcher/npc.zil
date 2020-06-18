@@ -85,47 +85,47 @@
         <CRLF>
     )>>
 
-<ROUTINE WHITE-ORCHARD-ALDERMAN-F ("AUX" KEY)
+<ROUTINE GENERIC-BOUNTY-TALK (ARGBOUNTY ARGPERSON ARGTEXT "AUX" KEY)
     <COND (,RIDING-VEHICLE
-        <TELL "You should dismount first!" CR>
+        <TELL "You should dismount from " T ,CURRENT-VEHICLE " first!" CR>
         <RTRUE>
     )>
     <COND (<VERB? TALK>
         <CRLF>
-        <COND (<NOT <EQUAL? ,PRSO ,WHITE-ORCHARD-ALDERMAN>>
-            <TALK-HIGHLIGHT-PERSON ,WHITE-ORCHARD-ALDERMAN "You talking to me?">
+        <COND (<NOT <EQUAL? ,PRSO .ARGPERSON>>
+            <TALK-HIGHLIGHT-PERSON .ARGPERSON "You talking to me?">
             <CRLF>
             <RTRUE>
         )>
-        <COND (<IN? ,BOUNTY-WHITE-ORCHARD ,PLAYER>
-            <COND (<GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-ACCEPTED>
-                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
+        <COND (<IN? .ARGBOUNTY ,PLAYER>
+            <COND (<GETP .ARGBOUNTY P?BOUNTY-ACCEPTED>
+                <COND (<NOT <CHECK-BOUNTY .ARGBOUNTY ,PRSI ,PRSO>>
                     <RETURN>
                 )>
-                <GENERIC-BOUNTY-DIALOG ,WHITE-ORCHARD-ALDERMAN ,BOUNTY-WHITE-ORCHARD>
+                <GENERIC-BOUNTY-DIALOG .ARGPERSON .ARGBOUNTY>
             )(ELSE
-                <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
+                <COND (<NOT <CHECK-BOUNTY .ARGBOUNTY ,PRSI ,PRSO>>
                     <RETURN>
                 )>
                 <STOP-EATING-CYCLE>
                 <REPEAT ()
-                    <TALK-HIGHLIGHT-PERSON ,PRSO "">
+                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "">
                     <CRLF>
-                    <TELL "Are you here about the bounty (" T ,BOUNTY-WHITE-ORCHARD ")?" CR>
+                    <TELL "Are you here about the bounty (" T .ARGBOUNTY ")?" CR>
                     <TELL "1 - I'm here about the bounty." CR> 
                     <TELL "2 - I accept the bounty." CR>
                     <TELL "3 - Goodbye for now." CR>
                     <TELL "Your response: ">
                     <SET KEY <INPUT 1>>
                     <CRLF>
-                    <TALK-RESPONSE .KEY !\1 "The beast already claimed lots of victims." ,PRSO>
+                    <TALK-RESPONSE .KEY !\1 .ARGTEXT ,PRSO>
                     <COND (<EQUAL? .KEY !\2>
-                        <ACCEPT-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSO>
+                        <ACCEPT-BOUNTY .ARGBOUNTY ,PRSO>
                         <START-EATING-CYCLE>
                         <RETURN>
                     )(<EQUAL? .KEY !\3>
                         <CRLF>
-                        <TALK-HIGHLIGHT-PERSON ,PRSO "Bye!">
+                        <TALK-HIGHLIGHT-PERSON .ARGPERSON "Bye!">
                         <CRLF>
                         <START-EATING-CYCLE>
                         <RETURN>
@@ -141,3 +141,6 @@
     )(<VERB? EXAMINE LOOK-CLOSELY>
         <TELL "In most cultures it is rude to stare." CR>
     )>>
+
+<ROUTINE WHITE-ORCHARD-ALDERMAN-F ()
+    <GENERIC-BOUNTY-TALK ,BOUNTY-WHITE-ORCHARD ,WHITE-ORCHARD-ALDERMAN "The beast already claimed lots of victims.">>
