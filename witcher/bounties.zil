@@ -32,23 +32,23 @@
     (BOUNTY-LOC <>)
     (FLAGS TAKEBIT READBIT BOUNTYBIT)>
 
-<ROUTINE ACCEPT-BOUNTY (ARGBOUNTY ARGPERSON "AUX" LOC)
-    <COND (<FSET? .ARGBOUNTY ,BOUNTYBIT>
-        <SET LOC <GETP .ARGBOUNTY P?BOUNTY-LOC>>
-        <COND (<NOT <GETP .ARGBOUNTY P?BOUNTY-ACCEPTED>>
-            <TELL "Accept this bounty (" T .ARGBOUNTY ")? ">
+<ROUTINE ACCEPT-BOUNTY (BOUNTY PERSON "AUX" LOC)
+    <COND (<FSET? .BOUNTY ,BOUNTYBIT>
+        <SET LOC <GETP .BOUNTY P?BOUNTY-LOC>>
+        <COND (<NOT <GETP .BOUNTY P?BOUNTY-ACCEPTED>>
+            <TELL "Accept this bounty (" T .BOUNTY ")? ">
             <COND (<YES?>
-                <PUTP .ARGBOUNTY P?BOUNTY-ACCEPTED T>
+                <PUTP .BOUNTY P?BOUNTY-ACCEPTED T>
                 <CRLF>
                 <COND (.LOC
-                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendid! You should investigate ">
+                    <TALK-HIGHLIGHT-PERSON .PERSON "Splendid! You should investigate ">
                     <TELL T .LOC " area for clues.">
                 )(ELSE
-                    <TALK-HIGHLIGHT-PERSON .ARGPERSON "Splendind! You should look for clues around the area.">
+                    <TALK-HIGHLIGHT-PERSON .PERSON "Splendind! You should look for clues around the area.">
                 )>
             )(ELSE
                 <CRLF>
-                <TALK-HIGHLIGHT-PERSON .ARGPERSON "That is unfortunate. Let me know if you change your mind.">
+                <TALK-HIGHLIGHT-PERSON .PERSON "That is unfortunate. Let me know if you change your mind.">
             )>
             <CRLF>
         )>
@@ -83,17 +83,17 @@
 
 <CONSTANT BOUNTY-FLAG <TABLE "ACCEPTED" "INVESTIGATED" "REPORTED" "COMPLETED">>
 
-<ROUTINE SET-BOUNTY-STATUS (ARGBOUNTY STATUS)
-    <TELL "[DEBUG] SET " D .ARGBOUNTY " FLAG (" <GET BOUNTY-FLAG .STATUS> ") => T" CR>
-    <COND (<EQUAL? .STATUS 0> <PUTP .ARGBOUNTY ,P?BOUNTY-ACCEPTED T>)>
-    <COND (<EQUAL? .STATUS 1> <PUTP .ARGBOUNTY ,P?BOUNTY-INVESTIGATED T>)>
-    <COND (<EQUAL? .STATUS 2> <PUTP .ARGBOUNTY ,P?BOUNTY-REPORTED T>)>
-    <COND (<EQUAL? .STATUS 3> <PUTP .ARGBOUNTY ,P?BOUNTY-COMPLETED T>)>>
+<ROUTINE SET-BOUNTY-STATUS (BOUNTY STATUS)
+    <TELL "[DEBUG] SET " D .BOUNTY " FLAG (" <GET BOUNTY-FLAG .STATUS> ") => T" CR>
+    <COND (<EQUAL? .STATUS 0> <PUTP .BOUNTY ,P?BOUNTY-ACCEPTED T>)>
+    <COND (<EQUAL? .STATUS 1> <PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>)>
+    <COND (<EQUAL? .STATUS 2> <PUTP .BOUNTY ,P?BOUNTY-REPORTED T>)>
+    <COND (<EQUAL? .STATUS 3> <PUTP .BOUNTY ,P?BOUNTY-COMPLETED T>)>>
 
-<ROUTINE ADD-BOUNTY (ARGBOUNTY LOC)
+<ROUTINE ADD-BOUNTY (BOUNTY LOC)
     <COND (<EQUAL? .LOC ,CROSSROADS>
-        <COND (<GETP .ARGBOUNTY ,P?BOUNTY-REPORTED>
-            <COND (<NOT <GETP .ARGBOUNTY ,P?BOUNTY-COMPLETED>>
+        <COND (<GETP .BOUNTY ,P?BOUNTY-REPORTED>
+            <COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
                 <COND (<NOT <IN? ,GRIFFIN ,CROSSROADS>>
                     <RESET-MONSTER ,GRIFFIN ,HP-GRIFFIN ,CROSSROADS>
                     <REMOVE ,TOPIC-GRIFFINS>
@@ -102,13 +102,13 @@
         )>
     )>>
 
-<ROUTINE SETUP-BOUNTY (ARGBOUNTY "AUX" LOC ACT INV RPT COMP)
-    <COND (.ARGBOUNTY
-        <SET LOC <GETP .ARGBOUNTY ,P?BOUNTY-LOC>>
-        <SET ACT <GETP .ARGBOUNTY ,P?BOUNTY-ACCEPTED>>
-        <SET INV <GETP .ARGBOUNTY ,P?BOUNTY-INVESTIGATED>>
-        <SET RPT <GETP .ARGBOUNTY ,P?BOUNTY-REPORTED>>
-        <SET COMP <GETP .ARGBOUNTY ,P?BOUNTY-COMPLETED>>
+<ROUTINE SETUP-BOUNTY (BOUNTY "AUX" LOC ACT INV RPT COMP)
+    <COND (.BOUNTY
+        <SET LOC <GETP .BOUNTY ,P?BOUNTY-LOC>>
+        <SET ACT <GETP .BOUNTY ,P?BOUNTY-ACCEPTED>>
+        <SET INV <GETP .BOUNTY ,P?BOUNTY-INVESTIGATED>>
+        <SET RPT <GETP .BOUNTY ,P?BOUNTY-REPORTED>>
+        <SET COMP <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
         
         <COND (<EQUAL? ,HERE .LOC>
             <COND (<NOT .ACT>
@@ -118,7 +118,7 @@
             )
             (.RPT
                 <TELL "[Bounty Reported. Will setup monsters.]">
-                <ADD-BOUNTY .ARGBOUNTY ,HERE>
+                <ADD-BOUNTY .BOUNTY ,HERE>
             )(.INV
                 <TELL "[Area investigated.]">
             )(.ACT
