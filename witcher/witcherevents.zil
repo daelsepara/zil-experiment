@@ -220,7 +220,7 @@
 <ROUTINE CHOOSE-WEAPON (MONSTER "AUX" KEY)
 	<REPEAT ()
 		<CRLF>
-		<TELL "Choose weapon to fight the " T .MONSTER " with:" CR>
+		<TELL "Choose weapon to fight " T .MONSTER " with:" CR>
 		<COND (<IN? ,SILVER-SWORD ,PLAYER> <TELL "1 - " T ,SILVER-SWORD CR>)>
 		<COND (<IN? ,STEEL-SWORD ,PLAYER> <TELL "2 - " T ,STEEL-SWORD CR>)>
 		<TELL "3 - None. My witcher powers are enough." CR>
