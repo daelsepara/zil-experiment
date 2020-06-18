@@ -119,9 +119,7 @@
             )(.INV
                 <TELL "[Area investigated.]">
             )(.ACT
-                <TELL "[Investigation ongoing.]">
-            )(.COMP
-                <TELL "[Bounty Completed.]">
+                <TELL "[Investigation ongoing. Setup clues-]">
             )>
             <CRLF><CRLF>
         )>
