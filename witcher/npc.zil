@@ -7,7 +7,7 @@
 
 <ROUTINE V-TALK ()
     <COND(<FSET? ,PRSO ,PERSONBIT>
-        <COND (<EQUAL? ,PRSO ,WITCHER ,PLAYER>
+        <COND (<EQUAL? ,PRSO ,WITCHER ,PLAYER ,GERALT>
             <HMMM>
             <RTRUE>
         )>
