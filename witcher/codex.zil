@@ -8,7 +8,7 @@
     (FLAGS NARTICLEBIT READBIT PERSONBIT)>
 
 <ROUTINE WITCHER-F ()
-    <COND (<VERB? READ EXAMINE LOOK-CLOSELY>
+    <COND (<AND <VERB? READ EXAMINE LOOK-CLOSELY> <EQUAL? ,PRSO ,WITCHER>>
 		<PRINT-TOPIC ,TOPIC-WITCHERS>
 		<RTRUE>
 	)>>
@@ -40,19 +40,30 @@
     <HLIGHT 0>
     <TELL <GETP .TOPIC P?LDESC> CR>>
 
-<ROUTINE READ-CODEX-F ("AUX" W)
+<SYNTAX READ OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) = V-READ PRE-REQUIRES-LIGHT>
+
+<ROUTINE READ-CODEX-F ("AUX" W (STOP <>))
+    <COND (<NOT <EQUAL? ,PRSO ,CODEX>>
+        <RFALSE>
+    )>
     <REPEAT ()
-        <CRLF>
-        <HLIGHT ,H-BOLD>
-        <TELL "What are you looking for in the codex?" CR>
-        <HLIGHT 0>
-        <READLINE>
-        <SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
+        <COND (,PRSI
+            <SET W ,PRSI>
+            <SET .STOP T>
+        )(ELSE
+            <CRLF>
+            <HLIGHT ,H-BOLD>
+            <TELL "What are you looking for in the codex?" CR>
+            <HLIGHT 0>
+            <READLINE>
+            <SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
+        )>
         <COND
             (<EQUAL? .W ,W?NEKKER ,W?NEKKERS> <PRINT-TOPIC ,TOPIC-NEKKER>)
-            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED W?RIDE, W?MOUNT> <PRINT-TOPIC ,TOPIC-ROACH>)
-            (<EQUAL? .W ,W?WITCHER ,W?WITCHERS> <PRINT-TOPIC ,TOPIC-WITCHERS>)
+            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
+            (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,W?ME ,W?MYSELF ,W?GERALT ,WITCHER ,PLAYER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
-            (T <TELL CR "The codex is silent about such things." CR>)
+            (<TELL CR "The codex is silent about such things." CR>)           
         >
+        <COND (<EQUAL? .STOP T> <RTRUE>)>
     >>
