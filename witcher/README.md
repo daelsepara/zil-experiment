@@ -12,7 +12,7 @@ Our goals are to implement these features
 - [X] witcher medallion that can detect invisible objects (12 June 2020)
 - [X] travelling with or without Roach (12 June 2020)
 - [X] eating/drinking food and/or potions and decoctions (13 June 2020, eating)
-- [ ] monster bounties
+- [X] monster bounties (18 June 2020, partial, only witcher investigation remains)
 
 ## Compiling and running
 
