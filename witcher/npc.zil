@@ -42,7 +42,7 @@
     <COND (.THISBOUNTY
         <COND (<FSET? .THISBOUNTY ,BOUNTYBIT>
             <COND (<NOT <EQUAL? .THISBOUNTY .BOUNTY>>
-                <TELL D .PERSON " does not know anything about the " T .THISBOUNTY CR>
+                <TELL D .PERSON " does not know anything about " T .THISBOUNTY CR>
                 <RFALSE>
             )>
             <RTRUE>
