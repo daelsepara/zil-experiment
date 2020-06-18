@@ -10,7 +10,3 @@
 		<V-LOOK-CLOSELY>
 		<RTRUE>
 	)>>
-
-
-<ROUTINE NEED-TO-DISMOUNT ()
-	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>>

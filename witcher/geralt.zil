@@ -17,6 +17,3 @@
 		<HMMM>
 		<RTRUE>
 	)>>
-
-<ROUTINE HMMM ()
-    <TELL "Hmmm..." CR>>
