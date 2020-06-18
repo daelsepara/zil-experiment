@@ -8,7 +8,7 @@
 <ROUTINE V-TALK ()
     <COND(<FSET? ,PRSO ,PERSONBIT>
         <COND (<EQUAL? ,PRSO ,WITCHER ,PLAYER>
-            <TELL "Hmmmm..." CR>
+            <HMMM>
             <RTRUE>
         )>
         <TELL "You talk to " T ,PRSO>
