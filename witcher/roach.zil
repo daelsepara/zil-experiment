@@ -46,7 +46,7 @@
 			<SETG RIDING-VEHICLE <>>
 			<SETG CURRENT-VEHICLE <>>
 
-			<MOVE ,TOPIC-ROACH <>>
+			<REMOVE ,TOPIC-ROACH>
 
 		)(ELSE
 			<TELL "You are not riding Roach." CR>

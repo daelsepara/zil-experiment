@@ -4,9 +4,6 @@
 <ROUTINE NOTHING-HAPPENS ()
 	<TELL "Nothing happens." CR>>
 
-<ROUTINE CANNOT-GO ()
-	<TELL "Even with Roach, you can't go that way." CR>>
-	
 <ROUTINE DESCRIBE-LOCATION (LOC)
 	<TELL <GETP .LOC ,P?LDESC> CR>>
 	
@@ -35,14 +32,16 @@
 	)>>
 
 <ROUTINE RESET-CODEX-MONSTER (LOC "AUX" MONSTER)
-	<SET MONSTER <GETP .LOC ,P?MONSTER>>
-	<COND (.MONSTER
-		<COND (<EQUAL? .MONSTER ,NEKKER>
-			<MOVE ,TOPIC-NEKKER ,GLOBAL-OBJECTS>
-		)(<EQUAL? .MONSTER ,BANDITS>
-		
+	<COND (.LOC
+		<SET MONSTER <GETP .LOC ,P?MONSTER>>
+		<COND (.MONSTER
+			<COND (<EQUAL? .MONSTER ,NEKKER>
+				<MOVE ,TOPIC-NEKKER ,GLOBAL-OBJECTS>
+			)(<EQUAL? .MONSTER ,BANDITS>
+			
+			)>
+			<RETURN>
 		)>
-		<RETURN>
 	)>>
 
 <ROUTINE RESET-MONSTER (ARGMONSTER ARGHP LOC)	
@@ -54,26 +53,27 @@
 	<COND (.MONSTER
 		<COND (<EQUAL? .MONSTER ,NEKKER>
 			<RESET-MONSTER ,NEKKER HP-NEKKER .LOC>
-			<MOVE ,TOPIC-NEKKER <>>
+			<REMOVE ,TOPIC-NEKKER>
 		)(<EQUAL? .MONSTER ,BANDITS>
 			<RESET-MONSTER ,BANDITS HP-BANDITS .LOC>
 		)>
 		<RETURN>
 	)>>
 
-<ROUTINE DETECT-OBJECTS (RARG)
+<ROUTINE DETECT-OBJECTS (RARG "OPT" BOUNTY)
 	<COND (<EQUAL? .RARG ,M-LOOK>
 		<DESCRIBE-LOCATION ,HERE>
 		<CHECK-FOOD-AVAILABILITY>
 		<SEARCH-LOCATION ,HERE>
 	)(<EQUAL? .RARG ,M-ENTER>
 		<COND (<IN? ,ROACH ,HERE>
-			<MOVE ,TOPIC-ROACH <>>
+			<REMOVE ,TOPIC-ROACH>
 		)(ELSE
 			<MOVE ,TOPIC-ROACH ,GLOBAL-OBJECTS>
 		)>
-		<COND (<GETP ,HERE ,P?BOUNTY>
-			<SETUP-BOUNTY <GETP ,HERE ,P?BOUNTY>>
+		<SET BOUNTY <GETP ,HERE ,P?BOUNTY>>
+		<COND (.BOUNTY
+			<SETUP-BOUNTY .BOUNTY>
 		)>
 		<RESET-CODEX-MONSTER ,LAST-LOC>
 		<SETG ,LAST-LOC ,HERE>
@@ -103,6 +103,8 @@
 	(EAST TO EDGE-OF-FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay. To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
+	(BOUNTY <>)
+	(MONSTER <>)
 	(THINGS
 		<> (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -114,6 +116,8 @@
 	(WEST TO CROSSROADS)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
+	(BOUNTY <>)
+	(MONSTER <>)
 	(THINGS
 		(DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -125,6 +129,7 @@
 	(WEST TO WHITE-ORCHARD-TOWN)
 	(LDESC "A major highway. The dirt road to the west leads to the town of White Orchard.")
 	(ACTION DETECT-OBJECTS)
+	(MONSTER <>)
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -143,6 +148,8 @@
 	(EAST TO DEEP-FOREST)
 	(LDESC "A dense thicket forms at the edge of the clearing. The path west leads back to the camp. To the east lies the deep forest.")
 	(ACTION DETECT-OBJECTS)
+	(BOUNTY <>)
+	(MONSTER <>)
 	(THINGS
 		<> (FOOD MEAT) FOOD-F
 		<> (THICKET CLEARING EDGE PATH FOREST) THINGS-F)
@@ -154,6 +161,7 @@
 	(WEST TO EDGE-OF-FOREST)
 	(LDESC "The thick foliage almost covers the entire area in shadows. The path west takes you out of the forest.")
 	(ACTION DETECT-OBJECTS)
+	(BOUNTY <>)
 	(MONSTER NEKKER)
 	(THINGS
 		<> (FOOD MEAT) FOOD-F
