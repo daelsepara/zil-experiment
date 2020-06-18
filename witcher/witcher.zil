@@ -6,6 +6,8 @@
 
 <INSERT-FILE "parser">
 
+<INSERT-FILE "witcherglobals">
+<INSERT-FILE "witchersyntax">
 <INSERT-FILE "geralt.zil">
 <INSERT-FILE "witchergear">
 <INSERT-FILE "continent">

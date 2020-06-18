@@ -1,18 +1,5 @@
 "Data from: https://witcher.fandom.com/wiki/Witcher_Wiki"
 
-<OBJECT WITCHER
-    (DESC "Geralt of Rivia")
-    (SYNONYM WITCHER GERALT WITCHERS)
-    (IN GLOBAL-OBJECTS)
-    (ACTION WITCHER-F)
-    (FLAGS NARTICLEBIT PERSONBIT)>
-
-<ROUTINE WITCHER-F ()
-    <COND (<AND <VERB? EXAMINE LOOK-CLOSELY READ> <EQUAL? ,PRSO ,WITCHER>>
-		<HMMM>
-		<RTRUE>
-	)>>
-
 <OBJECT CODEX
     (DESC "Wicher Codex")
     (SYNONYM CODEX TOME)
@@ -46,15 +33,18 @@
     (LDESC "\"Indeed, there is nothing more repulsive than these monsters that defy nature and are known by the name of witcher, as they are the offspring of foul sorcery and witchcraft. They are unscrupulous scoundrels without conscience and virtue, veritable creatures from hell capable only of taking lives...\"")
     (FLAGS TOPICBIT)>
 
+<ROUTINE WITCHER-F ()
+    <COND (<AND <VERB? EXAMINE LOOK-CLOSELY READ> <EQUAL? ,PRSO ,WITCHER>>
+		<HMMM>
+		<RTRUE>
+	)>>
+
 <ROUTINE PRINT-TOPIC (TOPIC)
     <CRLF>
     <HLIGHT ,H-INVERSE>
     <TELL "Topic: " D .TOPIC CR CR>
     <HLIGHT 0>
     <TELL <GETP .TOPIC P?LDESC> CR>>
-
-<SYNTAX LOOK AT OBJECT (FIND TOPICBIT) = V-LOOK-TOPIC>
-<SYNTAX EXAMINE OBJECT (FIND TOPICBIT) = V-EXAMINE-TOPIC>
 
 <ROUTINE V-LOOK-TOPIC ()
     <COND (<NOT <FSET? ,PRSO TOPICBIT>>
@@ -69,11 +59,6 @@
         <RTRUE>
     )>
     <TELL "You don't see that here." CR>>
-
-<SYNTAX READ OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) = READ-CODEX-F>
-<SYNTAX READ OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ON OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) = READ-CODEX-F>
-<SYNTAX CONSULT OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND TOPICBIT) (IN-ROOM ON-GROUND) = READ-CODEX-F>
-<SYNTAX CONSULT OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ON OBJECT (FIND TOPICBIT) (IN-ROOM ON-GROUND) = READ-CODEX-F>
 
 <ROUTINE READ-CODEX-F ("AUX" W (STOP <>))
     <COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
