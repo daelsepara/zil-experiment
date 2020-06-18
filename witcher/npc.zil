@@ -62,7 +62,34 @@
     )>
     <RTRUE>>
 
+<ROUTINE GENERIC-BOUNTY-DIALOG (ARGPERSON ARGBOUNTY)
+    <COND (<NOT <GETP .ARGBOUNTY P?BOUNTY-INVESTIGATED>>
+        <TALK-HIGHLIGHT-PERSON .ARGPERSON "You should probably continue investigating ">
+        <TELL T <GETP .ARGBOUNTY P?BOUNTY-LOC> " area." CR>
+    )(ELSE
+        <COND (<NOT <GETP .ARGBOUNTY P?BOUNTY-REPORTED>>
+            <TALK-HIGHLIGHT-PERSON .ARGPERSON "You have enough clues about the monster you are dealing with! Now is the time to deal with it!">
+            <PUTP .ARGBOUNTY ,P?BOUNTY-REPORTED T>
+        )(ELSE
+            <COND (<NOT <GETP .ARGBOUNTY ,P?BOUNTY-COMPLETED>>
+                <TALK-HIGHLIGHT-PERSON .ARGPERSON "Please come back after you have dealt with the beast for your reward.">
+            )(ELSE
+                <TALK-HIGHLIGHT-PERSON .ARGPERSON "Thanks, witcher! Our town is safe again!">
+                <COND (<G? <GETP .ARGBOUNTY ,P?BOUNTY-REWARD> 0>
+                    <SETG ,WITCHER-ORENS <+ ,WITCHER-ORENS <GETP .ARGBOUNTY ,P?BOUNTY-REWARD>>>
+                    <TELL " Here is your reward. (" N <GETP .ARGBOUNTY ,P?BOUNTY-REWARD> " Orens)">
+                    <PUTP .ARGBOUNTY ,P?BOUNTY-REWARD 0>
+                )>
+            )>
+        )>
+        <CRLF>
+    )>>
+
 <ROUTINE WHITE-ORCHARD-ALDERMAN-F ("AUX" KEY)
+    <COND (,RIDING-VEHICLE
+        <TELL "You should dismount first!" CR>
+        <RTRUE>
+    )>
     <COND (<VERB? TALK>
         <CRLF>
         <COND (<NOT <EQUAL? ,PRSO ,WHITE-ORCHARD-ALDERMAN>>
@@ -75,18 +102,7 @@
                 <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
                     <RETURN>
                 )>
-                <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-INVESTIGATED>>
-                    <TALK-HIGHLIGHT-PERSON ,PRSO "You should probably continue investigating ">
-                    <TELL T <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-LOC> " area." CR>
-                )(ELSE
-                    <COND (<NOT <GETP ,BOUNTY-WHITE-ORCHARD P?BOUNTY-COMPLETED>>
-                        <TALK-HIGHLIGHT-PERSON ,PRSO "You have enough clues as the monster you are dealing with! Now is the time to deal with it!">
-                        <CRLF>
-                    )(ELSE
-                        <TALK-HIGHLIGHT-PERSON ,PRSO "Thanks, witcher! Our town is safe again! Here is your reward.">
-                        <CRLF>
-                    )>
-                )>
+                <GENERIC-BOUNTY-DIALOG ,WHITE-ORCHARD-ALDERMAN ,BOUNTY-WHITE-ORCHARD>
             )(ELSE
                 <COND (<NOT <CHECK-BOUNTY ,BOUNTY-WHITE-ORCHARD ,PRSI ,PRSO>>
                     <RETURN>
