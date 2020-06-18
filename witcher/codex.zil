@@ -61,12 +61,6 @@
     (LDESC "The witcher medallion is not only an insignia of the profession -- it is also one of its tools. It has numerous useful capabilities that are acesible, of course, only to the one who possesses the necessary knowledge and training. First of all, it reacts to the presence of sorcerous auras in the immediate surroundings, making the bearer aware of nearby spell casting, active illusions, or magical creatures. It also warns the owner of sudden dangers, thus providing an additional moment to react.")
     (FLAGS TOPICBIT)>
 
-<ROUTINE WITCHER-F ()
-    <COND (<AND <VERB? EXAMINE LOOK-CLOSELY READ> <EQUAL? ,PRSO ,WITCHER ,GERALT>>
-		<HMMM>
-		<RTRUE>
-	)>>
-
 <ROUTINE PRINT-TOPIC (TOPIC)
     <CRLF>
     <HLIGHT ,H-INVERSE>
