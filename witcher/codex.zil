@@ -36,7 +36,7 @@
 <OBJECT TOPIC-GRIFFINS
     (SYNONYM GRIFFIN GRIFFINS)
     (DESC "Griffins")
-    (LDESC "The griffin resembles a crossbreed of a huge cat and a predatory bird. It mainly inhabits wild, mountainous regions, building its nests on inaccessible peaks. Large, hoofed mammals are its usual prey, but, being highly territorial, a griffin will also passionately defend the area surrounding its nest. Wit the expansion of the human settlements and trade routes, griffins have become more and more of a threat to humans, attacking travelers and merchant caravans, as well as settlers and, particularly shephers and their flocks.")
+    (LDESC "The griffin resembles a crossbreed of a huge cat and a predatory bird. It mainly inhabits wild, mountainous regions, building its nests on inaccessible peaks. Large, hoofed mammals are its usual prey, but, being highly territorial, a griffin will also passionately defend the area surrounding its nest. Wit the expansion of the human settlements and trade routes, griffins have become more and more of a threat to humans, attacking travelers and merchant caravans, as well as settlers and, particularly shephers and their flocks.||Weak against hybrid oil.")
     (IN GLOBAL-OBJECTS)
     (FLAGS TOPICBIT)>
 
@@ -100,7 +100,7 @@
             (<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
             (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
             (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,W?ME ,W?MYSELF ,W?GERALT ,WITCHER ,PLAYER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
-            (<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
+            (<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
             (<TELL CR "The codex is silent about such things." CR>)           
         >
