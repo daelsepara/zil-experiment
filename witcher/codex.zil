@@ -5,11 +5,11 @@
     (SYNONYM WITCHER GERALT WITCHERS)
     (IN GLOBAL-OBJECTS)
     (ACTION WITCHER-F)
-    (FLAGS NARTICLEBIT READBIT PERSONBIT)>
+    (FLAGS NARTICLEBIT PERSONBIT)>
 
 <ROUTINE WITCHER-F ()
-    <COND (<AND <VERB? READ EXAMINE LOOK-CLOSELY> <EQUAL? ,PRSO ,WITCHER>>
-		<PRINT-TOPIC ,TOPIC-WITCHERS>
+    <COND (<AND <VERB? EXAMINE LOOK-CLOSELY READ> <EQUAL? ,PRSO ,WITCHER>>
+		<HMMM>
 		<RTRUE>
 	)>>
 
@@ -29,12 +29,15 @@
 
 <OBJECT TOPIC-ROACH
     (DESC "Roach")
-    (LDESC "Geralt named his every mount Roach, though no one really knows why or what Geralt had in mind with this name. When asked, Geralt would dodge the question or give an evasive answer. Perhaps this had just been the first word that came to his head? Roach, for her part, seemed to accept the name with no reservations.")>
+    (SYNONYM ROACH)
+    (LDESC "Geralt named his every mount Roach, though no one really knows why or what Geralt had in mind with this name. When asked, Geralt would dodge the question or give an evasive answer. Perhaps this had just been the first word that came to his head? Roach, for her part, seemed to accept the name with no reservations.")
+    (FLAGS TOPICBIT)>
 
 <OBJECT TOPIC-WITCHERS
     (SYNONYM WITCHER WITCHERS)
     (DESC "Witchers")
-    (LDESC "\"Indeed, there is nothing more repulsive than these monsters that defy nature and are known by the name of witcher, as they are the offspring of foul sorcery and witchcraft. They are unscrupulous scoundrels without conscience and virtue, veritable creatures from hell capable only of taking lives...\"")>
+    (LDESC "\"Indeed, there is nothing more repulsive than these monsters that defy nature and are known by the name of witcher, as they are the offspring of foul sorcery and witchcraft. They are unscrupulous scoundrels without conscience and virtue, veritable creatures from hell capable only of taking lives...\"")
+    (FLAGS TOPICBIT)>
 
 <ROUTINE PRINT-TOPIC (TOPIC)
     <CRLF>
@@ -60,11 +63,17 @@
     )>
     <TELL "You don't see that here." CR>>
 
-<SYNTAX READ OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND TOPICBIT) (IN-ROOM ON-GROUND) = V-READ PRE-REQUIRES-LIGHT>
+<SYNTAX READ OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) = READ-CODEX-F>
+<SYNTAX CONSULT OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND TOPICBIT) (IN-ROOM ON-GROUND) = READ-CODEX-F>
 
 <ROUTINE READ-CODEX-F ("AUX" W (STOP <>))
-    <COND (<NOT <EQUAL? ,PRSO ,CODEX>>
-        <RFALSE>
+    <COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
+        <TELL "You cannot read " T ,PRSO>
+        <COND (,PRSI
+            <TELL " about " T ,PRSI>
+        )>
+        <CRLF>
+        <RTRUE>
     )>
     <REPEAT ()
         <COND (,PRSI
@@ -80,7 +89,7 @@
         )>
         <COND
             (<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
-            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
+            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
             (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,W?ME ,W?MYSELF ,W?GERALT ,WITCHER ,PLAYER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
             (<TELL CR "The codex is silent about such things." CR>)           

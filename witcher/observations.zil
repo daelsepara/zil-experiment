@@ -2,6 +2,11 @@
 
 <ROUTINE V-LOOK-CLOSELY ()
 	
+	<COND (<EQUAL? ,PRSO ,PLAYER>
+		<HMMM>
+		<RTRUE>
+	)>
+
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
 	<COND 
