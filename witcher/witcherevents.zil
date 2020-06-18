@@ -91,8 +91,8 @@
 		<TELL "Steel sword: ">
 		<CHECK-SWORD-OIL ,STEEL-SWORD>
 	)>
-	<COND (<IN? ,PLAYER ,ROACH>
-		<TELL "You are currently riding Roach" CR>
+	<COND (<AND ,RIDING-VEHICLE ,CURRENT-VEHICLE>
+		<TELL "You are currently riding " T ,CURRENT-VEHICLE CR>
 	)(ELSE
 		<COND (<IN? ,ROACH ,HERE>
 			<TELL "Roach is here." CR>
@@ -172,6 +172,10 @@
 	)>>
 
 <ROUTINE COMBAT-SWORD (ARGMONSTER ARGWEAPON ARGSWORDTYPE "OPT" ARGOIL)
+	<COND (,RIDING-VEHICLE
+		<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>
+		<RTRUE>
+	)>
 	<COND (<NOT .ARGWEAPON>
 		<TELL "Not using any weapon isn't going to help you in this situation." CR>
 		<MONSTER-ATTACKS .ARGMONSTER>
@@ -216,14 +220,10 @@
 	>>
 
 <ROUTINE COMBAT-MODE ("AUX" MONSTER (WEAPON <>) KEY)
-	<COND (<IN? ,PLAYER ,ROACH>
-		<SET MONSTER <FIND-IN <LOC ,ROACH> ,MONSTERBIT>>
-	)(ELSE
-		<SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
-	)>
+	<SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
 	<COND (.MONSTER
-		<COND (<IN? ,PLAYER ,ROACH>
-			<TELL "You need to dismount first!" CR>
+		<COND (,RIDING-VEHICLE
+			<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>
 			<RTRUE>
 		)>
 		<STOP-EATING-CYCLE>

@@ -14,7 +14,7 @@
             <TELL " about " T ,PRSI>
         )>
         <CRLF>
-        <COND (<EQUAL? ,PRSO ,ROACH ,ROACH-META>
+        <COND (<EQUAL? ,PRSO ,ROACH>
             <TALK-HIGHLIGHT-PERSON ,ROACH "(She is just as ">
             <TELL <PICK-ONE ROACH-RESPONSES> " as you.)" CR>
         )>
