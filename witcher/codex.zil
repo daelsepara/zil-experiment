@@ -17,12 +17,15 @@
     (DESC "Wicher Codex")
     (SYNONYM CODEX TOME)
     (IN GLOBAL-OBJECTS)
-    (FLAGS READBIT)
+    (FLAGS READBIT CODEXBIT)
     (ACTION READ-CODEX-F)>
 
 <OBJECT TOPIC-NEKKER
     (DESC "Nekkers")
-    (LDESC "Nekkers and phoocas live in the dark woods that grow in damp, mist-filled valleys, in colonies of one to several dozen individuals. They dig deep burrows for lairs and connect them with a network of narrow tunnels. Using these passageways they are able to move at great speed within and around their colonies.")>
+    (LDESC "Nekkers are small, misshapen creatures that inhabit remote areas. They make their abodes in dark woods, damp gullies, and shadowy dales, where they live in colonies composed of anywhere from a dozen to several dozen individuals. Their lars take the form of dug-out hollows, interconnected by narrow underground tunnels. Nekkers use these pathways to quickly travel around their colony and its immediate surroundings, disappearing into the arth and then seeming to instantaneously pop up elsewhere.||Weak against ogroid oil.")
+    (SYNONYM NEKKERS NEKKER)
+    (IN GLOBAL-OBJECTS)
+    (FLAGS TOPICBIT)>
 
 <OBJECT TOPIC-ROACH
     (DESC "Roach")
@@ -40,7 +43,24 @@
     <HLIGHT 0>
     <TELL <GETP .TOPIC P?LDESC> CR>>
 
-<SYNTAX READ OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND READBIT) (IN-ROOM ON-GROUND) = V-READ PRE-REQUIRES-LIGHT>
+<SYNTAX LOOK AT OBJECT (FIND TOPICBIT) = V-LOOK-TOPIC>
+<SYNTAX EXAMINE OBJECT (FIND TOPICBIT) = V-EXAMINE-TOPIC>
+
+<ROUTINE V-LOOK-TOPIC ()
+    <COND (<NOT <FSET? ,PRSO TOPICBIT>>
+        <PERFORM ,V?EXAMINE ,PRSO>
+        <RTRUE>
+    )>
+    <TELL "You don't see that here." CR>>
+
+<ROUTINE V-EXAMINE-TOPIC ()
+    <COND (<NOT <FSET? ,PRSO TOPICBIT>>
+        <PERFORM ,V?LOOK-CLOSELY ,PRSO>
+        <RTRUE>
+    )>
+    <TELL "You don't see that here." CR>>
+
+<SYNTAX READ OBJECT (FIND CODEXBIT) (IN-ROOM ON-GROUND) ABOUT OBJECT (FIND TOPICBIT) (IN-ROOM ON-GROUND) = V-READ PRE-REQUIRES-LIGHT>
 
 <ROUTINE READ-CODEX-F ("AUX" W (STOP <>))
     <COND (<NOT <EQUAL? ,PRSO ,CODEX>>
@@ -59,7 +79,7 @@
             <SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
         )>
         <COND
-            (<EQUAL? .W ,W?NEKKER ,W?NEKKERS> <PRINT-TOPIC ,TOPIC-NEKKER>)
+            (<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
             (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
             (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,W?ME ,W?MYSELF ,W?GERALT ,WITCHER ,PLAYER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
