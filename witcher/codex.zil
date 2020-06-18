@@ -1,4 +1,8 @@
-"Data from: The Witcher 3: Wild Hunt Complete Edition Collector's Guide or The World of the Witcher Video Game Compendium."
+"Data from:
+[1] The Witcher 3: Wild Hunt Complete Edition Collector's Guide 
+[2] The World of the Witcher Video Game Compendium.
+[3] https://witcher.fandom.com/wiki/Witcher_Wiki
+"
 
 <OBJECT CODEX
     (DESC "Wicher Codex")
