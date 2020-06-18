@@ -65,7 +65,7 @@
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
-	<TELL "[... you found " N .AMT " pieces of food for your supply.]" CR>
+	<TELL "... you found " N .AMT " pieces of food for your supply." CR>
 	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>>
 
 ;----------------------
@@ -133,7 +133,7 @@
         )>
     )(<VERB? LOOK-CLOSELY EXAMINE>
         <COND(<L? <GETP .MONSTER P?HIT-POINTS> .HP>
-            <TELL "[... " T .MONSTER " appears wounded.]" CR>
+            <TELL "... " T .MONSTER " appears wounded." CR>
         )>
     )>>
 
@@ -142,7 +142,7 @@
 		<COND (<G? <GETP .MONSTER P?HIT-POINTS> 0>
 			<TELL CT .MONSTER " attacks!" CR>
 			<COND (<L? <RANDOM 100> ,WITCHER-DODGE-PROBABILITY>
-				<TELL "[... you manage to dodge its attack!]" CR>
+				<TELL "... you manage to dodge its attack!" CR>
 			)(ELSE
 				<SET DMG <GETP .MONSTER P?HIT-DAMAGE>>
 				<COND (<NOT ,DAYTIME>
@@ -159,15 +159,15 @@
 
 <ROUTINE WEAPON-INEFFECTIVE (MONSTER SWORD "AUX" DMG)
 	<SET DMG <GETP .SWORD P?LOW-DAMAGE>>
-	<TELL "[Your " D .SWORD " hits " T .MONSTER " with a dull sound.]" CR>
+	<TELL "Your " D .SWORD " hits " T .MONSTER " with a dull sound." CR>
 	<TELL "... " CT .MONSTER " suffers " N .DMG " points of damage." CR>
 	<PUTP .MONSTER P?HIT-POINTS <- <GETP .MONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .MONSTER P?HIT-POINTS> 1>
-		<TELL "[... but the blow was fatal. " CT .MONSTER>
+		<TELL "... but the blow was fatal. " CT .MONSTER>
 		<COND (<FSET? .MONSTER ,PLURALBIT>
-			<TELL " die.]">
+			<TELL " die.">
 		)(ELSE
-			<TELL " dies.]">
+			<TELL " dies.">
 		)>
 		<CRLF>
 		<REMOVE .MONSTER>
@@ -185,11 +185,11 @@
 	<TELL "You " <PICK-ONE ATTACK-DESCRIPTIONS> " " T .MONSTER " with your " D .SWORD " for " N .DMG " points of damage." CR>
 	<PUTP .MONSTER P?HIT-POINTS <- <GETP .MONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .MONSTER P?HIT-POINTS> 1>
-		<TELL "[... you deal a fatal blow. " CT .MONSTER>
+		<TELL "... you deal a fatal blow. " CT .MONSTER>
 		<COND (<FSET? .MONSTER ,PLURALBIT>
-			<TELL " die.]">
+			<TELL " die.">
 		)(ELSE
-			<TELL " dies.]">
+			<TELL " dies.">
 		)>
 		<CRLF>
 		<REMOVE .MONSTER>
@@ -200,7 +200,7 @@
 	<CRLF>>
 
 <ROUTINE WITCHER-COMBAT-DAMAGE (AMT)
-	<TELL "[... you took " N .AMT " points of damage.]" CR>
+	<TELL "... you took " N .AMT " points of damage." CR>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
 		<DEATH-COMBAT>
@@ -208,7 +208,7 @@
 
 <ROUTINE WITCHER-HEAL (AMT)
 	<COND (<L? ,WITCHER-HEALTH WITCHER-MAX-HEALTH>
-		<TELL "[... you heal " N .AMT " points.]" CR>
+		<TELL "... you heal " N .AMT " points." CR>
 	)>
 	<SETG WITCHER-HEALTH <+ ,WITCHER-HEALTH .AMT>>
 	<COND (<G? ,WITCHER-HEALTH WITCHER-MAX-HEALTH>
@@ -216,7 +216,7 @@
 	)>>
 
 <ROUTINE WITCHER-HEALTH-DAMAGE (AMT REASON)
-	<TELL "[... your " .REASON " hits you for " N .AMT " points of damage.]" CR CR>
+	<TELL "... your " .REASON " hits you for " N .AMT " points of damage." CR CR>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
 		<DEATH-FATIGUE>
