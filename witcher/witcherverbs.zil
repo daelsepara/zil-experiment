@@ -158,7 +158,7 @@
             (<EQUAL? .W ,W?STEEL-SWORD ,W?STEEL-SWORDS ,STEEL-SWORD> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
             (<EQUAL? .W ,W?MEDALLION ,W?WOLF-MEDALLION ,WOLF-MEDALLION> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
             (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
-            (<TELL CR "The codex is silent about such things." CR>)           
+            (<TELL CR "[The codex is silent about such things.]" CR>)
         >
         <COND (<EQUAL? .STOP T> <RTRUE>)>
     >>
