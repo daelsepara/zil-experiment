@@ -53,6 +53,9 @@
 		)>
 	)>>
 
+<ROUTINE NEED-TO-DISMOUNT ()
+	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>>
+
 <SYNTAX ROACH = V-SUMMON>
 
 <ROUTINE V-SUMMON ()

@@ -87,7 +87,7 @@
 
 <ROUTINE GENERIC-BOUNTY-TALK (ARGBOUNTY ARGPERSON ARGTEXT "AUX" KEY)
     <COND (,RIDING-VEHICLE
-        <TELL "You should dismount from " T ,CURRENT-VEHICLE " first!" CR>
+        <NEED-TO-DISMOUNT>
         <RTRUE>
     )>
     <COND (<VERB? TALK>
