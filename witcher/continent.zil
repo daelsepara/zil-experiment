@@ -2,7 +2,7 @@
 	(LOC ROOMS)
 	(DESC "Deep inside the forest")
 	(WEST TO EDGE-OF-FOREST)
-	(LDESC "The thick foliage almost covers the entire area in shadows. The path west takes you out of the forest.")
+	(LDESC "The thick foliage almost covers the entire area in shadows.||The path west takes you out of the forest.")
 	(ACTION DETECT-OBJECTS)
 	(MONSTER NEKKER)
 	(THINGS
@@ -15,7 +15,7 @@
 	(DESC "Forest")
 	(WEST TO CAMP-SITE)
 	(EAST TO DEEP-FOREST)
-	(LDESC "A dense thicket forms at the edge of the clearing. The path west leads back to the camp. To the east lies the deep forest.")
+	(LDESC "A dense thicket forms at the edge of the clearing.||The path west leads back to the camp. To the east lies the deep forest.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS
 		<> (FOOD MEAT) FOOD-F
@@ -27,7 +27,7 @@
 	(DESC "Campsite")
 	(WEST TO BATTLE-FIELD)
 	(EAST TO EDGE-OF-FOREST)
-	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay. To the east lies the forest. To the west is an open field where a recent battle took place.")
+	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.||To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS <> (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -37,7 +37,7 @@
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified. The camp site lies to the east.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified.||The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -47,7 +47,7 @@
 	(DESC "Cross Roads")
 	(EAST TO BATTLE-FIELD)
 	(WEST TO WHITE-ORCHARD-TOWN)
-	(LDESC "You are in what appears to be, a major highway. Like many other infrasctures, whoever built this must have cleared an entire forest. Other people and animals that once sheltered in the forest are long since gone and found sanctuary elsewhere. Such things have become inevitable in inexorable march of progress. The road to the west leads to the town of White Orchard.")
+	(LDESC "You are in what appears to be, a major highway. Like many other infrasctures, whoever built this must have cleared an entire forest. Other people and animals that once, may have sheltered there have long since gone find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.||The road to the west leads to the town of White Orchard.")
 	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS <> (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
