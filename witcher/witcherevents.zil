@@ -430,6 +430,16 @@
         )>
     )>>
 
+<ROUTINE ADD-CLUES (BOUNTY LOC "AUX" CLUES)
+    <COND (<EQUAL? .LOC ,CROSSROADS>
+        <COND (<AND <GETP .BOUNTY ,P?BOUNTY-ACCEPTED> <NOT <GETP .BOUNTY ,P?BOUNTY-INVESTIGATED>>>
+			<SET CLUES <GET WHITE-ORCHARD-CLUES 0>>
+			<DO (I 1 .CLUES)
+				<MOVE <GET WHITE-ORCHARD-CLUES .I> ,CROSSROADS>
+			>
+        )>
+    )>>
+
 <ROUTINE RESET-CODEX-MONSTER (LOC "AUX" MONSTER BOUNTY BOUNTY-MONSTER)
 	<COND (.LOC
 		<SET MONSTER <GETP .LOC ,P?MONSTER>>
@@ -473,7 +483,8 @@
             )(.INV
                 <TELL "[Area investigated.]">
             )(.ACT
-                <TELL "[Investigation ongoing. Setup clues-]">
+                <TELL "[Investigation ongoing. Setup clues.]">
+				<ADD-CLUES .BOUNTY ,HERE>
             )>
             <CRLF><CRLF>
         )>

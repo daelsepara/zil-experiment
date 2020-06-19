@@ -19,6 +19,7 @@
 <INSERT-FILE "bounties">
 <INSERT-FILE "npc">
 <INSERT-FILE "codex">
+<INSERT-FILE "witcherfu">
 
 <ROUTINE GO ()
 	<INIT>
