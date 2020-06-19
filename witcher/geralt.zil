@@ -14,6 +14,6 @@
 
 <ROUTINE WITCHER-F ()
     <COND (<AND <VERB? EXAMINE LOOK-CLOSELY READ> <EQUAL? ,PRSO ,WITCHER ,GERALT>>
-		<HMMM>
-		<RTRUE>
-	)>>
+        <HMMM>
+        <RTRUE>
+    )>>

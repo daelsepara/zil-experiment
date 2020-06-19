@@ -83,22 +83,21 @@
 	)>>
 
 <ROUTINE V-EXAMINE-TOPIC ()
-    <COND (<NOT <FSET? ,PRSO TOPICBIT>>
-        <PERFORM ,V?LOOK-CLOSELY ,PRSO>
-        <RTRUE>
-    )>
-    <TELL "You don't see that here." CR>>
+	<COND (<NOT <FSET? ,PRSO TOPICBIT>>
+		<PERFORM ,V?LOOK-CLOSELY ,PRSO>
+		<RTRUE>
+	)>
+	<TELL "You don't see that here." CR>>
 
 <ROUTINE V-LOOK-CLOSELY ()
-	
-	<COND (<EQUAL? ,PRSO ,PLAYER>
+	<COND (<EQUAL? ,PRSO ,PLAYER ,GERALT ,WITCHER>
 		<HMMM>
 		<RTRUE>
 	)>
 
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
-	<COND 
+	<COND
 		(<EQUAL? ,PRSO ,ROACH>
 			<TELL "a loyal and dependable horse that sometimes ends up in odd places." CR>
 			<RTRUE>)
@@ -122,46 +121,46 @@
 	<TELL "nothing special." CR>>
 
 <ROUTINE V-LOOK-TOPIC ()
-    <COND (<NOT <FSET? ,PRSO TOPICBIT>>
-        <PERFORM ,V?EXAMINE ,PRSO>
-        <RTRUE>
-    )>
-    <TELL "You don't see that here." CR>>
+	<COND (<NOT <FSET? ,PRSO TOPICBIT>>
+		<PERFORM ,V?EXAMINE ,PRSO>
+		<RTRUE>
+	)>
+	<TELL "You don't see that here." CR>>
 
 <ROUTINE V-READ-CODEX ("AUX" W (STOP FALSE))
-    <COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
-        <TELL "You cannot read " T ,PRSO>
-        <COND (,PRSI
-            <TELL " about " T ,PRSI>
-        )>
-        <CRLF>
-        <RTRUE>
-    )>
-    <REPEAT ()
-        <COND (,PRSI
-            <SET W ,PRSI>
-            <SET .STOP T>
-        )(ELSE
-            <CRLF>
-            <HLIGHT ,H-BOLD><TELL "What are you looking for in the codex?">
-            <HLIGHT 0><TELL " (Type "><HLIGHT ,H-BOLD><TELL "CLOSE"><HLIGHT 0><TELL " to exit codex)" CR>
-            <READLINE>
-            <SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
-        )>
-        <COND
-            (<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
-            (<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
-            (<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,WITCHER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
-            (<EQUAL? .W ,W?GERALT ,W?WHITE-WOLF ,W?GWYNBLEIDD ,W?ME, W?MYSELF ,GERALT ,PLAYER> <PRINT-TOPIC ,TOPIC-GERALT>)
-            (<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
-            (<EQUAL? .W ,W?SILVER-SWORD ,W?SILVER-SWORDS ,SILVER-SWORD> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
-            (<EQUAL? .W ,W?STEEL-SWORD ,W?STEEL-SWORDS ,STEEL-SWORD> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
-            (<EQUAL? .W ,W?MEDALLION ,W?WOLF-MEDALLION ,WOLF-MEDALLION> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
-            (<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
-            (<TELL CR "[The codex is silent about such things.]" CR>)
-        >
-        <COND (<EQUAL? .STOP T> <RTRUE>)>
-    >>
+	<COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
+		<TELL "You cannot read " T ,PRSO>
+		<COND (,PRSI
+			<TELL " about " T ,PRSI>
+		)>
+		<CRLF>
+		<RTRUE>
+	)>
+	<REPEAT ()
+		<COND (,PRSI
+			<SET W ,PRSI>
+			<SET .STOP T>
+		)(ELSE
+			<CRLF>
+			<HLIGHT ,H-BOLD><TELL "What are you looking for in the codex?">
+			<HLIGHT 0><TELL " (Type "><HLIGHT ,H-BOLD><TELL "CLOSE"><HLIGHT 0><TELL " to exit codex)" CR>
+			<READLINE>
+			<SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
+		)>
+		<COND
+			(<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
+			(<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
+			(<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,WITCHER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
+			(<EQUAL? .W ,W?GERALT ,W?WHITE-WOLF ,W?GWYNBLEIDD ,W?ME, W?MYSELF ,GERALT ,PLAYER> <PRINT-TOPIC ,TOPIC-GERALT>)
+			(<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
+			(<EQUAL? .W ,W?SILVER-SWORD ,W?SILVER-SWORDS ,SILVER-SWORD> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
+			(<EQUAL? .W ,W?STEEL-SWORD ,W?STEEL-SWORDS ,STEEL-SWORD> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
+			(<EQUAL? .W ,W?MEDALLION ,W?WOLF-MEDALLION ,WOLF-MEDALLION> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
+			(<EQUAL? .W ,W?CLOSE ,W?QUIT> <RETURN>)
+			(<TELL CR "[The codex is silent about such things.]" CR>)
+		>
+		<COND (<EQUAL? .STOP T> <RTRUE>)>
+	>>
 
 <ROUTINE V-REMOVE-OIL ()
 	<COND (<EQUAL? ,PRSI ,SILVER-SWORD ,STEEL-SWORD>
@@ -205,23 +204,23 @@
 	)>>
 
 <ROUTINE V-TALK ()
-    <COND(<FSET? ,PRSO ,PERSONBIT>
-        <COND (<EQUAL? ,PRSO ,WITCHER ,PLAYER ,GERALT>
-            <HMMM>
-            <RTRUE>
-        )>
-        <TELL "You talk to " T ,PRSO>
-        <COND (,PRSI
-            <TELL " about " T ,PRSI>
-        )>
-        <CRLF>
-        <COND (<EQUAL? ,PRSO ,ROACH>
-            <TALK-HIGHLIGHT-PERSON ,ROACH "(She is just as ">
-            <TELL <PICK-ONE ROACH-RESPONSES> " as you.)" CR>
-        )>
-    )(ELSE
-        <TELL "Talking to " T, PRSO " is an amusing but pointless exercise." CR>
-    )>>
+	<COND(<FSET? ,PRSO ,PERSONBIT>
+		<COND (<EQUAL? ,PRSO ,WITCHER ,PLAYER ,GERALT>
+			<HMMM>
+			<RTRUE>
+		)>
+		<TELL "You talk to " T ,PRSO>
+		<COND (,PRSI
+			<TELL " about " T ,PRSI>
+		)>
+		<CRLF>
+		<COND (<EQUAL? ,PRSO ,ROACH>
+			<TALK-HIGHLIGHT-PERSON ,ROACH "(She is just as ">
+			<TELL <PICK-ONE ROACH-RESPONSES> " as you.)" CR>
+		)>
+	)(ELSE
+		<TELL "Talking to " T, PRSO " is an amusing but pointless exercise." CR>
+	)>>
 
 <ROUTINE V-UNMOUNT ()
 	<COND (<VERB? UNMOUNT>
