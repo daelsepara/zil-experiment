@@ -47,7 +47,7 @@
 		<NOTHING-HAPPENS>
 	)>>
 
-<ROUTINE V-COMBAT-MODE ("AUX" MONSTER (WEAPON <>) KEY)
+<ROUTINE V-COMBAT-MODE ("AUX" MONSTER (WEAPON NONE) KEY)
 	<SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
 	<COND (.MONSTER
 		<COND (,RIDING-VEHICLE
@@ -69,7 +69,7 @@
 				<CRLF>
 				<PERFORM ,V?ATTACK .MONSTER .WEAPON>
 				<INPUT 1>
-				<COND (<NOT <IN? .MONSTER ,HERE>> <START-EATING-CYCLE> <RESET-CODEX-MONSTER ,HERE> <RETURN>)>
+				<COND (<NOT <IN? .MONSTER ,HERE>> <START-EATING-CYCLE> <RETURN>)>
 			)>
 			<COND (<EQUAL? .KEY !\2> <V-WITCHER-EAT> <INPUT 1>)>
 			<COND (<EQUAL? .KEY !\3> <SET WEAPON <CHOOSE-WEAPON .MONSTER>>)>
@@ -128,7 +128,7 @@
     )>
     <TELL "You don't see that here." CR>>
 
-<ROUTINE V-READ-CODEX ("AUX" W (STOP <>))
+<ROUTINE V-READ-CODEX ("AUX" W (STOP FALSE))
     <COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
         <TELL "You cannot read " T ,PRSO>
         <COND (,PRSI
@@ -201,7 +201,6 @@
 		<TELL "Roach is already here." CR>
 	)(ELSE
 		<MOVE ,ROACH <LOC ,PLAYER>>
-		<MOVE ,TOPIC-ROACH <>>
 		<TELL "Roach arrives. Whether a short time or long time passed, nobody knows." CR>
 	)>>
 
@@ -229,12 +228,8 @@
 		<COND (,RIDING-VEHICLE
 			
 			<TELL "You dismount from " T, CURRENT-VEHICLE CR>
-
-			<SETG RIDING-VEHICLE <>>
-			<SETG CURRENT-VEHICLE <>>
-
-			<REMOVE ,TOPIC-ROACH>
-
+			<SETG RIDING-VEHICLE NONE>
+			<SETG CURRENT-VEHICLE NONE>
 		)(ELSE
 			<TELL "You are not riding Roach." CR>
 		)>

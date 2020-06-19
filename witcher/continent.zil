@@ -6,8 +6,8 @@
 	(ACTION DETECT-OBJECTS)
 	(MONSTER NEKKER)
 	(THINGS
-		<> (FOOD MEAT) FOOD-F
-		<> (FOLIAGE TREE TREES AREA SHADOW SHADOWS FOREST) THINGS-F)
+		NONE (FOOD MEAT) FOOD-F
+		NONE (FOLIAGE TREE TREES AREA SHADOW SHADOWS FOREST) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD NARTICLEBIT)>
 
 <ROOM EDGE-OF-FOREST
@@ -18,8 +18,8 @@
 	(LDESC "A dense thicket forms at the edge of the clearing.||The path west leads back to the camp. To the east lies the deep forest.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS
-		<> (FOOD MEAT) FOOD-F
-		<> (THICKET CLEARING EDGE PATH FOREST) THINGS-F)
+		NONE (FOOD MEAT) FOOD-F
+		NONE (THICKET CLEARING EDGE PATH FOREST) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <ROOM CAMP-SITE
@@ -29,7 +29,7 @@
 	(EAST TO EDGE-OF-FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.||To the east lies the forest. To the west is an open field where a recent battle took place.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS <> (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
+	(THINGS NONE (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM BATTLE-FIELD
@@ -50,7 +50,7 @@
 	(LDESC "You are in what appears to be, a major highway. Like many other infrasctures, whoever built this must have cleared an entire forest. Other people and animals that once, may have sheltered there have long since gone find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.||The road to the west leads to the town of White Orchard.")
 	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
-	(THINGS <> (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
+	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM WHITE-ORCHARD-TOWN
@@ -59,7 +59,7 @@
 	(EAST TO CROSSROADS)
 	(LDESC "A small town brimming with activity.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS <> (TOWN INHABITANTS PEOPLE) THINGS-F)
+	(THINGS NONE (TOWN INHABITANTS PEOPLE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROUTINE DETECT-OBJECTS (RARG)
@@ -69,11 +69,9 @@
 		<SEARCH-LOCATION ,HERE>
 	)(<EQUAL? .RARG ,M-ENTER>
 		<SPAWN-BOUNTY>
-		<RESET-CODEX-MONSTER ,LAST-LOC>
 		<SETG ,LAST-LOC ,HERE>
 		<SPAWN-MONSTER ,HERE>
 		<CHECK-TRAVEL-FATIGUE>
-		<MOVE-ROACH>
 	)>>
 
 <ROUTINE FOOD-F ()
