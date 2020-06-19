@@ -1,11 +1,8 @@
-<CONSTANT WHITE-ORCHARD-CLUES <LTABLE WHITE-ORCHARD-BROKEN-WAGON WHITE-ORCHARD-CARCASS WHITE-ORCHARD-WARES>>
-<CONSTANT WHITE-ORCHARD-INVESTIGATIONS <LTABLE FALSE FALSE FALSE>>
-
 <OBJECT WHITE-ORCHARD-BROKEN-WAGON 
     (DESC "merchant's wagon")
     (FDESC "[A merchant's wagon lies beside the road]")
     (SYNONYM WAGON)
-    (TEXT "The wagon is overturned and badly broken. The wheels on its axles have come apart. There are a large number of claw marks, too large to be made by a lion.")
+    (TEXT "The wagon is overturned and badly broken. The wheels on its axles have come apart. There claw marks everywhere, too large to be made by lions.")
     (ACTION WHITE-ORCHARD-INVESTIGATION)>
 
 <OBJECT WHITE-ORCHARD-CARCASS
@@ -17,31 +14,39 @@
 
 <OBJECT WHITE-ORCHARD-WARES
     (DESC "merchant's wares")
-    (FDESC "[Various wares and merchant goods are scattered across the ground]")
+    (FDESC "[Various merchant wares and goods are scattered nearby]")
     (SYNONYM WARES GOODS)
-    (TEXT "They do not appear to have suffered any kind of mutilation. Some of these have crushed by under the wagon -- some, appear damaged from the fall. There is little or no blood splattered across these, suggesting that the assailaint is more interested in the other load carried by the wagon.")
+    (TEXT "Some were crushed beneath the wagon. Some were damaged from the fall. There is little or no blood splattered across these things. They do not appear to have suffered any kind of mutilation, suggesting that, whatever did this, it was more interested in food.")
     (ACTION WHITE-ORCHARD-INVESTIGATION)>
 
-<ROUTINE WHITE-ORCHARD-INVESTIGATION ()
+<OBJECT WHITE-ORCHARD-FEATHERS
+    (DESC "feathers on the ground")
+    (FDESC "[There are a few feathers on the ground]")
+    (SYNONYM FEATHER FEATHERS)
+    (TEXT "Feathers... a curious thing to be found amongst the carnage. They are large, as in they are from a large bird-like beast of some kind.")
+    (ACTION WHITE-ORCHARD-INVESTIGATION)>
+
+<ROUTINE WHITE-ORCHARD-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
         <NEED-TO-DISMOUNT>
         <RTRUE>
     )>
-    <COND (,PRSI
-        <RFALSE>
-    )>
-    <COND (<VERB? EXAMINE>
+    <COND (<IN? ,GRIFFIN ,HERE>
+        <TELL CR "The quarry is here! Now is not the time for that!" CR>
+        <RTRUE>
+    )(<VERB? EXAMINE>
         <TELL "You took a look at " T ,PRSO CR>
         <RTRUE>
     )(<VERB? LOOK-CLOSELY>
-        <TELL CR T ,PRSO ": [" <GETP ,PRSO ,P?TEXT> "]" CR>
-        <COND (<EQUAL? ,PRSO ,WHITE-ORCHARD-BROKEN-WAGON> <PUT WHITE-ORCHARD-INVESTIGATIONS 1 T>)>
-        <COND (<EQUAL? ,PRSO ,WHITE-ORCHARD-CARCASS> <PUT WHITE-ORCHARD-INVESTIGATIONS 2 T>)>
-        <COND (<EQUAL? ,PRSO ,WHITE-ORCHARD-WARES> <PUT WHITE-ORCHARD-INVESTIGATIONS 3 T>)>
-        <COND (<CHECK-IF-BOUNTY-INVESTIGATED ,WHITE-ORCHARD-INVESTIGATIONS>
-            <TELL CR "You have completed your investigations. You should report back to " D ,WHITE-ORCHARD-ALDERMAN "." CR>
-            <PUTP ,BOUNTY-WHITE-ORCHARD ,P?BOUNTY-INVESTIGATED T>
+        <SET TEXT <GETP ,PRSO ,P?TEXT>>
+        <COND (.TEXT
+            <TELL CR T ,PRSO ": [" .TEXT "]" CR>
+            <INVESTIGATE-CLUE ,WHITE-ORCHARD-BROKEN-WAGON WHITE-ORCHARD-INVESTIGATIONS 1>
+            <INVESTIGATE-CLUE ,WHITE-ORCHARD-CARCASS WHITE-ORCHARD-INVESTIGATIONS 2>
+            <INVESTIGATE-CLUE ,WHITE-ORCHARD-WARES WHITE-ORCHARD-INVESTIGATIONS 3>
+            <INVESTIGATE-CLUE ,WHITE-ORCHARD-FEATHERS WHITE-ORCHARD-INVESTIGATIONS 4>
+            <CHECK-INVESTIGATION ,BOUNTY-WHITE-ORCHARD WHITE-ORCHARD-INVESTIGATIONS WHITE-ORCHARD-CONCLUSION ,WHITE-ORCHARD-ALDERMAN>
+            <RTRUE>
         )>
-        <RTRUE>
     )>
     <RFALSE>>

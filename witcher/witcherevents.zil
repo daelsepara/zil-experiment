@@ -14,6 +14,15 @@
 
 <ROUTINE I-DAYNIGHT-CYCLE ()
 	<SETG DAYTIME <NOT ,DAYTIME>>
+	<CRLF>
+	<HLIGHT ,H-BOLD>
+	<COND (,DAYTIME
+		<TELL "[Night turns to day]">
+	)(ELSE
+		<TELL "[Day turns to night]">
+	)>
+	<HLIGHT 0>
+	<CRLF>
 	<START-DAY-NIGHT-CYCLE>>
 
 <ROUTINE I-WITCHER-EAT ()
@@ -21,7 +30,7 @@
 	<QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS>>
 
 <ROUTINE START-DAY-NIGHT-CYCLE ()
-	<QUEUE I-DAYNIGHT-CYCLE DAY-LENGTH>>
+	<QUEUE I-DAYNIGHT-CYCLE <+ DAY-LENGTH 1>>>
 
 <ROUTINE START-EATING-CYCLE ()
 	<QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS>>
@@ -38,6 +47,18 @@
 <ROUTINE CANNOT-APPLY-OIL (OIL SWORD)
 	<TELL "You cannot apply " T .OIL " to " T .SWORD ", or if you can, it will not be effective." CR>>
 
+<ROUTINE CHECK-INVESTIGATION (BOUNTY CLUE-TABLE CONCLUSION PERSON)
+    <COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
+        <COND (<CHECK-IF-BOUNTY-INVESTIGATED .CLUE-TABLE>
+            <CRLF>
+            <HLIGHT ,H-BOLD>
+            <TELL .CONCLUSION " " D .PERSON ".">
+            <HLIGHT 0>
+            <CRLF>
+            <PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>
+        )>
+    )>>
+
 <ROUTINE CHECK-SWORD-OIL (SWORD)
 	<COND (<FIRST? .SWORD>
 		<TELL "with applied " D <FIRST? .SWORD>>
@@ -45,6 +66,9 @@
 		<TELL "with no oils applied">
 	)>
 	<CRLF>>
+
+<ROUTINE INVESTIGATE-CLUE (CLUE CLUE-TABLE CLUE-NUM)
+    <COND (<EQUAL? ,PRSO .CLUE> <PUT .CLUE-TABLE .CLUE-NUM T>)>>
 
 <ROUTINE REMOVE-AND-APPLY (OIL SWORD)
 	<COND (<FIRST? .SWORD>
@@ -458,22 +482,12 @@
         <SET INV <GETP .BOUNTY ,P?BOUNTY-INVESTIGATED>>
         <SET RPT <GETP .BOUNTY ,P?BOUNTY-REPORTED>>
         <SET COMP <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
-        <COND (<EQUAL? ,HERE .LOC>
-            <COND (<NOT .ACT>
-                <TELL "[Bounty not accepted]">
-            )(.COMP
-                <TELL "[Bounty completed]">
-            )
-            (.RPT
-                <TELL "[Bounty Reported. Will setup monsters.]">
+        <COND (<EQUAL? .LOC ,HERE>
+            <COND (<AND .ACT .INV .RPT <NOT .COMP>>
                 <ADD-BOUNTY .BOUNTY ,HERE>
-            )(.INV
-                <TELL "[Area investigated.]">
             )(.ACT
-                <TELL "[Investigation ongoing. Setup clues.]">
-				<ADD-CLUES .BOUNTY ,HERE>
+ 				<ADD-CLUES .BOUNTY ,HERE>
             )>
-            <CRLF><CRLF>
         )>
     )>>
 
