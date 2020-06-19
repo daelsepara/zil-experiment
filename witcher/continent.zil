@@ -37,9 +37,9 @@
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field, some of corpses appear to have been petrified.||The camp site lies to the east.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of victims appear to have been petrified and buried alive.||The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
-	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD) THINGS-F)
+	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <ROOM CROSSROADS
@@ -47,7 +47,7 @@
 	(DESC "Cross Roads")
 	(EAST TO BATTLE-FIELD)
 	(WEST TO WHITE-ORCHARD-TOWN)
-	(LDESC "You are in what appears to be, a major highway. Like many other infrasctures, whoever built this must have cleared an entire forest. Other people and animals that once, may have sheltered there have long since gone find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.||The road to the west leads to the town of White Orchard.")
+	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.||The road to the west leads to the town of White Orchard.")
 	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
