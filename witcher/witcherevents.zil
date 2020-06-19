@@ -335,62 +335,62 @@
     )>>
 
 <ROUTINE GENERIC-BOUNTY-TALK (BOUNTY PERSON TEXT "AUX" KEY)
-    <COND (,RIDING-VEHICLE
-        <NEED-TO-DISMOUNT>
-        <RTRUE>
-    )>
-    <COND (<VERB? TALK>
-        <CRLF>
-        <COND (<NOT <EQUAL? ,PRSO .PERSON>>
-            <TALK-HIGHLIGHT-PERSON .PERSON "You talking to me?">
-            <CRLF>
-            <RTRUE>
-        )>
-        <COND (<IN? .BOUNTY ,PLAYER>
-            <COND (<GETP .BOUNTY P?BOUNTY-ACCEPTED>
-                <COND (<NOT <CHECK-BOUNTY .BOUNTY ,PRSI ,PRSO>>
-                    <RETURN>
-                )>
-                <GENERIC-BOUNTY-DIALOG .PERSON .BOUNTY>
-            )(ELSE
-                <COND (<NOT <CHECK-BOUNTY .BOUNTY ,PRSI ,PRSO>>
-                    <RETURN>
-                )>
-                <STOP-EATING-CYCLE>
-                <REPEAT ()
-                    <TALK-HIGHLIGHT-PERSON .PERSON "">
-                    <CRLF>
-                    <TELL "Are you here about the bounty (" T .BOUNTY ")?" CR>
-                    <TELL "1 - I'm here about the bounty." CR> 
-                    <TELL "2 - I accept the bounty." CR>
-                    <TELL "3 - Goodbye for now." CR>
-                    <TELL "Your response: ">
-                    <SET KEY <INPUT 1>>
-                    <CRLF>
-                    <TALK-RESPONSE .KEY !\1 .TEXT ,PRSO>
-                    <COND (<EQUAL? .KEY !\2>
-                        <ACCEPT-BOUNTY .BOUNTY ,PRSO>
-                        <START-EATING-CYCLE>
-                        <RETURN>
-                    )(<EQUAL? .KEY !\3>
-                        <CRLF>
-                        <TALK-HIGHLIGHT-PERSON .PERSON "Bye!">
-                        <CRLF>
-                        <START-EATING-CYCLE>
-                        <RETURN>
-                    )>
-                    <CRLF>
-                    <CLOCKER>
-                    <UPDATE-STATUS-LINE>
-                >
-            )>
-        )(ELSE
+	<COND (,RIDING-VEHICLE
+		<NEED-TO-DISMOUNT>
+		<RTRUE>
+	)>
+	<COND (<VERB? TALK>
+		<CRLF>
+		<COND (<NOT <EQUAL? ,PRSO .PERSON>>
+			<TALK-HIGHLIGHT-PERSON .PERSON "You talking to me?">
+			<CRLF>
+			<RTRUE>
+		)>
+		<COND (<IN? .BOUNTY ,PLAYER>
+			<COND (<GETP .BOUNTY P?BOUNTY-ACCEPTED>
+				<COND (<NOT <CHECK-BOUNTY .BOUNTY ,PRSI ,PRSO>>
+					<RETURN>
+				)>
+				<GENERIC-BOUNTY-DIALOG .PERSON .BOUNTY>
+			)(ELSE
+				<COND (<NOT <CHECK-BOUNTY .BOUNTY ,PRSI ,PRSO>>
+					<RETURN>
+				)>
+				<STOP-EATING-CYCLE>
+				<REPEAT ()
+					<TALK-HIGHLIGHT-PERSON .PERSON "">
+					<CRLF>
+					<TELL "Are you here about the bounty (" T .BOUNTY ")?" CR>
+					<TELL "1 - I'm here about the bounty." CR>
+					<TELL "2 - I accept the bounty." CR>
+					<TELL "3 - Goodbye for now." CR>
+					<TELL "Your response: ">
+					<SET KEY <INPUT 1>>
+					<CRLF>
+					<TALK-RESPONSE .KEY !\1 .TEXT ,PRSO>
+					<COND (<EQUAL? .KEY !\2>
+						<ACCEPT-BOUNTY .BOUNTY ,PRSO>
+						<START-EATING-CYCLE>
+						<RETURN>
+					)(<EQUAL? .KEY !\3>
+						<CRLF>
+						<TALK-HIGHLIGHT-PERSON .PERSON "Bye!">
+						<CRLF>
+						<START-EATING-CYCLE>
+						<RETURN>
+					)>
+					<CRLF>
+					<CLOCKER>
+					<UPDATE-STATUS-LINE>
+				>
+			)>
+		)(ELSE
 			<TALK-HIGHLIGHT-PERSON .PERSON "Greetings!">
 			<CRLF>
-        )>
-    )(<VERB? EXAMINE LOOK-CLOSELY>
-        <TELL "In most cultures it is rude to stare." CR>
-    )>>
+		)>
+	)(<VERB? EXAMINE LOOK-CLOSELY>
+		<TELL "In most cultures it is rude to stare." CR>
+	)>>
 
 <ROUTINE TALK-HIGHLIGHT-PERSON (PERSON TEXT)
     <HLIGHT ,H-BOLD>
@@ -470,9 +470,9 @@
 
 
 <ROUTINE ADD-CLUES (BOUNTY LOC)
-    <COND (<EQUAL? .LOC ,CROSSROADS>
+	<COND (<EQUAL? .LOC ,CROSSROADS>
 		<POPULATE-CLUES-IN-LOC .LOC .BOUNTY WHITE-ORCHARD-CLUES>
-    )>>
+	)>>
 
 <ROUTINE CHECK-IF-BOUNTY-INVESTIGATED (CLUE-TABLE "AUX" CLUES CLUES-INVESTIGATED)
 	<SET CLUES <GET .CLUE-TABLE 0>>
@@ -502,18 +502,18 @@
 <ROUTINE SETUP-BOUNTY (BOUNTY "AUX" LOC ACT INV RPT COMP)
     <COND (.BOUNTY
 		<SET LOC <GETP .BOUNTY ,P?BOUNTY-LOC>>
-        <SET ACT <GETP .BOUNTY ,P?BOUNTY-ACCEPTED>>
-        <SET INV <GETP .BOUNTY ,P?BOUNTY-INVESTIGATED>>
-        <SET RPT <GETP .BOUNTY ,P?BOUNTY-REPORTED>>
-        <SET COMP <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
-        <COND (<EQUAL? .LOC ,HERE>
-            <COND (<AND .ACT .INV .RPT <NOT .COMP>>
-                <ADD-BOUNTY .BOUNTY ,HERE>
-            )(.ACT
- 				<ADD-CLUES .BOUNTY ,HERE>
-            )>
-        )>
-    )>>
+		<SET ACT <GETP .BOUNTY ,P?BOUNTY-ACCEPTED>>
+		<SET INV <GETP .BOUNTY ,P?BOUNTY-INVESTIGATED>>
+		<SET RPT <GETP .BOUNTY ,P?BOUNTY-REPORTED>>
+		<SET COMP <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
+		<COND (<EQUAL? .LOC ,HERE>
+			<COND (<AND .ACT .INV .RPT <NOT .COMP>>
+				<ADD-BOUNTY .BOUNTY ,HERE>
+			)(.ACT
+				<ADD-CLUES .BOUNTY ,HERE>
+			)>
+		)>
+	)>>
 
 <ROUTINE SPAWN-BOUNTY ("AUX" BOUNTY)
 	<SET BOUNTY <GETP ,HERE ,P?BOUNTY>>
