@@ -37,7 +37,7 @@
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of victims appear to have been petrified and buried alive.||The camp site lies to the east.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.||The camp site lies to the east.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
