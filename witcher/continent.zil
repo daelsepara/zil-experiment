@@ -57,7 +57,7 @@
 	(LOC ROOMS)
 	(DESC "White Orchard")
 	(EAST TO CROSSROADS)
-	(LDESC "A small town brimming with activity.")
+	(LDESC "A small town bustling with activity.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (TOWN INHABITANTS PEOPLE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
