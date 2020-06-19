@@ -9,7 +9,7 @@
     (DESC "animal carcasses")
     (FDESC "[There are several animal carcasses here]")
     (SYNONYM CORPSE ANIMAL CARCASS CARCASSES)
-    (TEXT "Several carcasses appear to have been mutilated. The attacker must have been exceptionally strong and large claws to have caused such brutality. You look for teeth marks but there are none. However, bite marks resemble the impression made by beaks... large beaks.")
+    (TEXT "Several carcasses appear to have been mutilated. The attacker must have been exceptionally strong and had large claws to have caused such brutality. You look for teeth marks but there are none. However, the bite marks resemble those made by beaks... large beaks.")
     (ACTION WHITE-ORCHARD-INVESTIGATION)>
 
 <OBJECT WHITE-ORCHARD-WARES
