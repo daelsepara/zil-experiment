@@ -72,16 +72,16 @@
 	<TELL "You cannot apply " T .OIL " to " T .SWORD ", or if you can, it will not be effective." CR>>
 
 <ROUTINE CHECK-INVESTIGATION (BOUNTY CLUE-TABLE CONCLUSION PERSON)
-    <COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
-        <COND (<CHECK-IF-BOUNTY-INVESTIGATED .CLUE-TABLE>
-            <CRLF>
-            <HLIGHT ,H-BOLD>
-            <TELL .CONCLUSION " " D .PERSON ".">
-            <HLIGHT 0>
-            <CRLF>
-            <PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>
-        )>
-    )>>
+	<COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
+		<COND (<CHECK-IF-BOUNTY-INVESTIGATED .CLUE-TABLE>
+			<CRLF>
+			<HLIGHT ,H-BOLD>
+			<TELL .CONCLUSION " " D .PERSON ".">
+			<HLIGHT 0>
+			<CRLF>
+			<PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>
+		)>
+	)>>
 
 <ROUTINE CHECK-SWORD-OIL (SWORD)
 	<COND (<FIRST? .SWORD>
@@ -173,17 +173,17 @@
 	)>>
 
 <ROUTINE MONSTER-ACTION (MONSTER HP SWORD WEAPON "OPT" OIL)
-    <COND (<VERB? ATTACK>
-        <COND(<EQUAL? .SWORD ,SILVER-SWORD>
-            <COMBAT-SILVER .MONSTER .WEAPON .OIL>
-        )(ELSE
-            <COMBAT-STEEL .MONSTER .WEAPON .OIL>
-        )>
-    )(<VERB? LOOK-CLOSELY EXAMINE>
-        <COND(<L? <GETP .MONSTER P?HIT-POINTS> .HP>
-            <TELL "... " T .MONSTER " appears wounded." CR>
-        )>
-    )>>
+	<COND (<VERB? ATTACK>
+		<COND(<EQUAL? .SWORD ,SILVER-SWORD>
+			<COMBAT-SILVER .MONSTER .WEAPON .OIL>
+		)(ELSE
+			<COMBAT-STEEL .MONSTER .WEAPON .OIL>
+		)>
+	)(<VERB? LOOK-CLOSELY EXAMINE>
+		<COND(<L? <GETP .MONSTER P?HIT-POINTS> .HP>
+			<TELL "... " T .MONSTER " appears wounded." CR>
+		)>
+	)>>
 
 <ROUTINE MONSTER-ATTACKS (MONSTER "AUX" DMG)
 	<COND (<OR <LOC .MONSTER> <G? .MONSTER 0>>
@@ -272,67 +272,67 @@
 "NPC Actions / Dialog"
 
 <ROUTINE ACCEPT-BOUNTY (BOUNTY PERSON "AUX" LOC)
-    <COND (<FSET? .BOUNTY ,BOUNTYBIT>
-        <SET LOC <GETP .BOUNTY P?BOUNTY-LOC>>
-        <COND (<NOT <GETP .BOUNTY P?BOUNTY-ACCEPTED>>
-            <TELL "Accept this bounty (" T .BOUNTY ")? ">
-            <COND (<YES?>
-                <PUTP .BOUNTY P?BOUNTY-ACCEPTED T>
-                <CRLF>
-                <COND (.LOC
-                    <TALK-HIGHLIGHT-PERSON .PERSON "Splendid! You should investigate ">
-                    <TELL T .LOC " area for clues.">
-                )(ELSE
-                    <TALK-HIGHLIGHT-PERSON .PERSON "Splendind! You should look for clues around the area.">
-                )>
-            )(ELSE
-                <CRLF>
-                <TALK-HIGHLIGHT-PERSON .PERSON "That is unfortunate. Let me know if you change your mind.">
-            )>
-            <CRLF>
-        )>
-    )(ELSE
-        <TELL "The what now?" CR>
-        <RFALSE>   
-    )>>
+	<COND (<FSET? .BOUNTY ,BOUNTYBIT>
+		<SET LOC <GETP .BOUNTY P?BOUNTY-LOC>>
+		<COND (<NOT <GETP .BOUNTY P?BOUNTY-ACCEPTED>>
+			<TELL "Accept this bounty (" T .BOUNTY ")? ">
+			<COND (<YES?>
+				<PUTP .BOUNTY P?BOUNTY-ACCEPTED T>
+				<CRLF>
+				<COND (.LOC
+					<TALK-HIGHLIGHT-PERSON .PERSON "Splendid! You should investigate ">
+					<TELL T .LOC " area for clues.">
+				)(ELSE
+					<TALK-HIGHLIGHT-PERSON .PERSON "Splendind! You should look for clues around the area.">
+				)>
+			)(ELSE
+				<CRLF>
+				<TALK-HIGHLIGHT-PERSON .PERSON "That is unfortunate. Let me know if you change your mind.">
+			)>
+			<CRLF>
+		)>
+	)(ELSE
+		<TELL "The what now?" CR>
+		<RFALSE>
+	)>>
 
 <ROUTINE CHECK-BOUNTY (BOUNTY THISBOUNTY PERSON)
-    <COND (.THISBOUNTY
-        <COND (<FSET? .THISBOUNTY ,BOUNTYBIT>
-            <COND (<NOT <EQUAL? .THISBOUNTY .BOUNTY>>
-                <TELL D .PERSON " does not know anything about " T .THISBOUNTY CR>
-                <RFALSE>
-            )>
-            <RTRUE>
-        )>
-        <TALK-HIGHLIGHT-PERSON .PERSON "The what now?">
-        <CRLF>
-        <RFALSE>
-    )>
-    <RTRUE>>
+	<COND (.THISBOUNTY
+		<COND (<FSET? .THISBOUNTY ,BOUNTYBIT>
+			<COND (<NOT <EQUAL? .THISBOUNTY .BOUNTY>>
+				<TELL D .PERSON " does not know anything about " T .THISBOUNTY CR>
+				<RFALSE>
+			)>
+			<RTRUE>
+		)>
+		<TALK-HIGHLIGHT-PERSON .PERSON "The what now?">
+		<CRLF>
+		<RFALSE>
+	)>
+	<RTRUE>>
 
 <ROUTINE GENERIC-BOUNTY-DIALOG (PERSON BOUNTY)
-    <COND (<NOT <GETP .BOUNTY P?BOUNTY-INVESTIGATED>>
-        <TALK-HIGHLIGHT-PERSON .PERSON "You should probably continue investigating ">
-        <TELL T <GETP .BOUNTY P?BOUNTY-LOC> " area." CR>
-    )(ELSE
-        <COND (<NOT <GETP .BOUNTY P?BOUNTY-REPORTED>>
-            <TALK-HIGHLIGHT-PERSON .PERSON "You have enough clues about the monster you are dealing with! Now is the time to deal with it!">
-            <PUTP .BOUNTY ,P?BOUNTY-REPORTED T>
-        )(ELSE
-            <COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
-                <TALK-HIGHLIGHT-PERSON .PERSON "Please come back after you have dealt with the beast for your reward.">
-            )(ELSE
-                <TALK-HIGHLIGHT-PERSON .PERSON "Thanks, witcher! Our town is safe again!">
-                <COND (<G? <GETP .BOUNTY ,P?BOUNTY-REWARD> 0>
-                    <SETG ,WITCHER-ORENS <+ ,WITCHER-ORENS <GETP .BOUNTY ,P?BOUNTY-REWARD>>>
-                    <TELL " Here is your reward. (" N <GETP .BOUNTY ,P?BOUNTY-REWARD> " Orens)">
-                    <PUTP .BOUNTY ,P?BOUNTY-REWARD 0>
-                )>
-            )>
-        )>
-        <CRLF>
-    )>>
+	<COND (<NOT <GETP .BOUNTY P?BOUNTY-INVESTIGATED>>
+		<TALK-HIGHLIGHT-PERSON .PERSON "You should probably continue investigating ">
+		<TELL T <GETP .BOUNTY P?BOUNTY-LOC> " area." CR>
+	)(ELSE
+		<COND (<NOT <GETP .BOUNTY P?BOUNTY-REPORTED>>
+			<TALK-HIGHLIGHT-PERSON .PERSON "You have enough clues about the monster you are dealing with! Now is the time to deal with it!">
+			<PUTP .BOUNTY ,P?BOUNTY-REPORTED T>
+		)(ELSE
+			<COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
+				<TALK-HIGHLIGHT-PERSON .PERSON "Please come back after you have dealt with the beast for your reward.">
+			)(ELSE
+				<TALK-HIGHLIGHT-PERSON .PERSON "Thanks, witcher! Our town is safe again!">
+				<COND (<G? <GETP .BOUNTY ,P?BOUNTY-REWARD> 0>
+					<SETG ,WITCHER-ORENS <+ ,WITCHER-ORENS <GETP .BOUNTY ,P?BOUNTY-REWARD>>>
+					<TELL " Here is your reward. (" N <GETP .BOUNTY ,P?BOUNTY-REWARD> " Orens)">
+					<PUTP .BOUNTY ,P?BOUNTY-REWARD 0>
+				)>
+			)>
+		)>
+		<CRLF>
+	)>>
 
 <ROUTINE GENERIC-BOUNTY-TALK (BOUNTY PERSON TEXT "AUX" KEY)
 	<COND (,RIDING-VEHICLE
@@ -393,28 +393,28 @@
 	)>>
 
 <ROUTINE TALK-HIGHLIGHT-PERSON (PERSON TEXT)
-    <HLIGHT ,H-BOLD>
-    <TELL D .PERSON>
-    <HLIGHT 0>
-    <TELL ": " .TEXT>>
+	<HLIGHT ,H-BOLD>
+	<TELL D .PERSON>
+	<HLIGHT 0>
+	<TELL ": " .TEXT>>
 
 <ROUTINE TALK-RESPONSE (KEY CHOICE RESPONSE PERSON)
-    <COND (<EQUAL? .KEY .CHOICE>
-        <CRLF>
-        <TALK-HIGHLIGHT-PERSON .PERSON .RESPONSE>
-        <CRLF>
-        <INPUT 1>
-    )>>
+	<COND (<EQUAL? .KEY .CHOICE>
+		<CRLF>
+		<TALK-HIGHLIGHT-PERSON .PERSON .RESPONSE>
+		<CRLF>
+		<INPUT 1>
+	)>>
 
 ;----------------------
 "Codex Routines"
 
 <ROUTINE PRINT-TOPIC (TOPIC)
-    <CRLF>
-    <HLIGHT ,H-INVERSE>
-    <TELL "Topic: " D .TOPIC CR CR>
-    <HLIGHT 0>
-    <TELL <GETP .TOPIC P?LDESC> CR>>
+	<CRLF>
+	<HLIGHT ,H-INVERSE>
+	<TELL "Topic: " D .TOPIC CR CR>
+	<HLIGHT 0>
+	<TELL <GETP .TOPIC P?LDESC> CR>>
 
 ;----------------------
 "Location setup"
@@ -458,15 +458,15 @@
 "Monster / Bounty Setup"
 
 <ROUTINE ADD-BOUNTY (BOUNTY LOC)
-    <COND (<EQUAL? .LOC ,CROSSROADS>
-        <COND (<GETP .BOUNTY ,P?BOUNTY-REPORTED>
-            <COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
-                <COND (<NOT <IN? ,GRIFFIN ,CROSSROADS>>
-                    <RESET-MONSTER ,GRIFFIN ,HP-GRIFFIN ,CROSSROADS>
-                )>
-            )>
-        )>
-    )>>
+	<COND (<EQUAL? .LOC ,CROSSROADS>
+		<COND (<GETP .BOUNTY ,P?BOUNTY-REPORTED>
+			<COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
+				<COND (<NOT <IN? ,GRIFFIN ,CROSSROADS>>
+					<RESET-MONSTER ,GRIFFIN ,HP-GRIFFIN ,CROSSROADS>
+				)>
+			)>
+		)>
+	)>>
 
 
 <ROUTINE ADD-CLUES (BOUNTY LOC)
@@ -500,7 +500,7 @@
 	<MOVE .MONSTER .LOC>>
 
 <ROUTINE SETUP-BOUNTY (BOUNTY "AUX" LOC ACT INV RPT COMP)
-    <COND (.BOUNTY
+	<COND (.BOUNTY
 		<SET LOC <GETP .BOUNTY ,P?BOUNTY-LOC>>
 		<SET ACT <GETP .BOUNTY ,P?BOUNTY-ACCEPTED>>
 		<SET INV <GETP .BOUNTY ,P?BOUNTY-INVESTIGATED>>
@@ -536,17 +536,17 @@
 "Bounty Debug Routines"
 
 <ROUTINE SET-BOUNTY-STATUS (BOUNTY STATUS)
-    <TELL "[DEBUG] SET " D .BOUNTY " FLAG (" <GET BOUNTY-FLAG .STATUS> ") => T" CR>
-    <COND (<EQUAL? .STATUS 0> <PUTP .BOUNTY ,P?BOUNTY-ACCEPTED T>)>
-    <COND (<EQUAL? .STATUS 1> <PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>)>
-    <COND (<EQUAL? .STATUS 2> <PUTP .BOUNTY ,P?BOUNTY-REPORTED T>)>
-    <COND (<EQUAL? .STATUS 3> <PUTP .BOUNTY ,P?BOUNTY-COMPLETED T>)>>
+	<TELL "[DEBUG] SET " D .BOUNTY " FLAG (" <GET BOUNTY-FLAG .STATUS> ") => T" CR>
+	<COND (<EQUAL? .STATUS 0> <PUTP .BOUNTY ,P?BOUNTY-ACCEPTED T>)>
+	<COND (<EQUAL? .STATUS 1> <PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>)>
+	<COND (<EQUAL? .STATUS 2> <PUTP .BOUNTY ,P?BOUNTY-REPORTED T>)>
+	<COND (<EQUAL? .STATUS 3> <PUTP .BOUNTY ,P?BOUNTY-COMPLETED T>)>>
 
 ;----------------------
 "Miscellaneous Routines"
 
 <ROUTINE HMMM ()
-    <TELL "[Hmmm...]" CR>>
+	<TELL "[Hmmm...]" CR>>
 
 <ROUTINE NEED-TO-DISMOUNT ()
 	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>>
