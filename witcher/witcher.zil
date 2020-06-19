@@ -2,7 +2,7 @@
 
 <CONSTANT GAME-BANNER "ZIL Witcher|Experiments with ZIL|By SD Separa (2020)||Inspired by the Witcher Games by CD Projekt Red|">
 <CONSTANT RELEASEID 1>
-<VERSION 8>
+<VERSION XZIP>
 
 <INSERT-FILE "parser">
 
