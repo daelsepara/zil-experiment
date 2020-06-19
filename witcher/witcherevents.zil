@@ -4,23 +4,23 @@
 <SET REDEFINE T>
 <ROUTINE UPDATE-STATUS-LINE ("AUX" WIDTH)
 	<SCREEN 1>
-    <HLIGHT ,H-INVERSE>
-    <FAKE-ERASE>
-    <TELL !\ >
-    <COND (,HERE-LIT <TELL D ,HERE>)(ELSE <TELL %,DARKNESS-STATUS-TEXT>)>
+	<HLIGHT ,H-INVERSE>
+	<FAKE-ERASE>
+	<TELL !\ >
+	<COND (,HERE-LIT <TELL D ,HERE>)(ELSE <TELL %,DARKNESS-STATUS-TEXT>)>
 	<TELL " - " <COND (,DAYTIME "Day")(ELSE "Night")>>
 	<COND (,RIDING-VEHICLE <TELL " (Riding " D ,CURRENT-VEHICLE ")">)>
 	<SET WIDTH <LOWCORE SCRH>>
-    <CURSET 1 <- .WIDTH 50>>
-    <TELL "Health: " N ,WITCHER-HEALTH>
-    <CURSET 1 <- .WIDTH 37>>
-    <TELL "Food: " N ,WITCHER-FOOD>
-    <CURSET 1 <- .WIDTH 26>>
-    <TELL "Score: " N ,SCORE>
-    <CURSET 1 <- .WIDTH 13>>
-    <TELL "Moves: " N ,MOVES>
-    <SCREEN 0>
-    <HLIGHT ,H-NORMAL>>
+	<CURSET 1 <- .WIDTH 50>>
+	<TELL "Health: " N ,WITCHER-HEALTH>
+	<CURSET 1 <- .WIDTH 37>>
+	<TELL "Food: " N ,WITCHER-FOOD>
+	<CURSET 1 <- .WIDTH 26>>
+	<TELL "Score: " N ,SCORE>
+	<CURSET 1 <- .WIDTH 13>>
+	<TELL "Moves: " N ,MOVES>
+	<SCREEN 0>
+	<HLIGHT ,H-NORMAL>>
 
 ;----------------------
 "Death Routines"
