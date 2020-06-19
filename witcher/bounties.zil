@@ -1,5 +1,4 @@
 <OBJECT BOUNTY-BANDITS
-    (IN PLAYER)
     (DESC "Bounty: Raid Bandit Camp")
     (ADJECTIVE BANDIT BANDITS)
     (SYNONYM BOUNTY)
