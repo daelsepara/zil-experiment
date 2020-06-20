@@ -33,3 +33,4 @@
 <CONSTANT WHITE-ORCHARD-INVESTIGATIONS <LTABLE FALSE FALSE FALSE FALSE>>
 <CONSTANT WHITE-ORCHARD-CONCLUSION "... large, destructive and powerful claws, mutilations by beak-like jaws, and feathers. All signs point to a Griffin. You should report back to ">
 <CONSTANT WHITE-ORCHARD-ALDERMAN-NEWS "The townsfolk are wary and fearful of travelling. People say that a large winged creature is stalking the cross roads. A merchant was recently attack and he barely escaped with his life. Help us Witcher! This beast has already claimed lots of victims.">
+<CONSTANT WHITE-ORCHARD-ALDERMAN-REPORT "We have Griffin problem, huh?. Please deal with this menance then come back again for your reward, Witcher!">
