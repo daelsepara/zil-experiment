@@ -69,7 +69,7 @@
 	(DESC "West Frontier")
 	(EAST TO WHITE-ORCHARD-TOWN)
 	(NORTH TO WHITE-ORCHARD-HUT)
-	(LDESC "Outside the town, everything is quiet again on the frontier.||The town is east of here.")
+	(LDESC "Outside the town, everything is quiet again on the frontier.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>

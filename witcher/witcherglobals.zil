@@ -35,6 +35,7 @@
 
 ; Bounties
 <CONSTANT NEST-REMAINS "[ruins of a monster's nest]">
+<CONSTANT RUBBLE "nothing but rubble left">
 
 <CONSTANT WHITE-ORCHARD-CLUES <LTABLE WHITE-ORCHARD-BROKEN-WAGON WHITE-ORCHARD-CARCASS WHITE-ORCHARD-WARES WHITE-ORCHARD-FEATHERS>>
 <CONSTANT WHITE-ORCHARD-INVESTIGATIONS <LTABLE FALSE FALSE FALSE FALSE>>
@@ -42,8 +43,8 @@
 <CONSTANT WHITE-ORCHARD-ALDERMAN-NEWS "The townsfolk are wary and fearful of travelling. People say that a large winged creature is stalking the cross roads. A merchant was recently attack and he barely escaped with his life. Help us Witcher! This beast has already claimed lots of victims.">
 <CONSTANT WHITE-ORCHARD-ALDERMAN-REPORT "We have Griffin problem, huh?. Please deal with this menance then come back again for your reward, Witcher!">
 
-<CONSTANT WHITE-ORCHARD-FARM-CLUES <LTABLE WHITE-ORCHARD-FARM-NEST>>
-<CONSTANT WHITE-ORCHARD-FARM-INVESTIGATIONS <LTABLE FALSE>>
-<CONSTANT WHITE-ORCHARD-FARM-CONCLUSION "... there was a nest of ghouls hidden in the farm. They emerge during the night and prowl about. I have destroyed the nest but the alghoul may return. You should report back to ">
-<CONSTANT WHITE-ORCHARD-FARMER-NEWS "Scarecrows do not seem to scare off the monsters ravaging my farm. We cannot proceed with  the harvest. No one wants to go to the farm with those creatures running around!">
-<CONSTANT WHITE-ORCHARD-FARMER-REPORT "Thank you for destroying the nest, Witcher. The Alghoul was not in the nest? Please kill this fiend then come back for your reward, Witcher!">
+<CONSTANT FARM-CLUES <LTABLE FARM-NEST>>
+<CONSTANT FARM-INVESTIGATIONS <LTABLE FALSE>>
+<CONSTANT FARM-CONCLUSION "... there was a nest of ghouls hidden in the farm. They emerge during the night and prowl about. I have destroyed the nest but the alghoul may return. You should report back to ">
+<CONSTANT FARMER-NEWS "Scarecrows do not seem to scare off the monsters ravaging my farm. We cannot proceed with  the harvest. No one wants to go to the farm with those creatures running around!">
+<CONSTANT FARMER-REPORT "Thank you for destroying the nest, Witcher. The Alghoul was not in the nest? Please kill this fiend then come back for your reward, Witcher!">

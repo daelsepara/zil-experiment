@@ -101,6 +101,8 @@
 		<HMMM>
 		<RTRUE>
 	)>
+	
+	<COND (<FSET? ,PRSO ,MONSTERBIT> <TELL "You should read about " D ,PRSO " in the codex." CR> <RTRUE>)>
 
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
@@ -237,6 +239,7 @@
 			<HMMM>
 			<RTRUE>
 		)>
+		<COND (<FSET? ,PRSO ,MONSTERBIT> <TELL "The monster can't be reasoned with!" CR> <RTRUE>)>
 		<TELL "You talk to " T ,PRSO>
 		<COND (,PRSI
 			<TELL " about " T ,PRSI>
