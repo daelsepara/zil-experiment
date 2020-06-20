@@ -17,7 +17,7 @@
 <OBJECT BOUNTY-WHITE-ORCHARD
     (IN WHITE-ORCHARD-TOWN)
     (DESC "Bounty: Beast of White Orchard")
-    (ADJECTIVE BEAST WHITE-ORCHARD)
+    (ADJECTIVE BEAST)
     (SYNONYM BOUNTY)
     (TEXT "A vicious beast is terrorizing the White Orchard area. Travelling in and out of town is forbidden. Merchants should comply. Look for the alderman at White Orchard for further information.")
     (SIZE 0)

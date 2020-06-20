@@ -1,3 +1,5 @@
+"Bounty: Beast of White Orchard"
+
 <OBJECT WHITE-ORCHARD-BROKEN-WAGON 
     (DESC "merchant's wagon")
     (FDESC "[A merchant's wagon lies beside the road]")
@@ -25,6 +27,9 @@
     (SYNONYM FEATHER FEATHERS)
     (TEXT "Feathers... a curious thing to be found amongst the carnage. The size of these feathers hint at a large, bird-like beast of some kind.")
     (ACTION WHITE-ORCHARD-INVESTIGATION)>
+
+;---------------------------------
+"Bounty: Farm infestation"
 
 <OBJECT WHITE-ORCHARD-FARM-NEST
     (DESC "hole on the ground")
@@ -76,10 +81,11 @@
             <TELL CR T ,PRSO ": [" .TEXT "]" CR>
             <RTRUE>
         )>
-    )(<VERB? DROP-BOMB>
-        <V-DROP-BOMB>
+    )(<VERB? DESTROY>
+        <V-DESTROY>
         <INVESTIGATE-CLUE ,WHITE-ORCHARD-FARM-NEST WHITE-ORCHARD-FARM-INVESTIGATIONS 1>
         <CHECK-INVESTIGATION ,BOUNTY-WHITE-ORCHARD-INFESTATION WHITE-ORCHARD-FARM-INVESTIGATIONS WHITE-ORCHARD-FARM-CONCLUSION ,WHITE-ORCHARD-FARMER>
+        <COND (<GETP ,BOUNTY-WHITE-ORCHARD-INFESTATION ,P?BOUNTY-INVESTIGATED> <PUTP ,WHITE-ORCHARD-FARM-NEST ,P?FDESC NEST-REMAINS>)>
         <RTRUE>
     )>
     <RFALSE>>

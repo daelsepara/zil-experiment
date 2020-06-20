@@ -73,7 +73,7 @@
 		<TELL "There are no monsters here!" CR>
 	)>>
 
-<ROUTINE V-DROP-BOMB ()
+<ROUTINE V-DESTROY ()
 	<COND (<NOT <FSET? ,PRSO ,DESTRUCTIBLE>>
 		<TELL "You can't destroy that!" CR>
 	)(<NOT <FSET? ,PRSO ,NOTDESTROYED>>

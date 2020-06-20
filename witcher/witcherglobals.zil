@@ -33,6 +33,8 @@
 <GLOBAL WITCHER-DODGE-PROBABILITY 30>
 
 ; Bounties
+<CONSTANT NEST-REMAINS "[ruins of a monster's nest]">
+
 <CONSTANT WHITE-ORCHARD-CLUES <LTABLE WHITE-ORCHARD-BROKEN-WAGON WHITE-ORCHARD-CARCASS WHITE-ORCHARD-WARES WHITE-ORCHARD-FEATHERS>>
 <CONSTANT WHITE-ORCHARD-INVESTIGATIONS <LTABLE FALSE FALSE FALSE FALSE>>
 <CONSTANT WHITE-ORCHARD-CONCLUSION "... large, destructive and powerful claws, mutilations by beak-like jaws, and feathers. All signs point to a Griffin. You should report back to ">
@@ -42,5 +44,5 @@
 <CONSTANT WHITE-ORCHARD-FARM-CLUES <LTABLE WHITE-ORCHARD-FARM-NEST>>
 <CONSTANT WHITE-ORCHARD-FARM-INVESTIGATIONS <LTABLE FALSE>>
 <CONSTANT WHITE-ORCHARD-FARM-CONCLUSION "... there was a nest of ghouls hidden in the farm. They emerge during the night and prowl about. I have destroyed the nest but the alghoul may return. You should report back to ">
-<CONSTANT WHITE-ORCHARD-FARMER-NEWS "Scarecrows do not seem to scare off the beasts stalking my farm. We cannot proceed with  the harvest. No one wants to go to the farm with those creatures running around!">
-<CONSTANT WHITE-ORCHARD-FARMER-REPORT "Thank you for destroying the nest. But the Alghoul is yet to be destroyed? Please stop this monster then come back for your reward, Witcher!">
+<CONSTANT WHITE-ORCHARD-FARMER-NEWS "Scarecrows do not seem to scare off the monsters ravaging my farm. We cannot proceed with  the harvest. No one wants to go to the farm with those creatures running around!">
+<CONSTANT WHITE-ORCHARD-FARMER-REPORT "Thank you for destroying the nest, Witcher. The Alghoul was not in the nest? Please kill this fiend then come back for your reward, Witcher!">
