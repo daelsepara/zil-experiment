@@ -630,6 +630,9 @@
 <ROUTINE HMMM ()
 	<TELL "[Hmmm...]" CR>>
 
+<ROUTINE GET-WORD (WORD-NUM)
+	<RETURN <AND <GETB ,LEXBUF .WORD-NUM> <GET ,LEXBUF .WORD-NUM>>>>
+
 <ROUTINE NEED-TO-DISMOUNT ()
 	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>>
 

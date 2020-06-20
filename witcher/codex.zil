@@ -20,7 +20,8 @@ Data from:
     (FLAGS TOPICBIT)>
 
 <OBJECT TOPIC-GERALT
-    (SYNONYM GERALT WHITE-WOLF GWYNBLEIDD)
+    (SYNONYM GERALT WOLF GWYNBLEIDD)
+    (ADJECTIVE WHITE)
     (DESC "Geralt of Rivia, the White wolf, Gwynbleidd")
     (LDESC "Known to the elves as Gwynbleidd, and to those seeking his services, as the White Wolf, Geralt is a member of the Wolf School. He is no mere swinger of swords, but thoughtful, cunning, resourceful, and an exceptional warrior. Beneath a rather stoic exterior are murmurings of good humor, a readiness to help out those in distress, an offering of goodwill and a mastery of both his blades to help those requesting hs aid.")
     (IN GENERIC-OBJECTS)
@@ -76,7 +77,8 @@ Data from:
     (FLAGS TOPICBIT)>
 
 <OBJECT TOPIC-WOLF-MEDALLION
-    (SYNONYM MEDALLION WOLF-MEDALLION)
+    (SYNONYM MEDALLION MEDAL)
+    (ADJECTIVE WOLF)
     (DESC "Wolf Medallion")
     (LDESC "The witcher medallion is not only an insignia of the profession -- it is also one of its tools. It has numerous useful capabilities that are acesible, of course, only to the one who possesses the necessary knowledge and training. First of all, it reacts to the presence of sorcerous auras in the immediate surroundings, making the bearer aware of nearby spell casting, active illusions, or magical creatures. It also warns the owner of sudden dangers, thus providing an additional moment to react.")
     (IN GENERIC-OBJECTS)
