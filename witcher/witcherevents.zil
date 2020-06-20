@@ -385,7 +385,7 @@
 				<REPEAT ()
 					<TALK-HIGHLIGHT-PERSON .PERSON "">
 					<CRLF>
-					<TELL "Are you here about the bounty (" T .BOUNTY ")?" CR>
+					<TELL "Are you here about the bounty (" D .BOUNTY ")?" CR>
 					<TELL "1 - Yes, tell me more about this." CR>
 					<TELL "2 - I accept the bounty." CR>
 					<TELL "3 - Goodbye for now." CR>
