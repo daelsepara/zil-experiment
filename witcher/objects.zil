@@ -19,3 +19,11 @@
 	(SYNONYM BOTTLE WINE)
 	(ADJECTIVE EXPENSIVE)
 	(FLAGS TAKEBIT)>
+
+<OBJECT WHITE-ORCHARD-BOUNTY-BOARD
+	(IN WHITE-ORCHARD-TOWN)
+	(SYNONYM BOARD ANNOUNCEMENTS ANNOUNCEMENT)
+	(ADJECTIVE BOUNTY)
+	(DESC "White Orchard Announcement Board")
+	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
+	(FLAGS READBIT SURFACEBIT)>

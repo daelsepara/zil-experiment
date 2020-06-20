@@ -2,25 +2,34 @@
 "Override"
 
 <SET REDEFINE T>
+
+<ROUTINE LINE-ERASE (ROW)
+	<CURSET .ROW 1>
+	<DO (I <LOWCORE SCRH> 1 -1) <PRINTC !\ >>
+	<CURSET .ROW 1>>
+
 <ROUTINE UPDATE-STATUS-LINE ("AUX" WIDTH)
+	<SPLIT 2>
 	<SCREEN 1>
+	<SET WIDTH <LOWCORE SCRH>>
 	<HLIGHT ,H-INVERSE>
-	<FAKE-ERASE>
+	<LINE-ERASE 1>
 	<TELL !\ >
 	<COND (,HERE-LIT <TELL D ,HERE>)(ELSE <TELL %,DARKNESS-STATUS-TEXT>)>
 	<TELL " - " <COND (,DAYTIME "Day")(ELSE "Night")>>
-	<COND (,RIDING-VEHICLE <TELL " (Riding " D ,CURRENT-VEHICLE ")">)>
-	<SET WIDTH <LOWCORE SCRH>>
-	<CURSET 1 <- .WIDTH 50>>
+	<CURSET 1 <- .WIDTH 30>>
 	<TELL "Health: " N ,WITCHER-HEALTH>
-	<CURSET 1 <- .WIDTH 37>>
+	<CURSET 1 <- .WIDTH 15>>
 	<TELL "Food: " N ,WITCHER-FOOD>
-	<CURSET 1 <- .WIDTH 26>>
+	<LINE-ERASE 2>
+	<TELL !\ >
+	<COND (,RIDING-VEHICLE <TELL "(Riding " D ,CURRENT-VEHICLE ")">)>
+	<CURSET 2 <- .WIDTH 29>>
 	<TELL "Score: " N ,SCORE>
-	<CURSET 1 <- .WIDTH 13>>
+	<CURSET 2 <- .WIDTH 16>>
 	<TELL "Moves: " N ,MOVES>
 	<SCREEN 0>
-	<HLIGHT ,H-NORMAL>>
+	<HLIGHT 0>>
 
 ;----------------------
 "Death Routines"
@@ -29,7 +38,7 @@
 	<CRLF>
 	<JIGS-UP "In all your years killing monsters, you have not found something you could not overcome until today.">>
 
-<ROUTINE DEATH-FATIGUE ()
+<ROUTINE DEATH-HEALTH ()
 	<CRLF>
 	<JIGS-UP "In all your years killing monsters, you never expected that you could die from poor health." >>
 
@@ -38,7 +47,6 @@
 
 <ROUTINE I-DAYNIGHT-CYCLE ()
 	<SETG DAYTIME <NOT ,DAYTIME>>
-	<CRLF>
 	<HLIGHT ,H-BOLD>
 	<COND (,DAYTIME
 		<TELL "[Night turns to day]">
@@ -49,24 +57,14 @@
 	<CRLF>
 	<START-DAY-NIGHT-CYCLE>>
 
-<ROUTINE I-WITCHER-EAT ()
-	<WITCHER-EAT>
-	<QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS>>
-
 <ROUTINE START-DAY-NIGHT-CYCLE ()
 	<QUEUE I-DAYNIGHT-CYCLE <+ DAY-LENGTH 1>>>
 
-<ROUTINE START-EATING-CYCLE ()
-	<QUEUE I-WITCHER-EAT WITCHER-EAT-TURNS>>
-
-<ROUTINE STOP-EATING-CYCLE ()
-	<DEQUEUE I-WITCHER-EAT>>
-
 <ROUTINE I-OIL-IN-STEEL-DEPLETES ()
-	<COND (<FIRST? ,STEEL-SWORD> <TELL T <FIRST? STEEL-SWORD> " wears off." CR> <CLEAN-SWORD ,STEEL-SWORD T>)>>
+	<COND (<FIRST? ,STEEL-SWORD> <HLIGHT ,H-BOLD> <TELL "[" T <FIRST? STEEL-SWORD> " wears off]" CR> <CLEAN-SWORD ,STEEL-SWORD T> <HLIGHT 0>)>>
 
 <ROUTINE I-OIL-IN-SILVER-DEPLETES ()
-	<COND (<FIRST? ,SILVER-SWORD> <TELL T <FIRST? SILVER-SWORD> " wears off." CR> <CLEAN-SWORD ,SILVER-SWORD T>)>>
+	<COND (<FIRST? ,SILVER-SWORD> <HLIGHT ,H-BOLD> <TELL "[" T <FIRST? SILVER-SWORD> " wears off]" CR> <CLEAN-SWORD ,SILVER-SWORD T> <HLIGHT 0>)>>
 
 ;----------------------
 "Witcher actions"
@@ -119,7 +117,7 @@
 	)>>
 
 <ROUTINE INVESTIGATE-CLUE (CLUE CLUE-TABLE CLUE-NUM)
-    <COND (<EQUAL? ,PRSO .CLUE> <PUT .CLUE-TABLE .CLUE-NUM T>)>>
+    <COND (<EQUAL? ,PRSO .CLUE> <PUT .CLUE-TABLE .CLUE-NUM T> <FSET ,PRSO ,TOUCHBIT>)>>
 
 <ROUTINE REMOVE-AND-APPLY (OIL SWORD)
 	<COND (<FIRST? .SWORD>
@@ -136,7 +134,6 @@
 		<WITCHER-HEAL WITCHER-HEALING-RATE>
 	)(ELSE
 		<TELL "[... Feeling hungry, you decide to eat but you find that you do not have any food from your supplies.]" CR>
-		<WITCHER-HEALTH-DAMAGE WITCHER-FATIGUE-RATE "hunger">
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
@@ -289,10 +286,10 @@
 	)>>
 
 <ROUTINE WITCHER-HEALTH-DAMAGE (AMT REASON)
-	<TELL "... your " .REASON " hits you for " N .AMT " points of damage." CR CR>
+	<TELL "... " .REASON " hits you for " N .AMT " points of damage." CR CR>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
-		<DEATH-FATIGUE>
+		<DEATH-HEALTH>
 	)>>
 
 ;----------------------
@@ -383,7 +380,6 @@
 				<COND (<NOT <CHECK-BOUNTY .BOUNTY ,PRSI ,PRSO>>
 					<RETURN>
 				)>
-				<STOP-EATING-CYCLE>
 				<REPEAT ()
 					<TALK-HIGHLIGHT-PERSON .PERSON "">
 					<CRLF>
@@ -397,13 +393,11 @@
 					<TALK-RESPONSE .KEY !\1 .TEXT ,PRSO>
 					<COND (<EQUAL? .KEY !\2>
 						<ACCEPT-BOUNTY .BOUNTY ,PRSO>
-						<START-EATING-CYCLE>
 						<RETURN>
 					)(<EQUAL? .KEY !\3>
 						<CRLF>
 						<TALK-HIGHLIGHT-PERSON .PERSON "Bye!">
 						<CRLF>
-						<START-EATING-CYCLE>
 						<RTRUE>
 					)>
 					<CRLF>
@@ -426,7 +420,6 @@
 	)>
 	<COND (<OR <NOT .WARES> <NOT .PRICELIST> <NOT .MERCHANT>> <RETURN>)>
 	<SET ITEMS <GET .WARES 0>>
-	<STOP-EATING-CYCLE>
 	<REPEAT ()
 		<CRLF>
 		<TALK-HIGHLIGHT-PERSON .MERCHANT "Greetings, Witcher! Can I interest you in:">
@@ -468,7 +461,6 @@
 			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .MERCHANT "Bye!">
 			<CRLF>
-			<START-EATING-CYCLE>
 			<RTRUE>
 		)>
 		<UPDATE-STATUS-LINE>
@@ -479,7 +471,6 @@
 		<NEED-TO-DISMOUNT>
 		<RTRUE>
 	)>
-	<STOP-EATING-CYCLE>
 	<REPEAT ()
 		<CRLF>
 		<TALK-HIGHLIGHT-PERSON .SMITH "Greetings, Witcher! Can I help you with:">
@@ -526,7 +517,6 @@
 			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .SMITH "Bye!">
 			<CRLF>
-			<START-EATING-CYCLE>
 			<RTRUE>
 		)>
 	>>
@@ -566,13 +556,29 @@
 <ROUTINE CHECK-TRAVEL-FATIGUE ()
 	<COND (<NOT ,RIDING-VEHICLE>
 		<TELL "A long time passed before you arrived." CR CR>
-		<WITCHER-HEALTH-DAMAGE WITCHER-FATIGUE-RATE "fatigue">
+		<TIME-PASSES WITCHER-TRAVEL-TIME>
 	)(ELSE
 		<MOVE ,CURRENT-VEHICLE ,HERE>
 	)>>
 
 <ROUTINE DESCRIBE-LOCATION (LOC)
 	<TELL <GETP .LOC ,P?LDESC> CR>>
+
+<ROUTINE DESCRIBE-EXITS (LOC)
+	<COND (<NOT .LOC> <RETURN>)>
+	<CRLF><HLIGHT ,H-BOLD>
+	<TELL "Exits">
+	<HLIGHT 0>
+	<CRLF>
+	<COND (<GETP .LOC ,P?NW> <TELL "Northwest: " D <GETP .LOC ,P?NW> CR>)>
+	<COND (<GETP .LOC ,P?NORTH> <TELL "North: " D <GETP .LOC ,P?NORTH> CR>)>
+	<COND (<GETP .LOC ,P?NE> <TELL "Northeast: " D <GETP .LOC ,P?NE> CR>)>
+	<COND (<GETP .LOC ,P?WEST> <TELL "West: " D <GETP .LOC ,P?WEST> CR>)>
+	<COND (<GETP .LOC ,P?EAST> <TELL "East: " D <GETP .LOC ,P?EAST> CR>)>
+	<COND (<GETP .LOC ,P?SW> <TELL "Northwest: " D <GETP .LOC ,P?SW> CR>)>
+	<COND (<GETP .LOC ,P?SOUTH> <TELL "North: " D <GETP .LOC ,P?SOUTH> CR>)>
+	<COND (<GETP .LOC ,P?SE> <TELL "Northeast: " D <GETP .LOC ,P?SE> CR>)>
+	<RTRUE>>
 
 <ROUTINE SEARCH-LOCATION (LOC "AUX" CURRENTOBJ)
 	<COND (<AND <FSET? ,WOLF-MEDALLION ,WEARBIT> <FSET? ,WOLF-MEDALLION ,WORNBIT>>

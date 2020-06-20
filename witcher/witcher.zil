@@ -1,6 +1,6 @@
 "ZIL Witcher"
 
-<CONSTANT GAME-BANNER "ZIL Witcher|Experiments with ZIL|By SD Separa (2020)||Inspired by the Witcher Games by CD Projekt Red|">
+<CONSTANT GAME-BANNER "Geralt, the Professional|By SD Separa (2020)||Inspired by the Witcher Games by CD Projekt Red|">
 <CONSTANT RELEASEID 1>
 <VERSION XZIP>
 
@@ -29,6 +29,7 @@
 	<TELL "------------------------------------------------------" CR>>
 
 <ROUTINE INIT ()
+	<CRLF><CRLF><CRLF>
 	<INIT-STATUS-LINE>
 	<V-VERSION>
 	<CRLF>
@@ -41,5 +42,4 @@
 	<MOVE ,ROACH ,HERE>
 	<V-LOOK>
 	<START-DAY-NIGHT-CYCLE>
-	<START-EATING-CYCLE>
 	<SETG WITCHER-HEALTH ,WITCHER-MAX-HEALTH>>

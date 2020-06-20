@@ -1,5 +1,5 @@
 <OBJECT BOUNTY-BANDITS
-    (DESC "Bounty: Raid Bandit Camp")
+    (DESC "Bounty (Raid Bandit Camp)")
     (ADJECTIVE BANDIT BANDITS)
     (SYNONYM BOUNTY)
     (TEXT "Groups of bandits are robbing, pillaging and looting around White Orchard. Townsfolk are advised to travel in large groups for their own safety. Talk to the magistrate at the Nilfgaardian outpost.")
@@ -15,8 +15,8 @@
     (FLAGS TAKEBIT READBIT BOUNTYBIT)>
 
 <OBJECT BOUNTY-WHITE-ORCHARD
-    (IN WHITE-ORCHARD-TOWN)
-    (DESC "Bounty: Beast of White Orchard")
+    (IN WHITE-ORCHARD-BOUNTY-BOARD)
+    (DESC "Bounty (Beast of White Orchard)")
     (ADJECTIVE BEAST)
     (SYNONYM BOUNTY)
     (TEXT "A vicious beast is terrorizing the White Orchard area. Travelling in and out of town is forbidden. Merchants should comply. Look for the alderman at White Orchard for further information.")
@@ -32,8 +32,8 @@
     (FLAGS TAKEBIT READBIT BOUNTYBIT)>
 
 <OBJECT BOUNTY-WHITE-ORCHARD-INFESTATION
-    (IN WHITE-ORCHARD-TOWN)
-    (DESC "Bounty: Farm infestation")
+    (IN WHITE-ORCHARD-BOUNTY-BOARD)
+    (DESC "Bounty (Farm infestation)")
     (ADJECTIVE FARM INFESTATION)
     (SYNONYM BOUNTY)
     (TEXT "A farm outside White Orchard is having an infestation problem. He cannot plant his crops nor harvest them until this is resolved. Look for the farmer north west of the town.")

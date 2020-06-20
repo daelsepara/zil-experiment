@@ -2,7 +2,7 @@
 	(LOC ROOMS)
 	(DESC "Deep inside the forest")
 	(WEST TO EDGE-OF-FOREST)
-	(LDESC "The thick foliage almost covers the entire area in shadows.||The path west takes you out of the forest.")
+	(LDESC "The thick foliage almost covers the entire area in shadows.")
 	(ACTION DETECT-OBJECTS)
 	(MONSTER NEKKER)
 	(THINGS
@@ -15,7 +15,7 @@
 	(DESC "Forest")
 	(WEST TO CAMP-SITE)
 	(EAST TO DEEP-FOREST)
-	(LDESC "A dense thicket forms at the edge of the clearing.||The path west leads back to the camp. To the east lies the deep forest.")
+	(LDESC "A dense thicket forms at the edge of the clearing.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS
 		NONE (FOOD MEAT) FOOD-F
@@ -27,7 +27,7 @@
 	(DESC "Campsite")
 	(WEST TO BATTLE-FIELD)
 	(EAST TO EDGE-OF-FOREST)
-	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.||To the east lies the forest. To the west is an open field where a recent battle took place.")
+	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -37,7 +37,7 @@
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.||The camp site lies to the east.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -47,7 +47,7 @@
 	(DESC "Cross Roads")
 	(EAST TO BATTLE-FIELD)
 	(WEST TO WHITE-ORCHARD-TOWN)
-	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.||The road to the west leads to the town of White Orchard.")
+	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.")
 	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
@@ -59,7 +59,7 @@
 	(EAST TO CROSSROADS)
 	(WEST TO WEST-OF-WHITE-ORCHARD)
 	(NW TO WHITE-ORCHARD-HUT)
-	(LDESC "A small town bustling with activity.||Following the road to the east will take you back to the cross roads.|Continuing onwards to the west will take you beyond the town on the western frontier.")
+	(LDESC "A small town bustling with activity.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (TOWN INHABITANTS PEOPLE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -69,7 +69,7 @@
 	(DESC "West Frontier")
 	(EAST TO WHITE-ORCHARD-TOWN)
 	(NORTH TO WHITE-ORCHARD-HUT)
-	(LDESC "Outside the town, everything is quiet again on the frontier.||The town is east of here.||You can see a small hut up north.")
+	(LDESC "Outside the town, everything is quiet again on the frontier.||The town is east of here.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -80,7 +80,7 @@
 	(NORTH TO WHITE-ORCHARD-FARM)
 	(SOUTH TO WEST-OF-WHITE-ORCHARD)
 	(SE TO WHITE-ORCHARD-TOWN)
-	(LDESC "A quiet place, far from the crowd and the noise.||The path south leads to the west frontier outside of the town.|The farm is up north.")
+	(LDESC "A quiet place, far from the crowd and the noise.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (HUT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -89,7 +89,7 @@
 	(LOC ROOMS)
 	(DESC "Farm, outside White Orchard")
 	(SOUTH TO WHITE-ORCHARD-HUT)
-	(LDESC "Several small enclosed plots of land are arranged neatly side by side, each having different crops. A lone scarecrow is at the center. The crops are waiting to be harvested.||The hut lies south from here.")
+	(LDESC "Several small enclosed plots of land are arranged neatly side by side, each having different crops. A lone scarecrow is at the center of the field. The crops are waiting to be harvested.")
 	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
@@ -102,6 +102,7 @@
 		<DESCRIBE-LOCATION ,HERE>
 		<CHECK-FOOD-AVAILABILITY>
 		<SEARCH-LOCATION ,HERE>
+		<DESCRIBE-EXITS ,HERE>
 	)(<EQUAL? .RARG ,M-ENTER>
 		<SPAWN-BOUNTY>
 		<SETG ,LAST-LOC ,HERE>
