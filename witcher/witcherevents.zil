@@ -96,13 +96,15 @@
 		)>
 	)>>
 
+<ROUTINE CHECK-SWORD-DMG (SWORD)
+	<TELL ", deals " N <GETP .SWORD ,P?HIT-DAMAGE> " damage.">>
+
 <ROUTINE CHECK-SWORD-OIL (SWORD)
 	<COND (<FIRST? .SWORD>
 		<TELL "with applied " D <FIRST? .SWORD>>
 	)(ELSE
 		<TELL "with no oils applied">
-	)>
-	<CRLF>>
+	)>>
 
 <ROUTINE CLEAN-SWORD(SWORD "OPT" SILENT)
 	<COND (<EQUAL? .SWORD ,SILVER-SWORD ,STEEL-SWORD>
@@ -278,12 +280,12 @@
 	)>>
 
 <ROUTINE WITCHER-HEAL (AMT)
-	<COND (<L? ,WITCHER-HEALTH WITCHER-MAX-HEALTH>
+	<COND (<L? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
 		<TELL "... you heal " N .AMT " points." CR>
 	)>
 	<SETG WITCHER-HEALTH <+ ,WITCHER-HEALTH .AMT>>
-	<COND (<G? ,WITCHER-HEALTH WITCHER-MAX-HEALTH>
-		<SETG WITCHER-HEALTH WITCHER-MAX-HEALTH>
+	<COND (<G? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
+		<SETG WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
 	)>>
 
 <ROUTINE WITCHER-HEALTH-DAMAGE (AMT REASON)
@@ -472,6 +474,63 @@
 		<UPDATE-STATUS-LINE>
 	>>
 
+<ROUTINE GENERIC-SMITH (SMITH ENHANCEMENTS PRICELIST "AUX" ITEM KEY PRICE DMG)
+	<COND (,RIDING-VEHICLE
+		<NEED-TO-DISMOUNT>
+		<RTRUE>
+	)>
+	<STOP-EATING-CYCLE>
+	<REPEAT ()
+		<CRLF>
+		<TALK-HIGHLIGHT-PERSON .SMITH "Greetings, Witcher! Can I help you with:">
+		<CRLF>
+		<TELL "1 - enhancing your " D ,SILVER-SWORD " (+" N <GET .ENHANCEMENTS 1> " damage, " N <GET .PRICELIST 1> " Orens)" CR>
+		<TELL "2 - enhancing your " D ,STEEL-SWORD " (+" N <GET .ENHANCEMENTS 2> " damage, " N <GET .PRICELIST 2> " Orens)" CR>
+		<TELL "3 - No thanks." CR>
+		<TELL "You are carrying " N ,WITCHER-ORENS " Orens: ">
+		<SET KEY <INPUT 1>>
+		<CRLF>
+		<COND (<EQUAL? .KEY !\1 !\2>
+			<CRLF>
+			<SET ITEM <- .KEY 48>>
+			<SET PRICE <GET .PRICELIST .ITEM>>
+			<SET DMG <GET .ENHANCEMENTS .ITEM>>
+			<TELL "Purchase this enhancement (+" N .DMG " damage, " N .PRICE " Orens)? ">
+			<COND (<YES?>
+				<CRLF>
+				<COND (<L? ,WITCHER-ORENS .PRICE>
+					<TELL "You cannot afford this!" CR>
+				)(ELSE
+					<COND (<EQUAL? .ITEM 1>
+						<COND (<NOT <IN? ,SILVER-SWORD ,PLAYER>>
+							<TELL "You do not have your " D ,SILVER-SWORD " with you!">
+						)(T
+							<SETG ,WITCHER-ORENS <- ,WITCHER-ORENS .PRICE>>
+							<TELL "You bought this enhancement (+" N .DMG " damage for your " D ,SILVER-SWORD>
+							<PUTP ,SILVER-SWORD ,P?HIT-DAMAGE <+ <GETP ,SILVER-SWORD P?HIT-DAMAGE> .DMG>>
+						)>
+					)(T
+						<COND (<NOT <IN? ,STEEL-SWORD ,PLAYER>>
+							<TELL "You do not have your " D ,STEEL-SWORD " with you!">
+						)(T
+							<SETG ,WITCHER-ORENS <- ,WITCHER-ORENS .PRICE>>
+							<TELL "You bought this enhancement (+" N .DMG " damage for your " D ,STEEL-SWORD>
+							<PUTP ,STEEL-SWORD ,P?HIT-DAMAGE <+ <GETP STEEL-SWORD P?HIT-DAMAGE> .DMG>>
+						)>
+					)>
+					<CRLF>
+				)>
+			)>
+		)>
+		<COND (<EQUAL? .KEY !\3>
+			<CRLF>
+			<TALK-HIGHLIGHT-PERSON .SMITH "Bye!">
+			<CRLF>
+			<START-EATING-CYCLE>
+			<RTRUE>
+		)>
+	>>
+
 <ROUTINE TALK-HIGHLIGHT-PERSON (PERSON TEXT)
 	<HLIGHT ,H-BOLD>
 	<TELL D .PERSON>
@@ -643,3 +702,7 @@
 
 <ROUTINE NOTHING-HAPPENS ()
 	<TELL "[Nothing happens]" CR>>
+
+<ROUTINE TIME-PASSES (CYCLES)
+	<SET CYCLES <- .CYCLES 1>>
+	<DO (I 1 .CYCLES) <CLOCKER>>>
