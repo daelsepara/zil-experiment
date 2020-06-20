@@ -8,7 +8,7 @@
 	(THINGS
 		NONE (FOOD MEAT) FOOD-F
 		NONE (FOLIAGE TREE TREES AREA SHADOW SHADOWS FOREST) THINGS-F)
-	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD NARTICLEBIT)>
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <ROOM EDGE-OF-FOREST
 	(LOC ROOMS)
@@ -57,10 +57,45 @@
 	(LOC ROOMS)
 	(DESC "White Orchard")
 	(EAST TO CROSSROADS)
-	(LDESC "A small town bustling with activity.")
+	(WEST TO WEST-OF-WHITE-ORCHARD)
+	(NW TO WHITE-ORCHARD-HUT)
+	(LDESC "A small town bustling with activity.||Following the road to the east will take you back to the cross roads.|Continuing onwards to the west will take you beyond the town on the western frontier.")
 	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (TOWN INHABITANTS PEOPLE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<ROOM WEST-OF-WHITE-ORCHARD
+	(LOC ROOMS)
+	(DESC "West Frontier")
+	(EAST TO WHITE-ORCHARD-TOWN)
+	(NORTH TO WHITE-ORCHARD-HUT)
+	(LDESC "Outside the town, everything is quiet again on the frontier.||The town is east of here.||You can see a small hut up north.")
+	(ACTION DETECT-OBJECTS)
+	(THINGS NONE (FRONTIER) THINGS-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<ROOM WHITE-ORCHARD-HUT
+	(LOC ROOMS)
+	(DESC "Hut outside White Orchard")
+	(NORTH TO WHITE-ORCHARD-FARM)
+	(SOUTH TO WEST-OF-WHITE-ORCHARD)
+	(SE TO WHITE-ORCHARD-TOWN)
+	(LDESC "A quiet place, far from the crowd and the noise.||The path south leads to the west frontier outside of the town.|The farm is up north.")
+	(ACTION DETECT-OBJECTS)
+	(THINGS NONE (HUT) THINGS-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<ROOM WHITE-ORCHARD-FARM
+	(LOC ROOMS)
+	(DESC "Farm, outside White Orchard")
+	(SOUTH TO WHITE-ORCHARD-HUT)
+	(LDESC "Several small enclosed plots of land are arranged neatly side by side, each having different crops. A lone scarecrow is at the center. The crops are waiting to be harvested.||The hut lies south from here.")
+	(ACTION DETECT-OBJECTS)
+	(BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION)
+	(THINGS
+		NONE (CROP CROPS FARM AREA PLOT SCARECROW) THINGS-F
+		NONE (FOOD MEAT) FOOD-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <ROUTINE DETECT-OBJECTS (RARG)
 	<COND (<EQUAL? .RARG ,M-LOOK>

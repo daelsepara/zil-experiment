@@ -12,10 +12,24 @@ Data from:
     (FLAGS READBIT CODEXBIT)
     (ACTION V-READ-CODEX)>
 
+<OBJECT TOPIC-ALGHOULS
+    (DESC "Alghouls")
+    (LDESC "Alghouls differ from normal ghouls in size, strength, coloring and, most importantly, intelligence. Whereas Ghouls and Graveirs are primitive creatures unfit to plan even the simplest ambush, Alghouls and their kindred (such as Cemetaurs) are capable of forethought, and are thus much more dangerous.||Weak against necrophage oil.")
+    (SYNONYM ALGHOUL ALGHOULS)
+    (IN GENERIC-OBJECTS)
+    (FLAGS TOPICBIT)>
+
 <OBJECT TOPIC-GERALT
     (SYNONYM GERALT WHITE-WOLF GWYNBLEIDD)
     (DESC "Geralt of Rivia, the White wolf, Gwynbleidd")
     (LDESC "Known to the elves as Gwynbleidd, and to those seeking his services, as the White Wolf, Geralt is a member of the Wolf School. He is no mere swinger of swords, but thoughtful, cunning, resourceful, and an exceptional warrior. Beneath a rather stoic exterior are murmurings of good humor, a readiness to help out those in distress, an offering of goodwill and a mastery of both his blades to help those requesting hs aid.")
+    (IN GENERIC-OBJECTS)
+    (FLAGS TOPICBIT)>
+
+<OBJECT TOPIC-GHOULS
+    (DESC "Ghouls")
+    (LDESC "Ghouls make up the main body of post-Conjunction relics classified as necrophages, and this includes the larger, more dangerous breads: alghouls, graveirs, and cemetaurs. They are all similar in appearance and have multiple traits in common. These, for example, include stooped posture (some of the more deformed subspecies move about on all fours), hypertrophied pectoral girdles and front limbs, and hands with opposing thumbs and fingers ending in short, blunt claws ideal for burrowing. Their strong jaws and long tongues enable the beasts to easily shatter thick bones and lick them clean of their fevorite delicacy, marrow.||Weak against necrophage oil.")
+    (SYNONYM GHOUL GHOULS)
     (IN GENERIC-OBJECTS)
     (FLAGS TOPICBIT)>
 

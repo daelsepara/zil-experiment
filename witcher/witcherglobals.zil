@@ -6,6 +6,7 @@
 <CONSTANT HP-NEKKER 100>
 <CONSTANT HP-BANDITS 300>
 <CONSTANT HP-GRIFFIN 1500>
+<CONSTANT HP-ALGHOUL 700>
 
 <CONSTANT WITCHER-CONSUMPTION 1>
 <CONSTANT WITCHER-EAT-TURNS 11>
@@ -26,6 +27,7 @@
 <GLOBAL RIDING-VEHICLE FALSE>
 
 <GLOBAL WITCHER-FOOD 20>
+<GLOBAL WITCHER-BOMBS 5>
 <GLOBAL WITCHER-HEALTH 0>
 <GLOBAL WITCHER-ORENS 100>
 <GLOBAL WITCHER-DODGE-PROBABILITY 30>
@@ -36,3 +38,9 @@
 <CONSTANT WHITE-ORCHARD-CONCLUSION "... large, destructive and powerful claws, mutilations by beak-like jaws, and feathers. All signs point to a Griffin. You should report back to ">
 <CONSTANT WHITE-ORCHARD-ALDERMAN-NEWS "The townsfolk are wary and fearful of travelling. People say that a large winged creature is stalking the cross roads. A merchant was recently attack and he barely escaped with his life. Help us Witcher! This beast has already claimed lots of victims.">
 <CONSTANT WHITE-ORCHARD-ALDERMAN-REPORT "We have Griffin problem, huh?. Please deal with this menance then come back again for your reward, Witcher!">
+
+<CONSTANT WHITE-ORCHARD-FARM-CLUES <LTABLE WHITE-ORCHARD-FARM-NEST>>
+<CONSTANT WHITE-ORCHARD-FARM-INVESTIGATIONS <LTABLE FALSE>>
+<CONSTANT WHITE-ORCHARD-FARM-CONCLUSION "... there was a nest of ghouls hidden in the farm. They emerge during the night and prowl about. I have destroyed the nest but the alghoul may return. You should report back to ">
+<CONSTANT WHITE-ORCHARD-FARMER-NEWS "Scarecrows do not seem to scare off the beasts stalking my farm. We cannot proceed with  the harvest. No one wants to go to the farm with those creatures running around!">
+<CONSTANT WHITE-ORCHARD-FARMER-REPORT "Thank you for destroying the nest. But the Alghoul is yet to be destroyed? Please stop this monster then come back for your reward, Witcher!">

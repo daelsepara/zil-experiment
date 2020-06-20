@@ -26,12 +26,20 @@
     (TEXT "Feathers... a curious thing to be found amongst the carnage. The size of these feathers hint at a large, bird-like beast of some kind.")
     (ACTION WHITE-ORCHARD-INVESTIGATION)>
 
+<OBJECT WHITE-ORCHARD-FARM-NEST
+    (DESC "hole on the ground")
+    (FDESC "[On the far edge of the farm, there is a hole on the ground]")
+    (SYNONYM HOLE NEST)
+    (TEXT "This seems to be the source of the infestation. Ghouls tend to emerge from such nests. I should destroy it then wait for the alpha.")
+    (ACTION WHITE-ORCHARD-FARM-INVESTIGATION)
+    (FLAGS DESTRUCTIBLE NOTDESTROYED)>
+
 <ROUTINE WHITE-ORCHARD-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
         <NEED-TO-DISMOUNT>
         <RTRUE>
     )>
-    <COND (<IN? ,GRIFFIN ,HERE>
+    <COND (<FIND-IN ,HERE ,MONSTERBIT>
         <TELL CR "The quarry is here! Now is not the time for that!" CR>
         <RTRUE>
     )(<VERB? EXAMINE>
@@ -48,5 +56,30 @@
             <CHECK-INVESTIGATION ,BOUNTY-WHITE-ORCHARD WHITE-ORCHARD-INVESTIGATIONS WHITE-ORCHARD-CONCLUSION ,WHITE-ORCHARD-ALDERMAN>
             <RTRUE>
         )>
+    )>
+    <RFALSE>>
+
+<ROUTINE WHITE-ORCHARD-FARM-INVESTIGATION ("AUX" TEXT)
+    <COND (,RIDING-VEHICLE
+        <NEED-TO-DISMOUNT>
+        <RTRUE>
+    )>
+    <COND (<FIND-IN ,HERE ,MONSTERBIT>
+        <TELL CR "The quarry is here! Now is not the time for that!" CR>
+        <RTRUE>
+    )(<VERB? EXAMINE>
+        <TELL "You took a look at " T ,PRSO CR>
+        <RTRUE>
+    )(<VERB? LOOK-CLOSELY>
+        <SET TEXT <GETP ,PRSO ,P?TEXT>>
+        <COND (.TEXT
+            <TELL CR T ,PRSO ": [" .TEXT "]" CR>
+            <RTRUE>
+        )>
+    )(<VERB? DROP-BOMB>
+        <V-DROP-BOMB>
+        <INVESTIGATE-CLUE ,WHITE-ORCHARD-FARM-NEST WHITE-ORCHARD-FARM-INVESTIGATIONS 1>
+        <CHECK-INVESTIGATION ,BOUNTY-WHITE-ORCHARD-INFESTATION WHITE-ORCHARD-FARM-INVESTIGATIONS WHITE-ORCHARD-FARM-CONCLUSION ,WHITE-ORCHARD-FARMER>
+        <RTRUE>
     )>
     <RFALSE>>

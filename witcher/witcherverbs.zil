@@ -73,6 +73,20 @@
 		<TELL "There are no monsters here!" CR>
 	)>>
 
+<ROUTINE V-DROP-BOMB ()
+	<COND (<NOT <FSET? ,PRSO ,DESTRUCTIBLE>>
+		<TELL "You can't destroy that!" CR>
+	)(<NOT <FSET? ,PRSO ,NOTDESTROYED>>
+		<TELL T , PRSO " was already destroyed. Nothing remains of it." CR>
+	)(<L? ,WITCHER-BOMBS 1>
+		<TELL "You have nothing to destory " T ,PRSO " with." CR>
+	)(T
+		<TELL "You dropped a bomb on " T ,PRSO " and retreat to a safe location. After some time it explodes, destroying " T, PRSO CR>
+		<CLOCKER>
+		<FCLEAR ,PRSO ,NOTDESTROYED>
+		<SETG WITCHER-BOMBS <- ,WITCHER-BOMBS 1>>
+	)>>
+
 <ROUTINE V-EXAMINE-TOPIC ()
 	<COND (<NOT <FSET? ,PRSO TOPICBIT>>
 		<PERFORM ,V?LOOK-CLOSELY ,PRSO>
@@ -158,6 +172,8 @@
 			<SET W <AND <GETB ,LEXBUF 1> <GET ,LEXBUF 1>>>
 		)>
 		<COND
+			(<EQUAL? .W ,W?ALGHOULS ,W?ALGHOUL ,ALGHOUL ,TOPIC-ALGHOULS> <PRINT-TOPIC ,TOPIC-ALGHOULS>)
+			(<EQUAL? .W ,W?GHOULS ,W?GHOUL ,TOPIC-GHOULS> <PRINT-TOPIC ,TOPIC-GHOULS>)
 			(<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
 			(<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
 			(<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,WITCHER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
@@ -263,6 +279,7 @@
 		<TELL "Steel sword: ">
 		<CHECK-SWORD-OIL ,STEEL-SWORD>
 	)>
+	<TELL "Bombs: " N ,WITCHER-BOMBS CR>
 	<COND (<AND ,RIDING-VEHICLE ,CURRENT-VEHICLE>
 		<TELL "You are currently riding " T ,CURRENT-VEHICLE CR>
 	)(ELSE

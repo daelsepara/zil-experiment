@@ -15,7 +15,7 @@
     (FLAGS TAKEBIT READBIT BOUNTYBIT)>
 
 <OBJECT BOUNTY-WHITE-ORCHARD
-    (IN PLAYER)
+    (IN WHITE-ORCHARD-TOWN)
     (DESC "Bounty: Beast of White Orchard")
     (ADJECTIVE BEAST WHITE-ORCHARD)
     (SYNONYM BOUNTY)
@@ -29,4 +29,21 @@
     (BOUNTY-LOC CROSSROADS)
     (BOUNTY-MONSTER GRIFFIN)
     (VALUE 500)
+    (FLAGS TAKEBIT READBIT BOUNTYBIT)>
+
+<OBJECT BOUNTY-WHITE-ORCHARD-INFESTATION
+    (IN WHITE-ORCHARD-TOWN)
+    (DESC "Bounty: Farm infestation")
+    (ADJECTIVE FARM INFESTATION)
+    (SYNONYM BOUNTY)
+    (TEXT "A farm outside White Orchard is having an infestation problem. He cannot plant his crops nor harvest them until this is resolved. Look for the farmer north east of the town.")
+    (SIZE 0)
+    (BOUNTY-REWARD 800)
+    (BOUNTY-ACCEPTED FALSE)
+    (BOUNTY-INVESTIGATED FALSE)
+    (BOUNTY-REPORTED FALSE)
+    (BOUNTY-COMPLETED FALSE)
+    (BOUNTY-LOC WHITE-ORCHARD-FARM)
+    (BOUNTY-MONSTER ALGHOUL)
+    (VALUE 100)
     (FLAGS TAKEBIT READBIT BOUNTYBIT)>
