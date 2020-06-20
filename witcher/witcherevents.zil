@@ -422,55 +422,54 @@
 		<NEED-TO-DISMOUNT>
 		<RTRUE>
 	)>
-    <COND (<OR <NOT .WARES> <NOT .PRICELIST> <NOT .MERCHANT>> <RETURN>)>
-    <SET ITEMS <GET .WARES 0>>
-    <STOP-EATING-CYCLE>
-    <REPEAT ()
-        <CRLF>
-        <TALK-HIGHLIGHT-PERSON .MERCHANT "Greetings, Witcher! Can I interest you in:">
-        <CRLF>
-        <DO (I 1 .ITEMS)
-            <TELL N .I " - " D <GET .WARES .I> " (" N <GET .PRICELIST .I> " Orens)" CR>
-        >
-        <TELL N <+ .ITEMS 1> " - No thanks" CR>
-        <TELL "You are carrying " N ,WITCHER-ORENS " Orens: ">
-        <SET KEY <INPUT 1>>
-        <CRLF>
-        <COND (<AND <G? .KEY 48> <L? .KEY <+ .ITEMS 49>>>
-            <SET ITEM <- .KEY 48>>
-            <CRLF>
-            <TALK-HIGHLIGHT-PERSON .MERCHANT "Purchase ">
-            <TELL D <GET .WARES .ITEM> " (" N <GET .PRICELIST .ITEM> " Orens)? ">
-            <COND (<YES?>
-                <COND (<L? ,WITCHER-ORENS <GET .PRICELIST .ITEM>>
-                    <TELL "You can't afford " T <GET .WARES .ITEM> "!" CR>
-                )(ELSE
-                    <COND (<FSET? <GET .WARES .ITEM> ,TAKEBIT>
-                        <COND (<IN? <GET .WARES .ITEM> ,PLAYER>
-                            <TELL "You already have " T <GET .WARES .ITEM> "!" CR>
-                        )(ELSE
-                            <SETG ,WITCHER-ORENS <- ,WITCHER-ORENS <GET .PRICELIST .ITEM>>>
-                            <TELL "You bought " T <GET .WARES .ITEM> CR>
-                            <MOVE <GET .WARES .ITEM> ,PLAYER>
-                        )>
-                    )(
-                        <SETG ,WITCHER-ORENS <- ,WITCHER-ORENS <GET .PRICELIST .ITEM>>>
-                        <TELL "You bought " T <GET .WARES .ITEM> CR>
-                        <COND (<EQUAL? <GET .WARES .ITEM> ,DUMMY-FOOD> <SETG ,WITCHER-FOOD <+ ,WITCHER-FOOD 1>>)>
-                        <COND (<EQUAL? <GET .WARES .ITEM> ,DUMMY-BOMB> <SETG ,WITCHER-BOMBS <+ ,WITCHER-BOMBS 1>>)>
-                    )>
-                )>
-            )>
-        )>
-        <COND (<EQUAL? .KEY <+ .ITEMS 49>>
-            <CRLF>
-            <TALK-HIGHLIGHT-PERSON .MERCHANT "Bye!">
-            <CRLF>
-            <START-EATING-CYCLE>
-            <RTRUE>
-        )>
+	<COND (<OR <NOT .WARES> <NOT .PRICELIST> <NOT .MERCHANT>> <RETURN>)>
+	<SET ITEMS <GET .WARES 0>>
+	<STOP-EATING-CYCLE>
+	<REPEAT ()
+		<CRLF>
+		<TALK-HIGHLIGHT-PERSON .MERCHANT "Greetings, Witcher! Can I interest you in:">
+		<CRLF>
+		<DO (I 1 .ITEMS)
+			<TELL N .I " - " D <GET .WARES .I> " (" N <GET .PRICELIST .I> " Orens)" CR>
+		>
+		<TELL N <+ .ITEMS 1> " - No thanks" CR>
+		<TELL "You are carrying " N ,WITCHER-ORENS " Orens: ">
+		<SET KEY <INPUT 1>>
+		<CRLF>
+		<COND (<AND <G? .KEY 48> <L? .KEY <+ .ITEMS 49>>>
+			<SET ITEM <- .KEY 48>>
+			<CRLF>
+			<TALK-HIGHLIGHT-PERSON .MERCHANT "Purchase ">
+			<TELL D <GET .WARES .ITEM> " (" N <GET .PRICELIST .ITEM> " Orens)? ">
+			<COND (<YES?>
+				<COND (<L? ,WITCHER-ORENS <GET .PRICELIST .ITEM>>
+					<TELL "You can't afford " T <GET .WARES .ITEM> "!" CR>
+				)(ELSE
+					<COND (<FSET? <GET .WARES .ITEM> ,TAKEBIT>
+						<COND (<IN? <GET .WARES .ITEM> ,PLAYER>
+							<TELL "You already have " T <GET .WARES .ITEM> "!" CR>
+						)(ELSE
+							<SETG ,WITCHER-ORENS <- ,WITCHER-ORENS <GET .PRICELIST .ITEM>>>
+							<TELL "You bought " T <GET .WARES .ITEM> CR>
+							<MOVE <GET .WARES .ITEM> ,PLAYER>
+						)>
+					)(
+						<SETG ,WITCHER-ORENS <- ,WITCHER-ORENS <GET .PRICELIST .ITEM>>>
+						<TELL "You bought " T <GET .WARES .ITEM> CR>
+						<COND (<EQUAL? <GET .WARES .ITEM> ,DUMMY-FOOD> <SETG ,WITCHER-FOOD <+ ,WITCHER-FOOD 1>>)>
+						<COND (<EQUAL? <GET .WARES .ITEM> ,DUMMY-BOMB> <SETG ,WITCHER-BOMBS <+ ,WITCHER-BOMBS 1>>)>
+					)>
+				)>
+			)>
+		)>
+		<COND (<EQUAL? .KEY <+ .ITEMS 49>>
+			<CRLF>
+			<TALK-HIGHLIGHT-PERSON .MERCHANT "Bye!" CR>
+			<START-EATING-CYCLE>
+			<RTRUE>
+		)>
 		<UPDATE-STATUS-LINE>
-    >>
+	>>
 
 <ROUTINE TALK-HIGHLIGHT-PERSON (PERSON TEXT)
 	<HLIGHT ,H-BOLD>
