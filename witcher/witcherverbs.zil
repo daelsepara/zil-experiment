@@ -119,6 +119,10 @@
 	<TELL "You don't see that here." CR>>
 
 <ROUTINE V-MEDITATE ("AUX" CYCLES)
+	<COND (<FIND-IN ,HERE ,MONSTERBIT>
+		<TELL CR "You cannot meditate when a monster is around!" CR>
+		<RTRUE>
+	)>
 	<SET CYCLES <- WITCHER-MEDITATE-CYCLE 1>>
 	<COND(,RIDING-VEHICLE <PERFORM ,V?UNMOUNT>)>
 	<TELL "You meditate .." CR>
@@ -131,7 +135,7 @@
 	<START-EATING-CYCLE>
 	<SETG ,WITCHER-HEALTH WITCHER-MAX-HEALTH>
 	<TELL "[Some time passed]" CR CR>
-	<PERFORM ,V?LOOK>>
+	<GOTO ,HERE>>
 
 <ROUTINE V-READ-CODEX ("AUX" W (STOP FALSE))
 	<COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
