@@ -453,7 +453,7 @@
 							<TELL "You bought " T <GET .WARES .ITEM> CR>
 							<MOVE <GET .WARES .ITEM> ,PLAYER>
 						)>
-					)(
+					)(T
 						<SETG ,WITCHER-ORENS <- ,WITCHER-ORENS <GET .PRICELIST .ITEM>>>
 						<TELL "You bought " T <GET .WARES .ITEM> CR>
 						<COND (<EQUAL? <GET .WARES .ITEM> ,DUMMY-FOOD> <SETG ,WITCHER-FOOD <+ ,WITCHER-FOOD 1>>)>
