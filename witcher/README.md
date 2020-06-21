@@ -13,6 +13,21 @@ Our goals are to implement these features
 - [X] travelling with or without Roach (12 June 2020)
 - [X] eating/drinking food and/or potions and decoctions (13 June 2020, eating)
 - [X] monster bounties (19 June 2020)
+- [X] mechanisms for generic NPCs (blacksmith, alchemist, merchant) (20 June 2020)
+
+### Phase 2 goals (Starting 22 June 2020)
+
+- [ ] random money drops/pickups
+- [ ] armorer NPC
+- [ ] non-monster-killing quests
+- [ ] superior versions of oils
+- [ ] non-bounty related NPC dialogs
+- [ ] other interesting objects
+
+### Phase 3 (TBD)
+
+- [ ] other types of silver/steel swords
+- [ ] overall story or plot arc
 
 ## Compiling and running
 
