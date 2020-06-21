@@ -170,8 +170,8 @@
 			<HLIGHT ,H-BOLD><TELL "What are you looking for in the codex?">
 			<HLIGHT 0><TELL " (Type "><HLIGHT ,H-BOLD><TELL "CLOSE"><HLIGHT 0><TELL " to exit codex)" CR>
 			<READLINE>
-			<SET W <GETWORD? 1>>
-			<SET W2 <GETWORD? 2>>
+			<SET W <GET-WORD 1>>
+			<SET W2 <GET-WORD 2>>
 		)>
 		<COND
 			(<EQUAL? .W ,W?ALGHOULS ,W?ALGHOUL ,ALGHOUL ,TOPIC-ALGHOULS> <PRINT-TOPIC ,TOPIC-ALGHOULS>)
