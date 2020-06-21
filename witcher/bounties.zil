@@ -36,7 +36,7 @@
     (DESC "Bounty: Farm infestation")
     (ADJECTIVE FARM INFESTATION)
     (SYNONYM BOUNTY)
-    (TEXT "A farm outside White Orchard is having an infestation problem. He cannot plant his crops nor harvest them until this is resolved. Look for the farmer north west of the town.")
+    (TEXT "A farmer near White Orchard is having an infestation problem. He cannot plant his crops nor harvest them until this is resolved. Look for the farmer north west of the town.")
     (SIZE 0)
     (BOUNTY-REWARD 800)
     (BOUNTY-ACCEPTED FALSE)
