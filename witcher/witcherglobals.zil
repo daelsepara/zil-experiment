@@ -18,6 +18,7 @@
 
 <CONSTANT ATTACK-DESCRIPTIONS <LTABLE 2 "attack" "swing at" "hack at" "swing at" "hit" >>
 <CONSTANT BOUNTY-FLAG <TABLE "ACCEPTED" "INVESTIGATED" "REPORTED" "COMPLETED">>
+<CONSTANT EDGE-OF-THE-WORLD <LTABLE 2 "You have reaced the end of the known world." "You are getting nowhere." "You decided against moving in that direction." "There is nothing for you there.">>
 <CONSTANT ROACH-RESPONSES <LTABLE 2 "clueless" "amused" "fascinated" "bored" "interested" "enthusiastic">>
 <CONSTANT THING-DESCRIPTIONS <LTABLE 2 "nothing special" "nothing extraordinary" "something terribly mundane" "nothing noteworthy">>
 

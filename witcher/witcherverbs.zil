@@ -226,8 +226,11 @@
 
 <ROUTINE V-SUMMON ()
 	<COND (<EQUAL? <LOC ,PLAYER> <LOC ,ROACH>>
-		<COND (,RIDING-VEHICLE <TELL "You are currently riding " T ,CURRENT-VEHICLE>)(T <TELL "Roach is already here." CR>)>
+		<COND (,RIDING-VEHICLE <TELL "You are currently riding " T ,CURRENT-VEHICLE>)
+		(<AND ,PRSO <NOT <EQUAL? ,PRSO ,ROACH ,TOPIC-ROACH>>> <NOTHING-HAPPENS>)
+		(<TELL "Roach is already here." CR>)>
 	)(ELSE
+		<COND (<AND ,PRSO <NOT <EQUAL? ,PRSO ,ROACH ,TOPIC-ROACH>>> <NOTHING-HAPPENS>  <RTRUE>)>
 		<MOVE ,ROACH <LOC ,PLAYER>>
 		<FCLEAR ,ROACH ,NDESCBIT>
 		<TELL "Roach arrives. Whether a short time or long time passed, nobody knows." CR>

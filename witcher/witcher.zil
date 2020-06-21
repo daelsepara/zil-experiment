@@ -5,7 +5,6 @@
 <VERSION XZIP>
 
 <INSERT-FILE "parser">
-
 <INSERT-FILE "witcherglobals">
 <INSERT-FILE "witchersyntax">
 <INSERT-FILE "witcherverbs">
@@ -38,6 +37,7 @@
 	<DRAW-LINE>
 	<CRLF>
 	<SETG HERE ,CAMP-SITE>
+	<SETG LAST-LOC ,HERE>
 	<MOVE ,PLAYER ,HERE>
 	<MOVE ,ROACH ,HERE>
 	<V-LOOK>
