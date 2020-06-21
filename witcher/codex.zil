@@ -19,6 +19,13 @@ Data from:
     (IN GENERIC-OBJECTS)
     (FLAGS TOPICBIT)>
 
+<OBJECT TOPIC-BEARS
+    (DESC "Bears")
+    (LDESC "Bears of any kind are sturdy foes possessing great vitality, and terrible strenth.||Weak agains beast oil.")
+    (SYNONYM BEAR BEARS)
+    (IN GENERIC-OBJECTS)
+    (FLAGS TOPICBIT)>
+
 <OBJECT TOPIC-GERALT
     (SYNONYM GERALT WOLF GWYNBLEIDD)
     (ADJECTIVE WHITE)
@@ -83,3 +90,43 @@ Data from:
     (LDESC "The witcher medallion is not only an insignia of the profession -- it is also one of its tools. It has numerous useful capabilities that are acesible, of course, only to the one who possesses the necessary knowledge and training. First of all, it reacts to the presence of sorcerous auras in the immediate surroundings, making the bearer aware of nearby spell casting, active illusions, or magical creatures. It also warns the owner of sudden dangers, thus providing an additional moment to react.")
     (IN GENERIC-OBJECTS)
     (FLAGS TOPICBIT)>
+
+<ROUTINE READ-CODEX ("AUX" W W2 (STOP FALSE))
+	<COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
+		<TELL "You cannot read " T ,PRSO>
+		<COND (,PRSI
+			<TELL " about " T ,PRSI>
+		)>
+		<CRLF>
+		<RTRUE>
+	)>
+	<REPEAT ()
+		<COND (,PRSI
+			<SET W ,PRSI>
+			<SET .STOP T>
+		)(ELSE
+			<CRLF>
+			<HLIGHT ,H-BOLD><TELL "What are you looking for in the codex?">
+			<HLIGHT 0><TELL " (Type "><HLIGHT ,H-BOLD><TELL "CLOSE"><HLIGHT 0><TELL " to exit codex)" CR>
+			<READLINE>
+			<SET W <GET-WORD 1>>
+			<SET W2 <GET-WORD 2>>
+		)>
+		<COND
+			(<EQUAL? .W ,W?ALGHOULS ,W?ALGHOUL ,ALGHOUL ,TOPIC-ALGHOULS> <PRINT-TOPIC ,TOPIC-ALGHOULS>)
+			(<OR <EQUAL? .W ,W?BEAR ,W?BEARS ,BEAR ,TOPIC-BEARS> <ARE-WORDS ,W?SWAMP ,W?BEAR> <IS-PHRASE ,W?THE ,W?SWAMP ,W?BEAR>> <PRINT-TOPIC ,TOPIC-BEARS>)
+			(<EQUAL? .W ,W?GHOULS ,W?GHOUL ,TOPIC-GHOULS> <PRINT-TOPIC ,TOPIC-GHOULS>)
+			(<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
+			(<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
+			(<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,WITCHER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
+			(<OR <EQUAL? .W ,W?GERALT ,W?GWYNBLEIDD ,W?ME, W?MYSELF ,GERALT ,PLAYER> <IS-PHRASE ,W?GERALT ,W?OF ,W?RIVIA> <IS-PHRASE ,W?THE ,W?WHITE ,W?WOLF> <ARE-WORDS ,W?WHITE ,W?WOLF>> <PRINT-TOPIC ,TOPIC-GERALT>)
+			(<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
+			(<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
+			(<OR <EQUAL? .W ,W?SILVER-SWORD ,W?SILVER-SWORDS ,SILVER-SWORD> <ARE-WORDS ,W?SILVER ,W?SWORD> <ARE-WORDS ,W?SILVER ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
+			(<OR <EQUAL? .W ,W?STEEL-SWORD ,W?STEEL-SWORDS ,STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
+			(<OR <EQUAL? .W ,W?MEDALLION ,W?MEDAL ,WOLF-MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDAL>> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
+			(<EQUAL? .W ,W?CLOSE ,W?QUIT> <TELL CR "[You close the book]" CR><RETURN>)
+			(<TELL CR "[The codex is silent about such things.]" CR>)
+		>
+		<COND (<EQUAL? .STOP T> <RTRUE>)>
+	>>
