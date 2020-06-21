@@ -49,10 +49,12 @@
 	<SETG DAYTIME <NOT ,DAYTIME>>
 	<HLIGHT ,H-BOLD>
 	<COND (,DAYTIME
-		<TELL "[Night turns to day]">
+		<TELL "[Night turns to day">
 	)(ELSE
-		<TELL "[Day turns to night]">
+		<TELL "[Day turns to night">
 	)>
+	<COND (<NOT <FSET? ,HERE ,OUTSIDEBIT>> <TELL " outside">)>
+	<TELL "]">
 	<HLIGHT 0>
 	<CRLF>
 	<START-DAY-NIGHT-CYCLE>>
@@ -132,11 +134,11 @@
 <ROUTINE WITCHER-EAT ()
 	<CRLF>
 	<COND (<G? ,WITCHER-FOOD 0>
-		<TELL "[... Feeling hungry, you decide to eat some food from your supplies.]" CR>
+		<TELL "[... you to eat some food from your supplies.]" CR>
 		<SETG WITCHER-FOOD <- ,WITCHER-FOOD WITCHER-CONSUMPTION>>
 		<WITCHER-HEAL WITCHER-HEALING-RATE>
 	)(ELSE
-		<TELL "[... Feeling hungry, you decide to eat but you find that you do not have any food from your supplies.]" CR>
+		<TELL "[... you do not have any food from your supplies.]" CR>
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
@@ -420,6 +422,7 @@
 				<COND (<NOT <CHECK-BOUNTY .BOUNTY ,PRSI ,PRSO>>
 					<RETURN>
 				)>
+				<FLUSH>
 				<REPEAT ()
 					<TALK-HIGHLIGHT-PERSON .PERSON "">
 					<CRLF>
@@ -462,6 +465,7 @@
 	<COND (<VERB? TALK>
 		<COND (<OR <NOT .WARES> <NOT .PRICELIST> <NOT .MERCHANT>> <RETURN>)>
 		<SET ITEMS <GET .WARES 0>>
+		<FLUSH>
 		<REPEAT ()
 			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .MERCHANT "Greetings, Witcher! Can I interest you in:">
@@ -519,6 +523,7 @@
 		<RTRUE>
 	)>
 	<COND (<VERB? TALK>
+		<FLUSH>
 		<REPEAT ()
 			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .SMITH "Greetings, Witcher! Can I help you with:">
@@ -781,6 +786,9 @@
 	<SET W2 <GET-WORD 2>>
 	<RETURN <AND <EQUAL? .W1 .WORD1> <EQUAL? .W2 .WORD2>>>>
 
+<ROUTINE FLUSH ()
+	<SETG P-CONT 0>>
+
 <ROUTINE IS-PHRASE (WORD1 WORD2 WORD3 "AUX" W1 W2 W3)
 	<COND (<WREQ 3> <RFALSE>)>
 	<SET W1 <GET-WORD 1>>
@@ -789,7 +797,8 @@
 	<RETURN <AND <EQUAL? .W1 .WORD1> <EQUAL? .W2 .WORD2> <EQUAL? .W3 .WORD3>>>>
 
 <ROUTINE NEED-TO-DISMOUNT ()
-	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>>
+	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>
+	<FLUSH>>
 
 <ROUTINE NOTHING-HAPPENS ()
 	<TELL "[Nothing happens]" CR>>

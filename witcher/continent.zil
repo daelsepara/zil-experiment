@@ -12,7 +12,7 @@
 
 <LOCATION DEEP-FOREST
 	(LOC ROOMS)
-	(DESC "Deep inside the forest")
+	(DESC "Deep forest")
 	(WEST TO EDGE-OF-FOREST)
 	(LDESC "The thick foliage almost covers the entire area in shadows.")
 	(MONSTER NEKKER)
@@ -214,6 +214,7 @@
 		<COND (<AND <NOT <FSET? ,HERE ,LIGHTBIT>> <NOT <FIND-IN ,PLAYER ,LIGHTBIT>> <NOT <FIND-IN ,HERE ,LIGHTBIT>> .MONSTER>
 			<CRLF> 
 			<MONSTER-ATTACKS .MONSTER T>
+			<FLUSH>
 		)>
 	)>>
 
@@ -224,13 +225,14 @@
 			<FCLEAR ,HERE ,HASFOOD>
 		)(ELSE
 			<TELL "You have already gathered everything." CR>
+			<FLUSH>
 		)>
 		<RTRUE>
 	)>
 	<THINGS-F>>
 
 <ROUTINE GO-BACK (TEXT)
-	<SETG P-CONT 0>
+	<FLUSH>
 	<HLIGHT ,H-BOLD>
 	<TELL CR .TEXT>
 	<SETG HERE ,LAST-LOC>

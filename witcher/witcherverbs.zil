@@ -47,8 +47,10 @@
 		)>
 		<COND (<AND <NOT <FSET? ,HERE ,LIGHTBIT>> <NOT <FIND-IN ,PLAYER ,LIGHTBIT>> <NOT <FIND-IN ,HERE ,LIGHTBIT>> .MONSTER>
 			<TELL "You cannot enter combat!" CR>
+			<FLUSH>
 			<RTRUE>
 		)>
+		<FLUSH>
 		<SET WEAPON <CHOOSE-WEAPON .MONSTER>>
 		<REPEAT ()
 			<CRLF>
@@ -145,6 +147,7 @@
 		<TELL CR "You cannot meditate when a monster is around!" CR>
 		<RTRUE>
 	)>
+	<FLUSH>
 	<COND(,RIDING-VEHICLE <PERFORM ,V?UNMOUNT>)>
 	<TELL "You meditate .." CR>
 	<DEQUEUE I-OIL-IN-SILVER-DEPLETES>
