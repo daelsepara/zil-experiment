@@ -387,9 +387,10 @@
 			<PUTP .BOUNTY ,P?BOUNTY-REPORTED T>
 		)(ELSE
 			<COND (<NOT <GETP .BOUNTY ,P?BOUNTY-COMPLETED>>
-				<TALK-HIGHLIGHT-PERSON .PERSON "Please come back after you have dealt with the beast for your reward.">
+				<TALK-HIGHLIGHT-PERSON .PERSON "Please come back after you have dealt with ">
+				<TELL T <GETP .BOUNTY ,P?BOUNTY-MONSTER> " for your reward.">
 			)(ELSE
-				<TALK-HIGHLIGHT-PERSON .PERSON "Thanks, witcher! Our town is safe again!">
+				<TALK-HIGHLIGHT-PERSON .PERSON "Thanks, witcher! We are safe again!">
 				<COND (<G? <GETP .BOUNTY ,P?BOUNTY-REWARD> 0>
 					<SETG ,WITCHER-ORENS <+ ,WITCHER-ORENS <GETP .BOUNTY ,P?BOUNTY-REWARD>>>
 					<TELL " Here is your reward. (" N <GETP .BOUNTY ,P?BOUNTY-REWARD> " Orens)">
