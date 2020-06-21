@@ -36,7 +36,7 @@
 	<TELL "Once you were many. Now you are few. Hunters. Killers of the world's filth. Witchers. The ultimate killing machines. Among you, a legend, the one they call Geralt of Rivia, the White Wolf." CR CR "That legend is you." CR CR>
 	<DRAW-LINE>
 	<CRLF>
-	<SETG HERE ,CAMP-SITE>
+	<SETG HERE ,EDGE-OF-BOG>
 	<SETG LAST-LOC ,HERE>
 	<MOVE ,PLAYER ,HERE>
 	<MOVE ,ROACH ,HERE>
