@@ -1,65 +1,54 @@
-<OBJECT BOUNTY-BANDITS
+<OBJECT-TEMPLATE BOUNTY =
+    OBJECT
+        (SYNONYM BOUNTY)
+        (SIZE 0)
+        (BOUNTY-REWARD 0)
+        (BOUNTY-ACCEPTED FALSE)
+        (BOUNTY-INVESTIGATED FALSE)
+        (BOUNTY-REPORTED FALSE)
+        (BOUNTY-COMPLETED FALSE)
+        (BOUNTY-MONSTER NONE)
+        (BOUNTY-LOC NONE)
+        (BOUNTY-UNLOCKS NONE)
+        (VALUE 0)
+        (FLAGS TAKEBIT READBIT BOUNTYBIT)>
+
+<BOUNTY BOUNTY-BANDITS
     (DESC "Bounty: Raid Bandit Camp")
     (ADJECTIVE BANDIT BANDITS)
-    (SYNONYM BOUNTY)
     (TEXT "Groups of bandits are robbing, pillaging and looting around White Orchard. Townsfolk are advised to travel in large groups for their own safety. Talk to the magistrate at the Nilfgaardian outpost.")
-    (SIZE 0)
     (BOUNTY-REWARD 500)
-    (BOUNTY-ACCEPTED FALSE)
-    (BOUNTY-INVESTIGATED FALSE)
-    (BOUNTY-REPORTED FALSE)
-    (BOUNTY-COMPLETED FALSE)
     (BOUNTY-MONSTER BANDITS)
-    (BOUNTY-LOC NONE)
-    (VALUE 100)
-    (FLAGS TAKEBIT READBIT BOUNTYBIT)>
+    (VALUE 100)>
 
-<OBJECT BOUNTY-WHITE-ORCHARD
+<BOUNTY BOUNTY-WHITE-ORCHARD
     (IN WHITE-ORCHARD-BOUNTY-BOARD)
     (DESC "Bounty: Beast of White Orchard")
     (ADJECTIVE BEAST)
-    (SYNONYM BOUNTY)
     (TEXT "A vicious beast is terrorizing the White Orchard area. Travelling in and out of town is forbidden. Merchants should comply. Look for the alderman at White Orchard for further information.")
-    (SIZE 0)
     (BOUNTY-REWARD 1500)
-    (BOUNTY-ACCEPTED FALSE)
-    (BOUNTY-INVESTIGATED FALSE)
-    (BOUNTY-REPORTED FALSE)
-    (BOUNTY-COMPLETED FALSE)
     (BOUNTY-LOC CROSSROADS)
     (BOUNTY-MONSTER GRIFFIN)
-    (VALUE 500)
-    (FLAGS TAKEBIT READBIT BOUNTYBIT)>
+    (VALUE 500)>
 
-<OBJECT BOUNTY-WHITE-ORCHARD-INFESTATION
+<BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION
     (IN WHITE-ORCHARD-BOUNTY-BOARD)
     (DESC "Bounty: Farm infestation")
     (ADJECTIVE FARM INFESTATION)
-    (SYNONYM BOUNTY)
     (TEXT "A farmer near White Orchard is having an infestation problem. He cannot plant his crops nor harvest them until this is resolved. Look for the farmer north west of the town.")
-    (SIZE 0)
     (BOUNTY-REWARD 800)
-    (BOUNTY-ACCEPTED FALSE)
-    (BOUNTY-INVESTIGATED FALSE)
-    (BOUNTY-REPORTED FALSE)
-    (BOUNTY-COMPLETED FALSE)
     (BOUNTY-LOC WHITE-ORCHARD-FARM)
     (BOUNTY-MONSTER ALGHOUL)
-    (VALUE 100)
-    (FLAGS TAKEBIT READBIT BOUNTYBIT)>
+    (VALUE 100)>
 
-<OBJECT BOUNTY-CAVE-BEAR
+<BOUNTY BOUNTY-CAVE-BEAR
     (DESC "Bounty: Cave bear")
     (ADJECTIVE CAVE BEAR)
-    (SYNONYM BOUNTY)
     (TEXT "There is a beast lurking inside a cave in the swamp.")
-    (SIZE 0)
-    (BOUNTY-REWARD 0)
     (BOUNTY-ACCEPTED T)
     (BOUNTY-INVESTIGATED T)
     (BOUNTY-REPORTED T)
-    (BOUNTY-COMPLETED FALSE)
     (BOUNTY-LOC CAVE-LAIR)
     (BOUNTY-MONSTER BEAR)
-    (VALUE 50)
-    (FLAGS BOUNTYBIT)>
+    (BOUNTY-UNLOCKS CAVE-III)
+    (VALUE 50)>

@@ -5,6 +5,9 @@
 <VERSION XZIP>
 
 <INSERT-FILE "parser">
+
+<USE "template">
+
 <INSERT-FILE "witcherglobals">
 <INSERT-FILE "witchersyntax">
 <INSERT-FILE "witcherverbs">
@@ -33,7 +36,7 @@
 	<V-VERSION>
 	<CRLF>
 	<DRAW-LINE>
-	<TELL "Once you were many. Now you are few. Hunters. Killers of the world's filth. Witchers. The ultimate killing machines. Among you, a legend, the one they call Geralt of Rivia, the White Wolf." CR CR "That legend is you." CR CR>
+	<TELL "Once you were many. Now you are few. Hunters. Killers of the world's filth. Witchers. The ultimate killing machines. Among you, a legend, the one they call Geralt of Rivia, the White Wolf.||That legend is you. This world does not need a hero. It needs a professional." CR CR>
 	<DRAW-LINE>
 	<CRLF>
 	<SETG HERE ,CAMP-SITE>

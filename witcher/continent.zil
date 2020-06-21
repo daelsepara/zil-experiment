@@ -1,5 +1,3 @@
-<USE "template">
-
 <OBJECT-TEMPLATE LOCATION =
 	ROOM
 		(NW TO PARTS-UNKNOWN)
@@ -9,14 +7,14 @@
 		(EAST TO PARTS-UNKNOWN)
 		(SW TO PARTS-UNKNOWN)
 		(SOUTH TO PARTS-UNKNOWN)
-		(SE TO PARTS-UNKNOWN)>
+		(SE TO PARTS-UNKNOWN)
+		(ACTION DETECT-OBJECTS)>
 
 <LOCATION DEEP-FOREST
 	(LOC ROOMS)
 	(DESC "Deep inside the forest")
 	(WEST TO EDGE-OF-FOREST)
 	(LDESC "The thick foliage almost covers the entire area in shadows.")
-	(ACTION DETECT-OBJECTS)
 	(MONSTER NEKKER)
 	(THINGS
 		NONE (FOOD MEAT) FOOD-F
@@ -29,7 +27,6 @@
 	(WEST TO CAMP-SITE)
 	(EAST TO DEEP-FOREST)
 	(LDESC "A dense thicket forms at the edge of the clearing.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS
 		NONE (FOOD MEAT) FOOD-F
 		NONE (THICKET CLEARING EDGE PATH FOREST) THINGS-F)
@@ -41,7 +38,6 @@
 	(WEST TO BATTLE-FIELD)
 	(EAST TO EDGE-OF-FOREST)
 	(LDESC "A small campfire is burning underneath a tree. All is quiet except for the crackling sounds of burning wood. The fire keeps the wolves and other would-be predators at bay.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (CAMPFIRE FIRE TREE TREES WOOD WOODS FOREST CAMP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -51,7 +47,6 @@
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -61,7 +56,6 @@
 	(EAST TO BATTLE-FIELD)
 	(WEST TO WHITE-ORCHARD-TOWN)
 	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.")
-	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -74,7 +68,6 @@
 	(NW TO WHITE-ORCHARD-HUT)
 	(NORTH TO NORTH-OF-WHITE-ORCHARD)
 	(LDESC "A small town bustling with activity.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (TOWN INHABITANTS PEOPLE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -85,7 +78,6 @@
 	(WEST TO WHITE-ORCHARD-HUT)
 	(SOUTH TO WHITE-ORCHARD-TOWN)
 	(LDESC "All is quient on the nothern frontier. There is a shop here.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -97,7 +89,6 @@
 	(NE TO NORTH-OF-WHITE-ORCHARD)
 	(SW TO EDGE-OF-BOG)
 	(LDESC "Outside the town, everything is quiet again on the frontier.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -109,7 +100,6 @@
 	(SOUTH TO WEST-OF-WHITE-ORCHARD)
 	(SE TO WHITE-ORCHARD-TOWN)
 	(LDESC "A quiet place, far from the crowd and the noise. There is a small hut here.")
-	(ACTION DETECT-OBJECTS)
 	(THINGS NONE (HUT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -119,7 +109,6 @@
 	(SOUTH TO WHITE-ORCHARD-HUT)
 	(SE TO NORTH-OF-WHITE-ORCHARD)
 	(LDESC "Several small enclosed plots of land are arranged neatly side by side, each having different crops. A lone scarecrow is at the center of the field. The crops are waiting to be harvested.")
-	(ACTION DETECT-OBJECTS)
 	(BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
 		NONE (CROP CROPS FARM AREA PLOT SCARECROW) THINGS-F
@@ -130,8 +119,7 @@
 	(LOC ROOMS)
 	(DESC "Bog")
 	(LDESC "At the edge of the bog, the water is murky and nearly impassable. What monsters lurk beyond?")
-	(ACTION DETECT-OBJECTS)
-	(THINGS <> ( BOG WATER) THINGS-F)
+	(THINGS <> (BOG WATER) THINGS-F)
 	(SW TO SWAMP)
 	(NE TO WEST-OF-WHITE-ORCHARD)
 	(ACTION DETECT-OBJECTS)
@@ -144,7 +132,6 @@
 	(DOWN TO SWAMP-CAVE)
 	(LDESC "Large tree roots twist and intertwine. The area is surrounded by a swamp. There appears to be a cave down here.")
 	(THINGS <> (SWAMP BOG WATER TREES) THINGS-F)
-	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION SWAMP-CAVE
@@ -154,7 +141,6 @@
 	(DOWN TO CAVE-I)
 	(LDESC "You are inside the cave near the entrance.")
 	(THINGS <> (WALLS CAVE) THINGS-F)
-	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT LIGHTBIT ADJACENT)>
 
 <LOCATION CAVE-I
@@ -164,7 +150,6 @@
 	(SOUTH TO CAVE-II)
 	(LDESC "You are inside the cave.")
 	(THINGS <> (WALLS CAVE) THINGS-F)
-	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION CAVE-II
@@ -174,18 +159,26 @@
 	(SOUTH TO CAVE-LAIR)
 	(LDESC "You are inside the cave.")
 	(THINGS <> (WALLS CAVE) THINGS-F)
-	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION CAVE-LAIR
 	(LOC ROOMS)
 	(DESC "Lair")
 	(NORTH TO CAVE-II)
+	(EAST TO CAVE-III)
 	(LDESC "You are inside the lair of some beast.")
 	(BOUNTY BOUNTY-CAVE-BEAR)
 	(THINGS <> (WALLS CAVE LAIR) THINGS-F)
-	(ACTION DETECT-OBJECTS)
 	(FLAGS RLANDBIT ADJACENT)>
+
+<LOCATION CAVE-III
+	(LOC ROOMS)
+	(DESC "Inner Lair")
+	(WEST TO CAVE-LAIR)
+	(LDESC "You are deep inside the inner lair of the beast.")
+	(BOUNTY-COMPLETED BOUNTY-CAVE-BEAR)
+	(THINGS <> (WALLS CAVE LAIR) THINGS-F)
+	(FLAGS RLANDBIT ADJACENT INVISIBLE)>
 
 <ROOM CANNOT-GO
 	(LOC ROOMS)
@@ -196,19 +189,8 @@
 <ROOM PARTS-UNKNOWN
 	(LOC ROOMS)
 	(DESC "Unknown")
-	(ACTION PARTS-UNKOWN-F)
+	(ACTION PARTS-UNKNOWN-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT INVISIBLE)>
-
-<ROUTINE CANNOT-GO-F (RARG)
-	<COND (<EQUAL? .RARG ,M-ENTER>
-		<SETG P-CONT 0>
-		<HLIGHT ,H-BOLD>		
-		<TELL CR "You cannot go that way." CR CR>
-		<HLIGHT 0>
-		<SETG HERE ,LAST-LOC>
-		<MOVE ,PLAYER ,LAST-LOC>
-	)>
-	<RTRUE>>
 
 <ROUTINE DETECT-OBJECTS (RARG "AUX" MONSTER)
 	<COND (<EQUAL? .RARG ,M-LOOK>
@@ -217,6 +199,12 @@
 		<SEARCH-LOCATION ,HERE>
 		<DESCRIBE-EXITS ,HERE>
 	)(<EQUAL? .RARG ,M-ENTER>
+		<COND (<GETP ,HERE ,P?BOUNTY-COMPLETED>
+			<COND (<NOT <GETP <GETP ,HERE ,P?BOUNTY-COMPLETED> ,P?BOUNTY-COMPLETED>>
+				<CANNOT-GO-F ,M-ENTER>
+				<RTRUE>
+			)>
+		)>
 		<SPAWN-BOUNTY>
 		<SPAWN-MONSTER ,HERE>
 		<CHECK-TRAVEL-RESTRICTIONS>
@@ -241,19 +229,31 @@
 	)>
 	<THINGS-F>>
 
-<ROUTINE PARTS-UNKOWN-F (RARG)
+<ROUTINE GO-BACK (TEXT)
+	<SETG P-CONT 0>
+	<HLIGHT ,H-BOLD>
+	<TELL CR .TEXT>
+	<SETG HERE ,LAST-LOC>
+	<MOVE ,PLAYER ,LAST-LOC>>
+
+<ROUTINE CANNOT-GO-F (RARG)
+	<COND (<EQUAL? .RARG ,M-ENTER>
+		<GO-BACK "You cannot go that way.">
+		<HLIGHT 0>
+		<CRLF><CRLF>
+	)>
+	<RTRUE>>
+
+<ROUTINE PARTS-UNKNOWN-F (RARG)
 	<COND (<EQUAL? .RARG ,M-ENTER>
 		<COND (<FSET? ,LAST-LOC ,ADJACENT>
 			<CANNOT-GO-F .RARG>
 			<RTRUE>
 		)>
-		<SETG P-CONT 0>
-		<HLIGHT ,H-BOLD>		
-		<TELL CR <PICK-ONE EDGE-OF-THE-WORLD> " You went back to " T ,LAST-LOC "." CR CR>
+		<GO-BACK <PICK-ONE EDGE-OF-THE-WORLD>>
+		<TELL " You went back to " T ,LAST-LOC "." CR CR>
 		<HLIGHT 0>
 		<INPUT 1>
-		<SETG HERE ,LAST-LOC>
-		<MOVE ,PLAYER ,LAST-LOC>
 	)>
 	<RTRUE>>
 
