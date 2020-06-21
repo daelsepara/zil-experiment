@@ -55,6 +55,7 @@
 	(DESC "Cross Roads")
 	(EAST TO BATTLE-FIELD)
 	(WEST TO WHITE-ORCHARD-TOWN)
+	(NW TO NORTH-OF-WHITE-ORCHARD)
 	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.")
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
@@ -77,6 +78,7 @@
 	(NW TO WHITE-ORCHARD-FARM)
 	(WEST TO WHITE-ORCHARD-HUT)
 	(SOUTH TO WHITE-ORCHARD-TOWN)
+	(SE TO CROSSROADS)
 	(LDESC "All is quient on the nothern frontier. There is a shop here.")
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
