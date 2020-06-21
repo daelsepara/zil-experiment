@@ -39,13 +39,13 @@
 	<CLEAN-SWORD ,PRSO>>
 
 <ROUTINE V-COMBAT-MODE ("AUX" MONSTER (WEAPON NONE) KEY)
-	<SET MONSTER <FIND-IN ,HERE ,MONSTERBIT>>
+	<SET MONSTER <MONSTER-HERE>>
 	<COND (.MONSTER
 		<COND (,RIDING-VEHICLE
 			<NEED-TO-DISMOUNT>
 			<RTRUE>
 		)>
-		<COND (<AND <NOT <FSET? ,HERE ,LIGHTBIT>> <NOT <FIND-IN ,PLAYER ,LIGHTBIT>> <NOT <FIND-IN ,HERE ,LIGHTBIT>> .MONSTER>
+		<COND (<AND <IS-DARK ,HERE ,PLAYER>>
 			<TELL "You cannot enter combat!" CR>
 			<FLUSH>
 			<RTRUE>
@@ -108,7 +108,7 @@
 		<RTRUE>
 	)>
 	
-	<COND (<FSET? ,PRSO ,MONSTERBIT> <TELL "You should read about " D ,PRSO " in the codex." CR> <RTRUE>)>
+	<COND (<IS-MONSTER ,PRSO> <TELL "You should read about " T ,PRSO " in the codex." CR> <RTRUE>)>
 
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
@@ -143,7 +143,7 @@
 	<TELL "You don't see that here." CR>>
 
 <ROUTINE V-MEDITATE ()
-	<COND (<FIND-IN ,HERE ,MONSTERBIT>
+	<COND (<MONSTER-HERE>
 		<TELL CR "You cannot meditate when a monster is around!" CR>
 		<RTRUE>
 	)>
@@ -218,7 +218,7 @@
 			<HMMM>
 			<RTRUE>
 		)>
-		<COND (<FSET? ,PRSO ,MONSTERBIT> <TELL "The monster can't be reasoned with!" CR> <RTRUE>)>
+		<COND (<IS-MONSTER ,PRSO> <TELL T ,PRSO " can't be reasoned with!" CR> <RTRUE>)>
 		<TELL "You talk to " T ,PRSO>
 		<COND (,PRSI
 			<TELL " about " T ,PRSI>

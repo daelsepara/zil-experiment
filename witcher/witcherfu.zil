@@ -47,7 +47,7 @@
         <NEED-TO-DISMOUNT>
         <RTRUE>
     )>
-    <COND (<FIND-IN ,HERE ,MONSTERBIT>
+    <COND (<MONSTER-HERE>
         <TELL CR "The quarry is here! Now is not the time for that!" CR>
         <RTRUE>
     )>
@@ -73,7 +73,7 @@
         <NEED-TO-DISMOUNT>
         <RTRUE>
     )>
-    <COND (<FIND-IN ,HERE ,MONSTERBIT>
+    <COND (<MONSTER-HERE>
         <TELL CR "The quarry is here! Now is not the time for that!" CR>
         <RTRUE>
     )(<VERB? EXAMINE>

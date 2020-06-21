@@ -24,7 +24,7 @@ Data from:
 
 <TOPIC TOPIC-BEARS
     (DESC "Bears")
-    (LDESC "Bears of any kind are sturdy foes possessing great vitality, and terrible strenth.||Weak agains beast oil.")
+    (LDESC "Bears of any kind are sturdy foes possessing great vitality, and terrible strenth.||Weak against beast oil.")
     (SYNONYM BEAR BEARS)>
 
 <TOPIC TOPIC-GERALT
