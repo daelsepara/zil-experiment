@@ -45,6 +45,10 @@
 			<NEED-TO-DISMOUNT>
 			<RTRUE>
 		)>
+		<COND (<AND <NOT <FSET? ,HERE ,LIGHTBIT>> <NOT <FIND-IN ,PLAYER ,LIGHTBIT>> <NOT <FIND-IN ,HERE ,LIGHTBIT>> .MONSTER>
+			<TELL "You cannot enter combat!" CR>
+			<RTRUE>
+		)>
 		<SET WEAPON <CHOOSE-WEAPON .MONSTER>>
 		<REPEAT ()
 			<CRLF>
