@@ -212,17 +212,26 @@
 		)>
 	)>>
 
-<ROUTINE MONSTER-ATTACKS (MONSTER "AUX" DMG)
+<ROUTINE MONSTER-ATTACKS (MONSTER "OPT" DARK "AUX" DMG)
 	<COND (<OR <LOC .MONSTER> <G? .MONSTER 0>>
 		<COND (<G? <GETP .MONSTER P?HIT-POINTS> 0>
-			<TELL CT .MONSTER " attacks!" CR>
-			<COND (<L? <RANDOM 100> ,WITCHER-DODGE-PROBABILITY>
+			<COND (.DARK
+				<TELL "Something in the dark attacks you!" CR>
+			)(ELSE
+				<TELL CT .MONSTER " attacks!" CR>
+			)>
+			<COND (<AND <NOT .DARK> <L? <RANDOM 100> ,WITCHER-DODGE-PROBABILITY>>
 				<TELL "... you manage to dodge its attack!" CR>
 			)(ELSE
 				<SET DMG <GETP .MONSTER P?HIT-DAMAGE>>
 				<COND (<NOT ,DAYTIME>
-					<TELL "... the night makes " T .MONSTER " more powerful!" CR>
-					<SET DMG <* .DMG 2>>
+					<COND (.DARK
+						<TELL "... the night makes the attack more powerful!" CR>
+						<SET DMG <* .DMG 4>>
+					)(T
+						<TELL "... the night makes " T .MONSTER " more powerful!" CR>
+						<SET DMG <* .DMG 2>>
+					)>
 				)>
 				<WITCHER-COMBAT-DAMAGE .DMG>
 			)>
@@ -278,6 +287,7 @@
 	<TELL "... you took " N .AMT " points of damage." CR>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
+		<SETG WITCHER-HEALTH 0>
 		<DEATH-COMBAT>
 	)>>
 
@@ -294,6 +304,7 @@
 	<TELL "... " .REASON " hits you for " N .AMT " points of damage." CR CR>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
+		<SETG WITCHER-HEALTH 0>
 		<DEATH-HEALTH>
 	)>>
 
