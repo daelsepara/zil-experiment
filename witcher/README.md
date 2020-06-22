@@ -17,9 +17,9 @@ Our goals are to implement these features
 
 ### Phase 2 goals (Starting 22 June 2020)
 
-- [ ] random money drops/pickups
+- [X] random money drops/pickups (22 June 2020 non-random)
 - [ ] armorer NPC
-- [ ] non-monster-killing quests
+- [X] non-monster-killing quests (22 June 2020 search quest)
 - [ ] superior versions of oils
 - [ ] non-bounty related NPC dialogs
 - [ ] other interesting objects
