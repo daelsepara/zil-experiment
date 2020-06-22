@@ -48,6 +48,12 @@ Data from:
     (LDESC "Nekkers are small, misshapen creatures that inhabit remote areas. They make their abodes in dark woods, damp gullies, and shadowy dales, where they live in colonies composed of anywhere from a dozen to several dozen individuals. Their lairs take the form of dug-out hollows, interconnected by narrow underground tunnels. Nekkers use these pathways to quickly travel around their colony and its immediate surroundings, disappearing into the earth and then seeming to instantaneously pop up elsewhere.||Weak against ogroid oil.")
     (SYNONYM NEKKERS NEKKER)>
 
+<TOPIC TOPIC-ORENS
+    (DESC "Orens")
+    (LDESC "Orens are is the most widely used currency on the continent.")
+    (SYNONYM ORENS COINS COIN)
+    (ACTION ORENS-F)>
+
 <TOPIC TOPIC-ROACH
     (DESC "Roach")
     (LDESC "Geralt named his every mount Roach, though no one really knows why or what Geralt had in mind with this name. When asked, Geralt would dodge the question or give an evasive answer. Perhaps this had just been the first word that came to his head? Roach, for her part, seemed to accept the name with no reservations.")
