@@ -146,7 +146,7 @@
 <ROUTINE WITCHER-EAT ()
 	<CRLF>
 	<COND (<G? ,WITCHER-FOOD 0>
-		<TELL "[... you to eat some food from your supplies.]" CR>
+		<TELL "[... you eat some food from your supplies.]" CR>
 		<SETG WITCHER-FOOD <- ,WITCHER-FOOD WITCHER-CONSUMPTION>>
 		<WITCHER-HEAL WITCHER-HEALING-RATE>
 	)(ELSE

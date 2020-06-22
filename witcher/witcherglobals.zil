@@ -16,7 +16,7 @@
 <CONSTANT WITCHER-OIL-DURATION 20>
 <CONSTANT WITCHER-TRAVEL-TIME 5>
 
-<CONSTANT ATTACK-DESCRIPTIONS <LTABLE 2 "attack" "swing at" "hack at" "hit" "charge at" "rush at" "have a go at" "strike" "damage" "injure" >>
+<CONSTANT ATTACK-DESCRIPTIONS <LTABLE 2 "attack" "swing at" "hack at" "hit" "charge at" "rush at" "have a go at" "strike" "damage" "injure">>
 <CONSTANT BOUNTY-FLAG <TABLE "ACCEPTED" "INVESTIGATED" "REPORTED" "COMPLETED">>
 <CONSTANT EDGE-OF-THE-WORLD <LTABLE 2 "You have reaced the end of the known world." "You are getting nowhere." "You decided against moving in that direction." "There is nothing for you there.">>
 <CONSTANT ROACH-RESPONSES <LTABLE 2 "clueless" "amused" "fascinated" "bored" "interested" "enthusiastic">>
