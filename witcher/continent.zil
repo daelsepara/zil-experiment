@@ -1,16 +1,14 @@
 <OBJECT-TEMPLATE LOCATION =
 	ROOM
-		(NW TO PARTS-UNKNOWN)
 		(NORTH TO PARTS-UNKNOWN)
-		(NE TO PARTS-UNKNOWN)
 		(WEST TO PARTS-UNKNOWN)
 		(EAST TO PARTS-UNKNOWN)
-		(SW TO PARTS-UNKNOWN)
 		(SOUTH TO PARTS-UNKNOWN)
-		(SE TO PARTS-UNKNOWN)
 		(ACTION DETECT-OBJECTS)
 		(LASTRESPAWN 0)
-		(RESPAWN 0)>
+		(RESPAWN 0)
+		(ORENS 0)
+		(RANDOM-ORENS 0)>
 
 <LOCATION DEEP-FOREST
 	(LOC ROOMS)
@@ -49,6 +47,8 @@
 	(DESC "Battlefield")
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
+	(ORENS 50)
+	(RANDOM-ORENS 10)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.")
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -184,6 +184,7 @@
 	(LDESC "You are deep inside the inner lair of the beast.")
 	(UNLOCKED-BY BOUNTY-CAVE-BEAR)
 	(ORENS 500)
+	(RANDOM-ORENS 500)
 	(THINGS <> (WALLS CAVE LAIR) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT INVISIBLE)>
 
@@ -230,6 +231,38 @@
 	)>
 	<THINGS-F>>
 
+<ROUTINE ORENS-F ("AUX" ORENS RANDOM-ORENS SUM)
+	<COND (<IS-DARK ,HERE ,PLAYER>
+		<TELL "It is pitch black. You can't see a thing." CR>
+		<FLUSH>
+		<RTRUE>
+	)>
+	<COND (<AND <VERB? TAKE> <EQUAL? ,PRSO ,TOPIC-ORENS>>
+		<SET ORENS <GETP ,HERE ,P?ORENS>>
+		<SET RANDOM-ORENS <GETP ,HERE ,P?RANDOM-ORENS>>
+		<COND (<OR <G? .ORENS 0> <G? .RANDOM-ORENS 0>>
+			<SET SUM .ORENS>
+			<COND (<G? .RANDOM-ORENS 0>
+				<SET .SUM <+ .SUM <RANDOM .RANDOM-ORENS>>>
+			)>
+			<SETG WITCHER-ORENS <+ ,WITCHER-ORENS .SUM>> 
+			<TELL "You found " N .SUM " Orens here" CR>
+			<COND (<G? .ORENS 0> <PUTP ,HERE ,P?ORENS NONE>)>
+			<COND (<G? .RANDOM-ORENS 0> <PUTP ,HERE ,P?RANDOM-ORENS NONE>)>
+		)(ELSE
+			<TELL "You found nothing." CR>
+			<FLUSH>
+		)>
+		<RTRUE>
+	)>>
+
+<ROUTINE THINGS-F ()
+	<COND (<OR <VERB? LOOK-CLOSELY EXAMINE>>
+		<TELL "You see " <PICK-ONE THING-DESCRIPTIONS> " about " D ,PRSO "." CR>
+		<RTRUE>
+	)>
+	<RFALSE>>
+
 <ROUTINE GO-BACK (TEXT)
 	<FLUSH>
 	<HLIGHT ,H-BOLD>
@@ -257,29 +290,3 @@
 		<INPUT 1>
 	)>
 	<RTRUE>>
-
-<ROUTINE THINGS-F ()
-	<COND (<OR <VERB? LOOK-CLOSELY EXAMINE>>
-		<TELL "You see " <PICK-ONE THING-DESCRIPTIONS> " about " D ,PRSO "." CR>
-		<RTRUE>
-	)>
-	<RFALSE>>
-
-<ROUTINE ORENS-F ("AUX" ORENS)
-	<COND (<IS-DARK ,HERE ,PLAYER>
-		<TELL "It is pitch black. You can't see a thing." CR>
-		<FLUSH>
-		<RTRUE>
-	)>
-	<COND (<AND <VERB? TAKE> <EQUAL? ,PRSO ,TOPIC-ORENS>>
-		<SET ORENS <GETP ,HERE ,P?ORENS>>
-		<COND (<G? .ORENS 0>
-			<SETG WITCHER-ORENS <+ ,WITCHER-ORENS .ORENS>>
-			<TELL "You found " N .ORENS " Orens here" CR>
-			<PUTP ,HERE ,P?ORENS NONE>
-		)(ELSE
-			<TELL "You found nothing." CR>
-			<FLUSH>
-		)>
-		<RTRUE>
-	)>>

@@ -603,7 +603,7 @@
 	)>>
 
 <ROUTINE CHECK-ORENS-AVAILABILITY (LOC)
-	<COND (<GETP .LOC ,P?ORENS>
+	<COND (<OR <GETP .LOC ,P?ORENS> <GETP .LOC ,P?RANDOM-ORENS>>
 		<TELL "[... there are some coins here.]" CR>
 	)>>
 
@@ -922,8 +922,7 @@
 				)>
 				<CLOCKER>
 			>
+			<RTRUE>
 		)>
-		<RTRUE>
 	)>
-	<HMMM>
-	<RTRUE>>
+	<HMMM>>
