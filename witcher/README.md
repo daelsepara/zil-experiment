@@ -11,7 +11,7 @@ Our goals are to implement these features
 - [X] swords with oil should also confer bonuses when combatting specific monsters (14 June 2020)
 - [X] witcher medallion that can detect invisible objects (12 June 2020)
 - [X] travelling with or without Roach (12 June 2020)
-- [X] eating/drinking food and/or potions and decoctions (13 June 2020, eating)
+- [X] eating/drinking food and/or potions and decoctions (13 June 2020, eating, 22 June 2020 cat's eye potion)
 - [X] monster bounties (19 June 2020)
 - [X] mechanisms for generic NPCs (blacksmith, alchemist, merchant) (20 June 2020)
 
