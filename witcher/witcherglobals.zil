@@ -50,3 +50,10 @@
 <CONSTANT FARM-CONCLUSION "... there was a nest of ghouls hidden in the farm. They emerge during the night and prowl about. I have destroyed the nest but the alghoul may return. You should report back to ">
 <CONSTANT FARMER-NEWS "Scarecrows do not seem to scare off the monsters ravaging my farm. We cannot proceed with  the harvest. No one wants to go to the farm with those creatures running around!">
 <CONSTANT FARMER-REPORT "Thank you for destroying the nest, Witcher. The Alghoul was not in the nest? Please kill this monster then come back for your reward, Witcher!">
+
+<CONSTANT MISSING-HUSBAND-CLUES <LTABLE CORPSE-MISSING-HUSBAND>>
+<CONSTANT MISSING-HUSBAND-INVESTIGATIONS <LTABLE FALSE>>
+<CONSTANT MISSING-HUSBAND-CONCLUSION "... There is no doubt this is the missing husband. Unfortunately, there is nothing else that can be done. You already dealt with the bear. You should report back to ">
+<CONSTANT MISSING-HUSBAND-NEWS "He was last seen heading into the bog. I fear something may have happened to him.">
+<CONSTANT MISSING-HUSBAND-GREETINGS "Have you seen my husband?">
+<CONSTANT MISSING-HUSBAND-REPORT "You found him Witcher. You have my thanks. Thank you for dealing with the beast that killed him. Now let me mourn in peace.">

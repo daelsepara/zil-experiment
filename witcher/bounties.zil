@@ -52,3 +52,14 @@
     (BOUNTY-MONSTER BEAR)
     (BOUNTY-UNLOCKS CAVE-III)
     (VALUE 50)>
+
+<BOUNTY QUEST-MISSING-HUSBAND
+    (IN WHITE-ORCHARD-BOUNTY-BOARD)
+    (DESC "Quest: Find Missing Husband")
+    (SYNONYM QUEST HUSBAND)
+    (ADJECTIVE MISSING)
+    (TEXT "||..................||Help!||Please help me find my husband.  Missing for several days now.||Will pay with coins.||--- Lara||..................")
+    (BOUNTY-REWARD 500)
+    (BOUNTY-LOC CAVE-III)
+    (BOUNTY-MONSTER NONE)
+    (VALUE 200)>

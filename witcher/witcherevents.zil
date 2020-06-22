@@ -340,6 +340,25 @@
 		<RFALSE>
 	)>>
 
+<ROUTINE ACCEPT-QUEST (QUEST PERSON "AUX" LOC)
+	<COND (<FSET? .QUEST ,BOUNTYBIT>
+		<SET LOC <GETP .QUEST P?BOUNTY-LOC>>
+		<COND (<NOT <GETP .QUEST P?BOUNTY-ACCEPTED>>
+			<TELL "Accept this quest (" T .QUEST ")? ">
+			<COND (<YES?>
+				<PUTP .QUEST P?BOUNTY-ACCEPTED T>
+				<CRLF>
+                <TALK-HIGHLIGHT-PERSON .PERSON "Thanks Witcher! Please carry on with your search.">
+			)(ELSE
+				<CRLF>
+				<TALK-HIGHLIGHT-PERSON .PERSON "That is unfortunate. Let me know if you change your mind.">
+			)>
+		)>
+	)(ELSE
+		<TELL "The what now?">
+	)>
+    <CRLF>>
+
 <ROUTINE CHECK-BOUNTY (BOUNTY THISBOUNTY PERSON)
 	<COND (.THISBOUNTY
 		<COND (<FSET? .THISBOUNTY ,BOUNTYBIT>
@@ -493,6 +512,83 @@
 		>
 	)(<VERB? EXAMINE LOOK-CLOSELY>
 		<TALK-HIGHLIGHT-PERSON .MERCHANT "Can I help you? I have things for sale!">
+		<CRLF>
+	)>>
+
+<ROUTINE GENERIC-SEARCH-DIALOG (PERSON QUEST REPORT)
+	<COND (<NOT <GETP .QUEST P?BOUNTY-INVESTIGATED>>
+		<TALK-HIGHLIGHT-PERSON .PERSON "You should probabably continue searching.">
+	)(
+        <COND (<GETP .QUEST ,P?BOUNTY-COMPLETED>
+            <TALK-HIGHLIGHT-PERSON .PERSON "Thanks for your help, Witcher">
+        )(
+            <TALK-HIGHLIGHT-PERSON .PERSON .REPORT>
+			<PUTP .QUEST ,P?BOUNTY-REPORTED T>
+			<PUTP .QUEST ,P?BOUNTY-COMPLETED T>
+
+            <COND (<G? <GETP .QUEST ,P?BOUNTY-REWARD> 0>
+                <SETG ,WITCHER-ORENS <+ ,WITCHER-ORENS <GETP .QUEST ,P?BOUNTY-REWARD>>>
+                <TELL " Here is your reward. (" N <GETP .QUEST ,P?BOUNTY-REWARD> " Orens)">
+                <PUTP .QUEST ,P?BOUNTY-REWARD 0>
+            )>
+        )>
+    )>
+    <CRLF>>
+
+<ROUTINE GENERIC-SEARCH-QUEST (QUEST PERSON GREET TEXT REPORT "AUX" KEY)
+	<COND (,RIDING-VEHICLE
+		<NEED-TO-DISMOUNT>
+		<RTRUE>
+	)>
+	<COND (<VERB? TALK>
+		<CRLF>
+		<COND (<NOT <EQUAL? ,PRSO .PERSON>>
+			<TALK-HIGHLIGHT-PERSON .PERSON "You talking to me?">
+			<CRLF>
+			<RTRUE>
+		)>
+		<COND (<OR <IN? .QUEST ,PLAYER> <GETP .QUEST P?BOUNTY-INVESTIGATED>>
+			<COND (<GETP .QUEST P?BOUNTY-ACCEPTED>
+				<COND (<NOT <CHECK-BOUNTY .QUEST ,PRSI ,PRSO>>
+					<RETURN>
+				)>
+				<GENERIC-SEARCH-DIALOG .PERSON .QUEST .REPORT>
+			)(ELSE
+				<COND (<NOT <CHECK-BOUNTY .QUEST ,PRSI ,PRSO>>
+					<RETURN>
+				)>
+				<FLUSH>
+				<REPEAT ()
+					<TALK-HIGHLIGHT-PERSON .PERSON "">
+					<CRLF>
+					<TELL "Are you here about the quest (" D .QUEST ")?" CR>
+					<TELL "1 - Yes, tell me more about this." CR>
+					<TELL "2 - I accept the quest." CR>
+					<TELL "3 - Goodbye for now." CR>
+					<TELL "Your response: ">
+					<SET KEY <INPUT 1>>
+					<CRLF>
+					<TALK-RESPONSE .KEY !\1 .TEXT ,PRSO>
+					<COND (<EQUAL? .KEY !\2>
+						<ACCEPT-QUEST .QUEST ,PRSO>
+						<RETURN>
+					)(<EQUAL? .KEY !\3 !\0>
+						<CRLF>
+						<TALK-HIGHLIGHT-PERSON .PERSON "Bye!">
+						<CRLF>
+						<RTRUE>
+					)>
+					<CRLF>
+					<CLOCKER>
+					<UPDATE-STATUS-LINE>
+				>
+			)>
+		)(ELSE
+			<TALK-HIGHLIGHT-PERSON .PERSON .GREET>
+			<CRLF>
+		)>
+	)(<VERB? EXAMINE LOOK-CLOSELY>
+		<TALK-HIGHLIGHT-PERSON .PERSON "In most cultures it is rude to stare!">
 		<CRLF>
 	)>>
 

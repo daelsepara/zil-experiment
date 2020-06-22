@@ -98,3 +98,46 @@
         <RTRUE>
     )>
     <RFALSE>>
+
+;---------------------------------
+"QUEST: Missing husband"
+
+<OBJECT CORPSE-MISSING-HUSBAND
+    (IN CAVE-III)
+    (DESC "remains of a mangled body")
+    (FDESC "[There is a mangled body here]")
+    (SYNONYM CORPSE REMAINS BODY)
+    (ADJECTIVE DEAD MANGLED)
+    (TEXT "Human. Male. Flesh and bones picked clean by the bear. Nothing left to identify him apart from his clothes and what little he had left on him.")
+    (ACTION MISSING-HUSBAND-INVESTIGATION)>
+
+<ROUTINE MISSING-HUSBAND-INVESTIGATION ("AUX" TEXT)
+    <COND (,RIDING-VEHICLE
+        <NEED-TO-DISMOUNT>
+        <RTRUE>
+    )>
+    <COND (<VERB? EXAMINE>
+        <COND (<GETP ,QUEST-MISSING-HUSBAND ,P?BOUNTY-INVESTIGATED>
+            <SET TEXT <GETP ,PRSO ,P?TEXT>>
+            <TELL .TEXT  CR>            
+        )(T
+            <TELL "You took a look at " T ,PRSO CR>
+        )>
+        <RTRUE>
+    )(<VERB? LOOK-CLOSELY>
+        <COND (<GETP ,QUEST-MISSING-HUSBAND ,P?BOUNTY-ACCEPTED>
+            <MOVE ,QUEST-MISSING-HUSBAND ,PLAYER>
+            <PUTP ,QUEST-MISSING-HUSBAND ,P?BOUNTY-ACCEPTED T>            
+            <SET TEXT <GETP ,PRSO ,P?TEXT>>
+            <COND (.TEXT
+                <TELL CR T ,PRSO ": [" .TEXT "]" CR>
+                <INVESTIGATE-CLUE ,CORPSE-MISSING-HUSBAND MISSING-HUSBAND-INVESTIGATIONS 1 T>
+                <CHECK-INVESTIGATION ,QUEST-MISSING-HUSBAND MISSING-HUSBAND-INVESTIGATIONS MISSING-HUSBAND-CONCLUSION ,HUNTERS-WIFE>
+                <RTRUE>
+            )>
+        )(
+            <HMMM>
+            <RTRUE>
+        )>
+    )>
+    <RFALSE>>
