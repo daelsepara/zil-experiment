@@ -57,3 +57,10 @@
 <CONSTANT MISSING-HUSBAND-NEWS "He was last seen heading into the bog. I fear something may have happened to him.">
 <CONSTANT MISSING-HUSBAND-GREETINGS "Have you seen my husband?">
 <CONSTANT MISSING-HUSBAND-REPORT "You found him Witcher. You have my thanks. Thank you for dealing with the beast that killed him. Now let me mourn in peace.">
+
+<CONSTANT QUEST-MONSTER 1>
+<CONSTANT QUEST-SEARCH 2>
+<CONSTANT QUEST-ACCEPT <LTABLE "Splendid! You should investigate " "Thanks Witcher! Please carry on with your search.">>
+<CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching.">>
+<CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "...">>
+<CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher.">>
