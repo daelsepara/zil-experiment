@@ -5,6 +5,12 @@
 		(ACTION GEAR-META-F)
 		(FLAGS TAKEBIT)>
 
+<OBJECT-TEMPLATE POTION =
+	OBJECT
+		(SYNONYM VIAL POTION)
+		(ACTION POTION-DRINK-F)
+		(FLAGS TAKEBIT)>
+
 "Witcher swords"
 
 <OBJECT SILVER-SWORD
@@ -92,7 +98,28 @@
 	(DESC "vial of vampire oil")
 	(ADJECTIVE VAMPIRE)>
 
+<POTION CAT-EYES-POTION
+	(IN PLAYER)
+	(DESC "cat's eye potion")
+	(ADJECTIVE CAT EYE EYES)>
+
 <ROUTINE GEAR-META-F ()
 	<COND (<VERB? EXAMINE>
 		<V-LOOK-CLOSELY>
+	)>>
+
+<ROUTINE POTION-DRINK-F ()
+	<COND (<VERB? DRINK>
+		<COND (<EQUAL? ,PRSO ,CAT-EYES-POTION>
+			<COND (,WITCHER-CATS-EYE
+				<TELL "You already drank " T ,PRSO "!" CR>
+				<FLUSH>
+			)(
+				<TELL "You drink " T ,PRSO ". You can now see in the dark for a limited time." CR>
+				<SETG WITCHER-CATS-EYE T>
+				<WITCHER-CAT-EYES-EFFECT>
+				<QUEUE I-CAT-EYES CATS-EYE-DURATION>
+			)>
+			<RTRUE>
+		)>
 	)>>
