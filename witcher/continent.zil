@@ -145,13 +145,13 @@
 	(DESC "Cave entrance")
 	(UP TO SWAMP)
 	(DOWN TO CAVE-I)
-	(LDESC "You are inside the cave near the entrance.")
-	(THINGS <> (WALLS CAVE) THINGS-F)
+	(LDESC "You are at the entrance of the cave")
+	(THINGS <> (CAVE ENTRANCE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT ADJACENT)>
 
 <LOCATION CAVE-I
 	(LOC ROOMS)
-	(DESC "Inside the cave")
+	(DESC "Inside the cave, near the entrance")
 	(UP TO SWAMP-CAVE)
 	(SOUTH TO CAVE-II)
 	(LDESC "You are inside the cave.")

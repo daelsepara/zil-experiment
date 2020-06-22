@@ -59,7 +59,8 @@
 			<TELL "2 - Eat food" CR>
 			<TELL "3 - Change my weapon" CR>
 			<TELL "4 - Check my status" CR>
-			<TELL "5 - Retreat!" CR>
+			<TELL "5 - Fight to the death!" CR>
+			<TELL "6 - Retreat!" CR>
 			<SET .KEY <INPUT 1>>
 			<COND (<EQUAL? .KEY !\1>
 				<CRLF>
@@ -70,7 +71,25 @@
 			<COND (<EQUAL? .KEY !\2> <V-WITCHER-EAT> <INPUT 1>)>
 			<COND (<EQUAL? .KEY !\3> <SET WEAPON <CHOOSE-WEAPON .MONSTER>>)>
 			<COND (<EQUAL? .KEY !\4> <CRLF> <V-WITCHER-STATUS> <INPUT 1>)>
-			<COND (<EQUAL? .KEY !\5> <CRLF> <TELL "You withdraw from combat!" CR> <RETURN>)>
+			<COND (<EQUAL? .KEY !\5>
+				<REPEAT ()
+					<CRLF>
+					<PERFORM ,V?ATTACK .MONSTER .WEAPON>
+					<COND (<L? ,WITCHER-HEALTH WITCHER-HEALTH-THRESHOLD>
+						<TELL "You are seriously injured. You broke off from your assault!" CR>
+						<RETURN>
+					)>
+					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\6> <RETURN>)>
+					<TELL CR "(press any key to continue)">
+					<INPUT 1>
+					<CLOCKER>
+					<UPDATE-STATUS-LINE>
+				>
+			)>
+			<COND (<EQUAL? .KEY !\6>
+				<COND (<IN? .MONSTER ,HERE> <CRLF> <TELL "You withdraw from combat!" CR>)>
+				<RETURN>
+			)>
 			<CLOCKER>
 			<UPDATE-STATUS-LINE>
 		>
@@ -244,13 +263,32 @@
 		)>
 	)>>
 
-<ROUTINE V-WITCHER-EAT ()
-	<WITCHER-EAT>>
-
 <ROUTINE V-WAIT-UNTIL ()
 	<WAIT-UNTIL ,PRSO>>
 
+<ROUTINE V-WITCHER-EAT ()
+	<WITCHER-EAT>>
+
+<ROUTINE V-WITCHER-JOURNAL ("AUX" QUEST-COUNT)
+	<CRLF>
+	<HLIGHT ,H-BOLD>
+	<TELL "Quests and bounties: " CR CR>
+	<HLIGHT 0>
+	<SET QUEST-COUNT <LIST-QUESTS ,PLAYER>>
+	<SET QUEST-COUNT <+ .QUEST-COUNT <LIST-QUESTS ,CONCEPT-JOURNAL>>>
+	<COND (<0? .QUEST-COUNT> <TELL "None" CR>)>>
+
+<ROUTINE V-WITCHER-SCORE ("AUX" QUEST-COUNT)
+	<CRLF>
+	<HLIGHT ,H-BOLD>
+	<TELL "Score from quests and bounties:" CR CR>
+	<HLIGHT 0>
+	<SET QUEST-COUNT <LIST-QUESTS ,PLAYER T>>
+	<SET QUEST-COUNT <+ .QUEST-COUNT <LIST-QUESTS ,CONCEPT-JOURNAL T>>>
+	<COND (<0? .QUEST-COUNT> <TELL "You have not completed any quests yet." CR>)>>
+
 <ROUTINE V-WITCHER-STATUS ()
+	<CRLF>
 	<TELL "Health: " N ,WITCHER-HEALTH CR>
 	<TELL "Food supplies: " N ,WITCHER-FOOD CR>
 	<TELL "Orens: " N ,WITCHER-ORENS CR>
@@ -274,6 +312,7 @@
 			<TELL "Roach is here." CR>
 		)>
 	)>
+	<CRLF>
 	<COND (<EQUAL? ,DAYTIME T>
 		<TELL "It is daytime." CR>
 	)(ELSE
