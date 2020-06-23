@@ -39,6 +39,7 @@
 ; Bounties
 <CONSTANT NEST-REMAINS "[ruins of a monster's nest]">
 <CONSTANT RUBBLE "nothing but rubble left">
+<CONSTANT DEFAULT-GREETINGS "Greetings, Witcher!">
 
 <CONSTANT WHITE-ORCHARD-CLUES <LTABLE WHITE-ORCHARD-BROKEN-WAGON WHITE-ORCHARD-CARCASS WHITE-ORCHARD-WARES WHITE-ORCHARD-FEATHERS>>
 <CONSTANT WHITE-ORCHARD-INVESTIGATIONS <LTABLE FALSE FALSE FALSE FALSE>>
@@ -55,7 +56,7 @@
 <CONSTANT MISSING-HUSBAND-CLUES <LTABLE CORPSE-MISSING-HUSBAND>>
 <CONSTANT MISSING-HUSBAND-INVESTIGATIONS <LTABLE FALSE>>
 <CONSTANT MISSING-HUSBAND-CONCLUSION "... There is no doubt this is the missing husband. Unfortunately, there is nothing else that can be done. You already dealt with the bear. You should report back to ">
-<CONSTANT MISSING-HUSBAND-NEWS "He was last seen heading into the bog. I fear something may have happened to him.">
+<CONSTANT MISSING-HUSBAND-NEWS "He was last seen heading into the bog. I fear something may have happened to him.||[She then tells you some other details, what the man looked like, and what clothes he was wearing,]">
 <CONSTANT MISSING-HUSBAND-GREETINGS "Have you seen my husband?">
 <CONSTANT MISSING-HUSBAND-REPORT "You found him Witcher. You have my thanks. Thank you for dealing with the beast that killed him. Now let me mourn in peace.">
 

@@ -108,7 +108,7 @@
     (FDESC "[There is a mangled body here]")
     (SYNONYM CORPSE REMAINS BODY)
     (ADJECTIVE DEAD MANGLED)
-    (TEXT "Human. Male. Flesh and bones picked clean by the bear. Nothing left to identify him apart from his clothes and what little he had left on him.")
+    (TEXT "Human. Male. Most of the flesh and bones were picked clean by the bear. Nothing much left to identify him apart from his clothes and what little he had left on him.")
     (ACTION MISSING-HUSBAND-INVESTIGATION)>
 
 <ROUTINE MISSING-HUSBAND-INVESTIGATION ("AUX" TEXT)
