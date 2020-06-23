@@ -100,8 +100,8 @@ Data from:
 			<SET .STOP T>
 		)(ELSE
 			<CRLF>
-			<HLIGHT ,H-BOLD><TELL "What are you looking for in the codex?">
-			<HLIGHT 0><TELL " (Type "><HLIGHT ,H-BOLD><TELL "CLOSE"><HLIGHT 0><TELL " to exit codex. For available topics, type "><HLIGHT ,H-BOLD><TELL "TOPICS"><HLIGHT 0><TELL ")" CR>
+			<HLIGHT ,H-BOLD> <TELL "What are you looking for in the codex?">
+			<HLIGHT 0> <TELL " (Type "> <HLIGHT ,H-BOLD> <TELL "CLOSE"> <HLIGHT 0> <TELL " to exit codex. For available topics, type "> <HLIGHT ,H-BOLD> <TELL "TOPICS"> <HLIGHT 0> <TELL ")" CR>
 			<READLINE>
 			<SET W <GET-WORD 1>>
 			<SET W2 <GET-WORD 2>>
@@ -119,7 +119,7 @@ Data from:
 			(<OR <EQUAL? .W ,STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
 			(<OR <EQUAL? .W ,W?MEDALLION ,W?MEDAL ,WOLF-MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDAL>> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
 			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)
-			(<EQUAL? .W ,W?CLOSE ,W?QUIT> <TELL CR "[You close the book]" CR><RETURN>)
+			(<EQUAL? .W ,W?CLOSE ,W?QUIT> <TELL CR "[You close the book]" CR> <RETURN>)
 			(<TELL CR "[The codex is silent about such things.]" CR>)
 		>
 		<COND (<EQUAL? .STOP T> <RTRUE>)>

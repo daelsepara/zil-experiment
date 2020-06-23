@@ -338,7 +338,7 @@
 	<COND (<EQUAL? .RARG ,M-ENTER>
 		<GO-BACK "You cannot go that way.">
 		<HLIGHT 0>
-		<CRLF><CRLF>
+		<CRLF> <CRLF>
 	)>
 	<RTRUE>>
 

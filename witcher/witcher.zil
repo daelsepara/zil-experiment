@@ -31,8 +31,9 @@
 	<TELL "------------------------------------------------------" CR>>
 
 <ROUTINE INIT ()
-	<CRLF><CRLF><CRLF>
 	<INIT-STATUS-LINE>
+	<UPDATE-STATUS-LINE>
+	<CRLF>
 	<V-VERSION>
 	<CRLF>
 	<DRAW-LINE>

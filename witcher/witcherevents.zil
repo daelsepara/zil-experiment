@@ -1090,7 +1090,7 @@
 				)>
 				<UPDATE-STATUS>
 			>
-			<COND (<NOT .SILENT><CRLF><V-LOOK>)>
+			<COND (<NOT .SILENT> <CRLF> <V-LOOK>)>
 			<RTRUE>
 		)>
 	)>

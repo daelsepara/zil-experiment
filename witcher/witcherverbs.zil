@@ -193,7 +193,7 @@
 	<HLIGHT 0>
 	<SET QUEST-COUNT <LIST-QUESTS ,PLAYER T>>
 	<SET QUEST-COUNT <+ .QUEST-COUNT <LIST-QUESTS ,CONCEPT-JOURNAL T>>>
-	<COND (<0? .QUEST-COUNT> <TELL "You have not completed any quests yet." CR>)(<TELL "Total Score: " N ,SCORE CR>)>>
+	<COND (<0? .QUEST-COUNT> <TELL "You have not completed any quests yet." CR>)(<TELL "Total Score: "> <HLIGHT ,H-BOLD> <TELL N ,SCORE CR> <HLIGHT 0>)>>
 
 <ROUTINE V-WITCHER-STATUS ()
 	<CRLF>
