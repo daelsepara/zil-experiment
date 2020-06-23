@@ -83,8 +83,7 @@
 						<RETURN>
 					)>
 					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\6> <TELL "... and you have prevailed! " T .MONSTER " dies!" CR> <RETURN>)>
-					<CLOCKER>
-					<UPDATE-STATUS-LINE>
+					<UPDATE-STATUS>
 				>
 			)>
 			<COND (<EQUAL? .KEY !\6>
@@ -92,8 +91,7 @@
 				<COND (<IN? .MONSTER ,HERE> <CRLF> <TELL "You withdraw from combat!" CR>)>
 				<RETURN>
 			)>
-			<CLOCKER>
-			<UPDATE-STATUS-LINE>
+			<UPDATE-STATUS>
 		>
 	)(ELSE
 		<TELL "There are no monsters here!" CR>
@@ -108,7 +106,7 @@
 		<TELL "You have nothing to destory " T ,PRSO " with." CR>
 	)(T
 		<TELL "You dropped a bomb on " T ,PRSO " and retreat to a safe location. After some time it explodes, destroying " T, PRSO CR>
-		<CLOCKER>
+		<UPDATE-STATUS>
 		<FCLEAR ,PRSO ,NOTDESTROYED>
 		<SETG WITCHER-BOMBS <- ,WITCHER-BOMBS 1>>
 	)>>
