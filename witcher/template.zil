@@ -39,7 +39,8 @@ object (whether or not they're overridden!):
 
 >"
 
-<SETG ADDITIVE-PROPERTIES '(SYNONYM ADJECTIVE GLOBAL FLAGS)>
+"Note: removed SYNONYM and ADJECTIVE from the additive properties (SD, 23 June 2020)"
+<SETG ADDITIVE-PROPERTIES '(GLOBAL FLAGS)>
 
 <DEFINE OBJECT-TEMPLATE ("ARGS" ARGS)
     <MAPF <>

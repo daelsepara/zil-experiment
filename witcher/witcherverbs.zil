@@ -113,7 +113,7 @@
 
 <ROUTINE V-EXAMINE-TOPIC ()
 	<COND (<NOT <FSET? ,PRSO TOPICBIT>>
-		<PERFORM ,V?LOOK-CLOSELY ,PRSO>
+		<PERFORM ,V?EXAMINE ,PRSO>
 		<RTRUE>
 	)>
 	<TELL "You don't see that here." CR>>
@@ -121,36 +121,23 @@
 <ROUTINE V-EXITS ()
 	<DESCRIBE-EXITS ,HERE>>
 
-<ROUTINE V-LOOK-CLOSELY ()
+<ROUTINE V-LOOK-CLOSELY ("AUX" TEXT)
+
 	<COND (<EQUAL? ,PRSO ,PLAYER ,GERALT ,WITCHER>
 		<HMMM>
 		<RTRUE>
 	)>
 	
-	<COND (<IS-MONSTER ,PRSO> <TELL "You should read about " T ,PRSO " in the codex." CR> <RTRUE>)>
+	<COND (<OR <IS-MONSTER ,PRSO> <FSET? ,PRSO ,TOPICBIT>> <TELL "You should read about " T ,PRSO " in the codex." CR> <RTRUE>)>
 
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
-	<COND
-		(<EQUAL? ,PRSO ,ROACH>
-			<TELL "a loyal and dependable horse that sometimes ends up in odd places." CR>
-			<RTRUE>)
-		
-		(<EQUAL? ,PRSO ,SILVER-SWORD>
-			<TELL "a weapon for killing creatures of magic." CR>
-			<RTRUE>)
-			
-		(<EQUAL? ,PRSO ,STEEL-SWORD>
-			<TELL "a weapon for killing humans or humanoid creatures and beasts." CR>
-			<RTRUE>)
-		
-		(<EQUAL? ,PRSO ,VAMPIRE-OIL ,SPECTER-OIL ,OGROID-OIL ,NECROPHAGE-OIL ,ELEMENTA-OIL ,HYBRID-OIL ,RELICT-OIL ,DRACONID-OIL ,CURSED-OIL ,HANGEDMANS-VENOM ,INSECTOID-OIL ,BEAST-OIL>
-			<TELL "a type of oil for dealing with specific kinds of monsters." CR>
-			<RTRUE>)
-		
-		(<EQUAL? ,PRSO ,WOLF-MEDALLION>
-			<TELL "an amulet that can detect the presence of magic." CR>
-			<RTRUE>)>
+	<SET TEXT <GETP ,PRSO ,P?TEXT>>
+
+	<COND (.TEXT
+		<TELL .TEXT CR>
+		<RTRUE>
+	)>
 
 	<TELL "nothing special." CR>>
 
@@ -281,7 +268,7 @@
 <ROUTINE V-WITCHER-SCORE ("AUX" QUEST-COUNT)
 	<CRLF>
 	<HLIGHT ,H-BOLD>
-	<TELL "Score from quests and bounties:" CR CR>
+	<TELL "Score:" CR CR>
 	<HLIGHT 0>
 	<SET QUEST-COUNT <LIST-QUESTS ,PLAYER T>>
 	<SET QUEST-COUNT <+ .QUEST-COUNT <LIST-QUESTS ,CONCEPT-JOURNAL T>>>

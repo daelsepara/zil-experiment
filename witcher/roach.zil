@@ -2,6 +2,7 @@
 	(DESC "Roach")
 	(SYNONYM HORSE STEED RIDE ROACH)
 	(ACTION ROACH-F)
+	(TEXT "a loyal and dependable horse that sometimes ends up in odd places.")
 	(FLAGS VEHBIT NARTICLEBIT PERSONBIT LIGHTBIT)>
 
 <ROUTINE ROACH-F ()

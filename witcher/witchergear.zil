@@ -2,7 +2,7 @@
     OBJECT
 		(SYNONYM VIAL OIL)
 		(BONUS-DAMAGE 50)
-		(ACTION GEAR-META-F)
+		(TEXT "a type of oil for dealing with specific kinds of monsters")
 		(FLAGS TAKEBIT)>
 
 <OBJECT-TEMPLATE POTION =
@@ -20,7 +20,7 @@
 	(ADJECTIVE SILVER)
 	(HIT-DAMAGE 50)
 	(LOW-DAMAGE 10)
-	(ACTION GEAR-META-F)
+	(TEXT "a weapon for killing creatures of magic")
 	(FLAGS TAKEBIT CONTBIT SURFACEBIT WEAPONBIT)>
 
 <OBJECT STEEL-SWORD
@@ -30,7 +30,7 @@
 	(ADJECTIVE STEEL)
 	(HIT-DAMAGE 50)
 	(LOW-DAMAGE 10)
-	(ACTION GEAR-META-F)
+	(TEXT "a weapon for killing humans or humanoid creatures and beasts")
 	(FLAGS TAKEBIT CONTBIT SURFACEBIT WEAPONBIT)>
 
 ;----------------------
@@ -41,7 +41,7 @@
 	(DESC "wolf medallion")
 	(SYNONYM MEDALLION MEDAL)
 	(ADJECTIVE WOLF)
-	(ACTION GEAR-META-F)
+	(TEXT "an amulet that can detect the presence of magic")
 	(FLAGS TAKEBIT WEARBIT WORNBIT)>
 
 ;----------------------
@@ -101,12 +101,8 @@
 <POTION CAT-EYES-POTION
 	(IN PLAYER)
 	(DESC "cat's eye potion")
+	(TEXT "potion that allows you to see in the dark for a limited time")
 	(ADJECTIVE CAT EYE EYES)>
-
-<ROUTINE GEAR-META-F ()
-	<COND (<VERB? EXAMINE>
-		<V-LOOK-CLOSELY>
-	)>>
 
 <ROUTINE POTION-DRINK-F ()
 	<COND (<VERB? DRINK>

@@ -594,6 +594,23 @@
 	<HLIGHT 0>
 	<TELL <GETP .TOPIC P?LDESC> CR>>
 
+<ROUTINE LIST-TOPICS ("AUX" TOPIC)
+	<CRLF>
+	<HLIGHT ,H-INVERSE>
+	<TELL "List of Topics" CR CR>
+	<HLIGHT 0>
+	<SET TOPIC <FIRST? ,GENERIC-OBJECTS>>
+	<REPEAT ()
+		<COND (<NOT .TOPIC>
+			<RETURN>
+		)(ELSE 
+			<COND (<FSET? .TOPIC ,TOPICBIT>
+				<TELL D .TOPIC CR>
+			)>
+		)>
+		<SET TOPIC <NEXT? .TOPIC>>
+	>>
+
 ;----------------------
 "Location setup"
 
