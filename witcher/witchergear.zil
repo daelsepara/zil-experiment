@@ -111,10 +111,18 @@
 				<TELL "You already drank " T ,PRSO "!" CR>
 				<FLUSH>
 			)(
-				<TELL "You drink " T ,PRSO ". You can now see in the dark for a limited time." CR>
-				<SETG WITCHER-CATS-EYE T>
-				<WITCHER-CAT-EYES-EFFECT>
-				<QUEUE I-CAT-EYES CATS-EYE-DURATION>
+				<COND (<IS-DARK ,HERE ,PLAYER>
+					<TELL "You drink " T ,PRSO ". You can now see in the dark for a limited time." CR>
+					<SETG WITCHER-CATS-EYE T>
+					<WITCHER-CAT-EYES-EFFECT>
+					<QUEUE I-CAT-EYES CATS-EYE-DURATION>
+					<CRLF>
+					<HLIGHT ,H-BOLD><TELL D ,HERE><HLIGHT 0>
+					<CRLF>
+					<DETECT-OBJECTS ,M-LOOK>
+				)(
+					<HMMM>
+				)>
 			)>
 			<RTRUE>
 		)>

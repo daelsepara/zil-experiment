@@ -79,8 +79,10 @@
     (IN ODOLAN-BOUNTY-BOARD)
     (SYNONYM CONTRACT)
     (ADJECTIVE GHOST WELL)
-    (TEXT "A ghost is haunting the well in the village. Townsfolk are suffering without access to the water supply.")
+    (TEXT "A ghost is haunting the well in the village. Townsfolk are suffering without access to the water supply.")    
     (BOUNTY-REWARD 300)
+    (BOUNTY-LOC ODOLAN-WELL-BOTTOM)
     (BOUNTY-MONSTER WRAITH-JAENY)
+    (BOUNTY-UNLOCKS ODOLAN-WELL-BOTTOM)
     (QUEST-TYPE QUEST-MONSTER)
     (VALUE 200)>

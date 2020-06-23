@@ -67,7 +67,7 @@
 <LOCATION BANDIT-CAMP-I
 	(LOC ROOMS)
 	(DESC "Camp in the forest")
-	(LDESC "You have stumbled into a bandit's camp")
+	(LDESC "It is a bandit's camp.")
 	(SW BATTLE-FIELD-NORTH)
 	(BOUNTY BOUNTY-BANDITS-I)
 	(ORENS 100)
@@ -120,8 +120,21 @@
 	(LOC ROOMS)
 	(DESC "Odolan, outside")
 	(WEST TO ODOLAN-TOWN)
+	(DOWN TO ODOLAN-WELL-BOTTOM)
 	(LDESC "A small corner just outside the town where people congregate.")
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT ADJACENT)>
+
+<LOCATION ODOLAN-WELL-BOTTOM
+	(LOC ROOMS)
+	(DESC "Bottom of the well")
+	(LDESC "The walls are damp")
+	(UNLOCKED-BY CONTRACT-GHOST-IN-THE-WELL)
+	(NORTH TO CANNOT-GO)
+	(SOUTH TO CANNOT-GO)
+	(WEST TO CANNOT-GO)
+	(EAST TO CANNOT-GO)
+	(UP TO ODOLAN-TOWN-WELL)
+	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION NORTH-OF-WHITE-ORCHARD
 	(LOC ROOMS)

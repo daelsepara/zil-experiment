@@ -173,7 +173,7 @@
 			<NEED-TO-DISMOUNT>
 			<RTRUE>
 		)>
-		<COND (<AND <IS-DARK ,HERE ,PLAYER>>
+		<COND (<IS-DARK ,HERE ,PLAYER>
 			<TELL "You cannot enter combat!" CR>
 			<FLUSH>
 			<RTRUE>
@@ -731,6 +731,9 @@
 		)>
 	)>>
 
+<ROUTINE VISITED (LOC DIR)
+	<RETURN <FSET? <GETP .LOC .DIR> ,TOUCHBIT>>>
+
 <ROUTINE DESCRIBE-EXITS (LOC)
 	<COND (<IS-DARK .LOC ,PLAYER>
 		<TELL "It is pitch black. You can't see a thing." CR>
@@ -743,16 +746,16 @@
 	<TELL "Exits">
 	<HLIGHT 0>
 	<CRLF>
-	<COND (<IS-VISIBLE .LOC ,P?NW> <TELL "Northwest: " D <GETP .LOC ,P?NW> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?NORTH> <TELL "North: " D <GETP .LOC ,P?NORTH> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?NE> <TELL "Northeast: " D <GETP .LOC ,P?NE> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?WEST> <TELL "West: " D <GETP .LOC ,P?WEST> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?EAST> <TELL "East: " D <GETP .LOC ,P?EAST> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?SW> <TELL "Southwest: " D <GETP .LOC ,P?SW> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?SOUTH> <TELL "South: " D <GETP .LOC ,P?SOUTH> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?SE> <TELL "Southeast: " D <GETP .LOC ,P?SE> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?UP> <TELL "Up: " D <GETP .LOC ,P?UP> CR>)>
-	<COND (<IS-VISIBLE .LOC ,P?DOWN> <TELL "Down: " D <GETP .LOC ,P?DOWN> CR>)>
+	<COND (<IS-VISIBLE .LOC ,P?NW> <COND (<VISITED .LOC ,P?NW> <TELL "Northwest: " D <GETP .LOC ,P?NW> CR>)(<TELL "Northwest" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?NORTH> <COND (<VISITED .LOC ,P?NORTH> <TELL "North: " D <GETP .LOC ,P?NORTH> CR>)(<TELL "North" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?NE> <COND (<VISITED .LOC ,P?NE> <TELL "Northeast: " D <GETP .LOC ,P?NE> CR>)(<TELL "Northeast" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?WEST> <COND (<VISITED .LOC ,P?WEST> <TELL "West: " D <GETP .LOC ,P?WEST> CR>)(<TELL "West" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?EAST> <COND (<VISITED .LOC ,P?EAST> <TELL "East: " D <GETP .LOC ,P?EAST> CR>)(<TELL "East" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?SW> <COND (<VISITED .LOC ,P?SW> <TELL "Southwest: " D <GETP .LOC ,P?SW> CR>)(<TELL "Southwest" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?SOUTH> <COND (<VISITED .LOC ,P?SOUTH> <TELL "South: " D <GETP .LOC ,P?SOUTH> CR>)(<TELL "South" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?SE> <COND (<VISITED .LOC ,P?SE> <TELL "Southeast: " D <GETP .LOC ,P?SE> CR>)(<TELL "Southeast" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?UP> <COND (<VISITED .LOC ,P?UP> <TELL "Up: " D <GETP .LOC ,P?UP> CR>)(<TELL "Up" CR>)>)>
+	<COND (<IS-VISIBLE .LOC ,P?DOWN> <COND (<VISITED .LOC ,P?DOWN> <TELL "Down: " D <GETP .LOC ,P?DOWN> CR>)(<TELL "Down" CR>)>)>
 	<RTRUE>>
 
 <ROUTINE DESCRIBE-LOCATION (LOC)
