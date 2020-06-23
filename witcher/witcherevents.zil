@@ -127,11 +127,15 @@
 <ROUTINE WITCHER-EAT ()
 	<CRLF>
 	<COND (<G? ,WITCHER-FOOD 0>
-		<TELL "[... you eat some food from your supplies.]" CR>
-		<SETG WITCHER-FOOD <- ,WITCHER-FOOD WITCHER-CONSUMPTION>>
-		<WITCHER-HEAL WITCHER-HEALING-RATE>
+		<COND (<L? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
+			<TELL "[... you eat some food from your supplies]" CR>
+			<SETG WITCHER-FOOD <- ,WITCHER-FOOD WITCHER-CONSUMPTION>>
+			<WITCHER-HEAL WITCHER-HEALING-RATE>
+		)(
+			<TELL "[... you are at maximum health already]" CR>
+		)>
 	)(ELSE
-		<TELL "[... you do not have any food from your supplies.]" CR>
+		<TELL "[... you do not have any food from your supplies]" CR>
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
@@ -157,6 +161,8 @@
 <ROUTINE COMBAT-SILVER (MONSTER WEAPON "OPT" OIL SUPERIOR-OIL)
 	<COMBAT-SWORD .MONSTER .WEAPON ,SILVER-SWORD .OIL .SUPERIOR-OIL>>
 
+<GLOBAL SHOW-COMBAT-MESSAGES T>
+
 <ROUTINE COMBAT-STEEL (MONSTER WEAPON "OPT" OIL SUPERIOR-OIL)
 	<COMBAT-SWORD .MONSTER .WEAPON ,STEEL-SWORD .OIL .SUPERIOR-OIL>>
 
@@ -166,7 +172,7 @@
 		<RTRUE>
 	)>
 	<COND (<NOT .WEAPON>
-		<TELL "Not using any weapon isn't going to help you in this situation." CR>
+		<COND (,SHOW-COMBAT-MESSAGES <TELL "Not using any weapon isn't going to help you in this situation." CR>)>
 		<MONSTER-ATTACKS .MONSTER>
 	)(ELSE
 		<COND (<FSET? .WEAPON ,WEAPONBIT>
@@ -203,18 +209,18 @@
 			<COND (.DARK
 				<TELL "Something in the dark attacks you!" CR>
 			)(ELSE
-				<TELL CT .MONSTER " attacks!" CR>
+				<COND (,SHOW-COMBAT-MESSAGES <TELL CT .MONSTER " attacks!" CR>)>
 			)>
 			<COND (<AND <NOT .DARK> <L? <RANDOM 100> ,WITCHER-DODGE-PROBABILITY>>
-				<TELL "... you manage to dodge its attack!" CR>
+				<COND (,SHOW-COMBAT-MESSAGES <TELL "... you manage to dodge its attack!" CR>)>
 			)(ELSE
 				<SET DMG <GETP .MONSTER P?HIT-DAMAGE>>
 				<COND (<NOT ,DAYTIME>
 					<COND (.DARK
-						<TELL "... the night makes the attacks more powerful!" CR>
+						<COND (,SHOW-COMBAT-MESSAGES <TELL "... the night makes the attacks more powerful!" CR>)>
 						<SET DMG <* .DMG 4>>
 					)(T
-						<TELL "... the night makes " T .MONSTER " more powerful!" CR>
+						<COND (,SHOW-COMBAT-MESSAGES <TELL "... the night makes " T .MONSTER " more powerful!" CR>)>
 						<SET DMG <* .DMG 2>>
 					)>
 				)>
@@ -228,22 +234,24 @@
 
 <ROUTINE WEAPON-INEFFECTIVE (MONSTER SWORD "AUX" DMG)
 	<SET DMG <GETP .SWORD P?LOW-DAMAGE>>
-	<TELL "Your " D .SWORD " hits " T .MONSTER " with a dull sound." CR>
-	<TELL "... " CT .MONSTER " suffers " N .DMG " points of damage." CR>
+	<COND (,SHOW-COMBAT-MESSAGES <TELL "Your " D .SWORD " hits " T .MONSTER " with a dull sound." CR>)>
+	<COND (,SHOW-COMBAT-MESSAGES <TELL "... " CT .MONSTER " suffers " N .DMG " points of damage." CR>)>
 	<PUTP .MONSTER P?HIT-POINTS <- <GETP .MONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .MONSTER P?HIT-POINTS> 1>
-		<TELL "... but the blow was fatal. " CT .MONSTER>
-		<COND (<FSET? .MONSTER ,PLURALBIT>
-			<TELL " die.">
-		)(ELSE
-			<TELL " dies.">
+		<COND (,SHOW-COMBAT-MESSAGES
+			<TELL "... but the blow was fatal. " CT .MONSTER>
+			<COND (<FSET? .MONSTER ,PLURALBIT>
+				<TELL " die.">
+			)(ELSE
+				<TELL " dies.">
+			)>
+			<CRLF>
 		)>
-		<CRLF>
 		<REMOVE .MONSTER>
 		<COMPLETE-IF-BOUNTY .MONSTER ,HERE>
 		<RETURN>
 	)>
-	<TELL "... Your " D .SWORD " is not effective against " T .MONSTER "!" CR CR>>
+	<COND (,SHOW-COMBAT-MESSAGES <TELL "... Your " D .SWORD " is not effective against " T .MONSTER "!" CR CR>)>>
 
 <ROUTINE WITCHER-ATTACK (MONSTER SWORD "OPT" OIL SUPERIOR-OIL "AUX" DMG)
 	<SET DMG <GETP .SWORD P?HIT-DAMAGE>>
@@ -252,16 +260,18 @@
 	)(<AND .OIL <IN? .OIL .SWORD>>
 		<SET DMG <+ .DMG <GETP .OIL P?BONUS-DAMAGE>>>
 	)>
-	<TELL "You " <PICK-ONE ATTACK-DESCRIPTIONS> " " T .MONSTER " with your " D .SWORD " for " N .DMG " points of damage." CR>
+	<COND (,SHOW-COMBAT-MESSAGES <TELL "You " <PICK-ONE ATTACK-DESCRIPTIONS> " " T .MONSTER " with your " D .SWORD " for " N .DMG " points of damage." CR>)>
 	<PUTP .MONSTER P?HIT-POINTS <- <GETP .MONSTER P?HIT-POINTS> .DMG>>
 	<COND (<L? <GETP .MONSTER P?HIT-POINTS> 1>
-		<TELL "... you deal a fatal blow. " CT .MONSTER>
-		<COND (<FSET? .MONSTER ,PLURALBIT>
-			<TELL " die.">
-		)(ELSE
-			<TELL " dies.">
+		<COND (,SHOW-COMBAT-MESSAGES 
+			<TELL "... you deal a fatal blow. " CT .MONSTER>
+			<COND (<FSET? .MONSTER ,PLURALBIT>
+				<TELL " die.">
+			)(ELSE
+				<TELL " dies.">
+			)>
+			<CRLF>
 		)>
-		<CRLF>
 		<REMOVE .MONSTER>
 		<COMPLETE-IF-BOUNTY .MONSTER ,HERE>
 		<RETURN>
@@ -269,7 +279,7 @@
 	<CRLF>>
 
 <ROUTINE WITCHER-COMBAT-DAMAGE (AMT)
-	<TELL "... you took " N .AMT " points of damage." CR>
+	<COND (,SHOW-COMBAT-MESSAGES <TELL "... you took " N .AMT " points of damage." CR>)>
 	<SETG WITCHER-HEALTH <- ,WITCHER-HEALTH .AMT>>
 	<COND (<L? ,WITCHER-HEALTH 1>
 		<SETG WITCHER-HEALTH 0>

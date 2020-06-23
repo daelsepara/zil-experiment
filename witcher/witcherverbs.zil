@@ -72,22 +72,23 @@
 			<COND (<EQUAL? .KEY !\3> <SET WEAPON <CHOOSE-WEAPON .MONSTER>>)>
 			<COND (<EQUAL? .KEY !\4> <CRLF> <V-WITCHER-STATUS> <INPUT 1>)>
 			<COND (<EQUAL? .KEY !\5>
+				<SETG ,SHOW-COMBAT-MESSAGES FALSE>
+				<CRLF>
+				<TELL "You launched into an offensive against " T .MONSTER CR>
 				<REPEAT ()
-					<CRLF>
 					<PERFORM ,V?ATTACK .MONSTER .WEAPON>
 					<COND (<L? ,WITCHER-HEALTH WITCHER-HEALTH-THRESHOLD>
-						<TELL "You are seriously injured. You broke off from your assault!" CR>
+						<TELL "... after several violent exchanges you are seriously injured. You broke off from your assault!" CR>
+						<SETG ,SHOW-COMBAT-MESSAGES T>
 						<RETURN>
 					)>
-					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\6> <RETURN>)>
-					<TELL CR "(press any key to continue)">
-					<INPUT 1>
+					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\6> <TELL "... and you have prevailed! " T .MONSTER " dies!" CR> <RETURN>)>
 					<CLOCKER>
 					<UPDATE-STATUS-LINE>
 				>
 			)>
 			<COND (<EQUAL? .KEY !\6>
-				<COND (<IN? .MONSTER ,HERE> <CRLF> <TELL "You withdraw from combat!" CR>)>
+				<COND (<IN? .MONSTER ,HERE> <CRLF> <SETG ,SHOW-COMBAT-MESSAGES T> <TELL "You withdraw from combat!" CR>)>
 				<RETURN>
 			)>
 			<CLOCKER>
