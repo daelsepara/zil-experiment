@@ -38,64 +38,8 @@
 <ROUTINE V-CLEAN-SWORD ()
 	<CLEAN-SWORD ,PRSO>>
 
-<ROUTINE V-COMBAT-MODE ("AUX" MONSTER (WEAPON NONE) KEY)
-	<SET MONSTER <MONSTER-HERE>>
-	<COND (.MONSTER
-		<COND (,RIDING-VEHICLE
-			<NEED-TO-DISMOUNT>
-			<RTRUE>
-		)>
-		<COND (<AND <IS-DARK ,HERE ,PLAYER>>
-			<TELL "You cannot enter combat!" CR>
-			<FLUSH>
-			<RTRUE>
-		)>
-		<FLUSH>
-		<SET WEAPON <CHOOSE-WEAPON .MONSTER>>
-		<REPEAT ()
-			<CRLF>
-			<TELL "What do you want to do next?" CR>
-			<TELL "1 - Attack monster!" CR>
-			<TELL "2 - Eat food" CR>
-			<TELL "3 - Change my weapon" CR>
-			<TELL "4 - Check my status" CR>
-			<TELL "5 - Fight to the death!" CR>
-			<TELL "6 - Retreat!" CR>
-			<SET .KEY <INPUT 1>>
-			<COND (<EQUAL? .KEY !\1>
-				<CRLF>
-				<PERFORM ,V?ATTACK .MONSTER .WEAPON>
-				<INPUT 1>
-				<COND (<NOT <IN? .MONSTER ,HERE>> <RETURN>)>
-			)>
-			<COND (<EQUAL? .KEY !\2> <V-WITCHER-EAT> <INPUT 1>)>
-			<COND (<EQUAL? .KEY !\3> <SET WEAPON <CHOOSE-WEAPON .MONSTER>>)>
-			<COND (<EQUAL? .KEY !\4> <CRLF> <V-WITCHER-STATUS> <INPUT 1>)>
-			<COND (<EQUAL? .KEY !\5>
-				<SETG ,SHOW-COMBAT-MESSAGES FALSE>
-				<CRLF>
-				<TELL "You launched into an offensive against " T .MONSTER CR>
-				<REPEAT ()
-					<PERFORM ,V?ATTACK .MONSTER .WEAPON>
-					<COND (<L? ,WITCHER-HEALTH WITCHER-HEALTH-THRESHOLD>
-						<TELL "... after several violent exchanges you are seriously injured. You broke off from your assault!" CR>
-						<SETG ,SHOW-COMBAT-MESSAGES T>
-						<RETURN>
-					)>
-					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\6> <TELL "... and you have prevailed! " T .MONSTER " dies!" CR> <RETURN>)>
-					<UPDATE-STATUS>
-				>
-			)>
-			<COND (<EQUAL? .KEY !\6>
-				<SETG ,SHOW-COMBAT-MESSAGES T>
-				<COND (<IN? .MONSTER ,HERE> <CRLF> <TELL "You withdraw from combat!" CR>)>
-				<RETURN>
-			)>
-			<UPDATE-STATUS>
-		>
-	)(ELSE
-		<TELL "There are no monsters here!" CR>
-	)>>
+<ROUTINE V-COMBAT-MODE ()
+	<COMBAT-MODE>>
 
 <ROUTINE V-DESTROY ()
 	<COND (<NOT <FSET? ,PRSO ,DESTRUCTIBLE>>
