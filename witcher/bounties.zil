@@ -70,7 +70,6 @@
     (TEXT "||..................||Help!||Please help me find my husband.  Missing for several days now.||Will pay with coins.||--- Lara||..................")
     (BOUNTY-REWARD 500)
     (BOUNTY-LOC CAVE-III)
-    (BOUNTY-MONSTER NONE)
     (QUEST-TYPE QUEST-SEARCH)
     (VALUE 200)>
 
@@ -86,3 +85,13 @@
     (BOUNTY-UNLOCKS ABANDONED-VILLAGE-WELL-BOTTOM)
     (QUEST-TYPE QUEST-MONSTER)
     (VALUE 200)>
+
+<BOUNTY CONTRACT-MISSING-BRACELET
+    (DESC "Quest: Missing bracelet")
+    (SYNONYM QUEST)
+    (ADJECTIVE MISSING BRACELET)
+    (TEXT "Odolan is looking for a memento from her late fiancee.")    
+    (BOUNTY-REWARD 100)
+    (BOUNTY-LOC ABANDONED-VILLAGE-WELL-BOTTOM)
+    (QUEST-TYPE QUEST-RECOVER)
+    (VALUE 50)>
