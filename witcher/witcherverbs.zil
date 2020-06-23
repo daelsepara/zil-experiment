@@ -88,7 +88,8 @@
 				>
 			)>
 			<COND (<EQUAL? .KEY !\6>
-				<COND (<IN? .MONSTER ,HERE> <CRLF> <SETG ,SHOW-COMBAT-MESSAGES T> <TELL "You withdraw from combat!" CR>)>
+				<SETG ,SHOW-COMBAT-MESSAGES T>
+				<COND (<IN? .MONSTER ,HERE> <CRLF> <TELL "You withdraw from combat!" CR>)>
 				<RETURN>
 			)>
 			<CLOCKER>
