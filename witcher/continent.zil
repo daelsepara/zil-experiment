@@ -114,7 +114,7 @@
 	(DESC "Farm")
 	(SOUTH TO WHITE-ORCHARD-HUT)
 	(SE TO NORTH-OF-WHITE-ORCHARD)
-	(LDESC "Several small enclosed plots of land are arranged neatly side by side, each having different crops. A lone scarecrow is at the center of the field. The crops are waiting to be harvested.")
+	(LDESC "Several enclosed plots of land are arranged pragmatically in rows and columns. On each plot a different crop is planted. A lone scarecrow is at the center of the field. The crops are waiting to be harvested.")
 	(BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
 		NONE (CROP CROPS FARM AREA PLOT SCARECROW) THINGS-F
@@ -124,7 +124,7 @@
 <LOCATION EDGE-OF-BOG
 	(LOC ROOMS)
 	(DESC "Bog")
-	(LDESC "At the edge of the bog, the water is murky and nearly impassable. What monsters lurk beyond?")
+	(LDESC "The water is murky and nearly impassable. What monsters lurk beyond?")
 	(THINGS <> (BOG WATER) THINGS-F)
 	(SW TO SWAMP)
 	(NE TO WEST-OF-WHITE-ORCHARD)
@@ -145,8 +145,8 @@
 	(DESC "Cave entrance")
 	(UP TO SWAMP)
 	(DOWN TO CAVE-I)
-	(LDESC "You are at the entrance of the cave")
-	(THINGS <> (CAVE ENTRANCE) THINGS-F)
+	(LDESC "Footprints lead in and out of the cave.")
+	(THINGS <> (CAVE ENTRANCE PRINT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT ADJACENT)>
 
 <LOCATION CAVE-I
@@ -154,8 +154,8 @@
 	(DESC "Inside the cave, near the entrance")
 	(UP TO SWAMP-CAVE)
 	(SOUTH TO CAVE-II)
-	(LDESC "You are inside the cave.")
-	(THINGS <> (WALLS CAVE) THINGS-F)
+	(LDESC "There are some claw marks on the walls. Footprints and traces of blood lead further to the south.")
+	(THINGS <> (WALL WALLS CAVE FOOTPRINT FOOTPRINTS CLAW CLAWS MARKMARKS TRACE TRACES BLOOD) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION CAVE-II
@@ -163,29 +163,29 @@
 	(DESC "Inside the cave")
 	(NORTH TO CAVE-I)
 	(SOUTH TO CAVE-LAIR)
-	(LDESC "You are inside the cave.")
-	(THINGS <> (WALLS CAVE) THINGS-F)
+	(LDESC "A foul odor emanates from the south. Excessive amounts of blood are splattered everywhere on the floor and on the walls.")
+	(THINGS <> (WALLS CAVE BLOOD FLOOR ODOR AIR WALL WALLS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION CAVE-LAIR
 	(LOC ROOMS)
 	(DESC "Lair")
 	(NORTH TO CAVE-II)
-	(EAST TO CAVE-III)
-	(LDESC "You are inside the lair of some beast.")
+	(EAST TO CAVE-III) 
+	(LDESC "Bones and flesh remains of various creatures litter floor. This is the lair of some beast.")
 	(BOUNTY BOUNTY-CAVE-BEAR)
-	(THINGS <> (WALLS CAVE LAIR) THINGS-F)
+	(THINGS <> (BONES REMAINS WALLS CAVE LAIR CREATURE CREATURES FLOOR REMAINS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION CAVE-III
 	(LOC ROOMS)
 	(DESC "Inner Lair")
 	(WEST TO CAVE-LAIR)
-	(LDESC "You are deep inside the inner lair of the beast.")
+	(LDESC "The smell of death pervades the entire area")
 	(UNLOCKED-BY BOUNTY-CAVE-BEAR)
 	(ORENS 500)
 	(RANDOM-ORENS 50)
-	(THINGS <> (WALLS CAVE LAIR) THINGS-F)
+	(THINGS <> (WALLS CAVE LAIR AIR) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT INVISIBLE)>
 
 <ROOM CANNOT-GO
@@ -203,11 +203,12 @@
 <ROUTINE DETECT-OBJECTS (RARG)
 	<NPC-SLEEP ,HERE>
 	<COND (<EQUAL? .RARG ,M-LOOK>
+		<DESCRIBE-EXITS ,HERE>
+		<CRLF>
 		<DESCRIBE-LOCATION ,HERE>
 		<CHECK-FOOD-AVAILABILITY ,HERE>
 		<CHECK-ORENS-AVAILABILITY ,HERE>
 		<SEARCH-LOCATION ,HERE>
-		<DESCRIBE-EXITS ,HERE>
 	)(<EQUAL? .RARG ,M-ENTER>
 		<COND (<NOT <CHECK-IF-UNLOCKED ,HERE>> <CANNOT-GO-F ,M-ENTER> <RTRUE>)>
 		<SPAWN-BOUNTY ,HERE>

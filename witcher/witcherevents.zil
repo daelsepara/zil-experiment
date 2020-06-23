@@ -859,13 +859,6 @@
 		)>
 		<COND (.UNLOCKED-AREA
 			<FCLEAR .UNLOCKED-AREA ,INVISIBLE>
-			<COND (<IS-ADJACENT .LOC .UNLOCKED-AREA>
-				<CRLF>
-				<HLIGHT ,H-BOLD>
-				<TELL "The way to " T .UNLOCKED-AREA " is clear!">
-				<HLIGHT 0>
-				<CRLF>
-			)>
 		)>
 	)>>
 
