@@ -55,15 +55,15 @@
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
 	(FLAGS READBIT SURFACEBIT)>
 
-<OBJECT ODOLAN-BOUNTY-BOARD
-	(IN ODOLAN-TOWN)
+<OBJECT ABANDONED-VILLAGE-BOUNTY-BOARD
+	(IN ABANDONED-VILLAGE)
 	(SYNONYM BOARD ANNOUNCEMENTS ANNOUNCEMENT)
 	(ADJECTIVE BOUNTY)
-	(DESC "Odolan Announcement Board")
+	(DESC "Announcement Board")
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
-	(FLAGS READBIT SURFACEBIT)>
+	(FLAGS READBIT SURFACEBIT VOWELBIT)>
 
-<OBJECT ODOLAN-WELL
-	(IN ODOLAN-TOWN-WELL)
+<OBJECT WELL
+	(IN ABANDONED-VILLAGE-WELL)
 	(DESC "well")
 	(SYNONYM WELL)>

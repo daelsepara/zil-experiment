@@ -31,17 +31,6 @@
     (FLAGS PLURALBIT)
     (ACTION WHITE-ORCHARD-INVESTIGATION)>
 
-;---------------------------------
-"Bounty: Farm infestation"
-
-<OBJECT FARM-NEST
-    (DESC "hole on the ground")
-    (FDESC "[On the far edge of the farm, there is a hole on the ground]")
-    (SYNONYM HOLE NEST)
-    (TEXT "This seems to be the source of the infestation. Ghouls tend to emerge from such nests. I should destroy it and wait for the alghoul.")
-    (ACTION FARM-INVESTIGATION)
-    (FLAGS DESTRUCTIBLE NOTDESTROYED VOWELBIT)>
-
 <ROUTINE WHITE-ORCHARD-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
         <NEED-TO-DISMOUNT>
@@ -67,6 +56,17 @@
         )>
     )>
     <RFALSE>>
+
+;---------------------------------
+"Bounty: Farm infestation"
+
+<OBJECT FARM-NEST
+    (DESC "hole on the ground")
+    (FDESC "[On the far edge of the farm, there is a hole on the ground]")
+    (SYNONYM HOLE NEST)
+    (TEXT "This seems to be the source of the infestation. Ghouls tend to emerge from such nests. I should destroy it and wait for the alghoul.")
+    (ACTION FARM-INVESTIGATION)
+    (FLAGS DESTRUCTIBLE NOTDESTROYED VOWELBIT)>
 
 <ROUTINE FARM-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
@@ -138,6 +138,41 @@
             <RTRUE>
         )(
             <HMMM>
+            <RTRUE>
+        )>
+    )>
+    <RFALSE>>
+
+;---------------------------------
+"CONTRACT: Ghost in the Well"
+
+<OBJECT JAENY-DIARY
+    (DESC "a yellowed diary")
+    (FDESC "[a yellowed diary]")
+    (SYNONYM DIARY)
+    (ADJECTIVE YELLOWED)
+    (TEXT "This will contain some heartbreaking content that I haven't gotten around to writing.")
+    (ACTION ABANDONED-WELL-INVESTIGATION)
+    (FLAGS NDESCBIT MAGICBIT)>
+
+<ROUTINE ABANDONED-WELL-INVESTIGATION ("AUX" TEXT)
+    <COND (,RIDING-VEHICLE
+        <NEED-TO-DISMOUNT>
+        <RTRUE>
+    )>
+    <COND (<MONSTER-HERE>
+        <TELL CR "The wraith is here! Now is not the time for that!" CR>
+        <RTRUE>
+    )>
+    <COND (<VERB? EXAMINE>
+        <TELL "You took a look at " T ,PRSO CR>
+        <RTRUE>
+    )(<VERB? LOOK-CLOSELY>
+        <SET TEXT <GETP ,PRSO ,P?TEXT>>
+        <COND (.TEXT
+            <TELL CR T ,PRSO ": [" .TEXT "]" CR>
+            <INVESTIGATE-CLUE ,JAENY-DIARY ABANDONED-VILLAGE-INVESTIGATIONS 1 T>
+            <CHECK-INVESTIGATION ,CONTRACT-GHOST-IN-THE-WELL ABANDONED-VILLAGE-INVESTIGATIONS ABANDONED-VILLAGE-CONCLUSION ,ABANDONED-VILLAGE-ALDERMAN>
             <RTRUE>
         )>
     )>
