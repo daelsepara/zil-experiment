@@ -91,7 +91,7 @@
 
 <ROUTINE V-RELENTLESS-ASSAULT()
 	<COND (<AND <FSET? ,PRSO ,MONSTERBIT> <FSET? ,PRSI ,WEAPONBIT>> <RELENTLESS-ASSAULT ,PRSO ,PRSI> <RTRUE>)>
-	<COND (<NOT <MONSTER-HERE>> <TELL "You don't see that here." CR> <RFALSE>)>
+	<COND (<NOT <MONSTER-HERE>> <TELL "There are no monsters to attack here." CR> <RFALSE>)>
 	<COND (<OR <NOT <FIND-IN ,HERE ,WEAPONBIT>> <NOT <FIND-IN ,PLAYER ,WEAPONBIT>>> <TELL "You aren't carrying a weapon." CR> <RFALSE>)>
 	<RFALSE>>
 	

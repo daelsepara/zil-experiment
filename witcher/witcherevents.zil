@@ -202,18 +202,7 @@
 			<COND (<EQUAL? .KEY !\3> <SET WEAPON <CHOOSE-WEAPON .MONSTER>>)>
 			<COND (<EQUAL? .KEY !\4> <CRLF> <V-WITCHER-STATUS> <INPUT 1>)>
 			<COND (<EQUAL? .KEY !\5>
-				<SETG ,SHOW-COMBAT-MESSAGES FALSE>
-				<CRLF>
-				<TELL "You launched into an offensive against " T .MONSTER CR>
-				<REPEAT ()
-					<PERFORM ,V?ATTACK .MONSTER .WEAPON>
-					<COND (<L? ,WITCHER-HEALTH WITCHER-HEALTH-THRESHOLD>
-						<TELL "... after several violent exchanges you are seriously injured. You broke off from your assault!" CR>
-						<SETG ,SHOW-COMBAT-MESSAGES T>
-						<RETURN>
-					)>
-					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\0> <TELL "... and prevailed! " CT .MONSTER <COND (<FSET? .MONSTER ,PLURALBIT> " die.")(ELSE " dies!")> CR> <RETURN>)>
-				>
+				<SET KEY <RELENTLESS-ASSAULT .MONSTER .WEAPON>>
 			)>
 			<COND (<EQUAL? .KEY !\6> <COND(.OIL <CRLF> <PERFORM ,V?APPLY-OIL .OIL .WEAPON> <INPUT 1>)>)>
 			<COND (<EQUAL? .KEY !\0>
@@ -227,22 +216,22 @@
 		<TELL "There are no monsters here!" CR>
 	)>>
 
-<ROUTINE RELENTLESS-ASSAULT (MONSTER WEAPON)
+<ROUTINE RELENTLESS-ASSAULT (MONSTER WEAPON "AUX" KEY)
 	<COND (<NOT <MONSTER-HERE>> <TELL "There are no monsters here!" CR> <RTRUE>)>
 	<SETG ,SHOW-COMBAT-MESSAGES FALSE>
 	<CRLF>
-	<TELL "You launched into an offensive against " T .MONSTER CR>
+	<TELL "You launch into an offensive against " T .MONSTER CR>
 	<REPEAT ()
 		<PERFORM ,V?ATTACK .MONSTER .WEAPON>
+		<COND (<NOT <IN? .MONSTER ,HERE>> <TELL "... and prevailed! " CT .MONSTER <COND (<FSET? .MONSTER ,PLURALBIT> " die.")(ELSE " dies!")> CR> <SET KEY !\0> <RETURN>)>
 		<COND (<L? ,WITCHER-HEALTH WITCHER-HEALTH-THRESHOLD>
 			<TELL "... after several violent exchanges you are seriously injured. You broke off from your assault!" CR>
-			<SETG ,SHOW-COMBAT-MESSAGES T>
 			<RETURN>
 		)>
-		<COND (<NOT <IN? .MONSTER ,HERE>> <TELL "... and prevailed! " CT .MONSTER <COND (<FSET? .MONSTER ,PLURALBIT> " die.")(ELSE " dies!")> CR> <RETURN>)>
+		<UPDATE-STATUS>
 	>
-	<RETURN !\0>>
-	
+	<SETG ,SHOW-COMBAT-MESSAGES T>
+	<RETURN .KEY>>
 
 <ROUTINE COMBAT-SILVER (MONSTER WEAPON "OPT" OIL SUPERIOR-OIL)
 	<COMBAT-SWORD .MONSTER .WEAPON ,SILVER-SWORD .OIL .SUPERIOR-OIL>>
