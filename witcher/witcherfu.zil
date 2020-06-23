@@ -147,13 +147,12 @@
 "CONTRACT: Ghost in the Well"
 
 <OBJECT JAENY-DIARY
-    (DESC "a yellowed diary")
-    (FDESC "[a yellowed diary]")
+    (DESC "yellowed diary")
     (SYNONYM DIARY)
     (ADJECTIVE YELLOWED)
     (TEXT "This will contain some heartbreaking content that I haven't gotten around to writing.")
     (ACTION ABANDONED-WELL-INVESTIGATION)
-    (FLAGS NDESCBIT MAGICBIT)>
+    (FLAGS NDESCBIT MAGICBIT READBIT)>
 
 <ROUTINE ABANDONED-WELL-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
@@ -180,3 +179,11 @@
 
 ;---------------------------------
 "QUEST: Missing bracelet"
+
+<OBJECT MISSING-BRACELET
+    (IN ABANDONED-VILLAGE-WELL-BOTTOM)
+    (DESC "shiny trinket")
+    (SYNONYM TRINKET BRACELET)
+    (ADJECTIVE SHINY)
+    (TEXT "A woman's bracelet. Still shiny, albeit with some scratches")
+    (FLAGS NDESCBIT MAGICBIT TAKEBIT)>
