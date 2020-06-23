@@ -54,3 +54,16 @@
 	(DESC "White Orchard Announcement Board")
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
 	(FLAGS READBIT SURFACEBIT)>
+
+<OBJECT ODOLAN-BOUNTY-BOARD
+	(IN ODOLAN-TOWN)
+	(SYNONYM BOARD ANNOUNCEMENTS ANNOUNCEMENT)
+	(ADJECTIVE BOUNTY)
+	(DESC "Odolan Announcement Board")
+	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
+	(FLAGS READBIT SURFACEBIT)>
+
+<OBJECT ODOLAN-WELL
+	(IN ODOLAN-TOWN-WELL)
+	(DESC "well")
+	(SYNONYM WELL)>

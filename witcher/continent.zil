@@ -5,6 +5,7 @@
 		(EAST TO PARTS-UNKNOWN)
 		(SOUTH TO PARTS-UNKNOWN)
 		(ACTION DETECT-OBJECTS)
+		(MONSTER NONE)
 		(LASTRESPAWN 0)
 		(RESPAWN 0)
 		(ORENS 0)
@@ -79,6 +80,7 @@
 	(EAST TO BATTLE-FIELD)
 	(WEST TO WHITE-ORCHARD-TOWN)
 	(NW TO NORTH-OF-WHITE-ORCHARD)
+	(SOUTH TO SOUTH-CROSSROADS)
 	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.")
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
@@ -94,6 +96,32 @@
 	(LDESC "A small town bustling with activity.")
 	(THINGS NONE (TOWN INHABITANTS PEOPLE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<LOCATION SOUTH-CROSSROADS
+	(LOC ROOMS)
+	(DESC "Crossroads, South")
+	(NORTH TO CROSSROADS)
+	(SOUTH TO ODOLAN-TOWN)
+	(LDESC "Further south leads to the town of Odolan")
+	(MONSTER GHOULS)
+	(LASTRESPAWN 60)
+	(RESPAWN 120)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<LOCATION ODOLAN-TOWN
+	(LOC ROOMS)
+	(DESC "Odolan")
+	(NORTH TO SOUTH-CROSSROADS)
+	(EAST TO ODOLAN-TOWN-WELL)
+	(LDESC "A quiet town, almost abandoned. There is a well nearby.")
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<LOCATION ODOLAN-TOWN-WELL
+	(LOC ROOMS)
+	(DESC "Odolan, outside")
+	(WEST TO ODOLAN-TOWN)
+	(LDESC "A small corner just outside the town where people congregate.")
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT ADJACENT)>
 
 <LOCATION NORTH-OF-WHITE-ORCHARD
 	(LOC ROOMS)

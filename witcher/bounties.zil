@@ -76,10 +76,11 @@
 
 <BOUNTY CONTRACT-GHOST-IN-THE-WELL
     (DESC "Contract: Ghost in the Well")
+    (IN ODOLAN-BOUNTY-BOARD)
     (SYNONYM CONTRACT)
     (ADJECTIVE GHOST WELL)
     (TEXT "A ghost is haunting the well in the village. Townsfolk are suffering without access to the water supply.")
     (BOUNTY-REWARD 300)
-    (BOUNTY-MONSTER NONE)
-    (QUEST-TYPE QUEST-RECOVER)
+    (BOUNTY-MONSTER WRAITH-JAENY)
+    (QUEST-TYPE QUEST-MONSTER)
     (VALUE 200)>
