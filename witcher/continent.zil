@@ -45,12 +45,32 @@
 <LOCATION BATTLE-FIELD
 	(LOC ROOMS)
 	(DESC "Battlefield")
+	(NORTH TO BATTLE-FIELD-NORTH)
 	(EAST TO CAMP-SITE)
 	(WEST TO CROSSROADS)
 	(ORENS 50)
 	(RANDOM-ORENS 10)
 	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.")
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<LOCATION BATTLE-FIELD-NORTH
+	(LOC ROOMS)
+	(DESC "Battlefield, North")
+	(LDESC "The desolation extends to this area here. Dead bodies are everywhere, carrion for the vultures. There is a camp nearby.")
+	(SOUTH TO BATTLE-FIELD)
+	(NE TO BANDIT-CAMP-I)
+	(THINGS (DEAD) (CORPSE CORPSES DEAD BODY BODIES CARRION VULTURES) THINGS-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+
+<LOCATION BANDIT-CAMP-I
+	(LOC ROOMS)
+	(DESC "Camp in the forest")
+	(LDESC "You have stumbled into a bandit's camp")
+	(SW BATTLE-FIELD-NORTH)
+	(BOUNTY BOUNTY-BANDITS-I)
+	(ORENS 100)
+	(RANDOM-ORENS 20)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION CROSSROADS
@@ -239,6 +259,7 @@
 		<RTRUE>
 	)>
 	<COND (<AND <VERB? TAKE> <EQUAL? ,PRSO ,TOPIC-ORENS>>
+		<COND (<MONSTER-HERE> <TELL "Now is not the time for that!" CR> <RTRUE>)>
 		<SET ORENS <GETP ,HERE ,P?ORENS>>
 		<SET RANDOM-ORENS <GETP ,HERE ,P?RANDOM-ORENS>>
 		<COND (<OR <G? .ORENS 0> <G? .RANDOM-ORENS 0>>

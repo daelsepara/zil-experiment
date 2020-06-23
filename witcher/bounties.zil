@@ -13,11 +13,15 @@
         (VALUE 0)
         (FLAGS TAKEBIT READBIT BOUNTYBIT)>
 
-<BOUNTY BOUNTY-BANDITS
+<BOUNTY BOUNTY-BANDITS-I
     (DESC "Bounty: Raid Bandit Camp")
     (ADJECTIVE BANDIT BANDITS)
-    (TEXT "Groups of bandits are robbing, pillaging and looting around White Orchard. Townsfolk are advised to travel in large groups for their own safety. Talk to the magistrate at the Nilfgaardian outpost.")
-    (BOUNTY-REWARD 500)
+    (TEXT "A group of bandits, looters, deserters and other unsavoury people.")
+    (BOUNTY-MONSTER BANDITS)
+    (BOUNTY-ACCEPTED T)
+    (BOUNTY-INVESTIGATED T)
+    (BOUNTY-REPORTED T)
+    (BOUNTY-LOC BANDIT-CAMP-I)
     (BOUNTY-MONSTER BANDITS)
     (VALUE 100)>
 
