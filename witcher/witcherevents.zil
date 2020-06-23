@@ -212,7 +212,7 @@
 						<SETG ,SHOW-COMBAT-MESSAGES T>
 						<RETURN>
 					)>
-					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\0> <TELL "... and prevailed! " T .MONSTER <COND (<FSET? .MONSTER ,PLURALBIT> " die.")(ELSE " dies!")> CR> <RETURN>)>
+					<COND (<NOT <IN? .MONSTER ,HERE>> <SET KEY !\0> <TELL "... and prevailed! " CT .MONSTER <COND (<FSET? .MONSTER ,PLURALBIT> " die.")(ELSE " dies!")> CR> <RETURN>)>
 					<UPDATE-STATUS>
 				>
 			)>
