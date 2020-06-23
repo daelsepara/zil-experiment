@@ -227,6 +227,23 @@
 		<TELL "There are no monsters here!" CR>
 	)>>
 
+<ROUTINE RELENTLESS-ASSAULT (MONSTER WEAPON)
+	<COND (<NOT <MONSTER-HERE>> <TELL "There are no monsters here!" CR> <RTRUE>)>
+	<SETG ,SHOW-COMBAT-MESSAGES FALSE>
+	<CRLF>
+	<TELL "You launched into an offensive against " T .MONSTER CR>
+	<REPEAT ()
+		<PERFORM ,V?ATTACK .MONSTER .WEAPON>
+		<COND (<L? ,WITCHER-HEALTH WITCHER-HEALTH-THRESHOLD>
+			<TELL "... after several violent exchanges you are seriously injured. You broke off from your assault!" CR>
+			<SETG ,SHOW-COMBAT-MESSAGES T>
+			<RETURN>
+		)>
+		<COND (<NOT <IN? .MONSTER ,HERE>> <TELL "... and prevailed! " CT .MONSTER <COND (<FSET? .MONSTER ,PLURALBIT> " die.")(ELSE " dies!")> CR> <RETURN>)>
+	>
+	<RETURN !\0>>
+	
+
 <ROUTINE COMBAT-SILVER (MONSTER WEAPON "OPT" OIL SUPERIOR-OIL)
 	<COMBAT-SWORD .MONSTER .WEAPON ,SILVER-SWORD .OIL .SUPERIOR-OIL>>
 
@@ -935,16 +952,6 @@
 		)>
 		<RETURN>
 	)>>
-
-;----------------------
-"Bounty Debug Routines"
-
-<ROUTINE SET-BOUNTY-STATUS (BOUNTY STATUS)
-	<TELL "[DEBUG] SET " D .BOUNTY " FLAG (" <GET BOUNTY-FLAG .STATUS> ") => T" CR>
-	<COND (<EQUAL? .STATUS 0> <PUTP .BOUNTY ,P?BOUNTY-ACCEPTED T>)>
-	<COND (<EQUAL? .STATUS 1> <PUTP .BOUNTY ,P?BOUNTY-INVESTIGATED T>)>
-	<COND (<EQUAL? .STATUS 2> <PUTP .BOUNTY ,P?BOUNTY-REPORTED T>)>
-	<COND (<EQUAL? .STATUS 3> <PUTP .BOUNTY ,P?BOUNTY-COMPLETED T>)>>
 
 ;----------------------
 "Miscellaneous Routines"
