@@ -9,6 +9,7 @@
 <CONSTANT HP-GRIFFIN 1500>
 <CONSTANT HP-ALGHOUL 700>
 <CONSTANT HP-BEAR 500>
+<CONSTANT HP-JAENY 900>
 
 <CONSTANT WITCHER-CONSUMPTION 1>
 <CONSTANT WITCHER-HEALING-RATE 50>
@@ -62,7 +63,9 @@
 
 <CONSTANT QUEST-MONSTER 1>
 <CONSTANT QUEST-SEARCH 2>
-<CONSTANT QUEST-ACCEPT <LTABLE "Splendid! You should investigate " "Thanks Witcher! Please carry on with your search.">>
-<CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching.">>
-<CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "...">>
-<CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher.">>
+
+<CONSTANT QUEST-RECOVER 3>
+<CONSTANT QUEST-ACCEPT <LTABLE "Splendid! You should investigate " "Thanks Witcher! Please carry on with your search." "Thanks Witcher! Please come back as soon as you find it.">>
+<CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching." "Have you found it yet?">>
+<CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "..." "Have you found it yet?">>
+<CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher." "Thank you for recovering ">>
