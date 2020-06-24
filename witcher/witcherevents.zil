@@ -210,7 +210,7 @@
 			<UPDATE-STATUS>
 		>
 	)(ELSE
-		<TELL "There are no monsters here!" CR>
+		<NO-MONSTERS>
 	)>>
 
 <ROUTINE COMBAT-SILVER (MONSTER WEAPON "OPT" OIL SUPERIOR-OIL)
@@ -292,7 +292,7 @@
 	<TELL "That is your plan? Attacking " T .MONSTER " with " T .WEAPON "?" CR>>
 
 <ROUTINE RELENTLESS-ASSAULT (MONSTER WEAPON "AUX" KEY)
-	<COND (<NOT <MONSTER-HERE>> <TELL "There are no monsters here!" CR> <RTRUE>)>
+	<COND (<NOT <MONSTER-HERE>> <NO-MONSTERS> <RTRUE>)>
 	<SETG ,SHOW-COMBAT-MESSAGES FALSE>
 	<CRLF>
 	<TELL "You launch into an offensive against " T .MONSTER CR>
@@ -904,7 +904,7 @@
 
 <ROUTINE DESCRIBE-EXITS (LOC)
 	<COND (<IS-DARK .LOC ,PLAYER>
-		<TELL "It is pitch black. You can't see a thing." CR>
+		<PITCH-BLACK>
 		<FLUSH>
 		<RTRUE>
 	)>
@@ -1036,10 +1036,8 @@
 		<SET UNLOCKED-AREA <GETP .BOUNTY ,P?BOUNTY-UNLOCKS>>
 		<COND (<EQUAL? .MONSTER .BOUNTY-MONSTER>
 			<PUTP .BOUNTY ,P?BOUNTY-COMPLETED T>
-			<COND (<EQUAL? <GETP .BOUNTY ,P?QUEST-TYPE> QUEST-MONSTER>
-				<QUEST-UPDATE-SCORE .BOUNTY>
-				<MOVE .BOUNTY ,CONCEPT-JOURNAL>
-			)>
+			<QUEST-UPDATE-SCORE .BOUNTY>
+			<MOVE .BOUNTY ,CONCEPT-JOURNAL>
 		)>
 		<COND (.UNLOCKED-AREA
 			<FCLEAR .UNLOCKED-AREA ,INVISIBLE>
@@ -1177,6 +1175,12 @@
 	<TELL "You need to dismount from " T ,CURRENT-VEHICLE " first!" CR>
 	<FLUSH>>
 
+<ROUTINE NO-MONSTERS()
+	<TELL "There are no monsters here!" CR>>
+
+<ROUTINE NOT-THE-TIME()
+	<TELL CR "The monster is here! Now is not the time for that!" CR>>
+
 <ROUTINE NOTHING-HAPPENS ()
 	<TELL "[Nothing happens]" CR>>
 
@@ -1200,6 +1204,9 @@
 		<SET PERSON <NEXT? .PERSON>>
 	>
 	<RTRUE>>
+
+<ROUTINE PITCH-BLACK()
+	<TELL "It is pitch black. You can't see a thing." CR>>
 
 <ROUTINE PROBABILITY(ODDS)
 	<RETURN <L? <RANDOM 100> .ODDS>>>

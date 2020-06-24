@@ -2,7 +2,7 @@
     OBJECT
 		(SYNONYM VIAL OIL)
 		(BONUS-DAMAGE 50)
-		(TEXT "a type of oil for dealing with specific kinds of monsters")
+		(TEXT "a type of oil for dealing with a specific kinds of monster")
 		(FLAGS TAKEBIT)>
 
 <OBJECT-TEMPLATE POTION =
@@ -10,6 +10,7 @@
 		(SYNONYM VIAL POTION)
 		(FLAGS TAKEBIT)>
 
+;----------------------
 "Witcher swords"
 
 <OBJECT SILVER-SWORD
@@ -29,7 +30,7 @@
 	(ADJECTIVE STEEL)
 	(HIT-DAMAGE 50)
 	(LOW-DAMAGE 10)
-	(TEXT "a weapon for killing humans or humanoid creatures and beasts")
+	(TEXT "a weapon for killing humans or humanoid creatures, and beasts")
 	(FLAGS TAKEBIT CONTBIT SURFACEBIT WEAPONBIT)>
 
 ;----------------------
@@ -124,7 +125,6 @@
 				<DESCRIBE-OBJECTS ,HERE>
 			)(T
 				<CRLF>
-
 			)>
 		)>
 		<RTRUE>

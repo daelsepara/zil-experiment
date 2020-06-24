@@ -37,7 +37,8 @@
         <RTRUE>
     )>
     <COND (<MONSTER-HERE>
-        <TELL CR "The quarry is here! Now is not the time for that!" CR>
+        <CRLF>
+        <NOT-THE-TIME>
         <RTRUE>
     )>
     <COND (<VERB? EXAMINE>
@@ -74,7 +75,8 @@
         <RTRUE>
     )>
     <COND (<MONSTER-HERE>
-        <TELL CR "The quarry is here! Now is not the time for that!" CR>
+        <CRLF>
+        <NOT-THE-TIME>
         <RTRUE>
     )(<VERB? EXAMINE>
         <COND (<GETP ,BOUNTY-WHITE-ORCHARD-INFESTATION ,P?BOUNTY-INVESTIGATED>
@@ -184,7 +186,8 @@
         <RTRUE>
     )>
     <COND (<MONSTER-HERE>
-        <TELL CR "The wraith is here! Now is not the time for that!" CR>
+        <CRLF>
+        <NOT-THE-TIME>
         <RTRUE>
     )>
     <COND (<VERB? EXAMINE>
