@@ -11,7 +11,18 @@
 		(FLAGS TAKEBIT)>
 
 ;----------------------
-"Witcher swords"
+"Witcher weapons"
+
+<OBJECT BARE-HANDS
+	(DESC "bare hands")
+	(SYNONYM FISTS HANDS)
+	(IN PLAYER)
+	(TEXT "a weapon of last resort")
+	(ADJECTIVE UNARMED BARE)
+	(HIT-DAMAGE 1)
+	(LOW-DAMAGE 1)
+	(ACTION BODY-PART-F)
+	(FLAGS WEAPONBIT)>
 
 <OBJECT SILVER-SWORD
 	(IN PLAYER)
@@ -19,7 +30,7 @@
 	(SYNONYM SWORD SWORDS)
 	(ADJECTIVE SILVER)
 	(HIT-DAMAGE 50)
-	(LOW-DAMAGE 10)
+	(LOW-DAMAGE 20)
 	(TEXT "a weapon for killing creatures of magic")
 	(FLAGS TAKEBIT CONTBIT SURFACEBIT WEAPONBIT)>
 
@@ -29,7 +40,7 @@
 	(SYNONYM SWORD SWORDS)
 	(ADJECTIVE STEEL)
 	(HIT-DAMAGE 50)
-	(LOW-DAMAGE 10)
+	(LOW-DAMAGE 20)
 	(TEXT "a weapon for killing humans or humanoid creatures, and beasts")
 	(FLAGS TAKEBIT CONTBIT SURFACEBIT WEAPONBIT)>
 
@@ -105,6 +116,13 @@
 	(TEXT "potion that allows you to see in the dark for a limited time")
 	(ADJECTIVE CAT EYE EYES)
 	(ACTION POTION-ACTION-F)>
+
+<ROUTINE BODY-PART-F ()
+	<COND (<VERB? DROP>
+		<TELL "You can't do that!" CR>
+	)(<VERB? TAKE>
+		<WHAT-NOW>
+	)>>
 
 <ROUTINE DRINK-POTION (POTION "AUX" WAS-DARK)
 	<COND (<EQUAL? .POTION ,CAT-EYES-POTION>
