@@ -84,7 +84,7 @@
 	(SOUTH TO SOUTH-CROSSROADS)
 	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.")
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
-	(THINGS NONE (HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
+	(THINGS NONE (GROUND HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION WHITE-ORCHARD-TOWN
