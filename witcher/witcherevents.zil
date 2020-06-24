@@ -881,7 +881,7 @@
 
 <ROUTINE CHECK-ORENS-AVAILABILITY (LOC)
 	<COND (<OR <GETP .LOC ,P?ORENS> <GETP .LOC ,P?RANDOM-ORENS>>
-		<TELL "[... there are some coins here.]" CR>
+		<TELL CR "[... there are some coins here.]" CR>
 	)>>
 
 <ROUTINE CHECK-TRAVEL-RESTRICTIONS (LOC)
