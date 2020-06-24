@@ -25,7 +25,7 @@ Data from:
 
 <TOPIC TOPIC-BEARS
     (DESC "Bears")
-    (LDESC "Bears of any kind are sturdy foes possessing great vitality, and terrible strenth.||Weak against beast oil.")
+    (LDESC "Bears of any kind are sturdy foes possessing great vitality, and terrible strength.||Weak against beast oil.")
     (SYNONYM BEAR BEARS)
     (FLAGS MONSTERBIT)>
 
@@ -55,7 +55,7 @@ Data from:
 
 <TOPIC TOPIC-ORENS
     (DESC "Orens")
-    (LDESC "Orens are is the most widely used currency on the continent.")
+    (LDESC "Orens are the most widely used currency on the continent.")
     (SYNONYM ORENS COINS COIN)
     (ACTION ORENS-F)
     (FLAGS TAKEBIT)>
