@@ -20,12 +20,14 @@ Data from:
 <TOPIC TOPIC-ALGHOULS
     (DESC "Alghouls")
     (LDESC "Alghouls differ from normal ghouls in size, strength, coloring and, most importantly, intelligence. Whereas Ghouls and Graveirs are primitive creatures unfit to plan even the simplest ambush, Alghouls and their kindred (such as Cemetaurs) are capable of forethought, and are thus much more dangerous.||Weak against necrophage oil.")
-    (SYNONYM ALGHOUL ALGHOULS)>
+    (SYNONYM ALGHOUL ALGHOULS)
+    (FLAGS MONSTERBIT)>
 
 <TOPIC TOPIC-BEARS
     (DESC "Bears")
     (LDESC "Bears of any kind are sturdy foes possessing great vitality, and terrible strenth.||Weak against beast oil.")
-    (SYNONYM BEAR BEARS)>
+    (SYNONYM BEAR BEARS)
+    (FLAGS MONSTERBIT)>
 
 <TOPIC TOPIC-GERALT
     (DESC "Geralt of Rivia, the White wolf, Gwynbleidd")
@@ -36,17 +38,20 @@ Data from:
 <TOPIC TOPIC-GHOULS
     (DESC "Ghouls")
     (LDESC "Ghouls make up the main body of post-Conjunction relics classified as necrophages, and this includes the larger, more dangerous breads: alghouls, graveirs, and cemetaurs. They are all similar in appearance and have multiple traits in common. These, for example, include stooped posture (some of the more deformed subspecies move about on all fours), hypertrophied pectoral girdles and front limbs, and hands with opposing thumbs and fingers ending in short, blunt claws ideal for burrowing. Their strong jaws and long tongues enable the beasts to easily shatter thick bones and lick them clean of their fevorite delicacy, marrow.||Weak against necrophage oil.")
-    (SYNONYM GHOUL GHOULS)>
+    (SYNONYM GHOUL GHOULS)
+    (FLAGS MONSTERBIT)>
 
 <TOPIC TOPIC-GRIFFINS
     (DESC "Griffins")
     (LDESC "The griffin resembles a crossbreed of a huge cat and a predatory bird. It mainly inhabits wild, mountainous regions, building its nests on inaccessible peaks. Large, hoofed mammals are its usual prey, but, being highly territorial, a griffin will also passionately defend the area surrounding its nest. Wit the expansion of the human settlements and trade routes, griffins have become more and more of a threat to humans, attacking travelers and merchant caravans, as well as settlers and, particularly shepherds and their flocks.||Weak against hybrid oil.")
-    (SYNONYM GRIFFIN GRIFFINS)>
+    (SYNONYM GRIFFIN GRIFFINS)
+    (FLAGS MONSTERBIT)>
 
 <TOPIC TOPIC-NEKKER
     (DESC "Nekkers")
     (LDESC "Nekkers are small, misshapen creatures that inhabit remote areas. They make their abodes in dark woods, damp gullies, and shadowy dales, where they live in colonies composed of anywhere from a dozen to several dozen individuals. Their lairs take the form of dug-out hollows, interconnected by narrow underground tunnels. Nekkers use these pathways to quickly travel around their colony and its immediate surroundings, disappearing into the earth and then seeming to instantaneously pop up elsewhere.||Weak against ogroid oil.")
-    (SYNONYM NEKKERS NEKKER)>
+    (SYNONYM NEKKERS NEKKER)
+    (FLAGS MONSTERBIT)>
 
 <TOPIC TOPIC-ORENS
     (DESC "Orens")
@@ -86,13 +91,16 @@ Data from:
 <TOPIC TOPIC-WRAITHS
     (DESC "Wraiths")
     (LDESC "Wraiths are the most common of ethereal emanations. They are the vengeful ghosts of people who died violently or suddenly, usually as a result of some injustice / the betrayal of a trusted friend, an unjust accusation, or a murder born of greed or envy.||Weak against specter oil.")
-    (SYNONYM WRAITH WRAITHS)>
+    (SYNONYM WRAITH WRAITHS)
+    (FLAGS MONSTERBIT)>
 
 <OBJECT TOPIC-JAENY
     (DESC "Jaeny, The Wraith")
-    (LDESC "Jaeny is the name of the woman who was murdered in the abandoned village, possibly by Marek. She has become the wraith that haunts the village well.||Weak against specter oil.")>
+    (LDESC "Jaeny is the name of the woman who was murdered in the abandoned village possibly, by Marek. She has become the wraith that haunts the village well.||Weak against specter oil.")
+    (FLAGS MONSTERBIT)>
 
 <VOC "LIST">
+<VOC "MONSTERS">
 
 <ROUTINE READ-CODEX ("AUX" W W2 (STOP FALSE))
 	<COND (<NOT <FSET? ,PRSO ,CODEXBIT>>
@@ -128,6 +136,7 @@ Data from:
 			(<OR <EQUAL? .W ,STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
 			(<OR <EQUAL? .W ,W?MEDALLION ,W?MEDAL ,WOLF-MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDAL>> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
 			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)
+			(<OR <EQUAL? .W ,W?MONSTERS ,W?MONSTER> <ARE-WORDS ,W?LIST ,W?MONSTERS> <IS-PHRASE ,W?LIST ,W?OF ,W?MONSTERS>> <LIST-TOPICS ,MONSTERBIT>)
 			(<EQUAL? .W ,W?WRAITH ,W?WRAITHS ,TOPIC-WRAITHS> <PRINT-TOPIC ,TOPIC-WRAITHS>)
 			(<EQUAL? .W ,W?ORENS ,TOPIC-ORENS> <PRINT-TOPIC ,TOPIC-ORENS>)
 			(<EQUAL? .W ,W?JAENY ,TOPIC-JAENY ,WRAITH-JAENY ,JAENY-CORPSE> <PRINT-TOPIC ,TOPIC-JAENY>)

@@ -842,7 +842,7 @@
 		<TELL CR "[The codex is silent about such things.]" CR>
 	)>>
 
-<ROUTINE LIST-TOPICS ("AUX" TOPIC)
+<ROUTINE LIST-TOPICS ("OPT" FILTER "AUX" TOPIC)
 	<CRLF>
 	<HLIGHT ,H-INVERSE>
 	<TELL "List of Topics" CR CR>
@@ -853,7 +853,9 @@
 			<RETURN>
 		)(ELSE 
 			<COND (<FSET? .TOPIC ,TOPICBIT>
-				<TELL D .TOPIC CR>
+				<COND (<OR <NOT .FILTER> <AND .FILTER <FSET? .TOPIC .FILTER>>>
+					<TELL D .TOPIC CR>
+				)>
 			)>
 		)>
 		<SET TOPIC <NEXT? .TOPIC>>
