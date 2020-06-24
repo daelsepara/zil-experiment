@@ -150,31 +150,31 @@
     (DESC "yellowed diary")
     (SYNONYM DIARY)
     (ADJECTIVE YELLOW YELLOWED)
-    (TEXT "||You a read the diary.|||.............. first page||I am so happy! Odolan and I will be married in a month. Today, he gave me a beatiful braclet from in Novigrad.||.............. second page||Odolan went back to Novigrad again for some business||I am counting the days until his return so we can be married at last!||.............. fifth page (almost torn off)||Marek proposed to me again. He thinks, he is a much bettern than My Odolan||.............. ninth page (blood stains)||Marek is still angry after I rejected his suit||Odolan is arriving tomorrow. Everything's wonderful again.|")
+    (TEXT "||You a read the diary.||.............. first page||I am so happy! Odolan and I will be married in a month. Today, he gave me a beatiful braclet from Novigrad.||.............. second page||Odolan went back to Novigrad for some business.||I am counting the days until his return so we can be married!||.............. fifth page (almost torn off)||Marek proposed to me again. He thinks, he is much better Odolan||.............. ninth page (blood stains)||Marek is still angry after I rejected his suit||Odolan is arriving tomorrow. Everything's going to be wonderful again.|")
     (ACTION ABANDONED-WELL-INVESTIGATION)
     (FLAGS NDESCBIT MAGICBIT READBIT)>
 
 <OBJECT PENTAGRAM-RITUAL
     (DESC "pentagram drawn in blood")
     (SYNONYM PENTAGRAM RITUAL BLOOD)
-    (TEXT "A pentagram drawn from blood is one the ground. Looks like a ritual was performed to curse someone or something.")
+    (TEXT "A pentagram drawn from blood is on the ground. Looks like a ritual was performed to curse someone.")
     (ACTION ABANDONED-WELL-INVESTIGATION)
     (FLAGS NDESCBIT MAGICBIT READBIT)>
 
 <OBJECT WELL
 	(IN ABANDONED-VILLAGE-WELL)
 	(DESC "well")
-	(TEXT "There's blood around the well. Perhaps someone or something thrown here.")
+	(TEXT "There are traces of blood on the well. A foul odor also emanates from it. Perhaps someone or something thrown down there.")
 	(SYNONYM WELL)
 	(ACTION ABANDONED-WELL-INVESTIGATION)>
 
 <OBJECT DRAG-MARKS
 	(DESC "drag marks on the ground")
-     (FDESC "[There are drag marks on the ground]")
-	(TEXT "Someone was dragged towards the well. No signs of struggle. The victim must have been dead.")
-	(SYNONYM MARKS)
-	(ADJECTIVE DRAG)
-	(ACTION ABANDONED-WELL-INVESTIGATION)
+    (FDESC "[There are drag marks on the ground]")
+    (TEXT "Someone was dragged towards the well. No signs of struggle. The victim must have been dead already.")
+    (SYNONYM MARKS)
+    (ADJECTIVE DRAG)
+    (ACTION ABANDONED-WELL-INVESTIGATION)
     (THINGS <> (GROUND) THINGS-F)
     (FLAGS PLURALBIT)>
 
@@ -201,6 +201,7 @@
             <INVESTIGATE-CLUE ,WELL ABANDONED-VILLAGE-INVESTIGATIONS 3 T>
             <INVESTIGATE-CLUE ,DRAG-MARKS ABANDONED-VILLAGE-INVESTIGATIONS 4 T>
             <CHECK-INVESTIGATION ,CONTRACT-GHOST-IN-THE-WELL ABANDONED-VILLAGE-INVESTIGATIONS ABANDONED-VILLAGE-CONCLUSION ,ABANDONED-VILLAGE-ALDERMAN>
+            <COND (<GETP ,CONTRACT-GHOST-IN-THE-WELL ,P?BOUNTY-INVESTIGATED> <ADD-TOPIC ,TOPIC-JAENY>)>
             <RTRUE>
         )>
     )>
@@ -218,6 +219,14 @@
     (ACTION MISSING-BRACELET-INVESTIGATION)
     (FLAGS NDESCBIT MAGICBIT)>
 
+<OBJECT JAENY-CORPSE
+    (IN ABANDONED-VILLAGE-WELL-BOTTOM)
+    (DESC "dead woman's body")
+    (TEXT "A dead woman. Must have been Jaeny.")
+    (SYNONYM CORPSE REMAINS WOMAN BODY JAENY)
+    (ACTION MISSING-BRACELET-INVESTIGATION)
+    (ADJECTIVE DEAD)>
+
 <ROUTINE MISSING-BRACELET-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
         <NEED-TO-DISMOUNT>
@@ -225,10 +234,12 @@
     )>
     <COND (<VERB? EXAMINE>
         <COND (<AND <EQUAL? ,PRSO ,MISSING-BRACELET> <NOT <GETP ,CONTRACT-MISSING-BRACELET ,P?BOUNTY-ACCEPTED>>> <HMMM> <RTRUE>)>
+        <COND (<AND <EQUAL? ,PRSO ,JAENY-CORPSE> <NOT <GETP ,CONTRACT-GHOST-IN-THE-WELL ,P?BOUNTY-COMPLETED>>> <HMMM> <RTRUE>)>
         <TELL "You took a look at " T ,PRSO CR>
         <RTRUE>
     )(<VERB? LOOK-CLOSELY>
         <COND (<AND <EQUAL? ,PRSO ,MISSING-BRACELET> <NOT <GETP ,CONTRACT-MISSING-BRACELET ,P?BOUNTY-ACCEPTED>>> <HMMM> <RTRUE>)>
+        <COND (<AND <EQUAL? ,PRSO ,JAENY-CORPSE> <NOT <GETP ,CONTRACT-GHOST-IN-THE-WELL ,P?BOUNTY-COMPLETED>>> <HMMM> <RTRUE>)>
         <SET TEXT <GETP ,PRSO ,P?TEXT>>
         <COND (.TEXT
             <TELL CR T ,PRSO ": [" .TEXT "]" CR>

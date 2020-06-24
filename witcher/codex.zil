@@ -83,6 +83,15 @@ Data from:
     (SYNONYM MEDALLION MEDAL)
     (ADJECTIVE WOLF)>
 
+<TOPIC TOPIC-WRAITHS
+    (DESC "Wraiths")
+    (LDESC "Wraiths are the most common of ethereal emanations. They are the vengeful ghosts of people who died violently or suddenly, usually as a result of some injustice / the betrayal of a trusted friend, an unjust accusation, or a murder born of greed or envy.||Weak against specter oil.")
+    (SYNONYM WRAITH WRAITHS)>
+
+<OBJECT TOPIC-JAENY
+    (DESC "Jaeny, The Wraith")
+    (LDESC "Jaeny is the name of the woman who was murdered in the abandoned village, possibly by Marek. She has become the wraith that haunts the village well.||Weak against specter oil.")>
+
 <VOC "LIST">
 
 <ROUTINE READ-CODEX ("AUX" W W2 (STOP FALSE))
@@ -119,6 +128,9 @@ Data from:
 			(<OR <EQUAL? .W ,STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
 			(<OR <EQUAL? .W ,W?MEDALLION ,W?MEDAL ,WOLF-MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDAL>> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
 			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)
+			(<EQUAL? .W ,W?WRAITH ,W?WRAITHS ,TOPIC-WRAITHS> <PRINT-TOPIC ,TOPIC-WRAITHS>)
+			(<EQUAL? .W ,W?ORENS ,TOPIC-ORENS> <PRINT-TOPIC ,TOPIC-ORENS>)
+			(<EQUAL? .W ,W?JAENY ,TOPIC-JAENY ,WRAITH-JAENY> <PRINT-TOPIC ,TOPIC-JAENY>)
 			(<EQUAL? .W ,W?CLOSE ,W?QUIT> <TELL CR "[You close the book]" CR> <RETURN>)
 			(<TELL CR "[The codex is silent about such things.]" CR>)
 		>
