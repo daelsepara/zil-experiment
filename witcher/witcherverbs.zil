@@ -1,3 +1,6 @@
+<ROUTINE V-ACCEPT-BOUNTY ()
+	<TELL "The what now?." CR>>
+
 <ROUTINE V-APPLY-OIL ()
 	<COND (<EQUAL? ,PRSI ,SILVER-SWORD ,STEEL-SWORD>
 		<COND (<EQUAL? ,PRSI ,SILVER-SWORD>
@@ -15,6 +18,13 @@
 		)>
 	)(ELSE
 		<NOTHING-HAPPENS>
+	)>>
+
+<ROUTINE V-ATTACK-CHECK ()
+	<COND (<IS-DARK ,HERE ,PLAYER>
+		<TELL "It is pitch black. You can't see a thing." CR>
+	)(ELSE
+		<PERFORM ,V?ATTACK ,PRSO ,PRSI>
 	)>>
 
 <ROUTINE V-CLEAN-SWORD ()
@@ -175,6 +185,14 @@
 		)(ELSE
 			<TELL "You are not riding Roach." CR>
 		)>
+	)>>
+
+<ROUTINE V-WAIT-CHECK ("AUX" MONSTER)
+	<SET MONSTER <MONSTER-HERE ,HERE>>
+	<COND (<NOT .MONSTER>
+		<V-WAIT>
+	)(<NOT <IS-DARK ,HERE ,PLAYER>>
+		<MONSTER-ATTACKS .MONSTER>
 	)>>
 
 <ROUTINE V-WAIT-UNTIL ()

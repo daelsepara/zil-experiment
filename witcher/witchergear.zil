@@ -8,7 +8,6 @@
 <OBJECT-TEMPLATE POTION =
 	OBJECT
 		(SYNONYM VIAL POTION)
-		(ACTION POTION-DRINK-F)
 		(FLAGS TAKEBIT)>
 
 "Witcher swords"
@@ -100,30 +99,39 @@
 
 <POTION CAT-EYES-POTION
 	(IN PLAYER)
+	(SYNONYM POTION)
 	(DESC "cat's eye potion")
 	(TEXT "potion that allows you to see in the dark for a limited time")
-	(ADJECTIVE CAT EYE EYES)>
+	(ADJECTIVE CAT EYE EYES)
+	(ACTION POTION-ACTION-F)>
 
-<ROUTINE POTION-DRINK-F ()
-	<COND (<VERB? DRINK>
-		<COND (<EQUAL? ,PRSO ,CAT-EYES-POTION>
-			<COND (,WITCHER-CATS-EYE
-				<TELL "You already drank " T ,PRSO "!" CR>
-				<FLUSH>
-			)(
-				<COND (<IS-DARK ,HERE ,PLAYER>
-					<TELL "You drink " T ,PRSO ". You can now see in the dark for a limited time." CR>
-					<SETG WITCHER-CATS-EYE T>
-					<WITCHER-CAT-EYES-EFFECT>
-					<QUEUE I-CAT-EYES CATS-EYE-DURATION>
-					<CRLF>
-					<HLIGHT ,H-BOLD> <TELL D ,HERE> <HLIGHT 0>
-					<CRLF>
-					<DETECT-OBJECTS ,M-LOOK>
-				)(
-					<HMMM>
-				)>
+<ROUTINE DRINK-POTION (POTION "AUX" WAS-DARK)
+	<COND (<EQUAL? .POTION ,CAT-EYES-POTION>
+		<COND (,WITCHER-CATS-EYE
+			<TELL "You already drank " T ,PRSO "!" CR>
+		)(T
+			<SET WAS-DARK <IS-DARK ,HERE ,PLAYER>>
+			<TELL "You drink " T .POTION>
+			<SETG WITCHER-CATS-EYE T>
+			<WITCHER-CAT-EYES-EFFECT>
+			<QUEUE I-CAT-EYES CATS-EYE-DURATION>
+			<COND (.WAS-DARK
+				<TELL " You can now see in the dark for a limited time." CR>
+				<CRLF>
+				<HLIGHT ,H-BOLD> <TELL D ,HERE> <HLIGHT 0>
+				<CRLF>
+				<DETECT-OBJECTS ,M-LOOK>
+				<DESCRIBE-OBJECTS ,HERE>
+			)(T
+				<CRLF>
+
 			)>
-			<RTRUE>
 		)>
+		<RTRUE>
 	)>>
+
+<ROUTINE POTION-ACTION-F ()
+	<COND (<VERB? DRINK>
+		<RETURN <DRINK-POTION ,PRSO>>
+	)>
+	<RFALSE>>
