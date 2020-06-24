@@ -45,6 +45,7 @@
 <CONSTANT NEST-REMAINS "[ruins of a monster's nest]">
 <CONSTANT RUBBLE "nothing but rubble left">
 <CONSTANT DEFAULT-GREETINGS "Greetings, Witcher!">
+<CONSTANT DEFAULT-GO-AWAY "Leave me be, Witcher!">
 
 <CONSTANT WHITE-ORCHARD-CLUES <LTABLE WHITE-ORCHARD-BROKEN-WAGON WHITE-ORCHARD-CARCASS WHITE-ORCHARD-WARES WHITE-ORCHARD-FEATHERS>>
 <CONSTANT WHITE-ORCHARD-INVESTIGATIONS <LTABLE FALSE FALSE FALSE FALSE>>
@@ -71,11 +72,18 @@
 <CONSTANT ABANDONED-VILLAGE-NEWS "Jaeny was going to be married until her mysterious disappearance. Now a wraith is haunting the well. Is Jaeny the one haunting it? Please find out what happened to her, Witcher.">
 <CONSTANT ABANDONED-VILLAGE-REPORT "Jaeny is now haunting the well? Please bring peace to her soul, witcher. Afterwards, come back for your reward, Witcher!">
 
+<CONSTANT MISSING-BRACELET-CLUES <LTABLE MISSING-BRACELET>>
+<CONSTANT MISSING-BRACELET-INVESTIGATIONS <LTABLE FALSE>>
+<CONSTANT MISSING-BRACELET-ITEMS <LTABLE MISSING-BRACELET>>
+<CONSTANT MISSING-BRACELET-CONCLUSIONS "... This must be the bracelet that Jaeny mentioned in her diary. I must take it back to ">
+<CONSTANT MISSING-BRACELET-NEWS "My fiancee vanished without a trace. I am looking for sometihng to remember her by. Will you help me, Witcher?">
+<CONSTANT MISSING-BRACELET-REPORT "You found the bracelet Witcher!">
+
 <CONSTANT QUEST-MONSTER 1>
 <CONSTANT QUEST-SEARCH 2>
-
 <CONSTANT QUEST-RECOVER 3>
+
 <CONSTANT QUEST-ACCEPT <LTABLE "Splendid! You should investigate " "Thanks Witcher! Please carry on with your search." "Thanks Witcher! Please come back as soon as you find it.">>
 <CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching." "Have you found it yet?">>
 <CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "..." "Have you found it yet?">>
-<CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher." "Thank you for recovering ">>
+<CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher." "Thanks for your help, Witcher!">>

@@ -88,10 +88,12 @@
 
 <BOUNTY CONTRACT-MISSING-BRACELET
     (DESC "Quest: Missing bracelet")
+    (IN ODOLAN)
     (SYNONYM QUEST)
     (ADJECTIVE MISSING BRACELET)
     (TEXT "Odolan is looking for a memento from her late fiancee.")    
     (BOUNTY-REWARD 100)
     (BOUNTY-LOC ABANDONED-VILLAGE-WELL-BOTTOM)
     (QUEST-TYPE QUEST-RECOVER)
+    (QUEST-ITEMS MISSING-BRACELET-ITEMS)
     (VALUE 50)>

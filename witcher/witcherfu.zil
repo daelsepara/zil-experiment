@@ -149,7 +149,7 @@
 <OBJECT JAENY-DIARY
     (DESC "yellowed diary")
     (SYNONYM DIARY)
-    (ADJECTIVE YELLOWED)
+    (ADJECTIVE YELLOW YELLOWED)
     (TEXT "||You a read the diary.|||.............. first page||I am so happy! Odolan and I will be married in a month. Today, he gave me a beatiful braclet from in Novigrad.||.............. second page||Odolan went back to Novigrad again for some business||I am counting the days until his return so we can be married at last!||.............. fifth page (almost torn off)||Marek proposed to me again. He thinks, he is a much bettern than My Odolan||.............. ninth page (blood stains)||Marek is still angry after I rejected his suit||Odolan is arriving tomorrow. Everything's wonderful again.|")
     (ACTION ABANDONED-WELL-INVESTIGATION)
     (FLAGS NDESCBIT MAGICBIT READBIT)>
@@ -172,9 +172,11 @@
 	(DESC "drag marks on the ground")
      (FDESC "[There are drag marks on the ground]")
 	(TEXT "Someone was dragged towards the well. No signs of struggle. The victim must have been dead.")
-	(SYNONYM MARKS GROUND)
+	(SYNONYM MARKS)
 	(ADJECTIVE DRAG)
-	(ACTION ABANDONED-WELL-INVESTIGATION)>
+	(ACTION ABANDONED-WELL-INVESTIGATION)
+    (THINGS <> (GROUND) THINGS-F)
+    (FLAGS PLURALBIT)>
 
 <ROUTINE ABANDONED-WELL-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
@@ -213,4 +215,31 @@
     (SYNONYM TRINKET BRACELET)
     (ADJECTIVE SHINY)
     (TEXT "A woman's bracelet. Still shiny, albeit with some scratches")
-    (FLAGS NDESCBIT MAGICBIT TAKEBIT)>
+    (ACTION MISSING-BRACELET-INVESTIGATION)
+    (FLAGS NDESCBIT MAGICBIT)>
+
+<ROUTINE MISSING-BRACELET-INVESTIGATION ("AUX" TEXT)
+    <COND (,RIDING-VEHICLE
+        <NEED-TO-DISMOUNT>
+        <RTRUE>
+    )>
+    <COND (<VERB? EXAMINE>
+        <COND (<AND <EQUAL? ,PRSO ,MISSING-BRACELET> <NOT <GETP ,CONTRACT-MISSING-BRACELET ,P?BOUNTY-ACCEPTED>>> <HMMM> <RTRUE>)>
+        <TELL "You took a look at " T ,PRSO CR>
+        <RTRUE>
+    )(<VERB? LOOK-CLOSELY>
+        <COND (<AND <EQUAL? ,PRSO ,MISSING-BRACELET> <NOT <GETP ,CONTRACT-MISSING-BRACELET ,P?BOUNTY-ACCEPTED>>> <HMMM> <RTRUE>)>
+        <SET TEXT <GETP ,PRSO ,P?TEXT>>
+        <COND (.TEXT
+            <TELL CR T ,PRSO ": [" .TEXT "]" CR>
+            <INVESTIGATE-CLUE ,MISSING-BRACELET MISSING-BRACELET-INVESTIGATIONS 1 T>
+            <CHECK-INVESTIGATION ,CONTRACT-MISSING-BRACELET MISSING-BRACELET-INVESTIGATIONS MISSING-BRACELET-CONCLUSIONS ,ODOLAN>
+            <FSET ,MISSING-BRACELET ,TAKEBIT>
+            <RTRUE>
+        )>
+    )(<VERB? TAKE>
+        <COND (<AND <EQUAL? ,PRSO ,MISSING-BRACELET> <NOT <GETP ,CONTRACT-MISSING-BRACELET ,P?BOUNTY-ACCEPTED>>> <HMMM> <RTRUE>)>
+        <V-TAKE>
+        <RTRUE>
+    )>
+    <RFALSE>>
