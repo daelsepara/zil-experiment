@@ -69,8 +69,3 @@
 	(DESC "Announcement Board")
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
 	(FLAGS READBIT SURFACEBIT VOWELBIT)>
-
-<OBJECT WELL
-	(IN ABANDONED-VILLAGE-WELL)
-	(DESC "well")
-	(SYNONYM WELL)>

@@ -150,9 +150,31 @@
     (DESC "yellowed diary")
     (SYNONYM DIARY)
     (ADJECTIVE YELLOWED)
-    (TEXT "This will contain some heartbreaking content that I haven't gotten around to writing.")
+    (TEXT "||You a read the diary.|||.............. first page||I am so happy! Odolan and I will be married in a month. Today, he gave me a beatiful braclet from in Novigrad.||.............. second page||Odolan went back to Novigrad again for some business||I am counting the days until his return so we can be married at last!||.............. fifth page (almost torn off)||Marek proposed to me again. He thinks, he is a much bettern than My Odolan||.............. ninth page (blood stains)||Marek is still angry after I rejected his suit||Odolan is arriving tomorrow. Everything's wonderful again.|")
     (ACTION ABANDONED-WELL-INVESTIGATION)
     (FLAGS NDESCBIT MAGICBIT READBIT)>
+
+<OBJECT PENTAGRAM-RITUAL
+    (DESC "pentagram drawn in blood")
+    (SYNONYM PENTAGRAM RITUAL BLOOD)
+    (TEXT "A pentagram drawn from blood is one the ground. Looks like a ritual was performed to curse someone or something.")
+    (ACTION ABANDONED-WELL-INVESTIGATION)
+    (FLAGS NDESCBIT MAGICBIT READBIT)>
+
+<OBJECT WELL
+	(IN ABANDONED-VILLAGE-WELL)
+	(DESC "well")
+	(TEXT "There's blood around the well. Perhaps someone or something thrown here.")
+	(SYNONYM WELL)
+	(ACTION ABANDONED-WELL-INVESTIGATION)>
+
+<OBJECT DRAG-MARKS
+	(DESC "drag marks on the ground")
+     (FDESC "[There are drag marks on the ground]")
+	(TEXT "Someone was dragged towards the well. No signs of struggle. The victim must have been dead.")
+	(SYNONYM MARKS GROUND)
+	(ADJECTIVE DRAG)
+	(ACTION ABANDONED-WELL-INVESTIGATION)>
 
 <ROUTINE ABANDONED-WELL-INVESTIGATION ("AUX" TEXT)
     <COND (,RIDING-VEHICLE
@@ -164,13 +186,18 @@
         <RTRUE>
     )>
     <COND (<VERB? EXAMINE>
+        <COND (<AND <EQUAL? ,PRSO ,WELL> <NOT <GETP ,CONTRACT-GHOST-IN-THE-WELL ,P?BOUNTY-ACCEPTED>>> <THINGS-F> <RTRUE>)>
         <TELL "You took a look at " T ,PRSO CR>
         <RTRUE>
     )(<VERB? LOOK-CLOSELY>
+        <COND (<AND <EQUAL? ,PRSO ,WELL> <NOT <GETP ,CONTRACT-GHOST-IN-THE-WELL ,P?BOUNTY-ACCEPTED>>> <THINGS-F> <RTRUE>)>
         <SET TEXT <GETP ,PRSO ,P?TEXT>>
         <COND (.TEXT
             <TELL CR T ,PRSO ": [" .TEXT "]" CR>
             <INVESTIGATE-CLUE ,JAENY-DIARY ABANDONED-VILLAGE-INVESTIGATIONS 1 T>
+            <INVESTIGATE-CLUE ,PENTAGRAM-RITUAL ABANDONED-VILLAGE-INVESTIGATIONS 2 T>
+            <INVESTIGATE-CLUE ,WELL ABANDONED-VILLAGE-INVESTIGATIONS 3 T>
+            <INVESTIGATE-CLUE ,DRAG-MARKS ABANDONED-VILLAGE-INVESTIGATIONS 4 T>
             <CHECK-INVESTIGATION ,CONTRACT-GHOST-IN-THE-WELL ABANDONED-VILLAGE-INVESTIGATIONS ABANDONED-VILLAGE-CONCLUSION ,ABANDONED-VILLAGE-ALDERMAN>
             <RTRUE>
         )>

@@ -65,11 +65,11 @@
 <CONSTANT MISSING-HUSBAND-GREETINGS "Have you seen my husband?">
 <CONSTANT MISSING-HUSBAND-REPORT "You found him Witcher. You have my thanks. Thank you for dealing with the beast that killed him. Now let me mourn in peace.">
 
-<CONSTANT ABANDONED-VILLAGE-CLUES <LTABLE JAENY-DIARY>>
-<CONSTANT ABANDONED-VILLAGE-INVESTIGATIONS <LTABLE FALSE>>
-<CONSTANT ABANDONED-VILLAGE-CONCLUSION "Jaeny, who died from the attack has now become a wraith and is haunting the well. You should report back to ">
-<CONSTANT ABANDONED-VILLAGE-NEWS "Jaeny, who was to be married suddenly disappeared. Now a wraith is haunting the well. Is Jaeny the one haunting the well? Please find out what happened to her, Witcher.">
-<CONSTANT ABANDONED-VILLAGE-REPORT "Jaeny is now haunting the well?. Please bring peace to her soul, witcher. Afterwards, come back for your reward, Witcher!">
+<CONSTANT ABANDONED-VILLAGE-CLUES <LTABLE JAENY-DIARY PENTAGRAM-RITUAL WELL DRAG-MARKS>>
+<CONSTANT ABANDONED-VILLAGE-INVESTIGATIONS <LTABLE FALSE FALSE FALSE FALSE>>
+<CONSTANT ABANDONED-VILLAGE-CONCLUSION "Jaeny was attacked, crused then dragged into the well. She has now become a wraith and is haunting the well. Marek is nowhere to be found. You must tell Odolan soon, but first you should report back to ">
+<CONSTANT ABANDONED-VILLAGE-NEWS "Jaeny was going to be married until her mysterious disappearance. Now a wraith is haunting the well. Is Jaeny the one haunting it? Please find out what happened to her, Witcher.">
+<CONSTANT ABANDONED-VILLAGE-REPORT "Jaeny is now haunting the well? Please bring peace to her soul, witcher. Afterwards, come back for your reward, Witcher!">
 
 <CONSTANT QUEST-MONSTER 1>
 <CONSTANT QUEST-SEARCH 2>
