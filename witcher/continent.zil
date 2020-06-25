@@ -15,7 +15,7 @@
 	(LOC ROOMS)
 	(DESC "Deep forest")
 	(WEST TO EDGE-OF-FOREST)
-	(LDESC "The thick foliage almost covers the entire area in shadows.")
+	(LDESC "Light struggles to penetrate through the thick foliage. This place perpetually engulf in shadows and gloom.")
 	(MONSTER NEKKER)
 	(RESPAWN 60)
 	(THINGS
@@ -52,14 +52,14 @@
 	(SW TO SOUTH-CROSSROADS)
 	(ORENS 50)
 	(RANDOM-ORENS 10)
-	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. In one section of the field some of the victims appear to have been petrified and buried alive.")
+	(LDESC "Numerous Nilfgaardian and Temerian corpses are scattered everywhere. Some of the victims appear to have been petrified and buried alive.")
 	(THINGS (DEAD PETRIFIED NILFGAARDIAN TEMERIAN NILFGAARD TEMERIA) (CORPSE CORPSES FIELD VICTIM VICTIMS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION BATTLE-FIELD-NORTH
 	(LOC ROOMS)
 	(DESC "Battlefield, North")
-	(LDESC "The desolation extends to this area here. Dead bodies are everywhere, carrion for the vultures. There is a camp nearby.")
+	(LDESC "The desolation extends to this area. Dead bodies are everywhere. Carrion for the vultures. There is a camp nearby.")
 	(SOUTH TO BATTLE-FIELD)
 	(NE TO BANDIT-CAMP-I)
 	(THINGS (DEAD) (CORPSE CORPSES DEAD BODY BODIES CARRION VULTURES) THINGS-F)
@@ -68,7 +68,7 @@
 <LOCATION BANDIT-CAMP-I
 	(LOC ROOMS)
 	(DESC "Camp in the forest")
-	(LDESC "It is a bandit's camp.")
+	(LDESC "It is a bandit's camp, also home to deserters and looters.")
 	(SW BATTLE-FIELD-NORTH)
 	(BOUNTY BOUNTY-BANDITS-I)
 	(ORENS 100)
@@ -82,7 +82,7 @@
 	(WEST TO WHITE-ORCHARD-TOWN)
 	(NW TO NORTH-OF-WHITE-ORCHARD)
 	(SOUTH TO SOUTH-CROSSROADS)
-	(LDESC "You are in what appears to be a major highway. Like many other infrasctures, whoever built this, must have cleared an entire forest. Other folk and animals that once sheltered there have long since moved on to find sanctuary elsewhere. Such things have become inevitable in humankind's inexorable march to progress.")
+	(LDESC "You are in a major highway. Whoever built this must have cleared an entire forest. Other folk and animals that sheltered there have moved on to find sanctuary elsewhere. Such things have become inevitable in the march to progress.")
 	(BOUNTY BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (GROUND HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -104,7 +104,7 @@
 	(DESC "Crossroads, South")
 	(NORTH TO CROSSROADS)
 	(SOUTH TO ABANDONED-VILLAGE)
-	(LDESC "Further south leads to a village.")
+	(LDESC "You are at the end of the highway. Further south leads to a village.")
 	(MONSTER GHOULS)
 	(LASTRESPAWN 60)
 	(RESPAWN 120)
@@ -115,7 +115,7 @@
 	(DESC "abandoned village")
 	(NORTH TO SOUTH-CROSSROADS)
 	(EAST TO ABANDONED-VILLAGE-WELL)
-	(LDESC "A quiet village, looks abandoned. There is a well nearby.")
+	(LDESC "The viallge is quiet, almost abandoned. There is a well nearby.")
 	(THINGS <> (GROUND) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -124,7 +124,7 @@
 	(DESC "area outside the village")
 	(WEST TO ABANDONED-VILLAGE)
 	(DOWN TO ABANDONED-VILLAGE-WELL-BOTTOM)
-	(LDESC "A small corner just outside the town where people congregate.")
+	(LDESC "This is a small area, just outside the village where people must have gathered regularly.")
 	(BOUNTY CONTRACT-GHOST-IN-THE-WELL)
 	(THINGS <> (GROUND CORNER OUTSIDE TOWN) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT ADJACENT)>
@@ -132,7 +132,7 @@
 <LOCATION ABANDONED-VILLAGE-WELL-BOTTOM
 	(LOC ROOMS)
 	(DESC "bottom of the well")
-	(LDESC "The walls are damp.")
+	(LDESC "The walls are damp. The air is rank with death.")
 	(UNLOCKED-BY CONTRACT-GHOST-IN-THE-WELL)
 	(NORTH TO CANNOT-GO)
 	(SOUTH TO CANNOT-GO)
@@ -150,7 +150,7 @@
 	(SOUTH TO WHITE-ORCHARD-TOWN)
 	(SW TO WEST-OF-WHITE-ORCHARD)
 	(SE TO CROSSROADS)
-	(LDESC "All is quient on the nothern frontier. There is a shop here.")
+	(LDESC "All is quient on the nothern frontier. There is an alchemist' shop here.")
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -161,7 +161,7 @@
 	(NORTH TO WHITE-ORCHARD-HUT)
 	(NE TO NORTH-OF-WHITE-ORCHARD)
 	(SW TO EDGE-OF-BOG)
-	(LDESC "Outside the town, everything is quiet again on the frontier.")
+	(LDESC "Everything is quiet on the western frontier.")
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -172,7 +172,7 @@
 	(EAST TO NORTH-OF-WHITE-ORCHARD)
 	(SOUTH TO WEST-OF-WHITE-ORCHARD)
 	(SE TO WHITE-ORCHARD-TOWN)
-	(LDESC "A quiet place, far from the crowd and the noise. There is a small hut here.")
+	(LDESC "This place is far enough from the noise and the crowd. There is a small hut here.")
 	(THINGS NONE (HUT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -181,7 +181,7 @@
 	(DESC "Farm")
 	(SOUTH TO WHITE-ORCHARD-HUT)
 	(SE TO NORTH-OF-WHITE-ORCHARD)
-	(LDESC "Several enclosed plots of land are arranged pragmatically in rows and columns. On each plot a different crop is planted. A lone scarecrow is at the center of the field. The crops are waiting to be harvested.")
+	(LDESC "Several plots of land are arranged pragmatically. On each plot is a different crop. A lone scarecrow is at the center. The farm looks ready for a harvest.")
 	(BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
 		NONE (CROP CROPS FARM AREA PLOT SCARECROW) THINGS-F
@@ -191,8 +191,8 @@
 <LOCATION EDGE-OF-BOG
 	(LOC ROOMS)
 	(DESC "Bog")
-	(LDESC "The water is murky and nearly impassable. What monsters lurk beyond?")
-	(THINGS <> (BOG WATER) THINGS-F)
+	(LDESC "The water is murky and nearly impassable.  What monsters lurk beyond?")
+	(THINGS (MURKY) (BOG WATER) THINGS-F)
 	(SW TO SWAMP)
 	(NE TO WEST-OF-WHITE-ORCHARD)
 	(ACTION DETECT-OBJECTS)
@@ -203,8 +203,8 @@
 	(DESC "Swamp")
 	(NE TO EDGE-OF-BOG)
 	(DOWN TO SWAMP-CAVE)
-	(LDESC "Large tree roots twist and intertwine. The area is surrounded by a swamp. There appears to be a cave down here.")
-	(THINGS <> (SWAMP BOG WATER TREES CAVE ROOTS) THINGS-F)
+	(LDESC "Large tree roots twist and intertwine. The ground is constantly pushing back against the swamp.  There appears to be a cave down here.")
+	(THINGS <> (SWAMP BOG WATER TREES CAVE ROOTS GROUND) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION SWAMP-CAVE
@@ -212,7 +212,7 @@
 	(DESC "Cave entrance")
 	(UP TO SWAMP)
 	(DOWN TO CAVE-I)
-	(LDESC "Footprints lead in and out of the cave.")
+	(LDESC "Massive footprints lead in and out of the cave.")
 	(THINGS <> (CAVE ENTRANCE PRINT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT ADJACENT)>
 
@@ -221,7 +221,7 @@
 	(DESC "Inside the cave, near the entrance")
 	(UP TO SWAMP-CAVE)
 	(SOUTH TO CAVE-II)
-	(LDESC "There are some claw marks on the walls. Footprints and traces of blood lead further to the south.")
+	(LDESC "There are some claw marks on the walls. The footprints lead further to the south. Blood traces also head in that direction.")
 	(THINGS <> (WALL WALLS CAVE FOOTPRINT FOOTPRINTS CLAW CLAWS MARKMARKS TRACE TRACES BLOOD) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
@@ -230,7 +230,7 @@
 	(DESC "Inside the cave")
 	(NORTH TO CAVE-I)
 	(SOUTH TO CAVE-LAIR)
-	(LDESC "A foul odor emanates from the south. Excessive amounts of blood are splattered everywhere on the floor and on the walls.")
+	(LDESC "Foul odorS emanates from the south. Excessive amounts of blood are splattered everywhere: on the floor and on the walls.")
 	(THINGS <> (WALLS CAVE BLOOD FLOOR ODOR AIR WALL WALLS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
@@ -239,7 +239,7 @@
 	(DESC "Lair")
 	(NORTH TO CAVE-II)
 	(EAST TO CAVE-III) 
-	(LDESC "Bones and flesh remains of various creatures litter floor. This is the lair of some beast.")
+	(LDESC "Bones and flesh remains of various creatures litter the floor. This is the lair of some beast.")
 	(BOUNTY BOUNTY-CAVE-BEAR)
 	(THINGS <> (BONES REMAINS WALLS CAVE LAIR CREATURE CREATURES FLOOR REMAINS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
@@ -248,7 +248,7 @@
 	(LOC ROOMS)
 	(DESC "Inner Lair")
 	(WEST TO CAVE-LAIR)
-	(LDESC "The smell of death pervades the entire area")
+	(LDESC "The lair stops here. Everything here smells of death.")
 	(UNLOCKED-BY BOUNTY-CAVE-BEAR)
 	(ORENS 500)
 	(RANDOM-ORENS 50)
@@ -269,7 +269,7 @@
 
 <ROUTINE DETECT-OBJECTS (RARG)
 	<NPC-SLEEP ,HERE>
-	<COND (<EQUAL? .RARG ,M-LOOK>
+	<COND (<OR <EQUAL? .RARG ,M-LOOK> <AND <EQUAL? .RARG ,M-FLASH> <FSET? ,HERE ,TOUCHBIT> <G? ,MOVES 0>>>
 		<DESCRIBE-EXITS ,HERE>
 		<CRLF>
 		<DESCRIBE-LOCATION ,HERE>
