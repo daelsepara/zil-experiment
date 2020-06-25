@@ -47,9 +47,9 @@
 	<SETG DAYTIME <NOT ,DAYTIME>>
 	<HLIGHT ,H-BOLD>
 	<COND (,DAYTIME
-		<TELL "[Night turns to day">
+		<TELL CR "[Night turns to day">
 	)(ELSE
-		<TELL "[Day turns to night">
+		<TELL CR "[Day turns to night">
 	)>
 	<COND (<NOT <FSET? ,HERE ,OUTSIDEBIT>> <TELL " outside">)>
 	<TELL "]">
@@ -868,7 +868,7 @@
 
 <ROUTINE CHECK-FOOD-AVAILABILITY (LOC)
 	<COND (<FSET? .LOC ,HASFOOD>
-		<TELL "[... you can probably get some food here.]" CR>
+		<TELL CR "[... you can probably get some food here.]" CR>
 	)>>
 
 <ROUTINE CHECK-ATTACKS-IN-THE-DARK (LOC PERSON "AUX" MONSTER)

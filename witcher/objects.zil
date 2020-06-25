@@ -1,3 +1,11 @@
+<OBJECT-TEMPLATE BORDER-POST =
+	OBJECT
+		(DESC "border post")
+		(TEXT "a mechanism for fast travel")
+		(SYNONYM POST SIGN)
+		(ADJECTIVE BORDER)
+		(ACTION BORDER-POST-F)>
+
 <OBJECT CONCEPT-MORNING
 	(DESC "morning")
 	(SYNONYM DAYBREAK MORNING DAWN)
@@ -46,7 +54,7 @@
 	(DESC "Torch")
 	(SYNONYM TORCH TORCHLIGHT)
 	(FLAGS TAKEBIT LIGHTBIT)>
-	
+
 <OBJECT WHITE-ORCHARD-BOUNTY-BOARD
 	(IN WHITE-ORCHARD-TOWN)
 	(SYNONYM BOARD ANNOUNCEMENTS ANNOUNCEMENT)
@@ -62,3 +70,57 @@
 	(DESC "Announcement Board")
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
 	(FLAGS READBIT SURFACEBIT VOWELBIT)>
+
+<BORDER-POST WHITE-ORCHARD-BORDERPOST
+	(IN WHITE-ORCHARD-TOWN)>
+
+<BORDER-POST ABANDONED-VILLAGE-BORDERPOST
+	(IN ABANDONED-VILLAGE)>
+
+<ROUTINE BORDER-POST-F ("AUX" COUNT ACTIVATED KEY ITEM)
+	<SET COUNT <GET BORDER-POSTS 0>>
+	<COND (<VERB? ACTIVATE>
+		<DO (I 1 .COUNT)
+			<COND (<EQUAL? ,PRSO <GET BORDER-POSTS .I>>
+				<PUT BORDER-POST-ACTIVATED .I T>
+				<TELL CR "[" D ,PRSO " activated]" CR>
+				<RTRUE>
+			)>
+		>
+	)(<VERB? USE>
+		<FLUSH>
+		<SET ACTIVATED FALSE>
+		<DO (I 1 .COUNT)
+			<COND (<EQUAL? ,PRSO <GET BORDER-POSTS .I>>
+				<SET ACTIVATED <GET BORDER-POST-ACTIVATED .I>>
+			)>
+		>
+		<COND (.ACTIVATED
+			<REPEAT ()
+				<CRLF>
+				<TELL "Select you destination:" CR>
+				<DO (I 1 .COUNT)
+					<COND (<AND <NOT <EQUAL? ,PRSO <GET BORDER-POSTS .I>>> <GET BORDER-POST-ACTIVATED .I>> <TELL N .I " - " D <GET BORDER-POST-DESTINATIONS .I> CR>)>
+				>
+				<TELL "0 - step away" CR>
+				<SET KEY <INPUT 1>>
+				<COND (<AND <G? .KEY 48> <L? .KEY 58>>
+					<SET ITEM <- .KEY 48>>
+					<COND (<EQUAL? ,PRSO <GET BORDER-POSTS .ITEM>>
+						<TELL CR "You are already there!" CR>
+					)(<GET BORDER-POST-ACTIVATED .ITEM>
+						<TIME-PASSES <* 2 WITCHER-TRAVEL-TIME>>
+						<TELL CR "[some time passed]" CR CR>
+						<GOTO <GET BORDER-POST-DESTINATIONS .ITEM>>
+						<RETURN>
+					)>
+				)>
+				<COND (<EQUAL? .KEY !\0>
+					<TELL CR "[you stepped away from " T ,PRSO "]" CR>
+					<RTRUE>
+				)>
+			>
+			<RTRUE>
+		)>
+	)>
+	<WHAT-NOW>>
