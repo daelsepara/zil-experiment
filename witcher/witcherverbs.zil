@@ -207,6 +207,18 @@
 <ROUTINE V-WAIT-UNTIL ()
 	<WAIT-UNTIL ,PRSO>>
 
+<ROUTINE V-HEAL ()
+	<COND (<L? ,WITCHER-FOOD 1> <TELL "You have no food left!" CR> <RETURN>)>
+	<REPEAT ()
+		<WITCHER-EAT T>
+		<COND (<OR <L? ,WITCHER-FOOD 1> <G=? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>> <RETURN>)>
+	>
+	<COND (<L? ,WITCHER-FOOD 1>
+		<TELL "[... you consumed your remaining supplies]" CR>
+	)(ELSE
+		<TELL "[... you are at maximum health already]" CR>
+	)>>
+
 <ROUTINE V-WITCHER-EAT ()
 	<WITCHER-EAT>>
 

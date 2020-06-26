@@ -123,17 +123,17 @@
 <ROUTINE WITCHER-CAT-EYES-EFFECT()
 	<COND (,WITCHER-CATS-EYE <FSET ,PLAYER ,LIGHTBIT>)(<FCLEAR ,PLAYER ,LIGHTBIT>)>>
 
-<ROUTINE WITCHER-EAT ()
+<ROUTINE WITCHER-EAT ("OPT" SILENT)
 	<COND (<G? ,WITCHER-FOOD 0>
 		<COND (<L? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
-			<TELL "[... you eat some food from your supplies]" CR>
+			<COND (<NOT .SILENT> <TELL "[... you eat some food from your supplies]" CR>)>
 			<SETG WITCHER-FOOD <- ,WITCHER-FOOD WITCHER-CONSUMPTION>>
-			<WITCHER-HEAL WITCHER-HEALING-RATE>
+			<WITCHER-HEAL WITCHER-HEALING-RATE .SILENT>
 		)(ELSE
-			<TELL "[... you are at maximum health already]" CR>
+			<COND (<NOT .SILENT> <TELL "[... you are at maximum health already]" CR>)>
 		)>
 	)(ELSE
-		<TELL "[... you do not have any food from your supplies]" CR>
+		<COND (<NOT .SILENT> <TELL "[... you do not have any food from your supplies]" CR>)>
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
@@ -378,9 +378,9 @@
 		<DEATH-COMBAT>
 	)>>
 
-<ROUTINE WITCHER-HEAL (AMT)
+<ROUTINE WITCHER-HEAL (AMT "OPT" SILENT)
 	<COND (<L? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
-		<TELL "... you heal " N .AMT " points." CR>
+		<COND (<NOT .SILENT> <TELL "... you heal " N .AMT " points." CR>)>
 	)>
 	<SETG WITCHER-HEALTH <+ ,WITCHER-HEALTH .AMT>>
 	<COND (<G? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>

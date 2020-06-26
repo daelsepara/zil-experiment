@@ -13,6 +13,11 @@
 ;----------------------
 "Witcher weapons"
 
+<OBJECT CONCEPT-FULL
+	(DESC "full")
+	(SYNONYM FULL)
+	(IN GENERIC-OBJECTS)>
+
 <OBJECT BARE-HANDS
 	(DESC "bare hands")
 	(SYNONYM FISTS HANDS)
