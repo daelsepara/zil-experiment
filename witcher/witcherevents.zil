@@ -47,9 +47,9 @@
 	<SETG DAYTIME <NOT ,DAYTIME>>
 	<HLIGHT ,H-BOLD>
 	<COND (,DAYTIME
-		<TELL CR "[Night turns to day">
+		<TELL "[Night turns to day">
 	)(ELSE
-		<TELL CR "[Day turns to night">
+		<TELL "[Day turns to night">
 	)>
 	<COND (<NOT <FSET? ,HERE ,OUTSIDEBIT>> <TELL " outside">)>
 	<TELL "]">
@@ -122,7 +122,6 @@
 	<COND (,WITCHER-CATS-EYE <FSET ,PLAYER ,LIGHTBIT>)(<FCLEAR ,PLAYER ,LIGHTBIT>)>>
 
 <ROUTINE WITCHER-EAT ()
-	<CRLF>
 	<COND (<G? ,WITCHER-FOOD 0>
 		<COND (<L? ,WITCHER-HEALTH ,WITCHER-MAX-HEALTH>
 			<TELL "[... you eat some food from your supplies]" CR>
@@ -136,6 +135,7 @@
 	)>>
 
 <ROUTINE WITCHER-GATHER-FOOD (AMT)
+	<COND (<IS-DARK ,HERE ,PLAYER> <PITCH-BLACK> <RTRUE>)>
 	<TELL "... you found " N .AMT " pieces of food for your supply." CR>
 	<SETG WITCHER-FOOD <+ ,WITCHER-FOOD .AMT>>>
 
@@ -152,7 +152,6 @@
 
 <ROUTINE CHOOSE-WEAPON (MONSTER "AUX" KEY)
 	<REPEAT ()
-		<CRLF>
 		<TELL "Choose weapon to fight " T .MONSTER " with:" CR>
 		<COND (<IN? ,SILVER-SWORD ,PLAYER> <TELL "1 - " T ,SILVER-SWORD CR>)>
 		<COND (<IN? ,STEEL-SWORD ,PLAYER> <TELL "2 - " T ,STEEL-SWORD CR>)>
@@ -229,7 +228,9 @@
 	<COND (<NOT .WEAPON>
 		<COND (,SHOW-COMBAT-MESSAGES <TELL "Not using any weapon isn't going to help you in this situation." CR>)>
 		<MONSTER-ATTACKS .MONSTER>
+		<RTRUE>
 	)(ELSE
+		<COND (<IS-DARK ,HERE ,PLAYER> <PITCH-BLACK> <RTRUE>)>
 		<COND (<FSET? .WEAPON ,WEAPONBIT>
 			<COND (<EQUAL? .WEAPON .SWORDTYPE>
 				<WITCHER-ATTACK .MONSTER .WEAPON .OIL .SUPERIOR-OIL>
@@ -293,6 +294,7 @@
 
 <ROUTINE RELENTLESS-ASSAULT (MONSTER WEAPON "AUX" KEY)
 	<COND (<NOT <MONSTER-HERE>> <NO-MONSTERS> <RTRUE>)>
+	<COND (<IS-DARK ,HERE ,PLAYER> <PITCH-BLACK> <RTRUE>)>
 	<SETG ,SHOW-COMBAT-MESSAGES FALSE>
 	<CRLF>
 	<TELL "You launch into an offensive against " T .MONSTER CR>
@@ -439,12 +441,12 @@
 		<NEED-TO-DISMOUNT>
 		<RTRUE>
 	)>
+	<COND (<NPC-SLEEPING .MERCHANT> <RTRUE>)>
 	<COND (<VERB? TALK>
 		<COND (<OR <NOT .WARES> <NOT .PRICELIST> <NOT .MERCHANT>> <RETURN>)>
 		<SET ITEMS <GET .WARES 0>>
 		<FLUSH>
 		<REPEAT ()
-			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .MERCHANT "Greetings, Witcher! Can I interest you in:">
 			<CRLF>
 			<DO (I 1 .ITEMS)
@@ -488,6 +490,7 @@
 				<RTRUE>
 			)>
 			<UPDATE-STATUS-LINE>
+			<CRLF>
 		>
 	)(<VERB? EXAMINE LOOK-CLOSELY>
 		<TALK-HIGHLIGHT-PERSON .MERCHANT "Can I help you? I have things for sale!">
@@ -604,9 +607,8 @@
 	)>
 	<FLUSH>
 	<REPEAT ()
-		<TALK-HIGHLIGHT-PERSON .PERSON "">
-		<CRLF>
-		<TELL "Are you here about " T .QUEST "?" CR>
+		<TALK-HIGHLIGHT-PERSON .PERSON "Are you here about ">
+		<TELL T .QUEST "?" CR>
 		<TELL "1 - Yes, tell me more about this." CR>
 		<TELL "2 - I accept the job." CR>
 		<TELL "3 - Goodbye for now." CR>
@@ -627,26 +629,19 @@
 		<UPDATE-STATUS>
 	>>
 
-<ROUTINE QUEST-TALK (QUEST PERSON TEXT GREET REPORT QUEST-TYPE "AUX" UNLOCKED-BY)
+<ROUTINE QUEST-TALK (QUEST PERSON TEXT GREET REPORT QUEST-TYPE)
 	<COND (,RIDING-VEHICLE
 		<NEED-TO-DISMOUNT>
 		<RTRUE>
 	)>
+	<COND (<NPC-SLEEPING .PERSON> <RTRUE>)>
 	<COND (<VERB? TALK>
-		<CRLF>
 		<COND (<NOT <EQUAL? ,PRSO .PERSON>>
 			<TALK-HIGHLIGHT-PERSON .PERSON "You talking to me?">
 			<CRLF>
 			<RTRUE>
 		)>
-		<SET UNLOCKED-BY <GETP .PERSON ,P?UNLOCKED-BY>>
-		<COND (.UNLOCKED-BY
-			<COND (<NOT <GETP .UNLOCKED-BY ,P?BOUNTY-COMPLETED>>
-				<TALK-HIGHLIGHT-PERSON .PERSON "Leave me be, Witcher!">
-				<CRLF>
-				<RTRUE>
-			)>
-		)>
+		<COND (<NPC-NOT-UNLOCKED .PERSON> <RTRUE>)>
 		<COND (<OR <IN? .QUEST ,PLAYER> <IN? .QUEST ,CONCEPT-JOURNAL> <IN? .QUEST .PERSON>>
 			<COND (<GETP .QUEST P?BOUNTY-ACCEPTED>
 				<COND (<NOT <CHECK-QUEST .QUEST ,PRSI .PERSON>>
@@ -678,17 +673,14 @@
 		<CRLF>
 	)(<VERB? ACCEPT-BOUNTY>
 		<COND (<OR <NOT <FSET? ,PRSI ,PERSONBIT>> <NOT <FSET? ,PRSO ,BOUNTYBIT>> <NOT <EQUAL? .QUEST ,PRSO>>>
-			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .PERSON ""><WHAT-NOW>
 			<RETURN>
 		)(ELSE
-			<COND (<GETP .QUEST ,P?BOUNTY-ACCEPTED> <TELL CR "You already agreed to take on " T .QUEST CR> <RTRUE>)>
+			<COND (<GETP .QUEST ,P?BOUNTY-ACCEPTED> <TELL "You already agreed to take on " T .QUEST CR> <RTRUE>)>
 			<COND (<AND <NOT <IN? .QUEST ,PLAYER>> <NOT <IN? .QUEST ,CONCEPT-JOURNAL>> <NOT <IN? .QUEST .PERSON>>>
-				<CRLF>
 				<TALK-HIGHLIGHT-PERSON .PERSON ""><WHAT-NOW>
 				<RETURN>
 			)>
-			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .PERSON .TEXT>
 			<CRLF><CRLF>
 			<COND (<EQUAL? .QUEST-TYPE ,QUEST-MONSTER>
@@ -702,10 +694,8 @@
 	)(<VERB? GIVE>
 		<COND (<EQUAL? .QUEST-TYPE QUEST-RECOVER>
 			<COND (<AND <FSET? ,PRSI ,PERSONBIT> <EQUAL? ,PRSI .PERSON> <NOT <FSET? ,PRSO ,PERSONBIT>> <QUEST-CAN-ACCEPT .QUEST .PERSON ,PRSO>>
-				<CRLF>
 				<TALK-HIGHLIGHT-PERSON .PERSON "Thanks for ">
-				<TELL T ,PRSO>
-				<CRLF>
+				<TELL T ,PRSO CR>
 				<MOVE ,PRSO .PERSON>
 				<QUEST-RECOVER-COMPLETED .QUEST .PERSON>
 				<RTRUE>
@@ -733,12 +723,10 @@
 						<RETURN>
 					)>
 				)(ELSE
-					<CRLF>
 					<TALK-HIGHLIGHT-PERSON .PERSON ""><WHAT-NOW>
 					<RETURN>
 				)>
 			)>
-			<CRLF>
 			<QUEST-DIALOG .PERSON .QUEST .REPORT .QUEST-TYPE>
 			<CRLF>
 			<RTRUE>
@@ -757,10 +745,10 @@
 		<NEED-TO-DISMOUNT>
 		<RTRUE>
 	)>
+	<COND (<NPC-SLEEPING .SMITH> <RTRUE>)>
 	<COND (<VERB? TALK>
 		<FLUSH>
 		<REPEAT ()
-			<CRLF>
 			<TALK-HIGHLIGHT-PERSON .SMITH "Greetings, Witcher! Can I help you with:">
 			<CRLF>
 			<TELL "1 - enhancing your " D ,SILVER-SWORD " (+" N <GET .ENHANCEMENTS 1> " damage, " N <GET .PRICELIST 1> " Orens)" CR>
@@ -807,6 +795,7 @@
 				<CRLF>
 				<RTRUE>
 			)>
+			<CRLF>
 		>
 	)(<VERB? EXAMINE LOOK-CLOSELY>
 		<TALK-HIGHLIGHT-PERSON .SMITH "Hello? How may I be of service?">
@@ -889,7 +878,9 @@
 		)>
 	)(ELSE
 		<COND (<NOT <FSET? .LOC ,OUTSIDEBIT>>
+			<HLIGHT ,H-BOLD>
 			<TELL "You leave " D ,CURRENT-VEHICLE " at " T ,LAST-LOC "." CR CR>
+			<HLIGHT 0>
 			<FCLEAR ,CURRENT-VEHICLE ,NDESCBIT>
 			<SETG ,RIDING-VEHICLE FALSE>
 			<SETG ,CURRENT-VEHICLE NONE>
@@ -902,11 +893,7 @@
 	<RETURN <FSET? <GETP .LOC .DIR> ,TOUCHBIT>>>
 
 <ROUTINE DESCRIBE-EXITS (LOC)
-	<COND (<IS-DARK .LOC ,PLAYER>
-		<PITCH-BLACK>
-		<FLUSH>
-		<RTRUE>
-	)>
+	<COND (<IS-DARK .LOC ,PLAYER> <PITCH-BLACK> <RTRUE>)>
 	<COND (<NOT .LOC> <RETURN>)>
 	<CRLF>
 	<HLIGHT ,H-BOLD>
@@ -1178,34 +1165,14 @@
 	<TELL "There are no monsters here!" CR>>
 
 <ROUTINE NOT-THE-TIME()
-	<TELL CR "The monster is here! Now is not the time for that!" CR>>
+	<TELL "The monster is here! Now is not the time for that!" CR>>
 
 <ROUTINE NOTHING-HAPPENS ()
 	<TELL "[Nothing happens]" CR>>
 
-<ROUTINE NPC-SLEEP (LOC "AUX" PERSON)
-	<COND (<NOT .LOC> <SET .LOC ,HERE>)>
-	<SET PERSON <FIRST? .LOC>>
-	<REPEAT ()
-		<COND (<NOT .PERSON>
-			<RETURN>
-		)(ELSE 
-			<COND (<AND <FSET? .PERSON ,PERSONBIT> <NOT <EQUAL? .PERSON ,PLAYER ,ROACH>> <NOT <FSET? .PERSON ,MONSTERBIT>>>
-				<COND (,DAYTIME
-					<FCLEAR .PERSON ,INVISIBLE>
-					<FCLEAR .PERSON ,NDESCBIT>
-				)(T
-					<FSET .PERSON ,INVISIBLE>
-					<FSET .PERSON ,NDESCBIT>
-				)>
-			)>
-		)>
-		<SET PERSON <NEXT? .PERSON>>
-	>
-	<RTRUE>>
-
 <ROUTINE PITCH-BLACK()
-	<TELL "It is pitch black. You can't see a thing." CR>>
+	<TELL "It is pitch black. You can't see a thing." CR>
+	<FLUSH>>
 
 <ROUTINE PROBABILITY(ODDS)
 	<RETURN <L? <RANDOM 100> .ODDS>>>
@@ -1220,7 +1187,7 @@
 
 <ROUTINE WAIT-UNTIL (OBJ "OPT" SILENT "AUX" THIS THAT)
 	<COND (<MONSTER-HERE>
-		<TELL CR "You cannot wait until " T .OBJ " while a monster is around." CR>
+		<TELL "You cannot wait until " T .OBJ " while a monster is around." CR>
 		<RTRUE>
 	)>
 	<COND (<EQUAL? .OBJ ,CONCEPT-TOMORROW>
@@ -1232,7 +1199,6 @@
 			<WAIT-UNTIL ,CONCEPT-MORNING T>
 			<WAIT-UNTIL ,CONCEPT-EVENING T>
 		)>
-		<CRLF>
 		<V-LOOK>
 		<RETURN>
 	)>
@@ -1249,7 +1215,7 @@
 				)>
 				<UPDATE-STATUS>
 			>
-			<COND (<NOT .SILENT> <CRLF> <V-LOOK>)>
+			<COND (<NOT .SILENT> <V-LOOK>)>
 			<RTRUE>
 		)>
 	)>
@@ -1257,3 +1223,23 @@
 
 <ROUTINE WHAT-NOW ()
 	<TELL "The what now?" CR>>
+
+<ROUTINE NPC-NOT-UNLOCKED (PERSON "AUX" UNLOCKED-BY)
+	<SET UNLOCKED-BY <GETP .PERSON ,P?UNLOCKED-BY>>
+	<COND (.UNLOCKED-BY
+		<COND (<NOT <GETP .UNLOCKED-BY ,P?BOUNTY-COMPLETED>>
+			<TALK-HIGHLIGHT-PERSON .PERSON "Leave me be, Witcher!">
+			<CRLF>
+			<RTRUE>
+		)>
+	)>>
+
+<ROUTINE NPC-SLEEPING (PERSON)
+	<COND (<AND <NOT ,DAYTIME> <FSET? .PERSON ,PERSONBIT>>
+		<COND (<NPC-NOT-UNLOCKED .PERSON> <RTRUE>)>
+		<TALK-HIGHLIGHT-PERSON .PERSON "You should come back in the morning! ">
+		<TELL "(">
+		<ITALICIZE <PICK-ONE MOOD-NEGATIVE>>
+		<TELL ")" CR>
+		<RTRUE>
+	)>>

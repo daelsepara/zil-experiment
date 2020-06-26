@@ -28,6 +28,8 @@
 <CONSTANT ROACH-RESPONSES <LTABLE 2 "clueless" "amused" "fascinated" "bored" "interested" "enthusiastic">>
 <CONSTANT THING-DESCRIPTIONS <LTABLE 2 "nothing special" "nothing extraordinary" "something terribly mundane" "nothing noteworthy">>
 
+<CONSTANT MOOD-NEGATIVE <LTABLE 2 "angry" "annoyed" "sleepy">>
+
 <GLOBAL CURRENT-VEHICLE NONE>
 <GLOBAL DAYTIME T>
 <GLOBAL LAST-LOC NONE>
