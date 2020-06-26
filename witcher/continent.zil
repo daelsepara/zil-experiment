@@ -16,7 +16,7 @@
 	(LOC ROOMS)
 	(DESC "Deep forest")
 	(WEST TO EDGE-OF-FOREST)
-	(LDESC "Light struggles to penetrate through the thick foliage. This place perpetually engulf in shadows and gloom.")
+	(LDESC "Light struggles to penetrate through the thick foliage. This place is perpetually engulfed in shadows and gloom.")
 	(MONSTER NEKKER)
 	(RESPAWN 60)
 	(THINGS
@@ -75,7 +75,7 @@
 <LOCATION BANDIT-CAMP-I
 	(LOC ROOMS)
 	(DESC "Camp in the forest")
-	(LDESC "It is a bandit's camp, also home to deserters and looters.")
+	(LDESC "It is a bandit's camp and is also home to deserters and looters.")
 	(SW BATTLE-FIELD-NORTH)
 	(QUEST BOUNTY-BANDITS-I)
 	(ORENS 100)
@@ -89,7 +89,7 @@
 	(WEST TO WHITE-ORCHARD-TOWN)
 	(NW TO NORTH-OF-WHITE-ORCHARD)
 	(SOUTH TO SOUTH-CROSSROADS)
-	(LDESC "You are in a major highway. Whoever built this must have cleared an entire forest. Other folk and animals that sheltered there have moved on to find sanctuary elsewhere. Such things have become inevitable in the march to progress.")
+	(LDESC "A major highway. Whoever built this must have cleared an entire forest. Other folk and animals that previously sheltered there have moved on to find sanctuary elsewhere. Such things have become inevitable in the march to progress.")
 	(QUEST BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (GROUND HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -131,7 +131,7 @@
 	(DESC "abandoned village")
 	(NORTH TO SOUTH-CROSSROADS)
 	(EAST TO ABANDONED-VILLAGE-WELL)
-	(LDESC "The viallge is quiet, almost abandoned. There is a well nearby.")
+	(LDESC "The viallge is quiet, almost abandoned. There is a well just outside the east end.")
 	(THINGS <> (GROUND) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -140,7 +140,7 @@
 	(DESC "area outside the village")
 	(WEST TO ABANDONED-VILLAGE)
 	(DOWN TO ABANDONED-VILLAGE-WELL-BOTTOM)
-	(LDESC "This is a small area, just outside the village where people must have gathered regularly.")
+	(LDESC "A small area where people must have gathered regularly.")
 	(QUEST CONTRACT-GHOST-IN-THE-WELL)
 	(THINGS <> (GROUND CORNER OUTSIDE TOWN) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT ADJACENT)>
@@ -166,8 +166,8 @@
 	(SOUTH TO WHITE-ORCHARD-TOWN)
 	(SW TO WEST-OF-WHITE-ORCHARD)
 	(SE TO CROSSROADS)
-	(LDESC "All is quient on the nothern frontier. There is an alchemist' shop here.")
-	(THINGS NONE (FRONTIER) THINGS-F)
+	(LDESC "All is quiet on the nothern frontier. There is a small shop here.")
+	(THINGS NONE (FRONTIER SHOP) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION WEST-OF-WHITE-ORCHARD
@@ -197,7 +197,7 @@
 	(DESC "Farm")
 	(SOUTH TO WHITE-ORCHARD-HUT)
 	(SE TO NORTH-OF-WHITE-ORCHARD)
-	(LDESC "Several plots of land are arranged pragmatically. On each plot is a different crop. A lone scarecrow is at the center. The farm looks ready for a harvest.")
+	(LDESC "On the farm plots of land are arranged in a crisscross manner. On each plot is a different crop. A lone scarecrow is at the center. The farm looks ready for a harvest.")
 	(QUEST BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
 		NONE (CROP CROPS FARM AREA PLOT PLOTS LOTS LOT LAND SCARECROW) THINGS-F
@@ -207,7 +207,7 @@
 <LOCATION EDGE-OF-BOG
 	(LOC ROOMS)
 	(DESC "Entrance to the bog")
-	(LDESC "The swamp is murky and nearly impassable apart from scattered patches of dry ground.")
+	(LDESC "The water is murky and the wetlands nearly impassable apart from scattered patches of dry ground.")
 	(THINGS
 		(MURKY) (BOG WATER WATERS) THINGS-F
 		(DRY SCATTERED) (GROUND PATCH PATCHES) THINGS-F)
@@ -219,7 +219,7 @@
 <LOCATION SWAMP-II
 	(LOC ROOMS)
 	(DESC "Bog")
-	(LDESC "The trees are drooping under the weight of their canopies. The vegetation appear in various states of bloom and decay.")
+	(LDESC "The trees droop under the weight of their canopies. The vegetation appear in various stages of bloom and decay.")
 	(NORTH TO EDGE-OF-BOG)
 	(SOUTH TO SWAMP-III)
 	(ORENS 20)
@@ -234,12 +234,12 @@
 <LOCATION SWAMP-III
 	(LOC ROOMS)
 	(DESC "Bog")
-	(LDESC "The bog ends at the edge of a river. The site is a prime spot for an ambush.")
+	(LDESC "The bog ends at the edge of a river. Tall grasses make this a prime spot for an ambush.")
 	(NORTH TO SWAMP-II)
 	(NW TO SWAMP)
 	(DOWN TO HAG-LAIR)
 	(QUEST BOUNTY-WATER-HAG)
-	(THINGS <> (SWAMP BOG RIVER SPOT) THINGS-F)
+	(THINGS <> (SWAMP BOG RIVER SPOT GRASS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION HAG-LAIR
@@ -298,18 +298,18 @@
 	(EAST TO CAVE-III) 
 	(LDESC "Bones and flesh litter the floor. This is the lair of some beast.")
 	(QUEST BOUNTY-CAVE-BEAR)
-	(THINGS <> (BONES REMAINS WALLS CAVE LAIR CREATURE CREATURES FLOOR REMAINS) THINGS-F)
+	(THINGS <> (BONES REMAINS WALLS CAVE LAIR CREATURE CREATURES FLOOR REMAINS GROUND) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
 <LOCATION CAVE-III
 	(LOC ROOMS)
 	(DESC "Inner Lair")
 	(WEST TO CAVE-LAIR)
-	(LDESC "The lair stops here. It smell of death.")
+	(LDESC "The hollow ends here. It smell of death.")
 	(UNLOCKED-BY BOUNTY-CAVE-BEAR)
 	(ORENS 500)
 	(RANDOM-ORENS 50)
-	(THINGS <> (WALLS CAVE LAIR AIR) THINGS-F)
+	(THINGS <> (WALLS HOLLOW CAVE CAVERN LAIR AIR) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT INVISIBLE)>
 
 <ROOM CANNOT-GO
