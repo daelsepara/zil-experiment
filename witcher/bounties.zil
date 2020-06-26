@@ -1,91 +1,92 @@
-<OBJECT-TEMPLATE BOUNTY =
+<OBJECT-TEMPLATE QUEST =
     OBJECT
         (SYNONYM BOUNTY)
         (SIZE 0)
-        (BOUNTY-REWARD 0)
-        (BOUNTY-ACCEPTED FALSE)
-        (BOUNTY-INVESTIGATED FALSE)
-        (BOUNTY-REPORTED FALSE)
-        (BOUNTY-COMPLETED FALSE)
-        (BOUNTY-MONSTER NONE)
-        (BOUNTY-LOC NONE)
-        (BOUNTY-UNLOCKS NONE)
+        (QUEST-REWARD 0)
+        (QUEST-ACCEPTED FALSE)
+        (QUEST-INVESTIGATED FALSE)
+        (QUEST-REPORTED FALSE)
+        (QUEST-COMPLETED FALSE)
+        (QUEST-MONSTER NONE)
+        (QUEST-LOC NONE)
+        (QUEST-UNLOCKS NONE)
+        (MONSTER-APPEARANCE APPEAR-ANY)
         (VALUE 0)
-        (FLAGS TAKEBIT READBIT BOUNTYBIT)>
+        (FLAGS TAKEBIT READBIT QUESTBIT)>
 
-<BOUNTY BOUNTY-BANDITS-I
+<QUEST BOUNTY-BANDITS-I
     (DESC "Bounty: Raid Bandit Camp")
     (ADJECTIVE BANDIT BANDITS)
     (TEXT "A group of bandits, looters, deserters and other unsavoury people.")
-    (BOUNTY-MONSTER BANDITS)
-    (BOUNTY-ACCEPTED T)
-    (BOUNTY-INVESTIGATED T)
-    (BOUNTY-REPORTED T)
-    (BOUNTY-LOC BANDIT-CAMP-I)
-    (BOUNTY-MONSTER BANDITS)
+    (QUEST-MONSTER BANDITS)
+    (QUEST-ACCEPTED T)
+    (QUEST-INVESTIGATED T)
+    (QUEST-REPORTED T)
+    (QUEST-LOC BANDIT-CAMP-I)
+    (QUEST-MONSTER BANDITS)
     (VALUE 100)>
 
-<BOUNTY BOUNTY-WHITE-ORCHARD
+<QUEST BOUNTY-WHITE-ORCHARD
     (IN WHITE-ORCHARD-BOUNTY-BOARD)
     (DESC "Bounty: Beast of White Orchard")
     (ADJECTIVE BEAST)
     (TEXT "A vicious beast is terrorizing the White Orchard area. Travelling in and out of town is forbidden. Merchants should comply. Look for the alderman at White Orchard for further information.")
-    (BOUNTY-REWARD 1500)
-    (BOUNTY-LOC CROSSROADS)
-    (BOUNTY-MONSTER GRIFFIN)
+    (QUEST-REWARD 1500)
+    (QUEST-LOC CROSSROADS)
+    (QUEST-MONSTER GRIFFIN)
     (VALUE 500)>
 
-<BOUNTY BOUNTY-WHITE-ORCHARD-INFESTATION
+<QUEST BOUNTY-WHITE-ORCHARD-INFESTATION
     (IN WHITE-ORCHARD-BOUNTY-BOARD)
     (DESC "Bounty: Farm infestation")
     (ADJECTIVE FARM INFESTATION)
     (TEXT "A farmer near White Orchard is having an infestation problem. He cannot plant his crops nor harvest them until this is resolved. Look for the farmer north west of the town.")
-    (BOUNTY-REWARD 800)
-    (BOUNTY-LOC WHITE-ORCHARD-FARM)
-    (BOUNTY-MONSTER ALGHOUL)
+    (QUEST-REWARD 800)
+    (QUEST-LOC WHITE-ORCHARD-FARM)
+    (QUEST-MONSTER ALGHOUL)
     (VALUE 100)>
 
-<BOUNTY BOUNTY-CAVE-BEAR
+<QUEST BOUNTY-CAVE-BEAR
     (DESC "Bounty: Cave bear")
     (ADJECTIVE CAVE BEAR)
     (TEXT "There is a beast lurking inside a cave in the swamp.")
-    (BOUNTY-ACCEPTED T)
-    (BOUNTY-INVESTIGATED T)
-    (BOUNTY-REPORTED T)
-    (BOUNTY-LOC CAVE-LAIR)
-    (BOUNTY-MONSTER BEAR)
-    (BOUNTY-UNLOCKS CAVE-III)
+    (QUEST-ACCEPTED T)
+    (QUEST-INVESTIGATED T)
+    (QUEST-REPORTED T)
+    (QUEST-LOC CAVE-LAIR)
+    (QUEST-MONSTER BEAR)
+    (QUEST-UNLOCKS CAVE-III)
     (VALUE 50)>
 
-<BOUNTY QUEST-MISSING-HUSBAND
+<QUEST QUEST-MISSING-HUSBAND
     (IN WHITE-ORCHARD-BOUNTY-BOARD)
     (DESC "Quest: Find Missing Husband")
-    (SYNONYM QUEST HUSBAND)
-    (ADJECTIVE MISSING)
+    (SYNONYM QUEST)
+    (ADJECTIVE MISSING HUSBAND)
     (TEXT "||..................||Help!||Please help me find my husband.  Missing for several days now.||Will pay with coins.||--- Lara||..................")
-    (BOUNTY-REWARD 500)
-    (BOUNTY-LOC CAVE-III)
+    (QUEST-REWARD 500)
+    (QUEST-LOC CAVE-III)
     (VALUE 200)>
 
-<BOUNTY CONTRACT-GHOST-IN-THE-WELL
+<QUEST CONTRACT-GHOST-IN-THE-WELL
     (DESC "Contract: Ghost in the Well")
     (IN ABANDONED-VILLAGE-BOUNTY-BOARD)
     (SYNONYM CONTRACT)
     (ADJECTIVE GHOST WELL)
     (TEXT "A ghost is haunting the well in the village. Townsfolk are suffering without access to the water supply.")    
-    (BOUNTY-REWARD 300)
-    (BOUNTY-LOC ABANDONED-VILLAGE-WELL)
-    (BOUNTY-MONSTER WRAITH-JAENY)
-    (BOUNTY-UNLOCKS ABANDONED-VILLAGE-WELL-BOTTOM)
+    (QUEST-REWARD 300)
+    (QUEST-LOC ABANDONED-VILLAGE-WELL)
+    (QUEST-MONSTER WRAITH-JAENY)
+    (QUEST-UNLOCKS ABANDONED-VILLAGE-WELL-BOTTOM)
     (VALUE 200)>
 
-<BOUNTY CONTRACT-MISSING-BRACELET
+<QUEST CONTRACT-MISSING-BRACELET
     (DESC "Quest: Missing bracelet")
     (IN ODOLAN)
-    (SYNONYM QUEST)
+    (SYNONYM CONTRACT)
     (ADJECTIVE MISSING BRACELET)
     (TEXT "Odolan is looking for a memento from her late fiancee.")    
-    (BOUNTY-REWARD 100)
-    (BOUNTY-LOC ABANDONED-VILLAGE-WELL-BOTTOM)
+    (QUEST-REWARD 100)
+    (QUEST-LOC ABANDONED-VILLAGE-WELL-BOTTOM)
     (QUEST-ITEMS MISSING-BRACELET-ITEMS)
     (VALUE 50)>
