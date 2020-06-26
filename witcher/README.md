@@ -22,7 +22,7 @@ Our goals are to implement these features
 - [X] non-monster-killing quests (22 June 2020 search quest, 24 June 2020 Recover item(s) quest and connected quests)
 - [ ] superior versions of oils
 - [ ] non-bounty related NPC dialogs
-- [ ] other interesting objects
+- [X] other interesting objects (24 JUNE 2020 border posts, allow fast travel between locations)
 
 ### Phase 3 (TBD)
 
