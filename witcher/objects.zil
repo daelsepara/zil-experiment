@@ -58,7 +58,7 @@
 <OBJECT WHITE-ORCHARD-BOUNTY-BOARD
 	(IN WHITE-ORCHARD-TOWN)
 	(SYNONYM BOARD ANNOUNCEMENTS ANNOUNCEMENT)
-	(ADJECTIVE BOUNTY)
+	(ADJECTIVE BOUNTY BOUNTIES QUEST QUESTS CONTRACT CONTRACTS)
 	(DESC "White Orchard Announcement Board")
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
 	(FLAGS READBIT SURFACEBIT)>
@@ -66,7 +66,7 @@
 <OBJECT ABANDONED-VILLAGE-BOUNTY-BOARD
 	(IN ABANDONED-VILLAGE)
 	(SYNONYM BOARD ANNOUNCEMENTS ANNOUNCEMENT)
-	(ADJECTIVE BOUNTY)
+	(ADJECTIVE BOUNTY BOUNTIES QUEST QUESTS CONTRACT CONTRACTS)
 	(DESC "Announcement Board")
 	(TEXT "Important announcements for the town will be posted here including quests and bounties.")
 	(FLAGS READBIT SURFACEBIT VOWELBIT)>
@@ -83,7 +83,7 @@
 		<DO (I 1 .COUNT)
 			<COND (<EQUAL? ,PRSO <GET BORDER-POSTS .I>>
 				<PUT BORDER-POST-ACTIVATED .I T>
-				<TELL CR "[" D ,PRSO " activated]" CR>
+				<TELL "[" D ,PRSO " activated]" CR>
 				<RTRUE>
 			)>
 		>

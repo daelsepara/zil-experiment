@@ -130,20 +130,14 @@
 			<TELL "You already drank " T ,PRSO "!" CR>
 		)(T
 			<SET WAS-DARK <IS-DARK ,HERE ,PLAYER>>
-			<TELL "You drink " T .POTION>
+			<TELL "You drink " T .POTION ".">
 			<SETG WITCHER-CATS-EYE T>
 			<WITCHER-CAT-EYES-EFFECT>
 			<QUEUE I-CAT-EYES CATS-EYE-DURATION>
 			<COND (.WAS-DARK
-				<TELL " You can now see in the dark for a limited time." CR>
-				<CRLF>
-				<HLIGHT ,H-BOLD> <TELL D ,HERE> <HLIGHT 0>
-				<CRLF>
-				<DETECT-OBJECTS ,M-LOOK>
-				<DESCRIBE-OBJECTS ,HERE>
-			)(T
-				<CRLF>
+				<HLIGHT ,H-BOLD><TELL " You can now see in the dark for a limited time." CR><HLIGHT 0>
 			)>
+			<FLUSH>
 		)>
 		<RTRUE>
 	)>>

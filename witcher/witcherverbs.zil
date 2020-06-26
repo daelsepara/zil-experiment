@@ -211,7 +211,6 @@
 	<WITCHER-EAT>>
 
 <ROUTINE V-WITCHER-JOURNAL ("AUX" QUEST-COUNT)
-	<CRLF>
 	<HLIGHT ,H-BOLD>
 	<TELL "Quests and bounties: " CR CR>
 	<HLIGHT 0>
@@ -220,7 +219,6 @@
 	<COND (<0? .QUEST-COUNT> <TELL "None" CR>)>>
 
 <ROUTINE V-WITCHER-SCORE ("AUX" QUEST-COUNT)
-	<CRLF>
 	<HLIGHT ,H-BOLD>
 	<TELL "Score:" CR CR>
 	<HLIGHT 0>
@@ -229,7 +227,6 @@
 	<COND (<0? .QUEST-COUNT> <TELL "You have not completed any quests yet." CR>)(<TELL "Total Score: "> <HLIGHT ,H-BOLD> <TELL N ,SCORE CR> <HLIGHT 0>)>>
 
 <ROUTINE V-WITCHER-STATUS ()
-	<CRLF>
 	<TELL "Health: " N ,WITCHER-HEALTH CR>
 	<TELL "Food supplies: " N ,WITCHER-FOOD CR>
 	<TELL "Orens: " N ,WITCHER-ORENS CR>
