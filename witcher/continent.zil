@@ -184,11 +184,11 @@
 <LOCATION WHITE-ORCHARD-HUT
 	(LOC ROOMS)
 	(DESC "Farmer's Hut")
+	(LDESC "This place is far enough from the noise and the crowd. There is a small hut here.")
 	(NORTH TO WHITE-ORCHARD-FARM)
 	(EAST TO NORTH-OF-WHITE-ORCHARD)
 	(SOUTH TO WEST-OF-WHITE-ORCHARD)
 	(SE TO WHITE-ORCHARD-TOWN)
-	(LDESC "This place is far enough from the noise and the crowd. There is a small hut here.")
 	(THINGS NONE (HUT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -200,15 +200,17 @@
 	(LDESC "Several plots of land are arranged pragmatically. On each plot is a different crop. A lone scarecrow is at the center. The farm looks ready for a harvest.")
 	(QUEST BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
-		NONE (CROP CROPS FARM AREA PLOT SCARECROW) THINGS-F
+		NONE (CROP CROPS FARM AREA PLOT PLOTS LOTS LOT LAND SCARECROW) THINGS-F
 		NONE (FOOD MEAT) FOOD-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <LOCATION EDGE-OF-BOG
 	(LOC ROOMS)
-	(DESC "Bog")
-	(LDESC "The water is murky and nearly impassable. What monsters lurk beyond?")
-	(THINGS (MURKY) (BOG WATER) THINGS-F)
+	(DESC "Entrance to the bog")
+	(LDESC "The swamp is murky and nearly impassable apart from scattered patches of dry ground.")
+	(THINGS
+		(MURKY) (BOG WATER WATERS) THINGS-F
+		(DRY SCATTERED) (GROUND PATCH PATCHES) THINGS-F)
 	(SOUTH TO SWAMP-II)
 	(SW TO SWAMP)
 	(NE TO WEST-OF-WHITE-ORCHARD)
@@ -216,20 +218,28 @@
 
 <LOCATION SWAMP-II
 	(LOC ROOMS)
-	(DESC "Swamp (II)")
+	(DESC "Bog")
+	(LDESC "The trees are drooping under the weight of their canopies. The vegetation appear in various states of bloom and decay.")
 	(NORTH TO EDGE-OF-BOG)
 	(SOUTH TO SWAMP-III)
-	(THINGS <> (SWAMP) THINGS-F)
-	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
+	(ORENS 20)
+	(RANDOM-ORENS 10)
+	(THINGS
+		<> (SWAMP MARSH LAND) THINGS-F
+		(DROOPING) (CANOPY CANOPIES TREE TREES) THINGS-F
+		(DECAYING BLOOMING) (PLANT PLANTS VEGETATION) THINGS-F
+		<> (FOOD MEAT) FOOD-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
 
 <LOCATION SWAMP-III
 	(LOC ROOMS)
-	(DESC "Swamp (III)")
+	(DESC "Bog")
+	(LDESC "The bog ends at the edge of a river. The site is a prime spot for an ambush.")
 	(NORTH TO SWAMP-II)
 	(NW TO SWAMP)
 	(DOWN TO HAG-LAIR)
 	(QUEST BOUNTY-WATER-HAG)
-	(THINGS <> (SWAMP) THINGS-F)
+	(THINGS <> (SWAMP BOG RIVER SPOT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION HAG-LAIR
@@ -250,7 +260,7 @@
 	(NE TO EDGE-OF-BOG)
 	(SW TO SWAMP-III)
 	(DOWN TO SWAMP-CAVE)
-	(LDESC "Large tree roots twist and intertwine. The ground is constantly pushing back against the swamp.  There appears to be a cave down here.")
+	(LDESC "Vines and roots twist and tangle everywhere. The dwindling dry ground is constantly pushing back against the overflowing swamp. There appears to be a cave down here.")
 	(THINGS <> (SWAMP BOG WATER TREES CAVE ROOTS GROUND) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
@@ -277,7 +287,7 @@
 	(DESC "Inside the cave")
 	(NORTH TO CAVE-I)
 	(SOUTH TO CAVE-LAIR)
-	(LDESC "Foul odorS emanates from the south. Excessive amounts of blood are splattered everywhere: on the floor and on the walls.")
+	(LDESC "Foul odors emanate from the south. Excessive amounts of blood are splattered everywhere: on the floor and on the walls.")
 	(THINGS <> (WALLS CAVE BLOOD FLOOR ODOR AIR WALL WALLS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
@@ -286,7 +296,7 @@
 	(DESC "Lair")
 	(NORTH TO CAVE-II)
 	(EAST TO CAVE-III) 
-	(LDESC "Bones and flesh remains of various creatures litter the floor. This is the lair of some beast.")
+	(LDESC "Bones and flesh litter the floor. This is the lair of some beast.")
 	(QUEST BOUNTY-CAVE-BEAR)
 	(THINGS <> (BONES REMAINS WALLS CAVE LAIR CREATURE CREATURES FLOOR REMAINS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
@@ -295,7 +305,7 @@
 	(LOC ROOMS)
 	(DESC "Inner Lair")
 	(WEST TO CAVE-LAIR)
-	(LDESC "The lair stops here. Everything here smells of death.")
+	(LDESC "The lair stops here. It smell of death.")
 	(UNLOCKED-BY BOUNTY-CAVE-BEAR)
 	(ORENS 500)
 	(RANDOM-ORENS 50)
