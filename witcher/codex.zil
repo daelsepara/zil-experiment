@@ -88,6 +88,13 @@ Data from:
     (SYNONYM MEDALLION MEDAL)
     (ADJECTIVE WOLF)>
 
+<TOPIC TOPIC-WATER-HAG
+    (DESC "Water Hags")
+    (LDESC "Water hags inhabit all forms of wetlands in the vicinity of rivers and lakes, as well as swamps and bogs. They construct hovels made of wood, mud, and reed, or make their lairs in watery hollows they excavate in reiverbanks and shoreline scarps. When hunting in their natural habitat, they typically attack from ambush, cathing swimming children or pulling fishermen from their boats or jetties. At  night they sneak into waterside villages and abduct livestock or late-night travelers, whom they take back to their abodes to devour.||Week against necrophage oil.")
+    (SYNONYM HAG HAGS)
+    (ADJECTIVE WATER)
+    (FLAGS MONSTERBIT)>
+
 <TOPIC TOPIC-WRAITHS
     (DESC "Wraiths")
     (LDESC "Wraiths are the most common of ethereal emanations. They are the vengeful ghosts of people who died violently or suddenly, usually as a result of some injustice / the betrayal of a trusted friend, an unjust accusation, or a murder born of greed or envy.||Weak against specter oil.")
@@ -137,6 +144,7 @@ Data from:
 			(<OR <EQUAL? .W ,W?MEDALLION ,W?MEDAL ,WOLF-MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDAL>> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
 			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)
 			(<OR <EQUAL? .W ,W?MONSTERS ,W?MONSTER> <ARE-WORDS ,W?LIST ,W?MONSTERS> <IS-PHRASE ,W?LIST ,W?OF ,W?MONSTERS>> <LIST-TOPICS ,MONSTERBIT>)
+			(<OR <EQUAL? .W ,WATER-HAG> <ARE-WORDS ,W?WATER ,W?HAG> <ARE-WORDS ,W?WATER ,W?HAGS>> <PRINT-TOPIC ,TOPIC-WATER-HAG>)
 			(<EQUAL? .W ,W?WRAITH ,W?WRAITHS ,TOPIC-WRAITHS> <PRINT-TOPIC ,TOPIC-WRAITHS>)
 			(<EQUAL? .W ,W?ORENS ,TOPIC-ORENS> <PRINT-TOPIC ,TOPIC-ORENS>)
 			(<EQUAL? .W ,W?JAENY ,TOPIC-JAENY ,WRAITH-JAENY ,JAENY-CORPSE> <PRINT-TOPIC ,TOPIC-JAENY>)
