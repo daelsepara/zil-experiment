@@ -99,3 +99,5 @@
 <CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching." "Have you found it yet?">>
 <CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "..." "Have you found it yet?">>
 <CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher." "Thanks for your help, Witcher!">>
+
+<CONSTANT COMPONENTS-SWALLOW-CONCOCTION <LTABLE CELADINE-FLOWERS DROWNER-BRAINS BOTTLE-OF-DWARVEN-SPIRITS>>
