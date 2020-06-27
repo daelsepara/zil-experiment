@@ -29,11 +29,25 @@
 	(DESC "Forest")
 	(WEST TO CAMP-SITE)
 	(EAST TO DEEP-FOREST)
+	(SOUTH TO MEADOWS)
 	(LDESC "A dense thicket forms at the edge of the clearing.")
 	(THINGS
 		NONE (FOOD MEAT) FOOD-F
 		NONE (THICKET CLEARING EDGE PATH FOREST) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT HASFOOD)>
+
+<LOCATION MEADOWS
+	(LOC ROOMS)
+	(DESC "Meadows")
+	(LDESC "There is a cozy looking hut accross the meadows at the edge of the forest. Beside it is a small garden where various types of herbs are grown.")
+	(NORTH TO EDGE-OF-FOREST)
+	(EAST TO CANNOT-GO)
+	(SOUTH TO CANNOT-GO)
+	(THINGS
+		(SMALL) (GARDEN HUT GARDEN) THINGS-F
+		(VARIOUS DIFFERENT TYPES) (HERBS) THINGS-F
+		NONE (FOREST MEADOW MEADOWS HUT) THINGS-F)
+	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION CAMP-SITE
 	(LOC ROOMS)
