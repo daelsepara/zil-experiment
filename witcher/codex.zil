@@ -84,6 +84,10 @@ Data from:
     (SYNONYM SWORD)
     (ADJECTIVE SILVER)>
 
+<TOPIC TOPIC-SWALLOW-CONCOCTION
+    (DESC "Swallow concoction")
+    (LDESC "A very powerful concoction that, when consumed, regenerates the person's vitality slowly. It is not known whether it is safe to administer to anynone other than Witchers. It often proves toxic and even fatal.||Ingredients: Celadine flowers, Drowner's brains, bottle of Dwarven spirit.")>
+
 <TOPIC TOPIC-WITCHERS
     (DESC "Witchers")
     (LDESC "A conviction has arisen amongst both mages and the hoi polloi that Witchers barely rise a hair's breath above animals, that they are deformed and bloodthirsty mutants, and that in slaking this thirst they do not limit themselves to the fluids of monsters. Meanwhile the research and observations of Virgil of Ban Ard paints a different picture of this caste.||Of course, it is an indisputable fact that the mutations Witcher undergo influence their temperament, immune system, strenght and endurance, yet one cannot consider them unthinking beings forged only for killing as a result. In fact, Witchers cultivate a unique culture, a specialized body of knowledge, an effective training system, and even a code of honor. They known an incredible amount about the effects of ingesting various organic and inorganic substances, and also a small amount, but nevertheless, something about the fundamentals of magic (simple spells they call \"Signs\").||On the surface the Witchers appear to be a homogeneous social entity, but in truth their fighting styles, training regimens, and world views differ significantly depending on which school they adhere to. The best-known Witcher schools on the Continent are: the Wolf School, the Bear School, the Griffin School, the Viper School, and the Cat School.")
@@ -151,6 +155,7 @@ Data from:
 			(<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,ROACH ,TOPIC-ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
 			(<OR <EQUAL? .W ,SILVER-SWORD ,TOPIC-SILVER-SWORD> <ARE-WORDS ,W?SILVER ,W?SWORD> <ARE-WORDS ,W?SILVER ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
 			(<OR <EQUAL? .W ,STEEL-SWORD ,TOPIC-STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
+			(<OR <EQUAL? .W ,CONCOCTION-SWALLOW> <ARE-WORDS ,W?SWALLOW ,W?CONCOCTION>> <PRINT-TOPIC ,TOPIC-SWALLOW-CONCOCTION>)
 			(<OR <EQUAL? .W ,WATER-HAG> <ARE-WORDS ,W?WATER ,W?HAG> <ARE-WORDS ,W?WATER ,W?HAGS>> <PRINT-TOPIC ,TOPIC-WATER-HAG>)
 			(<EQUAL? .W ,W?WRAITH ,W?WRAITHS ,TOPIC-WRAITHS> <PRINT-TOPIC ,TOPIC-WRAITHS>)
 			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)

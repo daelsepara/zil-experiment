@@ -39,14 +39,14 @@
 <LOCATION MEADOWS
 	(LOC ROOMS)
 	(DESC "Meadows")
-	(LDESC "There is a cozy looking hut accross the meadows at the edge of the forest. Beside it is a small garden where various types of herbs are grown.")
+	(LDESC "There is a cozy looking hut accross the meadows at the edge of the forest. Beside it is a small garden.")
 	(NORTH TO EDGE-OF-FOREST)
 	(EAST TO CANNOT-GO)
 	(SOUTH TO RIVERBANKS)
 	(SW TO RIVERBANKS)
 	(SE TO RIVERBANKS)
 	(THINGS
-		(SMALL) (GARDEN HUT GARDEN) THINGS-F
+		(SMALL) (HUT) THINGS-F
 		(VARIOUS DIFFERENT TYPES) (HERBS) THINGS-F
 		NONE (FOREST MEADOW MEADOWS HUT) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -373,7 +373,7 @@
 		<LOCATION-DESCRIPTIONS ,HERE>
 		<PUTP ,HERE ,P?FLASHED FALSE>
 	)(<EQUAL? .RARG ,M-BEG>
-		<COND (,SHOW-COMBAT-MESSAGES <CRLF>)>
+		<COND (<AND <NOT <VERB? EXAMINE>> ,SHOW-COMBAT-MESSAGES> <CRLF>)>
 		<RFALSE>
 	)(<EQUAL? .RARG ,M-ENTER>
 		<COND (<NOT <CHECK-IF-UNLOCKED ,HERE>> <CANNOT-GO-F ,M-ENTER> <RTRUE>)>

@@ -82,7 +82,7 @@
     (VALUE 200)>
 
 <QUEST CONTRACT-MISSING-BRACELET
-    (DESC "Quest: Missing bracelet")
+    (DESC "Contract: Missing bracelet")
     (IN ODOLAN)
     (SYNONYM CONTRACT)
     (ADJECTIVE MISSING BRACELET)
@@ -105,3 +105,13 @@
     (QUEST-UNLOCKS HAG-LAIR)
     (MONSTER-APPEARANCE APPEAR-NIGHT)
     (VALUE 100)>
+
+<QUEST QUEST-CURE-FOR-VICTIMS
+    (DESC "Quest: Cure for victims of the White Orchard monster")
+    (IN AMIRA)
+    (SYNONYM QUEST CURE VICTIM VICTIMS)
+    (TEXT "Amira is looking for cure for the victims of the White Orchard monster.")    
+    (QUEST-REWARD 0)
+    (QUEST-LOC NONE)
+    (QUEST-ITEMS CURE-FOR-VICTIMS-ITEMS)
+    (VALUE 200)>

@@ -96,9 +96,15 @@
 <CONSTANT QUEST-SEARCH 2>
 <CONSTANT QUEST-RECOVER 3>
 
-<CONSTANT QUEST-ACCEPT <LTABLE "Splendid! You should investigate " "Thanks Witcher! Please carry on with your search." "Thanks Witcher! Please come back as soon as you find it.">>
-<CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching." "Have you found it yet?">>
-<CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "..." "Have you found it yet?">>
+<CONSTANT QUEST-ACCEPT <LTABLE "Splendid! You should investigate " "Thanks Witcher! Please carry on with your search." "Thanks Witcher! Please come back as soon as you have it.">>
+<CONSTANT QUEST-INVESTIGATE <LTABLE "You should probably continue investigating " "You should probabably continue searching." "Have you got it yet?">>
+<CONSTANT QUEST-REPORT <LTABLE "Please come back after you have dealt with " "..." "Have you got it yet?">>
 <CONSTANT QUEST-COMPLETE <LTABLE "Thanks, witcher! We are safe again!" "Thanks for your help, Witcher." "Thanks for your help, Witcher!">>
+
+<CONSTANT CURE-FOR-VICTIMS-ITEMS <LTABLE CONCOCTION-SWALLOW>>
+<CONSTANT CURE-FOR-VICTIMS-CONCLUSIONS "... I have prepared the concoction. I must take it to ">
+<CONSTANT CURE-FOR-VICTIMS-NEWS "I am caring for the victims of the White Orchard monster. So far, none of the herbs and potions I have brewed worked. Perhaps, the swallow concoction of which, the ingredients and preparation, known only to your kind, would help ease the suffering of these people?">
+<CONSTANT CURE-FOR-VICTIMS-REPORT "Have you prepared the concoction yet?">
+<CONSTANT CURE-FOR-VICTIMS-GREETINGS "Greetings Witcher! There is something I need your help with but please take care of the White Orchard monster first.">
 
 <CONSTANT COMPONENTS-SWALLOW-CONCOCTION <LTABLE CELADINE-FLOWERS DROWNER-BRAINS BOTTLE-OF-DWARVEN-SPIRITS>>
