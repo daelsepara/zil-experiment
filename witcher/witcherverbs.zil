@@ -81,7 +81,13 @@
 		<RTRUE>
 	)>
 
-	<TELL "You looked at " T ,PRSO " closely and see that it is ">
+	<TELL "You looked at " T ,PRSO " closely and see that it ">
+
+	<COND (<FSET ,PRSO ,QUESTBIT>
+		<TELL "reads: ">
+	)(
+		<TELL "is ">
+	)>
 	
 	<SET TEXT <GETP ,PRSO ,P?TEXT>>
 
