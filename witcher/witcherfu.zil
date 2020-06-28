@@ -164,20 +164,19 @@
     (FLAGS NDESCBIT MAGICBIT READBIT)>
 
 <OBJECT WELL
-	(IN ABANDONED-VILLAGE-WELL)
-	(DESC "well")
-	(TEXT "There are traces of blood on the well. A foul odor also emanates from it. Perhaps someone or something thrown down there.")
-	(SYNONYM WELL)
-	(ACTION ABANDONED-WELL-INVESTIGATION)>
+    (IN ABANDONED-VILLAGE-WELL)
+    (DESC "well")
+    (TEXT "There are traces of blood on the well. A foul odor also emanates from it. Perhaps someone or something thrown down there.")
+    (SYNONYM WELL)
+    (ACTION ABANDONED-WELL-INVESTIGATION)>
 
 <OBJECT DRAG-MARKS
-	(DESC "drag marks on the ground")
+    (DESC "drag marks on the ground")
     (FDESC "[There are drag marks on the ground]")
     (TEXT "Someone was dragged towards the well. No signs of struggle. The victim must have been dead already.")
     (SYNONYM MARKS)
     (ADJECTIVE DRAG)
     (ACTION ABANDONED-WELL-INVESTIGATION)
-    (THINGS <> (GROUND) THINGS-F)
     (FLAGS PLURALBIT)>
 
 <ROUTINE ABANDONED-WELL-INVESTIGATION ("AUX" TEXT)
