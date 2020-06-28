@@ -29,6 +29,13 @@ Data from:
     (SYNONYM BEAR BEARS)
     (FLAGS MONSTERBIT)>
 
+<TOPIC TOPIC-DROWNERS
+    (DESC "Drowners")
+    (LDESC "These inhabit both natural and artificial bodies of water, from rivers and lakes to mill pponds and city sewers. It is commonly thought that these creatures are drowned men, somehow arisen from the dead to prey on the living. This opinion is as widespread as it is false, for the beasts are in fact another post-Conjuction relic. Both drowners and the drowned dead, despite their misshapen appearance, are excellent swimmers.||Weak against necrophage oil.")
+    (SYNONYM DROWNER DROWNERS DEAD)
+    (ADJECTIVE DROWNED)
+    (FLAGS MONSTERBIT)>
+
 <TOPIC TOPIC-GERALT
     (DESC "Geralt of Rivia, the White wolf, Gwynbleidd")
     (LDESC "Known to the elves as Gwynbleidd, and to those seeking his services, as the White Wolf, Geralt is a member of the Wolf School. He is no mere swinger of swords, but thoughtful, cunning, resourceful, and an exceptional warrior. Beneath a rather stoic exterior are murmurings of good humor, a readiness to help out those in distress, an offering of goodwill and a mastery of both his blades to help those requesting hs aid.")
@@ -123,7 +130,6 @@ Data from:
 			<SET W ,PRSI>
 			<SET .STOP T>
 		)(ELSE
-			<CRLF>
 			<HLIGHT ,H-BOLD> <TELL "What are you looking for in the codex?">
 			<HLIGHT 0> <TELL " (Type "> <HLIGHT ,H-BOLD> <TELL "CLOSE"> <HLIGHT 0> <TELL " to exit codex. For available topics, type "> <HLIGHT ,H-BOLD> <TELL "TOPICS"> <HLIGHT 0> <TELL ")" CR>
 			<READLINE>
@@ -133,23 +139,25 @@ Data from:
 		<COND
 			(<EQUAL? .W ,W?ALGHOULS ,W?ALGHOUL ,ALGHOUL ,TOPIC-ALGHOULS> <PRINT-TOPIC ,TOPIC-ALGHOULS>)
 			(<OR <EQUAL? .W ,W?BEAR ,W?BEARS ,BEAR ,TOPIC-BEARS> <ARE-WORDS ,W?SWAMP ,W?BEAR> <IS-PHRASE ,W?THE ,W?SWAMP ,W?BEAR>> <PRINT-TOPIC ,TOPIC-BEARS>)
-			(<EQUAL? .W ,W?GHOULS ,W?GHOUL ,TOPIC-GHOULS> <PRINT-TOPIC ,TOPIC-GHOULS>)
+			(<OR <EQUAL? .W ,W?DROWNER ,W?DROWNERS ,DROWNER ,TOPIC-DROWNERS> <ARE-WORDS ,W?DROWNED ,W?DEAD>> <PRINT-TOPIC ,TOPIC-DROWNERS>)
+			(<EQUAL? .W ,W?GHOULS ,W?GHOUL ,GHOULS ,TOPIC-GHOULS> <PRINT-TOPIC ,TOPIC-GHOULS>)
 			(<EQUAL? .W ,W?NEKKER ,W?NEKKERS ,NEKKER ,TOPIC-NEKKER> <PRINT-TOPIC ,TOPIC-NEKKER>)
-			(<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,TOPIC-ROACH ,ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
 			(<EQUAL? .W ,W?WITCHER ,W?WITCHERS ,WITCHER> <PRINT-TOPIC ,TOPIC-WITCHERS>)
 			(<OR <EQUAL? .W ,W?GERALT ,W?GWYNBLEIDD ,W?ME, W?MYSELF ,GERALT ,PLAYER> <IS-PHRASE ,W?GERALT ,W?OF ,W?RIVIA> <IS-PHRASE ,W?THE ,W?WHITE ,W?WOLF> <ARE-WORDS ,W?WHITE ,W?WOLF>> <PRINT-TOPIC ,TOPIC-GERALT>)
-			(<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,TOPIC-GRIFFINS ,GRIFFIN> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
-			(<OR <EQUAL? .W ,SILVER-SWORD> <ARE-WORDS ,W?SILVER ,W?SWORD> <ARE-WORDS ,W?SILVER ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
-			(<OR <EQUAL? .W ,STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
+			(<EQUAL? .W ,W?GRIFFIN ,W?GRIFFINS ,GRIFFIN ,TOPIC-GRIFFINS> <PRINT-TOPIC ,TOPIC-GRIFFINS>)
+			(<EQUAL? .W ,W?JAENY ,TOPIC-JAENY ,WRAITH-JAENY ,JAENY-CORPSE> <PRINT-TOPIC ,TOPIC-JAENY>)
 			(<OR <EQUAL? .W ,W?MEDALLION ,W?MEDAL ,WOLF-MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDALLION> <ARE-WORDS ,W?WOLF ,W?MEDAL>> <PRINT-TOPIC ,TOPIC-WOLF-MEDALLION>)
-			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)
-			(<OR <EQUAL? .W ,W?MONSTERS ,W?MONSTER> <ARE-WORDS ,W?LIST ,W?MONSTERS> <IS-PHRASE ,W?LIST ,W?OF ,W?MONSTERS>> <LIST-TOPICS ,MONSTERBIT>)
+			(<EQUAL? .W ,W?ORENS ,W?COIN ,W?COINS ,TOPIC-ORENS> <PRINT-TOPIC ,TOPIC-ORENS>)
+			(<EQUAL? .W ,W?ROACH ,W?HORSE ,W?STEED ,W?RIDE, W?MOUNT ,ROACH ,TOPIC-ROACH> <PRINT-TOPIC ,TOPIC-ROACH>)
+			(<OR <EQUAL? .W ,SILVER-SWORD ,TOPIC-SILVER-SWORD> <ARE-WORDS ,W?SILVER ,W?SWORD> <ARE-WORDS ,W?SILVER ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-SILVER-SWORD>)
+			(<OR <EQUAL? .W ,STEEL-SWORD ,TOPIC-STEEL-SWORD> <ARE-WORDS ,W?STEEL ,W?SWORD> <ARE-WORDS ,W?STEEL ,W?SWORDS>> <PRINT-TOPIC ,TOPIC-STEEL-SWORD>)
 			(<OR <EQUAL? .W ,WATER-HAG> <ARE-WORDS ,W?WATER ,W?HAG> <ARE-WORDS ,W?WATER ,W?HAGS>> <PRINT-TOPIC ,TOPIC-WATER-HAG>)
 			(<EQUAL? .W ,W?WRAITH ,W?WRAITHS ,TOPIC-WRAITHS> <PRINT-TOPIC ,TOPIC-WRAITHS>)
-			(<EQUAL? .W ,W?ORENS ,TOPIC-ORENS> <PRINT-TOPIC ,TOPIC-ORENS>)
-			(<EQUAL? .W ,W?JAENY ,TOPIC-JAENY ,WRAITH-JAENY ,JAENY-CORPSE> <PRINT-TOPIC ,TOPIC-JAENY>)
+			(<OR <EQUAL? .W ,W?TOPICS> <ARE-WORDS ,W?LIST ,W?TOPICS> <IS-PHRASE ,W?LIST ,W?OF ,W?TOPICS>> <LIST-TOPICS>)
+			(<OR <EQUAL? .W ,W?MONSTERS ,W?MONSTER> <ARE-WORDS ,W?LIST ,W?MONSTERS> <IS-PHRASE ,W?LIST ,W?OF ,W?MONSTERS>> <LIST-TOPICS ,MONSTERBIT>)
 			(<EQUAL? .W ,W?CLOSE ,W?QUIT> <TELL CR "[You close the book]" CR> <RETURN>)
 			(<TELL CR "[The codex is silent about such things.]" CR>)
 		>
 		<COND (<EQUAL? .STOP T> <RTRUE>)>
+        <CRLF>
 	>>
