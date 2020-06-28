@@ -262,70 +262,73 @@
 "QUEST: Cure for victims"
 
 <OBJECT CONCOCTION-SWALLOW
-	(IN GENERIC-OBJECTS)
-	(DESC "vial of swallow concoction")
-	(SYNONYM CONCOCTION MIXTURE)
-	(ADJECTIVE SWALLOW VIAL)
-	(ACTION CONCOCTION-SWALLOW-F)
-	(FLAGS TAKEBIT)>
+    (IN GENERIC-OBJECTS)
+    (DESC "vial of swallow concoction")
+    (SYNONYM CONCOCTION MIXTURE)
+    (ADJECTIVE SWALLOW VIAL)
+    (ACTION CONCOCTION-SWALLOW-F)
+    (FLAGS TAKEBIT)>
 
 <OBJECT CELADINE-FLOWERS
-	(DESC "celadine flowers")
-	(IN AMIRA-GARDEN)
-	(SYNONYM FLOWERS)
-	(ADJECTIVE CELLADINE)
-	(FLAGS NDESCBIT TAKEBIT PLURALBIT)>
+    (DESC "Celadine flowers")
+    (IN AMIRA-GARDEN)
+    (SYNONYM FLOWER FLOWERS)
+    (ADJECTIVE CELADINE)
+    (FLAGS NDESCBIT TAKEBIT PLURALBIT)>
 
 <OBJECT AMIRA-GARDEN
-	(DESC "small garden")
+    (DESC "small garden")
     (LDESC "A small garden where various types of herbs are grown.")
-	(IN MEADOWS)
-	(SYNONYM GARDEN)
-	(FLAGS NDESCBIT SURFACEBIT)>
+    (TEXT "A small garden where various types of herbs are grown.")
+    (IN MEADOWS)
+    (SYNONYM GARDENS GARDEN)
+    (ADJECTIVE SMALL)
+    (FLAGS NDESCBIT SURFACEBIT)>
 
 <OBJECT DROWNER-BRAINS
-	(DESC "Drowner's brains")
-	(SYNONYM BRAIN BRAINS)
-	(ADJECTIVE DROWNER DROWNERS DROWNER'S)
-	(FLAGS TAKEBIT PLURALBIT)>
+    (DESC "Drowner's brains")
+    (SYNONYM BRAIN BRAINS)
+    (ADJECTIVE DROWNER DROWNERS DROWNER'S)
+    (FLAGS TAKEBIT PLURALBIT)>
 
 <OBJECT BOTTLE-OF-DWARVEN-SPIRITS
-	(DESC "bottle of dwarven spirits")
-	(SYNONYM SPIRIT SPIRITS)
-	(ADJECTIVE BOTTLE DWARVEN)
-	(FLAGS TAKEBIT)>
+    (DESC "bottle of dwarven spirits")
+    (SYNONYM SPIRIT SPIRITS)
+    (ADJECTIVE BOTTLE DWARVEN)
+    (FLAGS TAKEBIT)>
 
 <ROUTINE CONCOCTION-SWALLOW-F ()
-	<COND (<VERB? BREW>
-		<COND (<EQUAL? ,PRSO ,CONCOCTION-SWALLOW>
-			<COND (<CHECK-COMPONENTS ,COMPONENTS-SWALLOW-CONCOCTION>
-				<TELL "You prepare " T ,PRSO "." CR>
-				<MAKE-ITEM ,CONCOCTION-SWALLOW ,COMPONENTS-SWALLOW-CONCOCTION>
-				<COND (<GETP QUEST-CURE-FOR-VICTIMS ,P?QUEST-ACCEPTED>
-					<CRLF>
-					<TELL CURE-FOR-VICTIMS-CONCLUSIONS>
+    <COND (<VERB? BREW>
+        <COND (<EQUAL? ,PRSO ,CONCOCTION-SWALLOW>
+            <COND (<CHECK-COMPONENTS ,COMPONENTS-SWALLOW-CONCOCTION>
+                <TELL "You prepare " T ,PRSO "." CR>
+                <MAKE-ITEM ,CONCOCTION-SWALLOW ,COMPONENTS-SWALLOW-CONCOCTION>
+                <COND (<GETP QUEST-CURE-FOR-VICTIMS ,P?QUEST-ACCEPTED>
+                    <CRLF>
+                    <TELL CURE-FOR-VICTIMS-CONCLUSIONS>
                     <TELL D ,AMIRA ".">
-					<CRLF>
-				)(ELSE
-					<TELL "... might be useful some time." CR>
-				)>
-				<PUTP ,QUEST-CURE-FOR-VICTIMS ,P?QUEST-INVESTIGATED T>
-				<ADD-ITEM ,CONCOCTION-SWALLOW>
-				<RTRUE>
-			)(ELSE
-				<TELL "You do not have all the ingredients to make " T ,PRSO CR>
-				<RTRUE>
-			)>
-		)>
-		<HMMM>
-		<RTRUE>
-	)(<VERB? READ-CODEX>
+                    <CRLF>
+                )(ELSE
+                    <TELL "... might be useful some time." CR>
+                )>
+                <PUTP ,QUEST-CURE-FOR-VICTIMS ,P?QUEST-INVESTIGATED T>
+                <ADD-ITEM ,CONCOCTION-SWALLOW>
+                <RTRUE>
+            )(ELSE
+                <TELL "You do not have all the ingredients to make " T ,PRSO CR>
+                <RTRUE>
+            )>
+        )>
+        <HMMM>
+        <RTRUE>
+    )(<VERB? READ-CODEX>
         <COND (<AND <EQUAL? ,PRSO ,CODEX> <EQUAL? ,PRSI ,CONCOCTION-SWALLOW>>
             <V-READ-CODEX>
+            <RTRUE>
         )>
     )(ELSE
-		<COND (<IN? ,CONCOCTION-SWALLOW ,GENERIC-OBJECTS>
-			<TELL "You don't see that here." CR>
-			<RTRUE>
-		)>
-	)>>
+        <COND (<IN? ,CONCOCTION-SWALLOW ,GENERIC-OBJECTS>
+            <TELL "You don't see that here." CR>
+            <RTRUE>
+        )>
+    )>>

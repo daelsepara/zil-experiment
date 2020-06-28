@@ -73,8 +73,13 @@
 		<HMMM>
 		<RTRUE>
 	)>
-	
+
 	<COND (<OR <IS-MONSTER ,PRSO> <FSET? ,PRSO ,TOPICBIT>> <TELL "You should read about " T ,PRSO " in the codex." CR> <RTRUE>)>
+
+	<COND (<OR <FSET? ,PRSO ,SURFACEBIT> <FSET? ,PRSO ,CONTBIT>>
+		<PERFORM ,V?EXAMINE ,PRSO>
+		<RTRUE>
+	)>
 
 	<TELL "You looked at " T ,PRSO " closely and see that it is ">
 	
