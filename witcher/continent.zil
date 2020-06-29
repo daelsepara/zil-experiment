@@ -133,7 +133,7 @@
 	(WEST TO WHITE-ORCHARD-TOWN)
 	(NW TO NORTH-OF-WHITE-ORCHARD)
 	(SOUTH TO SOUTH-CROSSROADS)
-	(LDESC "A major highway. Whoever built this must have cleared an entire forest. Other folk and animals that previously sheltered there have moved on to find sanctuary elsewhere. Such things have become inevitable in the march to progress.")
+	(LDESC "A major highway. Whoever built this must have cleared an entire forest. Other folk and animals that previously sheltered there have moved on to find sanctuary elsewhere.")
 	(QUEST BOUNTY-WHITE-ORCHARD)
 	(THINGS NONE (GROUND HIGHWAY FOREST PATH INFRASTRUCTURE INFRASTRUCTURES ROAD THINGS) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
@@ -176,8 +176,8 @@
 	(DESC "abandoned village")
 	(NORTH TO SOUTH-CROSSROADS)
 	(EAST TO ABANDONED-VILLAGE-WELL)
-	(LDESC "The viallge is quiet, almost abandoned. There is a well just outside the east end.")
-	(THINGS <> (GROUND) THINGS-F)
+	(LDESC "The village is quiet, almost abandoned. There is a well just outside the east end.")
+	(THINGS <> (VILLAGE) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION ABANDONED-VILLAGE-WELL
@@ -187,13 +187,13 @@
 	(DOWN TO ABANDONED-VILLAGE-WELL-BOTTOM)
 	(LDESC "A small area where people must have gathered regularly.")
 	(QUEST CONTRACT-GHOST-IN-THE-WELL)
-	(THINGS <> (GROUND CORNER OUTSIDE TOWN) THINGS-F)
+	(THINGS <> (VILLAGE GROUND CORNER OUTSIDE TOWN) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT ADJACENT)>
 
 <LOCATION ABANDONED-VILLAGE-WELL-BOTTOM
 	(LOC ROOMS)
 	(DESC "bottom of the well")
-	(LDESC "The walls are damp. The air is rank with death.")
+	(LDESC "The walls are damp. The air is rank with the smell of death.")
 	(UNLOCKED-BY CONTRACT-GHOST-IN-THE-WELL)
 	(NORTH TO CANNOT-GO)
 	(SOUTH TO CANNOT-GO)
@@ -222,14 +222,14 @@
 	(NORTH TO WHITE-ORCHARD-HUT)
 	(NE TO NORTH-OF-WHITE-ORCHARD)
 	(SW TO EDGE-OF-BOG)
-	(LDESC "Everything is quiet on the western frontier.")
+	(LDESC "All is quiet on the western frontier.")
 	(THINGS NONE (FRONTIER) THINGS-F)
 	(FLAGS RLANDBIT LIGHTBIT OUTSIDEBIT)>
 
 <LOCATION WHITE-ORCHARD-HUT
 	(LOC ROOMS)
 	(DESC "Farmer's Hut")
-	(LDESC "This place is far enough from the noise and the crowd. There is a small hut here.")
+	(LDESC "This place is far enough from the noise of the nearby town. There is a small hut here.")
 	(NORTH TO WHITE-ORCHARD-FARM)
 	(EAST TO NORTH-OF-WHITE-ORCHARD)
 	(SOUTH TO WEST-OF-WHITE-ORCHARD)
@@ -242,7 +242,7 @@
 	(DESC "Farm")
 	(SOUTH TO WHITE-ORCHARD-HUT)
 	(SE TO NORTH-OF-WHITE-ORCHARD)
-	(LDESC "On the farm plots of land are arranged in a crisscross manner. On each plot is a different crop. A lone scarecrow is at the center. The farm looks ready for a harvest.")
+	(LDESC "Plots of land are crisscrossed across the area. On each plot is a different crop. A lone scarecrow is at the center.")
 	(QUEST BOUNTY-WHITE-ORCHARD-INFESTATION)
 	(THINGS
 		NONE (CROP CROPS FARM AREA PLOT PLOTS LOTS LOT LAND SCARECROW) THINGS-F
@@ -264,7 +264,7 @@
 <LOCATION SWAMP-II
 	(LOC ROOMS)
 	(DESC "Bog")
-	(LDESC "The trees droop under the weight of their canopies. The vegetation appear in various stages of bloom and decay.")
+	(LDESC "The trees droop under the weight of their canopies. The vegetation are in varying stages of bloom and decay.")
 	(NORTH TO EDGE-OF-BOG)
 	(SOUTH TO SWAMP-III)
 	(ORENS 20)
@@ -323,7 +323,7 @@
 	(DESC "Inside the cave, near the entrance")
 	(UP TO SWAMP-CAVE)
 	(SOUTH TO CAVE-II)
-	(LDESC "There are some claw marks on the walls. The footprints lead further to the south. Blood traces also head in that direction.")
+	(LDESC "There are claw marks on the walls. The footprints lead further to the south. Blood traces also head in that direction.")
 	(THINGS <> (WALL WALLS CAVE FOOTPRINT FOOTPRINTS CLAW CLAWS MARKMARKS TRACE TRACES BLOOD) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
@@ -332,7 +332,7 @@
 	(DESC "Inside the cave")
 	(NORTH TO CAVE-I)
 	(SOUTH TO CAVE-LAIR)
-	(LDESC "Foul odors emanate from the south. Excessive amounts of blood are splattered everywhere: on the floor and on the walls.")
+	(LDESC "Foul odors emanate from the south. Excessive amounts of blood are splattered everywhere on the floor and the cave walls.")
 	(THINGS <> (WALLS CAVE BLOOD FLOOR ODOR AIR WALL WALLS) THINGS-F)
 	(FLAGS RLANDBIT ADJACENT)>
 
@@ -350,7 +350,7 @@
 	(LOC ROOMS)
 	(DESC "Inner Lair")
 	(WEST TO CAVE-LAIR)
-	(LDESC "The hollow ends here. It smell of death.")
+	(LDESC "The hollow ends here.")
 	(UNLOCKED-BY BOUNTY-CAVE-BEAR)
 	(ORENS 500)
 	(RANDOM-ORENS 50)
